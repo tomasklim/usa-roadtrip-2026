@@ -31,7 +31,7 @@ export const FLIGHTS = [
 export const BASE: Day[] = [
 { id: "arrive", kind: "arrive", act: "I",
   title: "Land in Seattle", leg: "Prague 11:40 → Seattle 15:40 · Condor, 1 stop",
-  hours: 0, photos: ["seattle"],
+  hours: 0, at: [47.6062, -122.3321], atZoom: 10, photos: ["seattle"],
   hi: ["Nine hours back, so you will be awake at 4am for three days — which is a gift on this trip",
        "No car today. Land, eat something simple, sleep",
        "Save the oysters: the good one is on day 3 and there is no point burning it now"],
@@ -44,7 +44,7 @@ export const BASE: Day[] = [
 
 { id: "sea1", kind: "city", act: "I",
   title: "A day in Seattle, on foot", leg: "Seattle — no car until tomorrow",
-  hours: 0, photos: ["pikeplace"],
+  hours: 0, at: [47.6097, -122.3422], atZoom: 12, photos: ["pikeplace"],
   hi: ["Pike Place Market early, before the cruise crowds — buy Dungeness crab and eat it on the waterfront",
        "The Bainbridge Island ferry is 35 minutes each way and the best cheap view of the skyline",
        "One properly lazy day to kill the jet lag before any driving starts"],
@@ -318,7 +318,7 @@ export const BASE: Day[] = [
 
 { id: "sf1", kind: "sf", act: "V",
   title: "Fly to San Francisco", leg: "Salt Lake City → SFO, then the city on foot",
-  hours: 0, photos: ["goldengate"],
+  hours: 0, at: [37.7749, -122.4194], atZoom: 11, photos: ["goldengate"],
   hi: ["One hour forty-five in the air and the driving is completely over",
        "Golden Gate at golden hour — cliché, and worth it anyway",
        "No car needed in the city, and parking here is genuinely expensive and annoying"],
@@ -334,7 +334,7 @@ export const BASE: Day[] = [
 
 { id: "sf2", kind: "sf", act: "V",
   title: "Point Reyes and shuck your own", leg: "San Francisco → Tomales Bay → Point Reyes → back",
-  hours: 3, photos: ["pointreyes"],
+  hours: 3, at: [38.1150, -122.8800], atZoom: 10, photos: ["pointreyes"],
   hi: ["Hog Island Oyster Farm at Tomales Bay: shuck your own at a picnic table on the water",
        "Oyster stop number two of two, and the only other one that earns the trip",
        "Point Reyes — cliffs, the lighthouse, tule elk and the Cypress Tree Tunnel",
@@ -350,7 +350,7 @@ export const BASE: Day[] = [
 
 { id: "sf3", kind: "sf", act: "V",
   title: "San Francisco, properly", leg: "San Francisco",
-  hours: 0, photos: ["sanfrancisco"],
+  hours: 0, at: [37.8060, -122.4180], atZoom: 12, photos: ["sanfrancisco"],
   hi: ["Whatever the first two days made you want more of",
        "In-N-Out at Fisherman's Wharf closes the loop that started on the salt flats",
        "Golden Gate Park is bigger than Central Park and has a bison paddock in it"],
@@ -365,7 +365,7 @@ export const BASE: Day[] = [
 
 { id: "sf4", kind: "sf", act: "V",
   title: "A day with nothing in it", leg: "San Francisco, or wherever you feel like",
-  hours: 0, photos: ["pointreyes"],
+  hours: 0, at: [37.7600, -122.4350], atZoom: 11, photos: ["pointreyes"],
   hi: ["Deliberately unplanned. Three weeks in, this is worth more than another attraction",
        "Good options if you want one: Napa, Sonoma, Big Sur, or Berkeley",
        "Or nothing at all — sleep in, eat well, walk somewhere"],
@@ -379,7 +379,7 @@ export const BASE: Day[] = [
 
 { id: "depart", kind: "depart", act: "V",
   title: "Fly home", leg: "San Francisco 16:30 → Prague 16:00+1 · Condor, 1 stop",
-  hours: 0, photos: ["goldengate"],
+  hours: 0, at: [37.6213, -122.3790], atZoom: 11, photos: ["goldengate"],
   hi: ["Morning free — the flight is not until half past four",
        "SFO is 30 minutes out on BART, which beats a taxi in traffic",
        "14 h 30 m, one stop, landing in Prague late afternoon the next day"],

@@ -61,7 +61,7 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
                   <span className="modname">{m.name}</span>
                   <span className={`risk ${m.risk}`}>{m.risk === "hi" ? "risk" : "easy"}</span>
                 </div>
-                <p className="moddesc">{m.desc}</p>
+                <p className="moddesc" title={m.desc}>{m.desc}</p>
 
                 <div className="modnums">
                   <span className={`num ${d.days > 0 ? "up" : d.days < 0 ? "down" : ""}`}>
@@ -75,20 +75,34 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
                   </span>
                 </div>
 
-                {before.length > 0 && (
-                  <div className="modba">
-                    <div className="ba">
-                      <span className="balbl">now</span>
-                      <div className="bars">
-                        {before.map((x) => (
-                          <i key={x.id} style={{ height: `${((x.meters ?? 0) / maxM) * 100}%` }}
-                             title={`${x.title} — ${distLabel(x.meters ?? 0, units)}`} />
-                        ))}
+                <div className="modba">
+                  {before.length > 0 ? (
+                    <>
+                      <div className="ba">
+                        <span className="balbl">now</span>
+                        <div className="bars">
+                          {before.map((x) => (
+                            <i key={x.id} style={{ height: `${((x.meters ?? 0) / maxM) * 100}%` }}
+                               title={`${x.title} — ${distLabel(x.meters ?? 0, units)}`} />
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                    <span className="baarrow">→</span>
+                      <span className="baarrow">→</span>
+                      <div className="ba">
+                        <span className="balbl">replaced by</span>
+                        <div className="bars alt">
+                          {after.map((x) => (
+                            <i key={x.id} style={{ height: `${(metersOf(x.id) / maxM) * 100}%` }}
+                               title={`${x.title} — ${distLabel(metersOf(x.id), units)}`} />
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    /* Insert-type modules replace nothing, so show what they add
+                       instead of leaving a hole where the comparison would be. */
                     <div className="ba">
-                      <span className="balbl">with it</span>
+                      <span className="balbl">adds {after.length === 1 ? "a day" : `${after.length} days`}</span>
                       <div className="bars alt">
                         {after.map((x) => (
                           <i key={x.id} style={{ height: `${(metersOf(x.id) / maxM) * 100}%` }}
@@ -96,8 +110,8 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
                         ))}
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
 
                 <div className="modacts">
                   <button className={`modbtn${active ? " off" : ""}`} onClick={() => toggle(m.id)}>

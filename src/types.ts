@@ -26,6 +26,13 @@ export interface Day {
   charge?: string[];
   alert?: string;
   why: string;
+  /**
+   * Anchor for days with no driving leg — the two Seattle days, the San Francisco
+   * days and the flight home. Without it the map has nowhere to fly to and the
+   * day gets no pin. Order is [lat, lon], matching Leaflet.
+   */
+  at?: [number, number];
+  atZoom?: number;
   /** Set when the day comes from a module rather than the base plan. */
   isMod?: boolean;
   modId?: string;

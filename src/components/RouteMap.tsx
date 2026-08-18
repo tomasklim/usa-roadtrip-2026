@@ -187,7 +187,13 @@ function Framer({ trip, selected, padRight }: {
         paddingTopLeft: [40, 40], paddingBottomRight: [padRight + 40, 40], duration: 0.7
       });
     } else {
-      // Non-driving day: centre on the previous leg's end point if there is one.
+      // No driving leg: use the day's own anchor. Only fall back to the previous
+      // leg when a day has neither, which would otherwise fly Act V to Utah.
+      const day = trip.days.find((d) => d.id === selected);
+      if (day?.at) {
+        map.flyTo(day.at, day.atZoom ?? 10, { duration: 0.7 });
+        return;
+      }
       const idx = trip.days.findIndex((d) => d.id === selected);
       for (let i = idx; i >= 0; i--) {
         const prev = ROUTES[trip.days[i].id]?.line;
@@ -423,8 +429,9 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
 
           {trip.days.map((d) => {
             const line = ROUTES[d.id]?.line;
-            if (!line?.length) return null;
-            const at = line[line.length - 1];
+            const at: [number, number] | undefined =
+              line?.length ? line[line.length - 1] : d.at;
+            if (!at) return null;
             return (
               <Marker
                 key={`pin-${d.id}`}

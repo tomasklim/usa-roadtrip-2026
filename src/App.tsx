@@ -108,11 +108,6 @@ export default function App() {
       <section id="plan" style={{ paddingTop: 18 }}>
         <div className="wrap">
           <ActBar trip={trip} selected={selected} onPick={select} />
-          <p className="sub">
-            Everything is on the map: the panel on the right explains the trip and then becomes the
-            day you have selected. Distances are measured on real road geometry, not estimated.
-          </p>
-
           <RouteMap trip={trip} units={units} selected={selected} onSelect={select}
                     layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
                     dark={dark} wheelZoom={wheelZoom} setWheelZoom={setWheelZoom}

@@ -29,7 +29,9 @@ export function Budget({ trip }: { trip: Trip }) {
   const over = Math.max(0, slcMiles - included);
   const kwh = miles / 4;
 
+  const flightUsd = s.flightEur * s.eurusd;
   const lines: [string, number][] = [
+    [`Transatlantic flights, 2 × €${num(s.flightEur)} at ${s.eurusd.toFixed(3)}`, 2 * flightUsd],
     [`Salt Lake Turo, ${td} days × ${usd(s.turoDay)}`, td * s.turoDay],
     [`Seattle car, ${r.seattle.days} days × ${usd(s.seaDay)}`, r.seattle.days * s.seaDay],
     [Number.isFinite(included)
@@ -62,10 +64,10 @@ export function Budget({ trip }: { trip: Trip }) {
       <div className="wrap narrow">
         <div className="shead"><span className="num">08</span><h2>Budget</h2></div>
         <p className="sub">
-          For two, excluding the transatlantic flights you have already bought. It reads from whichever
-          modules are switched on, so the total moves when the plan does. The car defaults come from the
-          real quote on listing 3758006 — <b>US$566.50 all-in for 9 days</b>, 1,350 miles included,
-          $0.27 a mile over — scaled to the twelve days the route actually needs.
+          Everything for two people, transatlantic flights included. It reads from whichever modules are
+          switched on, so the total moves when the plan does. The car defaults come from the real quote on
+          listing 3758006 — <b>US$566.50 all-in for 9 days</b>, 1,350 miles included, $0.27 a mile over —
+          scaled to the twelve days the route actually needs.
         </p>
         <div className="budget">
           <div className="card sliders">
@@ -87,7 +89,9 @@ export function Budget({ trip }: { trip: Trip }) {
             ))}
             <div className="bline sum"><span>Total for two</span><span>{usd(total)}</span></div>
             <p className="bnote">
-              ≈ {num(total * s.fx / 1000)}k Kč at {s.fx.toFixed(1)} Kč/$. {capNote}
+              ≈ {num(total * s.fx / 1000)}k Kč at {s.fx.toFixed(1)} Kč/$ — both exchange rates are live
+              as of 18 Aug 2026 (€1 = ${s.eurusd.toFixed(3)}, $1 = {s.fx.toFixed(1)} Kč) and are sliders,
+              so move them if they drift. {capNote}
             </p>
           </div>
         </div>

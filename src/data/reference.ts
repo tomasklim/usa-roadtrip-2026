@@ -78,5 +78,7 @@ export const BUDGET_CFG = [
   { id: "kwh", label: "Charging, per kWh", min: 0.2, max: 0.6, step: 0.02, val: 0.4, fmt: (v: number) => "$" + v.toFixed(2) },
   { id: "foodDay", label: "Food, per person per day", min: 20, max: 150, step: 5, val: 65, fmt: (v: number) => "$" + v },
   { id: "sfNight", label: "San Francisco hotel, per night", min: 120, max: 500, step: 20, val: 260, fmt: (v: number) => "$" + v },
-  { id: "fx", label: "USD → CZK", min: 18, max: 28, step: 0.5, val: 22.5, fmt: (v: number) => v.toFixed(1) + " Kč" }
+  { id: "flightEur", label: "Transatlantic flight, per person", min: 400, max: 1600, step: 10, val: 740, fmt: (v: number) => "€" + v },
+  { id: "eurusd", label: "EUR → USD", min: 1, max: 1.35, step: 0.005, val: 1.159, fmt: (v: number) => v.toFixed(3) },
+  { id: "fx", label: "USD → CZK", min: 17, max: 28, step: 0.1, val: 20.9, fmt: (v: number) => v.toFixed(1) + " Kč" }
 ];

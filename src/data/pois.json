@@ -1,0 +1,713 @@
+[
+  {
+    "id": "the-walrus-and-the-carpenter",
+    "name": "The Walrus and the Carpenter",
+    "kind": "food",
+    "lat": 47.66361,
+    "lon": -122.38014,
+    "day": "arrive",
+    "tags": [
+      "oy",
+      "gf",
+      "df"
+    ],
+    "city": "Seattle WA"
+  },
+  {
+    "id": "taylor-shellfish-oyster-bar",
+    "name": "Taylor Shellfish Oyster Bar",
+    "kind": "food",
+    "lat": 47.59882,
+    "lon": -122.33266,
+    "day": "sea1",
+    "tags": [
+      "oy",
+      "gf",
+      "df"
+    ],
+    "city": "Seattle WA"
+  },
+  {
+    "id": "elliotts-oyster-house",
+    "name": "Elliott's Oyster House",
+    "kind": "food",
+    "lat": 47.60383,
+    "lon": -122.33006,
+    "day": "arrive",
+    "tags": [
+      "oy"
+    ],
+    "city": "Seattle WA",
+    "approx": true
+  },
+  {
+    "id": "shake-shack-south-lake-union",
+    "name": "Shake Shack South Lake Union",
+    "kind": "food",
+    "lat": 47.61702,
+    "lon": -122.33843,
+    "day": "sea1",
+    "tags": [
+      "gf"
+    ],
+    "city": "Seattle WA"
+  },
+  {
+    "id": "munchen-haus",
+    "name": "Munchen Haus",
+    "kind": "food",
+    "lat": 47.59452,
+    "lon": -120.66307,
+    "day": "d1",
+    "tags": [
+      "meat"
+    ],
+    "city": "Leavenworth WA"
+  },
+  {
+    "id": "chico-hot-springs",
+    "name": "Chico Hot Springs",
+    "kind": "food",
+    "lat": 45.33771,
+    "lon": -110.69216,
+    "day": "d6",
+    "tags": [
+      "meat",
+      "gf"
+    ],
+    "city": "Pray MT"
+  },
+  {
+    "id": "local-bar-and-grill",
+    "name": "Local Bar and Grill",
+    "kind": "food",
+    "lat": 43.48004,
+    "lon": -110.76252,
+    "day": "d9",
+    "tags": [
+      "meat",
+      "gf"
+    ],
+    "city": "Jackson WY"
+  },
+  {
+    "id": "snake-river-grill",
+    "name": "Snake River Grill",
+    "kind": "food",
+    "lat": 43.47996,
+    "lon": -110.76181,
+    "day": "d9",
+    "tags": [
+      "meat",
+      "gf"
+    ],
+    "city": "Jackson WY",
+    "approx": true
+  },
+  {
+    "id": "in-n-out-burger-salt-lake-city-ut",
+    "name": "In-N-Out Burger",
+    "kind": "food",
+    "lat": 40.69142,
+    "lon": -111.95764,
+    "day": "d11",
+    "tags": [
+      "ino",
+      "gf",
+      "df"
+    ],
+    "city": "Salt Lake City UT"
+  },
+  {
+    "id": "crown-burgers",
+    "name": "Crown Burgers",
+    "kind": "food",
+    "lat": 40.77211,
+    "lon": -111.89924,
+    "day": "d11",
+    "tags": [
+      "meat"
+    ],
+    "city": "Salt Lake City UT"
+  },
+  {
+    "id": "leku-ona",
+    "name": "Leku Ona",
+    "kind": "food",
+    "lat": 43.61386,
+    "lon": -116.202,
+    "day": "d13",
+    "tags": [
+      "meat",
+      "gf"
+    ],
+    "city": "Boise ID"
+  },
+  {
+    "id": "bar-gernika",
+    "name": "Bar Gernika",
+    "kind": "food",
+    "lat": 43.61404,
+    "lon": -116.20293,
+    "day": "d13",
+    "tags": [
+      "meat"
+    ],
+    "city": "Boise ID"
+  },
+  {
+    "id": "ansots",
+    "name": "Ansots",
+    "kind": "food",
+    "lat": 43.6145,
+    "lon": -116.20043,
+    "day": "d13",
+    "tags": [
+      "meat",
+      "gf",
+      "df"
+    ],
+    "city": "Boise ID"
+  },
+  {
+    "id": "in-n-out-burger-meridian-id",
+    "name": "In-N-Out Burger",
+    "kind": "food",
+    "lat": 43.61999,
+    "lon": -116.35139,
+    "day": "d13",
+    "tags": [
+      "ino",
+      "gf",
+      "df"
+    ],
+    "city": "Meridian ID"
+  },
+  {
+    "id": "eem",
+    "name": "Eem",
+    "kind": "food",
+    "lat": 45.55066,
+    "lon": -122.6665,
+    "day": "d14",
+    "tags": [
+      "meat",
+      "gf"
+    ],
+    "city": "Portland OR"
+  },
+  {
+    "id": "nongs-khao-man-gai",
+    "name": "Nong's Khao Man Gai",
+    "kind": "food",
+    "lat": 45.52259,
+    "lon": -122.68444,
+    "day": "d14",
+    "tags": [
+      "gf",
+      "df"
+    ],
+    "city": "Portland OR"
+  },
+  {
+    "id": "in-n-out-burger-ridgefield-wa",
+    "name": "In-N-Out Burger",
+    "kind": "food",
+    "lat": 45.81832,
+    "lon": -122.6885,
+    "day": "d14",
+    "tags": [
+      "ino",
+      "gf",
+      "df"
+    ],
+    "city": "Ridgefield WA"
+  },
+  {
+    "id": "swan-oyster-depot",
+    "name": "Swan Oyster Depot",
+    "kind": "food",
+    "lat": 37.79097,
+    "lon": -122.42092,
+    "day": "sf1",
+    "tags": [
+      "oy",
+      "gf",
+      "df"
+    ],
+    "city": "San Francisco CA"
+  },
+  {
+    "id": "hog-island-oyster-co",
+    "name": "Hog Island Oyster Co",
+    "kind": "food",
+    "lat": 37.79593,
+    "lon": -122.39353,
+    "day": "sf1",
+    "tags": [
+      "oy",
+      "gf",
+      "df"
+    ],
+    "city": "San Francisco CA"
+  },
+  {
+    "id": "hog-island-oyster-farm",
+    "name": "Hog Island Oyster Farm",
+    "kind": "food",
+    "lat": 38.16216,
+    "lon": -122.89352,
+    "day": "sf2",
+    "tags": [
+      "oy",
+      "gf",
+      "df"
+    ],
+    "city": "Marshall CA"
+  },
+  {
+    "id": "the-marshall-store",
+    "name": "The Marshall Store",
+    "kind": "food",
+    "lat": 38.15163,
+    "lon": -122.88806,
+    "day": "sf2",
+    "tags": [
+      "oy"
+    ],
+    "city": "Marshall CA"
+  },
+  {
+    "id": "in-n-out-burger-fishermans-wharf",
+    "name": "In-N-Out Burger Fisherman's Wharf",
+    "kind": "food",
+    "lat": 37.80777,
+    "lon": -122.41847,
+    "day": "sf3",
+    "tags": [
+      "ino",
+      "gf",
+      "df"
+    ],
+    "city": "San Francisco CA"
+  },
+  {
+    "id": "hama-hama-oyster-saloon",
+    "name": "Hama Hama Oyster Saloon",
+    "kind": "food",
+    "lat": 47.54257,
+    "lon": -123.04067,
+    "day": "olympic1",
+    "tags": [
+      "oy",
+      "gf",
+      "df"
+    ],
+    "city": "Lilliwaup WA"
+  },
+  {
+    "id": "the-martin-hotel",
+    "name": "The Martin Hotel",
+    "kind": "food",
+    "lat": 40.97053,
+    "lon": -117.73174,
+    "day": "alvord1",
+    "tags": [
+      "meat",
+      "gf"
+    ],
+    "city": "Winnemucca NV"
+  },
+  {
+    "id": "fields-station",
+    "name": "Fields Station",
+    "kind": "food",
+    "lat": 42.26421,
+    "lon": -118.67561,
+    "day": "alvord2",
+    "tags": [
+      "meat"
+    ],
+    "city": "Fields OR"
+  },
+  {
+    "id": "snoqualmie-falls",
+    "name": "Snoqualmie Falls",
+    "kind": "sight",
+    "lat": 47.54165,
+    "lon": -121.83793,
+    "day": "d1",
+    "tags": [],
+    "city": "Snoqualmie WA"
+  },
+  {
+    "id": "lake-mcdonald",
+    "name": "Lake McDonald",
+    "kind": "sight",
+    "lat": 48.58397,
+    "lon": -113.91906,
+    "day": "d2",
+    "tags": [],
+    "city": "Glacier National Park MT"
+  },
+  {
+    "id": "logan-pass",
+    "name": "Logan Pass",
+    "kind": "sight",
+    "lat": 48.69667,
+    "lon": -113.7179,
+    "day": "d3",
+    "tags": [],
+    "city": "Glacier National Park MT"
+  },
+  {
+    "id": "many-glacier",
+    "name": "Many Glacier",
+    "kind": "sight",
+    "lat": 48.80042,
+    "lon": -113.65757,
+    "day": "d3",
+    "tags": [],
+    "city": "Glacier National Park MT"
+  },
+  {
+    "id": "saint-mary-lake",
+    "name": "Saint Mary Lake",
+    "kind": "sight",
+    "lat": 48.70715,
+    "lon": -113.48409,
+    "day": "d3",
+    "tags": [],
+    "city": "Glacier National Park MT"
+  },
+  {
+    "id": "flathead-lake",
+    "name": "Flathead Lake",
+    "kind": "sight",
+    "lat": 47.87777,
+    "lon": -114.12688,
+    "day": "d4",
+    "tags": [],
+    "city": "Montana"
+  },
+  {
+    "id": "national-bison-range",
+    "name": "National Bison Range",
+    "kind": "sight",
+    "lat": 47.32864,
+    "lon": -114.2192,
+    "day": "d4",
+    "tags": [],
+    "city": "Charlo MT"
+  },
+  {
+    "id": "berkeley-pit",
+    "name": "Berkeley Pit",
+    "kind": "sight",
+    "lat": 46.01715,
+    "lon": -112.51173,
+    "day": "d5",
+    "tags": [],
+    "city": "Butte MT"
+  },
+  {
+    "id": "museum-of-the-rockies",
+    "name": "Museum of the Rockies",
+    "kind": "sight",
+    "lat": 45.65875,
+    "lon": -111.04564,
+    "day": "d5",
+    "tags": [],
+    "city": "Bozeman MT"
+  },
+  {
+    "id": "mammoth-hot-springs",
+    "name": "Mammoth Hot Springs",
+    "kind": "sight",
+    "lat": 44.96239,
+    "lon": -110.71436,
+    "day": "d6",
+    "tags": [],
+    "city": "Yellowstone National Park WY"
+  },
+  {
+    "id": "lamar-valley",
+    "name": "Lamar Valley",
+    "kind": "sight",
+    "lat": 44.85902,
+    "lon": -110.18797,
+    "day": "d7",
+    "tags": [],
+    "city": "Yellowstone National Park WY"
+  },
+  {
+    "id": "artist-point",
+    "name": "Artist Point",
+    "kind": "sight",
+    "lat": 44.72127,
+    "lon": -110.47941,
+    "day": "d7",
+    "tags": [],
+    "city": "Yellowstone National Park WY"
+  },
+  {
+    "id": "grand-prismatic-spring",
+    "name": "Grand Prismatic Spring",
+    "kind": "sight",
+    "lat": 44.52511,
+    "lon": -110.83819,
+    "day": "d8",
+    "tags": [],
+    "city": "Yellowstone National Park WY"
+  },
+  {
+    "id": "old-faithful",
+    "name": "Old Faithful",
+    "kind": "sight",
+    "lat": 44.46046,
+    "lon": -110.82815,
+    "day": "d8",
+    "tags": [],
+    "city": "Yellowstone National Park WY"
+  },
+  {
+    "id": "mormon-row-historic-district",
+    "name": "Mormon Row Historic District",
+    "kind": "sight",
+    "lat": 43.66905,
+    "lon": -110.66446,
+    "day": "d9",
+    "tags": [],
+    "city": "Grand Teton National Park WY"
+  },
+  {
+    "id": "schwabacher-landing",
+    "name": "Schwabacher Landing",
+    "kind": "sight",
+    "lat": 43.70915,
+    "lon": -110.67113,
+    "day": "d9",
+    "tags": [],
+    "city": "Grand Teton National Park WY"
+  },
+  {
+    "id": "jenny-lake",
+    "name": "Jenny Lake",
+    "kind": "sight",
+    "lat": 43.76348,
+    "lon": -110.73033,
+    "day": "d9",
+    "tags": [],
+    "city": "Grand Teton National Park WY"
+  },
+  {
+    "id": "bear-lake",
+    "name": "Bear Lake",
+    "kind": "sight",
+    "lat": 41.98425,
+    "lon": -111.34074,
+    "day": "d10",
+    "tags": [],
+    "city": "Garden City UT"
+  },
+  {
+    "id": "bonneville-salt-flats",
+    "name": "Bonneville Salt Flats",
+    "kind": "sight",
+    "lat": 40.7448,
+    "lon": -114.02374,
+    "day": "d11",
+    "tags": [],
+    "city": "Wendover UT"
+  },
+  {
+    "id": "shoshone-falls",
+    "name": "Shoshone Falls",
+    "kind": "sight",
+    "lat": 42.5958,
+    "lon": -114.40147,
+    "day": "d12",
+    "tags": [],
+    "city": "Twin Falls ID"
+  },
+  {
+    "id": "hagerman-fossil-beds-national-monument",
+    "name": "Hagerman Fossil Beds National Monument",
+    "kind": "sight",
+    "lat": 42.81792,
+    "lon": -114.8983,
+    "day": "d12",
+    "tags": [],
+    "city": "Hagerman ID"
+  },
+  {
+    "id": "multnomah-falls",
+    "name": "Multnomah Falls",
+    "kind": "sight",
+    "lat": 45.57595,
+    "lon": -122.11519,
+    "day": "d13",
+    "tags": [],
+    "city": "Oregon"
+  },
+  {
+    "id": "pike-place-market",
+    "name": "Pike Place Market",
+    "kind": "sight",
+    "lat": 47.6094,
+    "lon": -122.34141,
+    "day": "sea2",
+    "tags": [],
+    "city": "Seattle WA"
+  },
+  {
+    "id": "beartooth-pass",
+    "name": "Beartooth Pass",
+    "kind": "sight",
+    "lat": 44.96904,
+    "lon": -109.47131,
+    "day": "beartooth1",
+    "tags": [],
+    "city": "Montana"
+  },
+  {
+    "id": "chief-joseph-scenic-byway",
+    "name": "Chief Joseph Scenic Byway",
+    "kind": "sight",
+    "lat": 44.8526,
+    "lon": -109.5082,
+    "day": "beartooth2",
+    "tags": [],
+    "city": "Wyoming"
+  },
+  {
+    "id": "flaming-gorge-reservoir",
+    "name": "Flaming Gorge Reservoir",
+    "kind": "sight",
+    "lat": 41.17655,
+    "lon": -109.53384,
+    "day": "dino1",
+    "tags": [],
+    "city": "Utah"
+  },
+  {
+    "id": "dinosaur-national-monument",
+    "name": "Dinosaur National Monument",
+    "kind": "sight",
+    "lat": 40.44055,
+    "lon": -109.30125,
+    "day": "dino2",
+    "tags": [],
+    "city": "Jensen UT"
+  },
+  {
+    "id": "craters-of-the-moon-national-monument",
+    "name": "Craters of the Moon National Monument",
+    "kind": "sight",
+    "lat": 43.40504,
+    "lon": -113.50608,
+    "day": "craters1",
+    "tags": [],
+    "city": "Arco ID"
+  },
+  {
+    "id": "smith-rock-state-park",
+    "name": "Smith Rock State Park",
+    "kind": "sight",
+    "lat": 44.36704,
+    "lon": -121.14142,
+    "day": "bend2",
+    "tags": [],
+    "city": "Terrebonne OR"
+  },
+  {
+    "id": "alvord-desert",
+    "name": "Alvord Desert",
+    "kind": "sight",
+    "lat": 42.53773,
+    "lon": -118.46513,
+    "day": "alvord2",
+    "tags": [],
+    "city": "Oregon"
+  },
+  {
+    "id": "alvord-hot-springs",
+    "name": "Alvord Hot Springs",
+    "kind": "sight",
+    "lat": 42.54251,
+    "lon": -118.53309,
+    "day": "alvord2",
+    "tags": [],
+    "city": "Oregon"
+  },
+  {
+    "id": "steens-mountain",
+    "name": "Steens Mountain",
+    "kind": "sight",
+    "lat": 42.63581,
+    "lon": -118.57636,
+    "day": "alvord3",
+    "tags": [],
+    "city": "Oregon"
+  },
+  {
+    "id": "bixby-creek-bridge",
+    "name": "Bixby Creek Bridge",
+    "kind": "sight",
+    "lat": 36.37159,
+    "lon": -121.90193,
+    "day": "bigsur1",
+    "tags": [],
+    "city": "Big Sur CA"
+  },
+  {
+    "id": "golden-gate-bridge",
+    "name": "Golden Gate Bridge",
+    "kind": "sight",
+    "lat": 37.82017,
+    "lon": -122.47874,
+    "day": "sf1",
+    "tags": [],
+    "city": "San Francisco CA"
+  },
+  {
+    "id": "point-reyes-lighthouse",
+    "name": "Point Reyes Lighthouse",
+    "kind": "sight",
+    "lat": 37.99562,
+    "lon": -123.02315,
+    "day": "sf2",
+    "tags": [],
+    "city": "Point Reyes CA"
+  },
+  {
+    "id": "paradise",
+    "name": "Paradise",
+    "kind": "sight",
+    "lat": 46.78635,
+    "lon": -121.73604,
+    "day": "rainier1",
+    "tags": [],
+    "city": "Mount Rainier National Park WA"
+  },
+  {
+    "id": "hoh-rain-forest",
+    "name": "Hoh Rain Forest",
+    "kind": "sight",
+    "lat": 47.86088,
+    "lon": -123.93479,
+    "day": "olympic1",
+    "tags": [],
+    "city": "Olympic National Park WA"
+  },
+  {
+    "id": "hurricane-ridge",
+    "name": "Hurricane Ridge",
+    "kind": "sight",
+    "lat": 48.09568,
+    "lon": -123.30553,
+    "day": "olympic2",
+    "tags": [],
+    "city": "Olympic National Park WA"
+  }
+]

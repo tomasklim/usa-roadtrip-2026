@@ -133,7 +133,32 @@ section{padding:44px 0;border-bottom:1px solid var(--line)}
 .mapcard{padding:0;overflow:hidden}
 /* Default scales with the viewport but leaves room for the module panel beneath
    it in the sticky column; a drag handle overrides it and the value persists. */
-.mapwrap{height:clamp(340px,calc(100vh - 300px),860px);width:100%}
+.mapwrap{height:clamp(340px,calc(100vh - 300px),860px);width:100%;position:relative}
+
+/* Selected day, over the right-hand side of the map. Above Leaflet's controls
+   (which sit at z-index 800-1000) but below the page header. */
+.detail{position:absolute;top:0;right:0;bottom:0;width:min(400px,42vw);z-index:1100;
+  background:color-mix(in srgb,var(--surface) 97%,transparent);border-left:1px solid var(--line);
+  display:flex;flex-direction:column;box-shadow:-14px 0 34px -18px rgba(0,0,0,.45);
+  animation:slidein .18s ease-out}
+@keyframes slidein{from{transform:translateX(14px);opacity:.4}to{transform:none;opacity:1}}
+.detail-head{display:flex;align-items:center;gap:6px;padding:8px 10px;
+  border-bottom:1px solid var(--line);background:var(--surface2);flex:none}
+.detail-count{font-family:var(--mono);font-size:.72rem;color:var(--muted);min-width:4.5ch;text-align:center}
+.detail-body{overflow-y:auto;overscroll-behavior:contain;flex:1;padding:0}
+.detail .day.incard{border:0;border-radius:0;box-shadow:none;background:transparent}
+.detail .day.incard .dh{background:transparent;cursor:default;padding:12px 13px 10px}
+.detail .day.incard .dbody{padding:0 13px 12px}
+.detail .day.incard .dfoot{background:transparent;border-top:1px dashed var(--line)}
+.detail .photos{grid-template-columns:1fr}
+/* Keep Leaflet's own controls and the attribution clear of the panel. */
+.mapwrap.haspanel .leaflet-right{margin-right:min(400px,42vw)}
+@media(max-width:860px){
+  .detail{top:auto;left:0;width:auto;height:62%;border-left:0;border-top:1px solid var(--line);
+    box-shadow:0 -14px 34px -18px rgba(0,0,0,.45)}
+  .mapwrap.haspanel .leaflet-right{margin-right:0}
+  .mapwrap.haspanel .leaflet-bottom{margin-bottom:62%}
+}
 @media(max-width:1079px){.mapwrap{height:clamp(360px,62vh,680px)}}
 /* True edge-to-edge map: break out of the content column entirely. */
 .mapcard{margin:0 0 20px;width:100vw;margin-left:calc(50% - 50vw);border-radius:0;

@@ -8,6 +8,8 @@ import chargersRaw from "../data/chargers.json";
 import { ROUTES, distLabel, downloadGpx, toGpx, difficulty } from "../lib/trip";
 import type { Trip } from "../lib/trip";
 import type { Charger, Photo, Poi, Units } from "../types";
+import { DayPanel } from "./DayPanel";
+import type { Lens } from "./DayList";
 
 const POIS = poisRaw as unknown as Poi[];
 const CHARGERS = chargersRaw as unknown as Charger[];
@@ -231,13 +233,17 @@ function PoiLayer({ layers, pois, onScrollTo }: {
 }
 
 export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, basemap, setBasemap,
-                          dark, wheelZoom, setWheelZoom, mapHeight, setMapHeight, onStep, onScrollTo }: {
+                          dark, wheelZoom, setWheelZoom, panel, setPanel, lens, onClear,
+                          mapHeight, setMapHeight, onStep, onScrollTo }: {
   trip: Trip; units: Units; selected: string | null;
   onSelect: (id: string) => void;
   layers: Layers; setLayers: (l: Layers) => void;
   basemap: Basemap; setBasemap: (b: Basemap) => void;
   dark: boolean;
   wheelZoom: boolean; setWheelZoom: (v: boolean) => void;
+  panel: boolean; setPanel: (v: boolean) => void;
+  lens: Lens;
+  onClear: () => void;
   mapHeight: number | null; setMapHeight: (h: number | null) => void;
   onStep: (delta: number) => void;
   onScrollTo: (dayId: string) => void;
@@ -291,7 +297,8 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
 
   return (
     <div className="card mapcard">
-      <div className="mapwrap" ref={wrapRef} style={height != null ? { height } : undefined}>
+      <div className={`mapwrap${panel && cur ? " haspanel" : ""}`} ref={wrapRef}
+           style={height != null ? { height } : undefined}>
         <MapContainer center={[45.5, -114]} zoom={5} scrollWheelZoom={false} zoomSnap={0.25}
                       zoomDelta={0.5} wheelPxPerZoomLevel={90} className="leaflet-container">
           <TileLayer key={`${basemap}-${dark}`} url={bm.url(dark)} attribution={bm.attr} maxZoom={bm.max} />
@@ -385,6 +392,11 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
             </Marker>
           ))}
         </MapContainer>
+
+        {panel && cur && (
+          <DayPanel day={cur} units={units} lens={lens} count={trip.days.length}
+                    onClose={onClear} onStep={onStep} onScrollTo={onScrollTo} />
+        )}
       </div>
 
       <div
@@ -432,6 +444,10 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
             </button>
           ))}
         </div>
+        <button className={`pill${panel ? " on" : ""}`} onClick={() => setPanel(!panel)}
+                title="Show the selected day in a panel over the map instead of scrolling to it">
+          ▤ Day panel
+        </button>
         <button className={`pill${wheelZoom ? " on" : ""}`} onClick={() => setWheelZoom(!wheelZoom)}
                 title={wheelZoom
                   ? "Scroll wheel zooms the map — click to give scrolling back to the page"

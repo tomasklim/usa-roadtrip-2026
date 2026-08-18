@@ -39,8 +39,8 @@ export function DayList({ trip, units, selected, onSelect, lens }: {
   );
 }
 
-function DayCard({ day, units, lens, selected, onSelect }: {
-  day: Day; units: Units; lens: Lens; selected: boolean; onSelect: () => void;
+export function DayCard({ day, units, lens, selected, onSelect, compact }: {
+  day: Day; units: Units; lens: Lens; selected: boolean; onSelect: () => void; compact?: boolean;
 }) {
   const show = (k: Lens) => lens === "all" || lens === k;
   const meters = day.meters ?? 0;
@@ -49,7 +49,8 @@ function DayCard({ day, units, lens, selected, onSelect }: {
   const hasRoute = (ROUTES[day.id]?.line?.length ?? 0) > 1;
 
   return (
-    <article className={`day${day.isMod ? " ismod" : ""}${selected ? " sel" : ""}`} id={`day-${day.id}`}>
+    <article className={`day${day.isMod ? " ismod" : ""}${selected && !compact ? " sel" : ""}${compact ? " incard" : ""}`}
+             id={compact ? undefined : `day-${day.id}`}>
       <div className="dh" onClick={onSelect} role="button" tabIndex={0}
            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onSelect(); } }}>
         <span className="dnum">{day.num}</span>

@@ -22,6 +22,7 @@ export default function App() {
   const [layers, setLayers] = useStored<Layers>("layers2", { sights: true, food: true, chargers: false, stores: false });
   const [mapHeight, setMapHeight] = useStored<number | null>("mapHeight", null);
   const [wheelZoom, setWheelZoom] = useStored<boolean>("wheelZoom", false);
+  const [panel, setPanel] = useStored<boolean>("panel", true);
   const [sleepStyle, setSleepStyle] = useStored<SleepStyle>("sleepStyle", "balanced");
   const [selected, setSelected] = useState<string | null>(null);
 
@@ -108,8 +109,9 @@ export default function App() {
             The map is live: pan it, switch the base layer, turn on sights, food and Superchargers, and
             click any pin or route line to pull up that day. Every line is real road geometry, so the
             distances are measured rather than guessed, and each day exports as GPX for the car.
-            <b> Use ← and → to walk through the trip day by day</b> — the map follows and opens the
-            detail as it goes, and nothing scrolls unless you ask it to with the button in the card.
+            <b> Use ← and → to walk through the trip day by day</b> — the map follows and the day opens
+            in a panel over the right-hand side, so you never leave the map. Turn the panel off in the
+            map bar if you would rather read the list below.
             Escape clears the selection. <b>Pinch on the trackpad zooms the map</b>, while a plain
             two-finger scroll still scrolls the page — and there is a toggle in the map bar if you would
             rather the wheel zoomed as well. Pins are colour-coded by what they are: blue for sights,
@@ -119,6 +121,8 @@ export default function App() {
           <RouteMap trip={trip} units={units} selected={selected} onSelect={select}
                     layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
                     dark={dark} wheelZoom={wheelZoom} setWheelZoom={setWheelZoom}
+                    panel={panel} setPanel={setPanel} lens={lens}
+                    onClear={() => setSelected(null)}
                     mapHeight={mapHeight} setMapHeight={setMapHeight}
                     onStep={step} onScrollTo={scrollToDay} />
 

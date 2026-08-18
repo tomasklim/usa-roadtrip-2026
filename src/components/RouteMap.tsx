@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
-import { MapContainer, TileLayer, Polyline, Marker, Popup, useMap } from "react-leaflet";
+import { CircleMarker, MapContainer, TileLayer, Polyline, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import poisRaw from "../data/pois.json";
 import chargersRaw from "../data/chargers.json";
@@ -175,13 +175,18 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
           ))}
 
           {layers.chargers && CHARGERS.map((c) => (
-            <Marker key={c.id} position={[c.lat, c.lon]} icon={poiIcon(c.fast ? "⚡" : "🔌")}>
+            <CircleMarker
+              key={c.id}
+              center={[c.lat, c.lon]}
+              radius={c.fast ? 5 : 3.5}
+              pathOptions={{ className: c.fast ? "ch-fast" : "ch-slow", weight: 1.5 }}
+            >
               <Popup>
                 <b>{c.name}</b>
                 <div className="pm">{c.city}{c.stalls ? ` · ${c.stalls} stalls` : ""}</div>
-                <div className="pm">{c.fast ? "Supercharger" : "Slow / destination charger"}</div>
+                <div className="pm">{c.fast ? "Supercharger" : "Destination / slow charger"}</div>
               </Popup>
-            </Marker>
+            </CircleMarker>
           ))}
         </MapContainer>
       </div>
@@ -193,7 +198,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                 onClick={() => setLayers({ ...layers, food: !layers.food })}>🍽 Food</button>
         <button className={`pill${layers.chargers ? " on" : ""}`}
                 onClick={() => setLayers({ ...layers, chargers: !layers.chargers })}>
-          ⚡ Chargers{CHARGERS.length ? ` (${CHARGERS.length})` : ""}
+          ⚡ Superchargers{CHARGERS.length ? ` (${CHARGERS.filter((c) => c.fast).length})` : ""}
         </button>
         <span className="spacer" />
         <div className="baseline" role="group" aria-label="Base map">

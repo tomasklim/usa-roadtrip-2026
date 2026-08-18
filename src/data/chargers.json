@@ -1,1 +1,2747 @@
-[]
+[
+  {
+    "id": "osm-13971547122",
+    "name": "Tesla Destination Charger",
+    "lat": 41.58101,
+    "lon": -109.25763,
+    "city": "",
+    "fast": false,
+    "stalls": 4
+  },
+  {
+    "id": "osm-6789320470",
+    "name": "Tesla Supercharger",
+    "lat": 41.58082,
+    "lon": -109.26214,
+    "city": "Rock Springs",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944721965",
+    "name": "Tesla Supercharger",
+    "lat": 40.43749,
+    "lon": -109.56527,
+    "city": "Vernal",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-6789405704",
+    "name": "Tesla Supercharger",
+    "lat": 43.46392,
+    "lon": -110.79497,
+    "city": "Jackson",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-4316443583",
+    "name": "Tesla Supercharger",
+    "lat": 45.70004,
+    "lon": -111.06333,
+    "city": "Bozeman",
+    "fast": true,
+    "stalls": 4
+  },
+  {
+    "id": "osm-6635844963",
+    "name": "Tesla Supercharger",
+    "lat": 44.65599,
+    "lon": -111.09901,
+    "city": "West Yellowstone",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944744330",
+    "name": "Tesla Supercharger",
+    "lat": 45.77317,
+    "lon": -111.19886,
+    "city": "Belgrade",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-10613010707",
+    "name": "Tesla Destination Charger",
+    "lat": 40.66225,
+    "lon": -111.51347,
+    "city": "",
+    "fast": false,
+    "stalls": null
+  },
+  {
+    "id": "osm-12099746203",
+    "name": "Tesla Supercharger",
+    "lat": 40.75108,
+    "lon": -111.57123,
+    "city": "Park City",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-12944744130",
+    "name": "Tesla Supercharger",
+    "lat": 40.21413,
+    "lon": -111.65678,
+    "city": "Provo",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-1542883216",
+    "name": "Tesla Supercharger",
+    "lat": 40.27261,
+    "lon": -111.705,
+    "city": "Orem",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-14097625752",
+    "name": "Tesla Supercharger",
+    "lat": 40.31285,
+    "lon": -111.72104,
+    "city": "",
+    "fast": false,
+    "stalls": 15
+  },
+  {
+    "id": "osm-9875059683",
+    "name": "Tesla Destination Charger",
+    "lat": 41.26198,
+    "lon": -111.77033,
+    "city": "",
+    "fast": false,
+    "stalls": 2
+  },
+  {
+    "id": "osm-9247010077",
+    "name": "Tesla Destination Charger",
+    "lat": 41.72075,
+    "lon": -111.83264,
+    "city": "",
+    "fast": false,
+    "stalls": null
+  },
+  {
+    "id": "osm-13754035115",
+    "name": "Tesla Supercharger",
+    "lat": 41.74501,
+    "lon": -111.83273,
+    "city": "Logan",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-1305443721",
+    "name": "Tesla Supercharger",
+    "lat": 40.62274,
+    "lon": -111.86878,
+    "city": "Midvale",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-1304574358",
+    "name": "Tesla Supercharger",
+    "lat": 40.52653,
+    "lon": -111.88583,
+    "city": "Draper",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-3790548865",
+    "name": "Tesla Supercharger",
+    "lat": 40.72035,
+    "lon": -111.88871,
+    "city": "South Salt Lake",
+    "fast": true,
+    "stalls": 10
+  },
+  {
+    "id": "osm-1539597152",
+    "name": "Tesla Supercharger",
+    "lat": 40.72424,
+    "lon": -111.89089,
+    "city": "South Salt Lake",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-12944743534",
+    "name": "Tesla Supercharger",
+    "lat": 40.74639,
+    "lon": -111.90053,
+    "city": "Salt Lake City",
+    "fast": true,
+    "stalls": 4
+  },
+  {
+    "id": "osm-12944743938",
+    "name": "Tesla Supercharger",
+    "lat": 40.73009,
+    "lon": -111.90178,
+    "city": "Salt Lake City",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-13266146050",
+    "name": "Tesla Supercharger",
+    "lat": 40.62407,
+    "lon": -111.91044,
+    "city": "Midvale",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-1304574359",
+    "name": "Tesla Supercharger",
+    "lat": 40.56163,
+    "lon": -111.93011,
+    "city": "South Jordan",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-13482948409",
+    "name": "Tesla Supercharger",
+    "lat": 40.65449,
+    "lon": -111.93914,
+    "city": "Taylorsville",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-1524237346",
+    "name": "Tesla Supercharger",
+    "lat": 41.05878,
+    "lon": -111.95886,
+    "city": "Layton",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-6814415624",
+    "name": "Tesla Supercharger",
+    "lat": 41.30556,
+    "lon": -111.96558,
+    "city": "",
+    "fast": false,
+    "stalls": 2
+  },
+  {
+    "id": "osm-12944744272",
+    "name": "Tesla Supercharger",
+    "lat": 40.77279,
+    "lon": -112.02121,
+    "city": "Salt Lake City",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944743345",
+    "name": "Tesla Supercharger",
+    "lat": 41.30748,
+    "lon": -112.0217,
+    "city": "Farr West",
+    "fast": true,
+    "stalls": 14
+  },
+  {
+    "id": "osm-13036718063",
+    "name": "Tesla Supercharger",
+    "lat": 40.71332,
+    "lon": -112.02417,
+    "city": "West Valley City",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-12944744204",
+    "name": "Tesla Supercharger",
+    "lat": 41.70995,
+    "lon": -112.19858,
+    "city": "Tremonton",
+    "fast": true,
+    "stalls": 10
+  },
+  {
+    "id": "osm-12944743668",
+    "name": "Tesla Supercharger",
+    "lat": 40.68449,
+    "lon": -112.2689,
+    "city": "Lake Point",
+    "fast": true,
+    "stalls": 6
+  },
+  {
+    "id": "osm-1212918972",
+    "name": "Tesla Supercharger",
+    "lat": 45.98124,
+    "lon": -112.50717,
+    "city": "Butte",
+    "fast": true,
+    "stalls": 6
+  },
+  {
+    "id": "osm-12944744359",
+    "name": "Tesla Supercharger",
+    "lat": 46.00517,
+    "lon": -112.61074,
+    "city": "Butte",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-6635813996",
+    "name": "Tesla Supercharger",
+    "lat": 46.91438,
+    "lon": -114.03192,
+    "city": "Missoula",
+    "fast": true,
+    "stalls": 6
+  },
+  {
+    "id": "osm-6641989295",
+    "name": "Tesla Supercharger",
+    "lat": 40.73815,
+    "lon": -114.05898,
+    "city": "West Wendover",
+    "fast": true,
+    "stalls": 14
+  },
+  {
+    "id": "osm-12944744115",
+    "name": "Tesla Supercharger",
+    "lat": 46.95422,
+    "lon": -114.132,
+    "city": "Missoula",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12987006751",
+    "name": "Tesla Supercharger",
+    "lat": 43.47451,
+    "lon": -114.26625,
+    "city": "Bellevue",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12173285577",
+    "name": "Tesla Supercharger",
+    "lat": 48.24141,
+    "lon": -114.32652,
+    "city": "Kalispell",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-6597668983",
+    "name": "Tesla Supercharger",
+    "lat": 42.59796,
+    "lon": -114.45529,
+    "city": "Twin Falls",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-13850723698",
+    "name": "Tesla Supercharger",
+    "lat": 42.71492,
+    "lon": -114.51795,
+    "city": "Jerome",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944743449",
+    "name": "Tesla Supercharger",
+    "lat": 41.10129,
+    "lon": -114.95663,
+    "city": "Wells",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12876029939",
+    "name": "Tesla Supercharger",
+    "lat": 43.1702,
+    "lon": -115.74577,
+    "city": "Mountain Home",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-6604014562",
+    "name": "Tesla Supercharger",
+    "lat": 40.8363,
+    "lon": -115.79086,
+    "city": "Elko",
+    "fast": true,
+    "stalls": 6
+  },
+  {
+    "id": "osm-12876251177",
+    "name": "Tesla Supercharger",
+    "lat": 40.7203,
+    "lon": -116.1065,
+    "city": "Carlin",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944743387",
+    "name": "Tesla Supercharger",
+    "lat": 43.61215,
+    "lon": -116.24402,
+    "city": "Boise",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-5175449814",
+    "name": "Tesla Supercharger",
+    "lat": 43.59229,
+    "lon": -116.27947,
+    "city": "Boise",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-14078815477",
+    "name": "Tesla Supercharger",
+    "lat": 43.59614,
+    "lon": -116.39201,
+    "city": "Meridian",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-9503797520",
+    "name": "Tesla Destination Charger",
+    "lat": 43.66231,
+    "lon": -116.41979,
+    "city": "",
+    "fast": false,
+    "stalls": 1
+  },
+  {
+    "id": "osm-6597580299",
+    "name": "Tesla Supercharger",
+    "lat": 47.70888,
+    "lon": -116.79412,
+    "city": "Coeur d'Alene",
+    "fast": true,
+    "stalls": 14
+  },
+  {
+    "id": "osm-12944744181",
+    "name": "Tesla Supercharger",
+    "lat": 40.63853,
+    "lon": -116.93124,
+    "city": "Battle Mountain",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-1214442386",
+    "name": "Tesla Supercharger",
+    "lat": 44.0256,
+    "lon": -116.94211,
+    "city": "Ontario",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944744038",
+    "name": "Tesla Supercharger",
+    "lat": 44.0231,
+    "lon": -116.94949,
+    "city": "Ontario",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944743756",
+    "name": "Tesla Supercharger",
+    "lat": 47.67394,
+    "lon": -117.11331,
+    "city": "Liberty Lake",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-5812522466",
+    "name": "Tesla Destination Charger - Hampton Inn Spokane",
+    "lat": 47.63675,
+    "lon": -117.47699,
+    "city": "",
+    "fast": false,
+    "stalls": 2
+  },
+  {
+    "id": "osm-12944743473",
+    "name": "Tesla Supercharger",
+    "lat": 47.59049,
+    "lon": -117.56222,
+    "city": "Spokane",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-11252039128",
+    "name": "Tesla Supercharger",
+    "lat": 41.99483,
+    "lon": -117.71804,
+    "city": "McDermitt",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-10064548363",
+    "name": "Tesla Supercharger",
+    "lat": 40.96682,
+    "lon": -117.74145,
+    "city": "",
+    "fast": true,
+    "stalls": 2
+  },
+  {
+    "id": "osm-4173564627",
+    "name": "Tesla Supercharger",
+    "lat": 40.95885,
+    "lon": -117.7465,
+    "city": "Winnemucca",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-1214445046",
+    "name": "Tesla Supercharger",
+    "lat": 44.78299,
+    "lon": -117.81239,
+    "city": "Baker City",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12751375534",
+    "name": "Tesla Supercharger",
+    "lat": 47.20905,
+    "lon": -118.22574,
+    "city": "Sprague",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12751649204",
+    "name": "Tesla Supercharger",
+    "lat": 47.11847,
+    "lon": -118.36477,
+    "city": "Ritzville",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-3722261586",
+    "name": "Tesla Supercharger",
+    "lat": 47.11629,
+    "lon": -118.36831,
+    "city": "Ritzville",
+    "fast": true,
+    "stalls": 4
+  },
+  {
+    "id": "osm-1214445227",
+    "name": "Tesla Supercharger",
+    "lat": 45.64655,
+    "lon": -118.6822,
+    "city": "Pendleton",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-1213916235",
+    "name": "Tesla Supercharger",
+    "lat": 43.57266,
+    "lon": -119.07436,
+    "city": "Hines",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-8017824709",
+    "name": "Tesla Supercharger",
+    "lat": 47.10268,
+    "lon": -119.25083,
+    "city": "",
+    "fast": true,
+    "stalls": null
+  },
+  {
+    "id": "osm-6960580734",
+    "name": "Tesla Supercharger",
+    "lat": 47.1035,
+    "lon": -119.3102,
+    "city": "Moses Lake",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-1214445991",
+    "name": "Tesla Supercharger",
+    "lat": 45.8413,
+    "lon": -119.68322,
+    "city": "Boardman",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-11920091029",
+    "name": "Tesla Supercharger",
+    "lat": 47.10339,
+    "lon": -119.83358,
+    "city": "Quincy",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12075995314",
+    "name": "Tesla Supercharger",
+    "lat": 47.08107,
+    "lon": -119.86198,
+    "city": "George",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-11940220677",
+    "name": "Tesla Supercharger",
+    "lat": 47.68482,
+    "lon": -120.20687,
+    "city": "Entiat",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-14097856363",
+    "name": "Tesla Supercharger",
+    "lat": 47.44216,
+    "lon": -120.32639,
+    "city": "",
+    "fast": false,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944743359",
+    "name": "Tesla Supercharger",
+    "lat": 46.978,
+    "lon": -120.54255,
+    "city": "Ellensburg",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-13583007454",
+    "name": "Tesla Supercharger",
+    "lat": 46.99065,
+    "lon": -120.55004,
+    "city": "Ellensburg",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12944743598",
+    "name": "Tesla Supercharger",
+    "lat": 47.59861,
+    "lon": -120.65564,
+    "city": "Leavenworth",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-14099264654",
+    "name": "Tesla Supercharger",
+    "lat": 47.55354,
+    "lon": -120.68088,
+    "city": "",
+    "fast": false,
+    "stalls": 3
+  },
+  {
+    "id": "osm-12944743745",
+    "name": "Tesla Supercharger",
+    "lat": 47.75532,
+    "lon": -120.74052,
+    "city": "Leavenworth",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-6570772314",
+    "name": "Tesla Supercharger",
+    "lat": 47.18928,
+    "lon": -120.90255,
+    "city": "Cle Elum",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743750",
+    "name": "Tesla Supercharger",
+    "lat": 47.19526,
+    "lon": -120.95623,
+    "city": "Cle Elum",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-1396700766",
+    "name": "Tesla Destination Charger",
+    "lat": 44.15773,
+    "lon": -121.04692,
+    "city": "Bend",
+    "fast": false,
+    "stalls": 2
+  },
+  {
+    "id": "osm-11246680184",
+    "name": "Tesla Supercharger",
+    "lat": 44.61431,
+    "lon": -121.13467,
+    "city": "Madras",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12099995164",
+    "name": "Tesla Supercharger",
+    "lat": 44.25277,
+    "lon": -121.18572,
+    "city": "Redmond",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-1214446090",
+    "name": "Tesla Supercharger",
+    "lat": 45.61195,
+    "lon": -121.20831,
+    "city": "The Dalles",
+    "fast": true,
+    "stalls": 5
+  },
+  {
+    "id": "osm-1213915667",
+    "name": "Tesla Supercharger",
+    "lat": 44.03563,
+    "lon": -121.30846,
+    "city": "Bend",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-11214913810",
+    "name": "Tesla Supercharger",
+    "lat": 44.04949,
+    "lon": -121.31554,
+    "city": "Bend",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-5869265892",
+    "name": "Tesla Charging Station",
+    "lat": 43.87165,
+    "lon": -121.44372,
+    "city": "",
+    "fast": false,
+    "stalls": null
+  },
+  {
+    "id": "osm-1214446617",
+    "name": "Tesla Supercharger",
+    "lat": 45.71388,
+    "lon": -121.51579,
+    "city": "Hood River",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-9231082642",
+    "name": "Tesla Supercharger",
+    "lat": 45.7096,
+    "lon": -121.53458,
+    "city": "Hood River",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-13685476319",
+    "name": "Tesla Supercharger",
+    "lat": 37.0068,
+    "lon": -121.5507,
+    "city": "",
+    "fast": true,
+    "stalls": null
+  },
+  {
+    "id": "osm-12944744226",
+    "name": "Tesla Supercharger",
+    "lat": 37.00121,
+    "lon": -121.55399,
+    "city": "Gilroy",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12949861446",
+    "name": "Tesla Supercharger",
+    "lat": 44.29623,
+    "lon": -121.56132,
+    "city": "Sisters",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12912306416",
+    "name": "Tesla Supercharger",
+    "lat": 37.01977,
+    "lon": -121.56422,
+    "city": "Gilroy",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-2327799782",
+    "name": "Tesla Supercharger",
+    "lat": 37.02434,
+    "lon": -121.5653,
+    "city": "Gilroy",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-7092045961",
+    "name": "Tesla Supercharger",
+    "lat": 37.15683,
+    "lon": -121.65369,
+    "city": "Morgan Hill",
+    "fast": true,
+    "stalls": 14
+  },
+  {
+    "id": "osm-13893075474",
+    "name": "Tesla Supercharger",
+    "lat": 36.71588,
+    "lon": -121.65541,
+    "city": "Salinas",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-12944721962",
+    "name": "Tesla Supercharger",
+    "lat": 36.65609,
+    "lon": -121.6616,
+    "city": "Salinas",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-1550473766",
+    "name": "Tesla Supercharger",
+    "lat": 47.46805,
+    "lon": -121.71645,
+    "city": "North Bend",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-6483303077",
+    "name": "Tesla Supercharger",
+    "lat": 36.22688,
+    "lon": -121.76151,
+    "city": "Big Sur",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-6468638563",
+    "name": "Tesla Supercharger",
+    "lat": 36.91635,
+    "lon": -121.77351,
+    "city": "Watsonville",
+    "fast": true,
+    "stalls": 18
+  },
+  {
+    "id": "osm-12944743433",
+    "name": "Tesla Supercharger",
+    "lat": 37.23078,
+    "lon": -121.77451,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 32
+  },
+  {
+    "id": "osm-12944744155",
+    "name": "Tesla Supercharger",
+    "lat": 47.49084,
+    "lon": -121.7964,
+    "city": "North Bend",
+    "fast": true,
+    "stalls": 24
+  },
+  {
+    "id": "osm-12914068932",
+    "name": "Tesla Supercharger",
+    "lat": 37.31308,
+    "lon": -121.8084,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 48
+  },
+  {
+    "id": "osm-12944743411",
+    "name": "Tesla Supercharger",
+    "lat": 36.66644,
+    "lon": -121.81017,
+    "city": "Marina",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-1547285012",
+    "name": "Tesla Supercharger",
+    "lat": 37.35706,
+    "lon": -121.8182,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12917251536",
+    "name": "Tesla Supercharger",
+    "lat": 37.30023,
+    "lon": -121.82487,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-12890095359",
+    "name": "Tesla Supercharger",
+    "lat": 37.26688,
+    "lon": -121.83156,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 15
+  },
+  {
+    "id": "osm-13763290954",
+    "name": "Tesla Supercharger",
+    "lat": 37.27602,
+    "lon": -121.84211,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944743527",
+    "name": "Seaside Supercharger",
+    "lat": 36.61676,
+    "lon": -121.84401,
+    "city": "Seaside",
+    "fast": true,
+    "stalls": 6
+  },
+  {
+    "id": "osm-12944744129",
+    "name": "Tesla Supercharger",
+    "lat": 36.62198,
+    "lon": -121.84421,
+    "city": "Sand City",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944744232",
+    "name": "Seaside Supercharger",
+    "lat": 36.60842,
+    "lon": -121.84722,
+    "city": "Seaside",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944744159",
+    "name": "Tesla Supercharger",
+    "lat": 37.27399,
+    "lon": -121.85008,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743588",
+    "name": "Tesla Supercharger",
+    "lat": 37.70211,
+    "lon": -121.85294,
+    "city": "Dublin",
+    "fast": true,
+    "stalls": 10
+  },
+  {
+    "id": "osm-14097613589",
+    "name": "Tesla Supercharger",
+    "lat": 37.662,
+    "lon": -121.85691,
+    "city": "",
+    "fast": false,
+    "stalls": 20
+  },
+  {
+    "id": "osm-13421401579",
+    "name": "Tesla Supercharger",
+    "lat": 37.33137,
+    "lon": -121.85903,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 24
+  },
+  {
+    "id": "osm-8868919486",
+    "name": "Tesla Supercharger",
+    "lat": 37.25081,
+    "lon": -121.8607,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 24
+  },
+  {
+    "id": "osm-12944743824",
+    "name": "Tesla Supercharger",
+    "lat": 37.69989,
+    "lon": -121.87104,
+    "city": "Pleasanton",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-1493717505",
+    "name": "Tesla Supercharger",
+    "lat": 37.2584,
+    "lon": -121.8714,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 24
+  },
+  {
+    "id": "osm-12944743400",
+    "name": "Tesla Supercharger",
+    "lat": 37.70532,
+    "lon": -121.87667,
+    "city": "Dublin",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12888147146",
+    "name": "Tesla Supercharger",
+    "lat": 37.41551,
+    "lon": -121.87822,
+    "city": "Milpitas",
+    "fast": true,
+    "stalls": 11
+  },
+  {
+    "id": "osm-12944721994",
+    "name": "Tesla Supercharger",
+    "lat": 37.29224,
+    "lon": -121.87854,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12142881757",
+    "name": "Tesla Supercharger",
+    "lat": 37.70567,
+    "lon": -121.88118,
+    "city": "Dublin",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743587",
+    "name": "Tesla Supercharger",
+    "lat": 37.24464,
+    "lon": -121.89114,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 18
+  },
+  {
+    "id": "osm-12944743614",
+    "name": "Tesla Supercharger",
+    "lat": 37.43454,
+    "lon": -121.89139,
+    "city": "Milpitas",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12145007401",
+    "name": "Tesla Supercharger",
+    "lat": 37.67652,
+    "lon": -121.89576,
+    "city": "Pleasanton",
+    "fast": true,
+    "stalls": 24
+  },
+  {
+    "id": "osm-12919140302",
+    "name": "Tesla Supercharger",
+    "lat": 37.65712,
+    "lon": -121.898,
+    "city": "Pleasanton",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944743579",
+    "name": "Tesla Supercharger",
+    "lat": 37.41335,
+    "lon": -121.898,
+    "city": "Milpitas",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-12944743478",
+    "name": "Tesla Supercharger",
+    "lat": 36.58573,
+    "lon": -121.89876,
+    "city": "Monterey",
+    "fast": true,
+    "stalls": 14
+  },
+  {
+    "id": "osm-13687020515",
+    "name": "Tesla Supercharger",
+    "lat": 37.30502,
+    "lon": -121.89985,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743599",
+    "name": "Tesla Supercharger",
+    "lat": 37.33966,
+    "lon": -121.90508,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743716",
+    "name": "Tesla Supercharger",
+    "lat": 37.26942,
+    "lon": -121.90614,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-9368953543",
+    "name": "Tesla Supercharger \u2014Pleasanton CA, - Johnson Drive",
+    "lat": 37.70034,
+    "lon": -121.90825,
+    "city": "Pleasanton",
+    "fast": true,
+    "stalls": 10
+  },
+  {
+    "id": "osm-1517798424",
+    "name": "Tesla Supercharger",
+    "lat": 37.42953,
+    "lon": -121.9093,
+    "city": "Milpitas",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944743766",
+    "name": "Tesla Supercharger",
+    "lat": 37.32958,
+    "lon": -121.91213,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12413970098",
+    "name": "Tesla Supercharger",
+    "lat": 37.42827,
+    "lon": -121.91382,
+    "city": "Milpitas",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944743869",
+    "name": "Tesla Supercharger",
+    "lat": 37.42537,
+    "lon": -121.91456,
+    "city": "Milpitas",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12112827780",
+    "name": "Tesla Supercharger",
+    "lat": 37.4194,
+    "lon": -121.91516,
+    "city": "Milpitas",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-12209612089",
+    "name": "Tesla Supercharger",
+    "lat": 37.37353,
+    "lon": -121.92038,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944744238",
+    "name": "Tesla Supercharger",
+    "lat": 37.47644,
+    "lon": -121.92127,
+    "city": "Fremont",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12993235235",
+    "name": "Tesla Supercharger",
+    "lat": 37.70568,
+    "lon": -121.92221,
+    "city": "Dublin",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944744061",
+    "name": "Tesla Supercharger",
+    "lat": 36.60794,
+    "lon": -121.9249,
+    "city": "Pacific Grove",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-3799657271",
+    "name": "Tesla Supercharger",
+    "lat": 37.70318,
+    "lon": -121.92533,
+    "city": "Dublin",
+    "fast": true,
+    "stalls": 14
+  },
+  {
+    "id": "osm-11965872728",
+    "name": "Tesla Supercharger",
+    "lat": 37.70644,
+    "lon": -121.9351,
+    "city": "Dublin",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12057648981",
+    "name": "Tesla Supercharger",
+    "lat": 37.48323,
+    "lon": -121.93949,
+    "city": "Fremont",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-10222916199",
+    "name": "Tesla Supercharger",
+    "lat": 37.72308,
+    "lon": -121.94425,
+    "city": "San Ramon",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-1549159428",
+    "name": "Tesla Supercharger",
+    "lat": 37.49272,
+    "lon": -121.94475,
+    "city": "Fremont",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944744341",
+    "name": "Tesla Supercharger",
+    "lat": 37.39482,
+    "lon": -121.94516,
+    "city": "Santa Clara",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-7695089467",
+    "name": "Supercharger",
+    "lat": 37.49735,
+    "lon": -121.94592,
+    "city": "",
+    "fast": true,
+    "stalls": 2
+  },
+  {
+    "id": "osm-12944743514",
+    "name": "Tesla Supercharger",
+    "lat": 37.32146,
+    "lon": -121.94897,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 10
+  },
+  {
+    "id": "osm-12944743539",
+    "name": "Tesla Supercharger",
+    "lat": 37.41728,
+    "lon": -121.9569,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 14
+  },
+  {
+    "id": "osm-12944743767",
+    "name": "Tesla Supercharger",
+    "lat": 37.23639,
+    "lon": -121.96244,
+    "city": "Los Gatos",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12889556968",
+    "name": "Tesla Supercharger",
+    "lat": 37.75828,
+    "lon": -121.9656,
+    "city": "San Ramon",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944744361",
+    "name": "Tesla Supercharger",
+    "lat": 36.97853,
+    "lon": -121.96585,
+    "city": "Capitola",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12944743452",
+    "name": "Tesla Supercharger",
+    "lat": 37.50248,
+    "lon": -121.96893,
+    "city": "Fremont",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12944743973",
+    "name": "Tesla Supercharger",
+    "lat": 37.55499,
+    "lon": -121.97424,
+    "city": "Fremont",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-13175388250",
+    "name": "Tesla Supercharger",
+    "lat": 37.28576,
+    "lon": -121.97752,
+    "city": "Campbell",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12944743515",
+    "name": "Tesla Supercharger",
+    "lat": 37.22993,
+    "lon": -121.97938,
+    "city": "Los Gatos",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-9625532322",
+    "name": "Tesla Supercharger",
+    "lat": 37.77477,
+    "lon": -121.97979,
+    "city": "San Ramon",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-11140454523",
+    "name": "Tesla Supercharger",
+    "lat": 37.30044,
+    "lon": -121.98181,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-6211364281",
+    "name": "Tesla Supercharger",
+    "lat": 37.54451,
+    "lon": -121.98382,
+    "city": "Fremont",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-13789900927",
+    "name": "Tesla Supercharger",
+    "lat": 37.39023,
+    "lon": -121.98409,
+    "city": "Santa Clara",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12888217444",
+    "name": "Tesla Supercharger",
+    "lat": 37.52109,
+    "lon": -121.99671,
+    "city": "Newark",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-1541084511",
+    "name": "Tesla Supercharger",
+    "lat": 47.56487,
+    "lon": -122.00292,
+    "city": "Issaquah",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743596",
+    "name": "Tesla Supercharger",
+    "lat": 37.5259,
+    "lon": -122.00662,
+    "city": "Newark",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12944743621",
+    "name": "Tesla Supercharger",
+    "lat": 37.32437,
+    "lon": -122.00918,
+    "city": "Cupertino",
+    "fast": true,
+    "stalls": 10
+  },
+  {
+    "id": "osm-12944743422",
+    "name": "Tesla Supercharger",
+    "lat": 37.56192,
+    "lon": -122.01027,
+    "city": "Fremont",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944744264",
+    "name": "Tesla Supercharger",
+    "lat": 36.97863,
+    "lon": -122.01397,
+    "city": "Santa Cruz",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-1060082123",
+    "name": "Tesla Supercharger",
+    "lat": 37.58716,
+    "lon": -122.02044,
+    "city": "Union City",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944721954",
+    "name": "Sunnyvale Supercharger",
+    "lat": 37.40422,
+    "lon": -122.02526,
+    "city": "Sunnyvale",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12020584120",
+    "name": "Sunnyvale CA Supercharger",
+    "lat": 37.36251,
+    "lon": -122.02625,
+    "city": "Sunnyvale",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-8452031228",
+    "name": "Tesla Supercharger",
+    "lat": 37.04749,
+    "lon": -122.02783,
+    "city": "Scotts Valley",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12944743425",
+    "name": "Tesla Supercharger",
+    "lat": 47.61629,
+    "lon": -122.03292,
+    "city": "Sammamish",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-10877059643",
+    "name": "Sunnyvale Supercharger",
+    "lat": 37.37342,
+    "lon": -122.03311,
+    "city": "Sunnyvale",
+    "fast": true,
+    "stalls": 10
+  },
+  {
+    "id": "osm-12944743413",
+    "name": "Tesla Supercharger",
+    "lat": 37.53901,
+    "lon": -122.03343,
+    "city": "Newark",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-13299119021",
+    "name": "Tesla Supercharger",
+    "lat": 47.58197,
+    "lon": -122.03345,
+    "city": "Sammamish",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-13337989219",
+    "name": "Tesla Supercharger",
+    "lat": 37.30486,
+    "lon": -122.03379,
+    "city": "San Jose",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-11763820679",
+    "name": "Tesla Supercharger",
+    "lat": 37.32472,
+    "lon": -122.03684,
+    "city": "Cupertino",
+    "fast": true,
+    "stalls": 28
+  },
+  {
+    "id": "osm-6980591746",
+    "name": "Tesla Supercharger",
+    "lat": 47.54803,
+    "lon": -122.04003,
+    "city": "Issaquah",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-13027861423",
+    "name": "Tesla Supercharger",
+    "lat": 47.54304,
+    "lon": -122.0486,
+    "city": "",
+    "fast": false,
+    "stalls": null
+  },
+  {
+    "id": "osm-8609009058",
+    "name": "Sunnyvale Supercharger",
+    "lat": 37.37267,
+    "lon": -122.05733,
+    "city": "Sunnyvale",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12944743542",
+    "name": "Walnut Creek Supercharger",
+    "lat": 37.89528,
+    "lon": -122.06183,
+    "city": "Walnut Creek",
+    "fast": true,
+    "stalls": 24
+  },
+  {
+    "id": "osm-12944743395",
+    "name": "Tesla Supercharger",
+    "lat": 37.53601,
+    "lon": -122.06335,
+    "city": "Newark",
+    "fast": true,
+    "stalls": 22
+  },
+  {
+    "id": "osm-4114649505",
+    "name": "Mountain View Supercharger",
+    "lat": 37.41534,
+    "lon": -122.07661,
+    "city": "Mountain View",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743414",
+    "name": "Mountain View Supercharger",
+    "lat": 37.37805,
+    "lon": -122.07758,
+    "city": "Mountain View",
+    "fast": true,
+    "stalls": 32
+  },
+  {
+    "id": "osm-12944743760",
+    "name": "Tesla Supercharger",
+    "lat": 37.92363,
+    "lon": -122.08833,
+    "city": "Walnut Creek",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944744116",
+    "name": "Hayward Supercharger",
+    "lat": 37.65318,
+    "lon": -122.09032,
+    "city": "Hayward",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-12050547750",
+    "name": "Mountain View Supercharger",
+    "lat": 37.38967,
+    "lon": -122.09573,
+    "city": "Mountain View",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-13281932125",
+    "name": "Tesla Supercharger",
+    "lat": 37.64452,
+    "lon": -122.1041,
+    "city": "Hayward",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743659",
+    "name": "Tesla Supercharger",
+    "lat": 37.3991,
+    "lon": -122.11113,
+    "city": "Los Altos",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-11885130146",
+    "name": "Tesla Supercharger",
+    "lat": 37.39992,
+    "lon": -122.1149,
+    "city": "Los Altos",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-11689745895",
+    "name": "Hayward Supercharger",
+    "lat": 37.66723,
+    "lon": -122.12034,
+    "city": "Hayward",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-11829273104",
+    "name": "Tesla Supercharger",
+    "lat": 37.99316,
+    "lon": -122.12137,
+    "city": "Martinez",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-11885158921",
+    "name": "Tesla Supercharger",
+    "lat": 37.45966,
+    "lon": -122.13765,
+    "city": "East Palo Alto",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-12816427700",
+    "name": "Tesla Destination Charger",
+    "lat": 47.73394,
+    "lon": -122.14704,
+    "city": "",
+    "fast": false,
+    "stalls": 2
+  },
+  {
+    "id": "osm-13763994313",
+    "name": "Tesla Supercharger",
+    "lat": 47.75902,
+    "lon": -122.15533,
+    "city": "Woodinville",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12944744082",
+    "name": "Tesla Supercharger",
+    "lat": 37.44651,
+    "lon": -122.16203,
+    "city": "Palo Alto",
+    "fast": true,
+    "stalls": 19
+  },
+  {
+    "id": "osm-12944743423",
+    "name": "Tesla Supercharger",
+    "lat": 37.70981,
+    "lon": -122.16461,
+    "city": "San Leandro",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743562",
+    "name": "Tesla Supercharger",
+    "lat": 37.44172,
+    "lon": -122.17027,
+    "city": "Palo Alto",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-11433548563",
+    "name": "Tesla Supercharger",
+    "lat": 47.70924,
+    "lon": -122.18351,
+    "city": "Kirkland",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-8692311228",
+    "name": "Tesla Supercharger",
+    "lat": 47.76761,
+    "lon": -122.19171,
+    "city": "Bothell",
+    "fast": true,
+    "stalls": 10
+  },
+  {
+    "id": "osm-12944744274",
+    "name": "Tesla Supercharger",
+    "lat": 37.7464,
+    "lon": -122.19561,
+    "city": "Oakland",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12944721956",
+    "name": "Tesla Supercharger",
+    "lat": 47.61771,
+    "lon": -122.19662,
+    "city": "Bellevue",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-8464920941",
+    "name": "Tesla Supercharger",
+    "lat": 37.42337,
+    "lon": -122.19819,
+    "city": "Menlo Park",
+    "fast": true,
+    "stalls": 18
+  },
+  {
+    "id": "osm-13907660396",
+    "name": "Tesla Supercharger",
+    "lat": 47.4984,
+    "lon": -122.1984,
+    "city": "",
+    "fast": true,
+    "stalls": 24
+  },
+  {
+    "id": "osm-9730665772",
+    "name": "Tesla Supercharger",
+    "lat": 47.61072,
+    "lon": -122.20223,
+    "city": "Bellevue",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944744372",
+    "name": "Tesla Supercharger",
+    "lat": 47.81424,
+    "lon": -122.20606,
+    "city": "Bothell",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-13273672827",
+    "name": "Tesla Supercharger",
+    "lat": 47.80818,
+    "lon": -122.20705,
+    "city": "Bothell",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-13181366615",
+    "name": "Tesla Supercharger",
+    "lat": 37.47524,
+    "lon": -122.2156,
+    "city": "Redwood City",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12908663276",
+    "name": "Tesla Supercharger",
+    "lat": 47.3159,
+    "lon": -122.22409,
+    "city": "Auburn",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944721984",
+    "name": "Tesla Supercharger",
+    "lat": 47.44312,
+    "lon": -122.22516,
+    "city": "Renton",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-6713456376",
+    "name": "Tesla Supercharger",
+    "lat": 37.50291,
+    "lon": -122.24557,
+    "city": "San Carlos",
+    "fast": true,
+    "stalls": 19
+  },
+  {
+    "id": "osm-6956759705",
+    "name": "Tesla Supercharger",
+    "lat": 47.29798,
+    "lon": -122.24827,
+    "city": "Auburn",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-6211286627",
+    "name": "Tesla Supercharger",
+    "lat": 37.75626,
+    "lon": -122.24931,
+    "city": "Alameda",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-10917372050",
+    "name": "Tesla Supercharger",
+    "lat": 47.45527,
+    "lon": -122.25663,
+    "city": "Tukwila",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-11496572065",
+    "name": "Tesla Supercharger",
+    "lat": 47.44738,
+    "lon": -122.26365,
+    "city": "Tukwila",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12944743533",
+    "name": "Tesla Supercharger",
+    "lat": 37.79415,
+    "lon": -122.27258,
+    "city": "Oakland",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-11252447098",
+    "name": "Tesla Supercharger",
+    "lat": 47.86546,
+    "lon": -122.28286,
+    "city": "Lynnwood",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-6211234317",
+    "name": "Tesla Supercharger",
+    "lat": 37.55855,
+    "lon": -122.28461,
+    "city": "San Mateo",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743849",
+    "name": "Tesla Supercharger",
+    "lat": 37.54379,
+    "lon": -122.28555,
+    "city": "San Mateo",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-6211248071",
+    "name": "Tesla Supercharger",
+    "lat": 37.54523,
+    "lon": -122.28978,
+    "city": "San Mateo",
+    "fast": true,
+    "stalls": 24
+  },
+  {
+    "id": "osm-12944743982",
+    "name": "Tesla Supercharger",
+    "lat": 37.55453,
+    "lon": -122.29323,
+    "city": "San Mateo",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-13111601478",
+    "name": "Tesla Supercharger",
+    "lat": 47.15871,
+    "lon": -122.2936,
+    "city": "Puyallup",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-11786520903",
+    "name": "Emeryville Public Market Supercharger",
+    "lat": 37.84045,
+    "lon": -122.29394,
+    "city": "Emeryville",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-1213907988",
+    "name": "Tesla Supercharger",
+    "lat": 45.40282,
+    "lon": -122.29442,
+    "city": "Sandy",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-1079669197",
+    "name": "Tesla Supercharger",
+    "lat": 37.83751,
+    "lon": -122.2954,
+    "city": "Emeryville",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-9536761642",
+    "name": "Tesla Supercharger",
+    "lat": 47.66162,
+    "lon": -122.29904,
+    "city": "",
+    "fast": true,
+    "stalls": null
+  },
+  {
+    "id": "osm-12944743546",
+    "name": "Tesla Supercharger",
+    "lat": 37.89858,
+    "lon": -122.30073,
+    "city": "El Cerrito",
+    "fast": true,
+    "stalls": 14
+  },
+  {
+    "id": "osm-12657652953",
+    "name": "Tesla Supercharger",
+    "lat": 37.99072,
+    "lon": -122.30165,
+    "city": "Pinole",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-13069204445",
+    "name": "Tesla Supercharger",
+    "lat": 37.54159,
+    "lon": -122.30216,
+    "city": "San Mateo",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743718",
+    "name": "Tesla Supercharger",
+    "lat": 47.31697,
+    "lon": -122.30791,
+    "city": "Federal Way",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12152229145",
+    "name": "Tesla Supercharger",
+    "lat": 37.89874,
+    "lon": -122.30867,
+    "city": "Richmond",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-1532270294",
+    "name": "Tesla Supercharger",
+    "lat": 47.3149,
+    "lon": -122.31576,
+    "city": "Federal Way",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-9359843778",
+    "name": "Tesla Destination Charger",
+    "lat": 37.43829,
+    "lon": -122.32262,
+    "city": "",
+    "fast": false,
+    "stalls": null
+  },
+  {
+    "id": "osm-9211512896",
+    "name": "Tesla Supercharger",
+    "lat": 47.70596,
+    "lon": -122.32713,
+    "city": "Seattle",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-11686753604",
+    "name": "Tesla Supercharger",
+    "lat": 37.53331,
+    "lon": -122.32747,
+    "city": "San Mateo",
+    "fast": true,
+    "stalls": 40
+  },
+  {
+    "id": "osm-12944743576",
+    "name": "Tesla Supercharger",
+    "lat": 47.60969,
+    "lon": -122.33215,
+    "city": "Seattle",
+    "fast": true,
+    "stalls": 10
+  },
+  {
+    "id": "osm-1393354848",
+    "name": "Tesla Supercharger",
+    "lat": 47.70696,
+    "lon": -122.33338,
+    "city": "Seattle",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743531",
+    "name": "Tesla Supercharger",
+    "lat": 47.60666,
+    "lon": -122.33715,
+    "city": "Seattle",
+    "fast": true,
+    "stalls": 4
+  },
+  {
+    "id": "osm-11593122410",
+    "name": "Tesla Supercharger",
+    "lat": 37.5215,
+    "lon": -122.3377,
+    "city": "San Mateo",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12179192425",
+    "name": "Tesla Supercharger",
+    "lat": 47.75577,
+    "lon": -122.34374,
+    "city": "Shoreline",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-8322884239",
+    "name": "Richmond Supercharger",
+    "lat": 37.91988,
+    "lon": -122.34866,
+    "city": "Richmond",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743802",
+    "name": "Tesla Supercharger",
+    "lat": 37.59119,
+    "lon": -122.3487,
+    "city": "Burlingame",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-12944721982",
+    "name": "Tesla Supercharger",
+    "lat": 47.66115,
+    "lon": -122.3704,
+    "city": "Seattle",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-11181958267",
+    "name": "Tesla Supercharger",
+    "lat": 47.66264,
+    "lon": -122.37498,
+    "city": "Seattle",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-9427048185",
+    "name": "Tesla Supercharger",
+    "lat": 45.5429,
+    "lon": -122.38935,
+    "city": "Troutdale",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-702524491",
+    "name": "Tesla Supercharger",
+    "lat": 37.60264,
+    "lon": -122.39162,
+    "city": "Millbrae",
+    "fast": true,
+    "stalls": 24
+  },
+  {
+    "id": "osm-12944743768",
+    "name": "Tesla Supercharger",
+    "lat": 37.66349,
+    "lon": -122.39728,
+    "city": "South San Francisco",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12944743571",
+    "name": "Tesla Supercharger",
+    "lat": 37.65524,
+    "lon": -122.40132,
+    "city": "South San Francisco",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-12944743547",
+    "name": "Tesla Supercharger",
+    "lat": 37.7658,
+    "lon": -122.40985,
+    "city": "San Francisco",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944744095",
+    "name": "Tesla Supercharger",
+    "lat": 37.6361,
+    "lon": -122.42052,
+    "city": "San Bruno",
+    "fast": true,
+    "stalls": 28
+  },
+  {
+    "id": "osm-12944743543",
+    "name": "Tesla Supercharger",
+    "lat": 37.7813,
+    "lon": -122.42139,
+    "city": "San Francisco",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743701",
+    "name": "San Bruno Supercharger",
+    "lat": 37.626,
+    "lon": -122.42577,
+    "city": "San Bruno",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-6693595727",
+    "name": "Tesla Destination Charger",
+    "lat": 37.78556,
+    "lon": -122.4289,
+    "city": "",
+    "fast": false,
+    "stalls": 2
+  },
+  {
+    "id": "osm-12834527373",
+    "name": "Tesla Supercharger",
+    "lat": 37.79987,
+    "lon": -122.43381,
+    "city": "San Francisco",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12944744124",
+    "name": "Tesla Supercharger",
+    "lat": 37.6189,
+    "lon": -122.44052,
+    "city": "San Bruno",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-13667952501",
+    "name": "Tesla Supercharger",
+    "lat": 45.53287,
+    "lon": -122.44373,
+    "city": "Fairview",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-1525059516",
+    "name": "Tesla Supercharger",
+    "lat": 37.78203,
+    "lon": -122.44691,
+    "city": "San Francisco",
+    "fast": true,
+    "stalls": 34
+  },
+  {
+    "id": "osm-12944743566",
+    "name": "Tesla Supercharger",
+    "lat": 37.79851,
+    "lon": -122.44985,
+    "city": "San Francisco",
+    "fast": true,
+    "stalls": 6
+  },
+  {
+    "id": "osm-12944743835",
+    "name": "Tesla Supercharger",
+    "lat": 47.19006,
+    "lon": -122.45974,
+    "city": "Tacoma",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-11991231712",
+    "name": "Tesla Supercharger",
+    "lat": 47.20911,
+    "lon": -122.46262,
+    "city": "Tacoma",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743926",
+    "name": "Tesla Supercharger",
+    "lat": 37.69655,
+    "lon": -122.46323,
+    "city": "Daly City",
+    "fast": true,
+    "stalls": 15
+  },
+  {
+    "id": "osm-12098338314",
+    "name": "Tesla Supercharger",
+    "lat": 47.22144,
+    "lon": -122.4658,
+    "city": "Tacoma",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12944743418",
+    "name": "Tesla Supercharger",
+    "lat": 47.21422,
+    "lon": -122.46667,
+    "city": "Tacoma",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-6211345247",
+    "name": "Tesla Supercharger",
+    "lat": 37.674,
+    "lon": -122.47226,
+    "city": "Daly City",
+    "fast": true,
+    "stalls": 40
+  },
+  {
+    "id": "osm-12188506032",
+    "name": "Tesla Supercharger",
+    "lat": 37.59327,
+    "lon": -122.50366,
+    "city": "Pacifica",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-9953881644",
+    "name": "Tesla Supercharger",
+    "lat": 37.87276,
+    "lon": -122.51045,
+    "city": "Sausalito",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-13319013853",
+    "name": "Tesla Supercharger",
+    "lat": 37.89783,
+    "lon": -122.51445,
+    "city": "Mill Valley",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12671107247",
+    "name": "Tesla Supercharger",
+    "lat": 37.92828,
+    "lon": -122.51482,
+    "city": "Corte Madera",
+    "fast": true,
+    "stalls": 10
+  },
+  {
+    "id": "osm-11892083231",
+    "name": "Tesla Supercharger",
+    "lat": 37.97138,
+    "lon": -122.51719,
+    "city": "San Rafael",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12671140729",
+    "name": "Tesla Supercharger",
+    "lat": 37.94478,
+    "lon": -122.52271,
+    "city": "Greenbrae",
+    "fast": true,
+    "stalls": 14
+  },
+  {
+    "id": "osm-1249369131",
+    "name": "Tesla Supercharger",
+    "lat": 45.57259,
+    "lon": -122.5541,
+    "city": "Portland",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-12146517486",
+    "name": "Tesla Supercharger",
+    "lat": 37.98056,
+    "lon": -122.56576,
+    "city": "San Anselmo",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-10769592677",
+    "name": "Tesla Destination Charger",
+    "lat": 45.57802,
+    "lon": -122.56858,
+    "city": "",
+    "fast": false,
+    "stalls": 2
+  },
+  {
+    "id": "osm-12944743830",
+    "name": "Tesla Supercharger",
+    "lat": 47.71361,
+    "lon": -122.5705,
+    "city": "Suquamish",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-11612516244",
+    "name": "Tesla Supercharger",
+    "lat": 45.43196,
+    "lon": -122.57231,
+    "city": "Clackamas",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-13614987889",
+    "name": "Tesla Supercharger",
+    "lat": 45.45744,
+    "lon": -122.58133,
+    "city": "Happy Valley",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-1213901620",
+    "name": "Tesla Supercharger",
+    "lat": 45.65962,
+    "lon": -122.58355,
+    "city": "Vancouver",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944744190",
+    "name": "Tesla Supercharger",
+    "lat": 45.6382,
+    "lon": -122.59894,
+    "city": "Vancouver",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-1213900976",
+    "name": "Tesla Supercharger",
+    "lat": 45.64565,
+    "lon": -122.60128,
+    "city": "Vancouver",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-13236107110",
+    "name": "Tesla Supercharger",
+    "lat": 45.51604,
+    "lon": -122.61525,
+    "city": "Portland",
+    "fast": true,
+    "stalls": 10
+  },
+  {
+    "id": "osm-12944744148",
+    "name": "Tesla Supercharger",
+    "lat": 45.53365,
+    "lon": -122.636,
+    "city": "Portland",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-7782080499",
+    "name": "Tesla Destination Charger",
+    "lat": 45.4448,
+    "lon": -122.64205,
+    "city": "",
+    "fast": false,
+    "stalls": 2
+  },
+  {
+    "id": "osm-6284721898",
+    "name": "Tesla Supercharger",
+    "lat": 45.72166,
+    "lon": -122.66346,
+    "city": "Vancouver",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-11246283833",
+    "name": "Tesla Supercharger",
+    "lat": 45.51844,
+    "lon": -122.68045,
+    "city": "Portland",
+    "fast": true,
+    "stalls": 4
+  },
+  {
+    "id": "osm-11612242907",
+    "name": "Tesla Supercharger",
+    "lat": 45.8177,
+    "lon": -122.6828,
+    "city": "Ridgefield",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-1213898927",
+    "name": "Tesla Supercharger",
+    "lat": 45.61182,
+    "lon": -122.68496,
+    "city": "Portland",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-12944743761",
+    "name": "Tesla Supercharger",
+    "lat": 47.65895,
+    "lon": -122.69364,
+    "city": "Silverdale",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-13428336910",
+    "name": "Tesla Supercharger",
+    "lat": 45.48601,
+    "lon": -122.72238,
+    "city": "Portland",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-11366620606",
+    "name": "Tesla Supercharger",
+    "lat": 45.33382,
+    "lon": -122.76253,
+    "city": "Wilsonville",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-11246322867",
+    "name": "Tesla Supercharger",
+    "lat": 45.45017,
+    "lon": -122.78273,
+    "city": "Tigard",
+    "fast": true,
+    "stalls": 10
+  },
+  {
+    "id": "osm-13253019888",
+    "name": "Tesla Supercharger",
+    "lat": 45.44758,
+    "lon": -122.78418,
+    "city": "",
+    "fast": false,
+    "stalls": 5
+  },
+  {
+    "id": "osm-13446164072",
+    "name": "Tesla Supercharger",
+    "lat": 45.487,
+    "lon": -122.7941,
+    "city": "Beaverton",
+    "fast": true,
+    "stalls": 16
+  },
+  {
+    "id": "osm-10600276053",
+    "name": "Tesla Supercharger",
+    "lat": 45.50101,
+    "lon": -122.80964,
+    "city": "Beaverton",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-11927044949",
+    "name": "Tesla Supercharger",
+    "lat": 47.04244,
+    "lon": -122.83433,
+    "city": "Lacey",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-8201016364",
+    "name": "Tesla Supercharger",
+    "lat": 45.53858,
+    "lon": -122.86617,
+    "city": "Hillsboro",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-11252126111",
+    "name": "Tesla Supercharger",
+    "lat": 45.7562,
+    "lon": -122.8764,
+    "city": "Scappoose",
+    "fast": true,
+    "stalls": 4
+  },
+  {
+    "id": "osm-9984464779",
+    "name": "Tesla Supercharger",
+    "lat": 46.14328,
+    "lon": -122.89846,
+    "city": "Kelso",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12840991283",
+    "name": "Tesla Supercharger",
+    "lat": 46.99312,
+    "lon": -122.92151,
+    "city": "Tumwater",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-11991240984",
+    "name": "Tesla Supercharger",
+    "lat": 46.95294,
+    "lon": -122.93511,
+    "city": "Tumwater",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-11991211900",
+    "name": "Tesla Supercharger",
+    "lat": 46.67972,
+    "lon": -122.97696,
+    "city": "Chehalis",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-9055019124",
+    "name": "Tesla Supercharger",
+    "lat": 46.72973,
+    "lon": -122.97745,
+    "city": "Centralia",
+    "fast": true,
+    "stalls": 20
+  },
+  {
+    "id": "osm-11991236070",
+    "name": "Tesla Supercharger",
+    "lat": 46.80405,
+    "lon": -123.01224,
+    "city": "Rochester",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-12049656208",
+    "name": "Tesla Supercharger",
+    "lat": 46.8013,
+    "lon": -123.01515,
+    "city": "Rochester",
+    "fast": true,
+    "stalls": 12
+  },
+  {
+    "id": "osm-11991216512",
+    "name": "Tesla Supercharger",
+    "lat": 48.07123,
+    "lon": -123.07453,
+    "city": "Sequim",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-4746186166",
+    "name": "Tesla Supercharger",
+    "lat": 46.97663,
+    "lon": -123.81367,
+    "city": "Aberdeen",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-11991210205",
+    "name": "Tesla Supercharger",
+    "lat": 47.00831,
+    "lon": -124.16514,
+    "city": "Ocean Shores",
+    "fast": true,
+    "stalls": 8
+  },
+  {
+    "id": "osm-7316781518",
+    "name": "Tesla Supercharger",
+    "lat": 47.94289,
+    "lon": -124.3852,
+    "city": "Forks",
+    "fast": true,
+    "stalls": 8
+  }
+]

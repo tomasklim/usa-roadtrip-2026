@@ -4,7 +4,7 @@ export const CHARGE_ROWS: [string, string, string, string, "" | "gap" | "crit"][
   ["Glacier National Park", "Going-to-the-Sun", "Nothing inside the park", "Go in full. The loop is only ~140 mi.", "gap"],
   ["Kalispell → Missoula → Bozeman", "US-93 / I-90", "Missoula, Butte, Bozeman", "Dense. Non-issue.", ""],
   ["Bozeman → Gardiner → park loop → West Yellowstone", "US-89 / park roads", "Bozeman SC, then Gardiner L2 + CCS L3 only", "300+ mi on one charge unless you charge in Gardiner. Book a motel with an L2 AND carry a CCS adapter.", "crit"],
-  ["Beartooth module", "US-212 / WY-296", "Red Lodge L2, Cody CCS. No Supercharger at all", "Works only off the Red Lodge overnight charge. Bring the CCS adapter.", "crit"],
+  ["Beartooth module", "US-212 / WY-296", "Red Lodge L2 (unconfirmed), Cody CCS. No Tesla fast charging within 18 mi of the whole loop", "Rests entirely on the Red Lodge overnight charge, which OSM does not list — verify it, or start from Billings at 100%.", "crit"],
   ["West Yellowstone → Jackson", "US-191 / US-89", "West Yellowstone SC, Jackson SC", "Comfortable.", ""],
   ["Jackson → Salt Lake City", "US-89", "Montpelier, Logan, SLC", "Comfortable.", ""],
   ["SLC → Bonneville → Wells NV", "I-80", "SLC, West Wendover, Wells", "Fine. Wendover has car washes for the salt.", ""],

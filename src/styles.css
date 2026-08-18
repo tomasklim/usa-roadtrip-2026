@@ -123,6 +123,8 @@ section{padding:44px 0;border-bottom:1px solid var(--line)}
 @media(max-width:1079px){.mapwrap{height:60vh;min-height:380px}}
 .leaflet-container{height:100%;width:100%;background:var(--surface2);
   font-family:var(--sans);font-size:12px}
+.leaflet-container path.ch-fast{stroke:var(--pine);fill:var(--pine);fill-opacity:.85}
+.leaflet-container path.ch-slow{stroke:var(--sky);fill:var(--sky);fill-opacity:.6}
 .leaflet-container path.rt-base{stroke:var(--rust)}
 .leaflet-container path.rt-mod{stroke:var(--plum)}
 .leaflet-container path.rt-base,.leaflet-container path.rt-mod{fill:none;

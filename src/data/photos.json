@@ -383,5 +383,68 @@
     "credit": "Frank Kovalchek from Anchorage, Alaska, USA",
     "license": "CC BY 2.0",
     "alt": "Aircraft including a Blackbird and a DC-3 filling the glass-walled Great Gallery of the Museum of Flight"
+  },
+  "applepark": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Aerial_view_of_Apple_Park_dllu.jpg/960px-Aerial_view_of_Apple_Park_dllu.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Apple_Park_dllu.jpg",
+    "credit": "Daniel L. Lu (user:dllu)",
+    "license": "CC BY-SA 4.0",
+    "alt": "Aerial view of Apple Park's circular ring building surrounded by trees in Cupertino"
+  },
+  "googleplex": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Googleplex_Welcome_Sign.jpg/960px-Googleplex_Welcome_Sign.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Googleplex_Welcome_Sign.jpg",
+    "credit": "Ardo191 at English Wikipedia",
+    "license": "Public domain",
+    "alt": "The coloured Google logo on a welcome sign under the trees of the Googleplex in Mountain View"
+  },
+  "metahq": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Facebook_Headquarters_1_Hacker_Way_Menlo_Park.jpg/960px-Facebook_Headquarters_1_Hacker_Way_Menlo_Park.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Facebook_Headquarters_1_Hacker_Way_Menlo_Park.jpg",
+    "credit": "LPS.1",
+    "license": "CC0",
+    "alt": "The entrance to Meta's Menlo Park campus with the thumbs-up sign at 1 Hacker Way"
+  },
+  "teslafremont": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/TESLA_logo%2C_freshly_unveiled_at_Fremont_Factory_%285123666466%29.jpg/960px-TESLA_logo%2C_freshly_unveiled_at_Fremont_Factory_%285123666466%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:TESLA_logo,_freshly_unveiled_at_Fremont_Factory_(5123666466).jpg",
+    "credit": "jurvetson",
+    "license": "CC BY 2.0",
+    "alt": "Giant TESLA letters across the white facade of the Fremont car factory"
+  },
+  "stanford": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Stanford_University_campus_in_2016.jpg/960px-Stanford_University_campus_in_2016.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Stanford_University_campus_in_2016.jpg",
+    "credit": "Frank Schulenburg",
+    "license": "CC BY-SA 4.0",
+    "alt": "Sandstone arches of Stanford's Main Quad with Hoover Tower rising behind"
+  },
+  "computerhistory": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Computer_History_Museum%2C_Mountain_View%2C_California_April_2025_05.jpg/960px-Computer_History_Museum%2C_Mountain_View%2C_California_April_2025_05.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Computer_History_Museum,_Mountain_View,_California_April_2025_05.jpg",
+    "credit": "GualdimG",
+    "license": "CC BY-SA 4.0",
+    "alt": "The glass front of the Computer History Museum in Mountain View behind its red sign"
+  },
+  "salesforcetower": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/San_Francisco%2C_California_April_2022_Salesforce_Tower.jpg/960px-San_Francisco%2C_California_April_2022_Salesforce_Tower.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:San_Francisco,_California_April_2022_Salesforce_Tower.jpg",
+    "credit": "Sharon Hahn Darlin",
+    "license": "CC BY 2.0",
+    "alt": "Salesforce Tower rising above the surrounding high-rises of downtown San Francisco"
+  },
+  "muirwoods": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Muir_Woods_Path_Through_Trees_June_2022.jpg/960px-Muir_Woods_Path_Through_Trees_June_2022.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Muir_Woods_Path_Through_Trees_June_2022.jpg",
+    "credit": "Marty Aligata",
+    "license": "CC BY-SA 4.0",
+    "alt": "A fenced trail winding between towering redwood trunks in Muir Woods"
+  },
+  "sausalito": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Sausalito_California.jpg/960px-Sausalito_California.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sausalito_California.jpg",
+    "credit": "Brocken Inaglory",
+    "license": "CC BY-SA 4.0",
+    "alt": "Sausalito's boardwalk and waterfront houses climbing the hillside above the bay"
   }
 }

@@ -19,7 +19,10 @@ export function Checklist() {
           The first five are blocking — skip them and the trip either breaks or gets a lot more
           expensive. Ticks are saved in this browser.
         </p>
-        <div className="progress"><i style={{ width: `${pct}%` }} /></div>
+        <div className="progress" role="progressbar" aria-label="Checklist completion"
+             aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct}>
+          <i style={{ width: `${pct}%` }} />
+        </div>
         <div className="checks">
           {CHECKS.map((c) => {
             const on = done.has(c.id);

@@ -23,7 +23,11 @@ export function Glance({ trip, units, onSelect }: {
               </thead>
               <tbody>
                 {trip.days.map((d) => (
-                  <tr key={d.id} className="clickable" onClick={() => onSelect(d.id)}>
+                  <tr key={d.id} className="clickable" onClick={() => onSelect(d.id)} tabIndex={0}
+                      aria-label={`Open day ${d.num}: ${d.title}`}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onSelect(d.id); }
+                      }}>
                     <td className="n">{d.num}</td>
                     <td className="n">{d.date ? fmtShort(d.date) : ""}</td>
                     <td>{d.title}{d.isMod && <span className="tag" style={{ background: "var(--plum-soft)", color: "var(--plum)" }}>module</span>}</td>
@@ -101,7 +105,11 @@ export function LoadChart({ trip, units, onSelect }: {
               return (
                 <g key={d.id}>
                   <rect className={`bar ${cls}`} x={x + 2.5} y={y(v)} width={bwid}
-                        height={pad.t + ih - y(v)} rx={3} onClick={() => onSelect(d.id)}>
+                        height={pad.t + ih - y(v)} rx={3} onClick={() => onSelect(d.id)}
+                        role="button" tabIndex={0} aria-label={`Open day ${d.num}: ${d.title}`}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onSelect(d.id); }
+                        }}>
                     <title>{`Day ${d.num}: ${d.leg} — ${distLabel(d.meters ?? 0, units)}`}</title>
                   </rect>
                   <text className="bv" x={x + 2.5 + bwid / 2} y={y(v) - 4}>{Math.round(v)}</text>
@@ -212,6 +220,7 @@ export function SleepSection({ trip, sleepStyle, setSleepStyle }: {
           <div className="mapbar" style={{ padding: 0, border: 0 }}>
             {SLEEP_STYLES.map((st) => (
               <button key={st.id} className={`pill${sleepStyle === st.id ? " on" : ""}`}
+                      aria-pressed={sleepStyle === st.id}
                       onClick={() => setSleepStyle(st.id)}>{st.label}</button>
             ))}
           </div>

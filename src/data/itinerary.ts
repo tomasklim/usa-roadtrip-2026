@@ -18,7 +18,7 @@ export const FLIGHTS = [
     dep: "morning", arr: "+1 h 50 m", dur: "1 h 50 m", stops: "nonstop", booked: false,
     legs: [["Delta or Alaska", "book a morning flight"], ["", "so Bonneville fits the afternoon"]],
     co2: "Very frequent — Delta hub, several a day" },
-  { dir: "hop2" as const, date: "Thu 8 Oct 2026", from: "Salt Lake City", to: "San Francisco",
+  { dir: "hop2" as const, date: "Fri 9 Oct 2026", from: "Salt Lake City", to: "San Francisco",
     dep: "any", arr: "+1 h 45 m", dur: "1 h 45 m", stops: "nonstop", booked: false,
     legs: [["Delta or United", "cheap and frequent"], ["", "book after the car is confirmed"]],
     co2: "Multiple daily" },

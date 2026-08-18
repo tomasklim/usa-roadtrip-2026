@@ -118,7 +118,8 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
                 </div>
 
                 <div className="modacts">
-                  <button className={`modbtn${active ? " off" : ""}`} onClick={() => toggle(m.id)}>
+                  <button className={`modbtn${active ? " off" : ""}`} onClick={() => toggle(m.id)}
+                          aria-pressed={active}>
                     {active ? "Remove" : "Add"}
                   </button>
                   {active && (
@@ -141,7 +142,8 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
       <div className="mapbar" style={{ padding: 0, border: 0 }}>
         {SLEEP_STYLES.map((st) => (
           <button key={st.id} className={`pill${sleepStyle === st.id ? " on" : ""}`}
-                  title={st.desc} onClick={() => setSleepStyle(st.id)}>{st.label}</button>
+                  title={st.desc} aria-pressed={sleepStyle === st.id}
+                  onClick={() => setSleepStyle(st.id)}>{st.label}</button>
         ))}
       </div>
       <p className="hint" style={{ margin: "9px 0 0" }}>

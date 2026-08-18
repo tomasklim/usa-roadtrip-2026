@@ -169,7 +169,10 @@ function Framer({ trip, selected, padRight }: {
 
   const allBounds = useMemo(() => {
     const pts: [number, number][] = [];
-    trip.days.forEach((d) => ROUTES[d.id]?.line?.forEach((p) => pts.push(p)));
+    trip.days.forEach((d) => {
+      ROUTES[d.id]?.line?.forEach((p) => pts.push(p));
+      if (d.at) pts.push(d.at);
+    });
     return pts.length ? L.latLngBounds(pts) : null;
   }, [trip.days]);
 
@@ -213,7 +216,9 @@ function PopupOpener({ selected, refs }: {
   useEffect(() => {
     if (!selected) return;
     const m = refs.current?.[selected];
-    if (m) setTimeout(() => m.openPopup(), 260);
+    if (!m) return;
+    const timer = window.setTimeout(() => m.openPopup(), 260);
+    return () => window.clearTimeout(timer);
   }, [selected, refs]);
   return null;
 }
@@ -240,7 +245,8 @@ function PoiLayer({ layers, pois, onOpenDay, dayLabel }: {
         const cat: Cat = p.kind === "sight" ? "sight" : foodCat(p.tags);
         if (cat === "sight" ? !layers.sights : !layers.food) return null;
         return (
-          <Marker key={p.id} position={[p.lat, p.lon]} icon={dropIcon(cat)}>
+          <Marker key={p.id} position={[p.lat, p.lon]} icon={dropIcon(cat)}
+                  title={p.name} alt={`${KIND_LABEL[cat]}: ${p.name}`}>
             {showLabels
               ? <Tooltip permanent direction="right" offset={[10, -10]} className="maplbl">{p.name}</Tooltip>
               : <Tooltip direction="top" offset={[0, -24]} className="hovlbl">{p.name}</Tooltip>}
@@ -437,6 +443,8 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                 key={`pin-${d.id}`}
                 position={at}
                 icon={dayIcon(String(d.num), !!d.isMod, selected === d.id)}
+                title={`Day ${d.num}: ${d.title}`}
+                alt={`Day ${d.num}: ${d.title}`}
                 zIndexOffset={selected === d.id ? 1000 : 500}
                 eventHandlers={{ click: () => onSelect(d.id) }}
                 ref={(m) => { markerRefs.current[d.id] = m; }}
@@ -449,7 +457,9 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                     <PopCard
                       cat="day"
                       title={`Day ${d.num} — ${d.title}`}
-                      sub={`${d.leg} · ${distLabel(d.meters ?? 0, units)} · ${d.hours} h · ${difficulty(d.meters ?? 0)}`}
+                      sub={(d.meters ?? 0) > 0
+                        ? `${d.leg} · ${distLabel(d.meters ?? 0, units)} · ${d.hours} h · ${difficulty(d.meters ?? 0)}`
+                        : d.leg}
                       body={d.why}
                       photoKey={d.photos?.[0]}
                       onJump={() => onScrollTo(d.id)}
@@ -470,7 +480,8 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
 
           {layers.chargers && CHARGERS.map((c) => (
             <Marker key={c.id} position={[c.lat, c.lon]}
-                    icon={dropIcon("charge", true, c.fast ? "" : "slow")}>
+                    icon={dropIcon("charge", true, c.fast ? "" : "slow")}
+                    title={c.name} alt={`charger: ${c.name}`}>
               <Tooltip direction="top" offset={[0, -18]} className="hovlbl">
                 {c.name}{c.stalls ? ` · ${c.stalls} stalls` : ""}
               </Tooltip>
@@ -484,7 +495,9 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
           ))}
 
           {layers.stores && STORES.map((st) => (
-            <Marker key={st.id} position={[st.lat, st.lon]} icon={dropIcon("store", !st.key)}>
+            <Marker key={st.id} position={[st.lat, st.lon]} icon={dropIcon("store", !st.key)}
+                    title={`Whole Foods${st.city ? `: ${st.city}` : ""}`}
+                    alt={`Whole Foods${st.city ? `: ${st.city}` : ""}`}>
               <Tooltip direction="top" offset={[0, -18]} className="hovlbl">
                 Whole Foods{st.city ? ` · ${st.city}` : ""}
               </Tooltip>
@@ -547,35 +560,42 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
         <button className="pill" onClick={() => onStep(1)} title="Next day (→)">→</button>
         <span className="spacer" />
         <button className={`pill${layers.sights ? " on" : ""}`}
+                aria-pressed={layers.sights}
                 onClick={() => setLayers({ ...layers, sights: !layers.sights })}>
           <i style={{ background: "var(--sky)" }} />Sights
         </button>
         <button className={`pill${layers.food ? " on" : ""}`}
+                aria-pressed={layers.food}
                 onClick={() => setLayers({ ...layers, food: !layers.food })}>
           <i style={{ background: "var(--rust)" }} />Food 🦪 🍔
         </button>
         <button className={`pill${layers.chargers ? " on" : ""}`}
+                aria-pressed={layers.chargers}
                 onClick={() => setLayers({ ...layers, chargers: !layers.chargers })}>
           <i style={{ background: "var(--pine)" }} />
           Superchargers{CHARGERS.length ? ` (${CHARGERS.filter((c) => c.fast).length})` : ""}
         </button>
         <button className={`pill${layers.stores ? " on" : ""}`}
                 onClick={() => setLayers({ ...layers, stores: !layers.stores })}
+                aria-pressed={layers.stores}
                 title="Whole Foods — gluten-free and dairy-free restocking">
           <i style={{ background: "var(--teal)" }} />Whole Foods ({STORES.length})
         </button>
         <div className="baseline" role="group" aria-label="Base map">
           {(["terrain", "streets", "satellite"] as Basemap[]).map((b) => (
-            <button key={b} className={basemap === b ? "on" : ""} onClick={() => setBasemap(b)}>
+            <button key={b} className={basemap === b ? "on" : ""} onClick={() => setBasemap(b)}
+                    aria-pressed={basemap === b}>
               {b === "terrain" ? "Terrain" : b === "streets" ? "Streets" : "Satellite"}
             </button>
           ))}
         </div>
         <button className={`pill${panel ? " on" : ""}`} onClick={() => setPanel(!panel)}
+                aria-pressed={panel}
                 title="Show the selected day in a panel over the map instead of scrolling to it">
           ▤ Day panel
         </button>
         <button className={`pill${wheelZoom ? " on" : ""}`} onClick={() => setWheelZoom(!wheelZoom)}
+                aria-pressed={wheelZoom}
                 title={wheelZoom
                   ? "Scroll wheel zooms the map — click to give scrolling back to the page"
                   : "Pinch already zooms; click to let a plain scroll zoom too"}>

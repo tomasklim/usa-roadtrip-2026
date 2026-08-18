@@ -35,6 +35,10 @@ export default function App() {
   const trip = useMemo(() => buildTrip(on, sleepStyle), [on, sleepStyle]);
 
   useEffect(() => {
+    if (selected && !trip.days.some((d) => d.id === selected)) setSelected(null);
+  }, [selected, trip.days]);
+
+  useEffect(() => {
     if (theme) document.documentElement.setAttribute("data-theme", theme);
     else document.documentElement.removeAttribute("data-theme");
   }, [theme]);
@@ -126,7 +130,7 @@ export default function App() {
                      onHover={setGhost} />
           </div>
 
-          <button className="listtoggle" onClick={() => setShowList(!showList)}>
+          <button className="listtoggle" onClick={() => setShowList(!showList)} aria-expanded={showList}>
             {showList
               ? "▴  Hide the written itinerary"
               : `▾  Read the whole itinerary as text — all ${trip.days.length} days`}

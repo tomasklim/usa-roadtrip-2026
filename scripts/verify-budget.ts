@@ -7,6 +7,7 @@ const t = buildTrip(new Set());
 const r = rentals(t);
 const td = turoDays(t);
 const slcMiles = r.slc.meters / 1609.344;
+const gasMiles = (r.seattle.meters + r.sf.meters) / 1609.344;
 const over = Math.max(0, slcMiles - S.cap * td);
 const lodging = Math.max(0, t.days.length - 1 - t.carNights - t.sfNights);
 const lines: [string, number][] = [
@@ -14,7 +15,8 @@ const lines: [string, number][] = [
   [`SLC Turo ${td}d`, td * S.turoDay],
   [`Seattle car ${r.seattle.days}d`, r.seattle.days * S.seaDay],
   ["over-miles", over * S.overMi],
-  ["charging", (t.meters / 1609.344 / 4) * S.kwh],
+  ["charging", (slcMiles / 4) * S.kwh],
+  ["fuel", (gasMiles / 29) * S.gas],
   [`lodging ${lodging}n`, lodging * S.motel],
   [`food ${t.days.length}d ×2`, 2 * t.days.length * S.foodDay],
   ["park pass", 250], ["gear", 170], ["domestic flights", 520],

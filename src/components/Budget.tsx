@@ -39,11 +39,12 @@ export function Budget({ trip }: { trip: Trip }) {
 
   const td = turoDays(trip);
   const r = rentals(trip);
-  const miles = trip.meters / 1609.344;
   const slcMiles = r.slc.meters / 1609.344;
+  const gasMiles = (r.seattle.meters + r.sf.meters) / 1609.344;
   const included = s.cap >= 400 ? Infinity : s.cap * td;
   const over = Math.max(0, slcMiles - included);
-  const kwh = miles / 4;
+  const kwh = slcMiles / 4;
+  const gallons = gasMiles / 29;
 
   const flightUsd = s.flightEur * s.eurusd;
   const lines: [string, number][] = [
@@ -55,7 +56,8 @@ export function Budget({ trip }: { trip: Trip }) {
           ? `Extra miles (${num(over)} over ${num(included as number)})`
           : `Extra miles — none: ${num(slcMiles)} mi driven, ${num(included as number)} included`)
       : "Extra miles (unlimited distance)", over * s.overMi],
-    [`Charging (~${num(kwh)} kWh at 4 mi/kWh)`, kwh * s.kwh],
+    [`Tesla charging (~${num(kwh)} kWh at 4 mi/kWh)`, kwh * s.kwh],
+    [`Fuel for Seattle + Bay Area (~${num(gallons)} gal at 29 mpg)`, gallons * s.gas],
     [`Motels and hotels, ${s.motelNights} nights × ${usd(s.motel)}`, s.motelNights * s.motel],
     [`Food, 2 people × ${trip.days.length} days × ${usd(s.foodDay)}`, 2 * trip.days.length * s.foodDay],
     ["Non-resident annual park pass", 250],
@@ -69,7 +71,7 @@ export function Budget({ trip }: { trip: Trip }) {
       if (sfCar) rows.push([`Marin campgrounds, ${sfCar} night${sfCar === 1 ? "" : "s"} × $35`, sfCar * 35]);
       return rows;
     })(),
-    ["San Francisco food and activities", 200 * Math.max(1, trip.sfNights)]
+    ["San Francisco activities and local transport", 200 * Math.max(1, trip.sfNights)]
   ];
   const bayCarDays = ["sf2", "sf3", "sf4"].filter((id) => trip.days.some((d) => d.id === id)).length;
   if (bayCarDays) lines.push([`Bay Area car — Point Reyes + Silicon Valley, ${bayCarDays} days`, bayCarDays * 140]);

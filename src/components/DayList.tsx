@@ -1,5 +1,5 @@
 import { ACTS } from "../data/itinerary";
-import { difficulty, distLabel, downloadGpx, fmtDate, toGpx, ROUTES } from "../lib/trip";
+import { difficulty, distLabel, downloadGpx, fmtDate, fmtShort, toGpx, ROUTES } from "../lib/trip";
 import type { Trip } from "../lib/trip";
 import type { Day, Units } from "../types";
 import { AlertBox, ChargeRow, FoodRow, HiRow, IdeasRow, PhotoStrip, SleepRow, WhyRow } from "./DayParts";
@@ -19,7 +19,9 @@ export function DayList({ trip, units, selected, onSelect }: {
                 <span className="an">ACT {head.id}</span>
                 <h3>{head.name}</h3>
                 <span className="rule" />
-                <span className="ad">{head.days}</span>
+                <span className="ad">
+                  {fmtShort(d.date ?? 0)} – {fmtShort(trip.days.filter((x) => x.act === d.act).at(-1)?.date ?? 0)}
+                </span>
               </div>
             )}
             <DayCard day={d} units={units} selected={selected === d.id} onSelect={() => onSelect(d.id)} />

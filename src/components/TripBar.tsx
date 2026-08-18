@@ -42,7 +42,10 @@ export function ActBar({ trip, selected, onPick }: {
 }) {
   const groups = ACTS.map((act) => {
     const days = trip.days.filter((d) => d.act === act.id);
-    return { act, days, meters: days.reduce((s, d) => s + (d.meters ?? 0), 0) };
+    const dates = days.length
+      ? `${fmtShort(days[0].date ?? 0)} – ${fmtShort(days[days.length - 1].date ?? 0)}`
+      : act.days;
+    return { act, days, dates, meters: days.reduce((s, d) => s + (d.meters ?? 0), 0) };
   }).filter((g) => g.days.length > 0);
 
   const cur = selected ? trip.days.find((d) => d.id === selected) : null;
@@ -50,7 +53,7 @@ export function ActBar({ trip, selected, onPick }: {
 
   return (
     <div className="actbar" role="group" aria-label="Trip progress by act">
-      {groups.map(({ act, days }) => {
+      {groups.map(({ act, days, dates }) => {
         const first = days[0].num ?? 0;
         const last = days[days.length - 1].num ?? 0;
         const active = idx >= first && idx <= last;
@@ -62,7 +65,7 @@ export function ActBar({ trip, selected, onPick }: {
             className={`actseg${active ? " on" : ""}${done ? " done" : ""}`}
             style={{ flexGrow: days.length }}
             onClick={() => onPick(days[0].id)}
-            title={`${act.name} — ${days.length} days, ${act.days}`}
+            title={`${act.name} — ${days.length} days, ${dates}`}
           >
             <span className="fill" style={{ width: `${within}%` }} />
             <span className="actlbl">

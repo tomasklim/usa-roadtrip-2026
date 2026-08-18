@@ -347,7 +347,7 @@ export const BASE: Day[] = [
        "Or nothing at all — sleep in, eat well, walk somewhere"],
   ideas: ["Napa or Sonoma is a full day and needs a car",
           "Half Moon Bay and Pescadero for a shorter coast fix",
-          "The Big Sur module below turns this into Highway 1 and Bixby Bridge",
+          "Highway 1 south to Bixby Bridge and Monterey is a long but spectacular day if you rent a car",
           "Book the flight-home seats and repack: the Basque chorizo and jerky will not clear customs"],
   sleep: { t: "motel", where: "Hotel in San Francisco" },
   food: [{ nm: "Whatever you liked most", note: "Go back to it. That is what a spare day is for", tags: ["gf", "df"] }],
@@ -485,24 +485,6 @@ export const MODULES: Module[] = [
     food: [{ nm: "In-N-Out, Layton", note: "On the way back into the city", tags: ["ino", "gf", "df"] }],
     charge: ["SLC and Layton SCs"],
     why: "A cheap, easy day that buys slack early in the loop, when you still want it." }] },
-
-{ id: "bigsur", after: "sf1", risk: "lo", name: "Big Sur day from San Francisco",
-  cost: "spends 1 SF day", desc: "Highway 1 south to Bixby Bridge and back. Needs a rental for the day and uses one of your San Francisco days rather than adding one.",
-  days: [
-  { id: "bigsur1", kind: "sf", act: "V",
-    title: "Highway 1 to Bixby Bridge", leg: "San Francisco → Half Moon Bay → Santa Cruz → Monterey → Bixby Bridge → back",
-    hours: 6, photos: ["bixby"],
-    hi: ["Bixby Creek Bridge, the most photographed bridge on the Pacific coast",
-         "Monterey Bay, sea otters and Cannery Row",
-         "Elephant seals at Piedras Blancas if you push further south"],
-    ideas: ["Pigeon Point and Pescadero on the way down, which most people skip",
-            "Point Lobos, which Stevenson called the finest meeting of land and water",
-            "Nepenthe for lunch with the whole coast below you",
-            "Go early: the fog usually burns off by eleven"],
-    sleep: { t: "motel", where: "Back in San Francisco" },
-    food: [{ nm: "Oysters in Monterey", note: "Pacific oysters straight off the bay, if two peaks were not enough", tags: ["oy", "gf", "df"] }],
-    charge: ["California is solved — Superchargers everywhere"],
-    why: "If the appetite for driving survived, this is the best 440 km in California." }] }
 ];
 
 /**

@@ -2,9 +2,9 @@ import { buildTrip, CAP_DAYS, distLabel, fmtShort, rentals, turoDays } from "../
 import { MODULES } from "../src/data/itinerary";
 
 const combos: string[][] = [
-  [], ["cody"], ["craters"], ["dino"], ["olympic"], ["antelope"], ["bigsur"],
-  ["cody", "craters"], ["dino", "olympic"], ["craters", "bigsur"],
-  ["cody", "craters", "dino", "olympic", "antelope", "bigsur"]
+  [], ["cody"], ["craters"], ["dino"], ["olympic"], ["antelope"],
+  ["cody", "craters"], ["dino", "olympic"], ["craters", "antelope"],
+  ["cody", "craters", "dino", "olympic", "antelope"]
 ];
 
 console.log(`window ${CAP_DAYS} days (Sept 23 – Oct 13)\n`);

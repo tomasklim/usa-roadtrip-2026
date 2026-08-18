@@ -48,7 +48,6 @@ export function Budget({ trip }: { trip: Trip }) {
     ["San Francisco food and activities", 200 * Math.max(1, trip.sfNights)]
   ];
   if (trip.days.some((d) => d.id === "sf2")) lines.push(["Car for the Point Reyes day", 140]);
-  if (trip.days.some((d) => d.id === "bigsur1")) lines.push(["Car for the Big Sur day", 140]);
 
   const total = lines.reduce((a, [, v]) => a + v, 0);
   const capNote = s.cap >= 400

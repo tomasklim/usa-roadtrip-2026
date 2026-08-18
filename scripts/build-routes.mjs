@@ -15,7 +15,18 @@ const wpPath = resolve(here, "../src/data/waypoints.json");
 const outPath = resolve(here, "../src/data/routes.json");
 
 const OSRM = "https://router.project-osrm.org/route/v1/driving/";
-const waypoints = JSON.parse(readFileSync(wpPath, "utf8"));
+const allWaypoints = JSON.parse(readFileSync(wpPath, "utf8"));
+
+/**
+ * Only bake legs the itinerary actually uses. Waypoints for retired routes stay
+ * in waypoints.json so a change of mind is one edit away, but their geometry is
+ * not shipped to the browser — it was ~40% of the bundle.
+ */
+const itinerary = readFileSync(resolve(here, "../src/data/itinerary.ts"), "utf8");
+const live = new Set([...itinerary.matchAll(/id: "([a-zA-Z0-9]+)", kind:/g)].map((m) => m[1]));
+const waypoints = Object.fromEntries(Object.entries(allWaypoints).filter(([id]) => live.has(id)));
+const skipped = Object.keys(allWaypoints).filter((id) => !live.has(id));
+if (skipped.length) console.log(`skipping ${skipped.length} retired legs: ${skipped.join(", ")}\n`);
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const round5 = (n) => Math.round(n * 1e5) / 1e5;

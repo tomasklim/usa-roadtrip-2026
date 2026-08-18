@@ -48,15 +48,18 @@ export default function App() {
     });
   }, [setMods]);
 
-  const select = useCallback((id: string) => {
-    setSelected(id);
-    const el = document.getElementById(`day-${id}`);
-    if (el && window.matchMedia("(min-width: 1080px)").matches) {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
-    } else if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, []);
+  const select = useCallback((id: string) => setSelected(id), []);
+
+  // Scrolling happens in an effect, not in the click handler: switching a module
+  // on selects one of its days, and that card does not exist in the DOM until
+  // after the re-render.
+  useEffect(() => {
+    if (!selected) return;
+    const el = document.getElementById(`day-${selected}`);
+    if (!el) return;
+    const wide = window.matchMedia("(min-width: 1080px)").matches;
+    el.scrollIntoView({ behavior: "smooth", block: wide ? "center" : "start" });
+  }, [selected, trip.days]);
 
   return (
     <>
@@ -78,7 +81,7 @@ export default function App() {
                         layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
                         dark={dark} mapHeight={mapHeight} setMapHeight={setMapHeight} />
               <Modules on={on} toggle={toggle} trip={trip} units={units}
-                       sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} />
+                       sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={select} />
               <LensBar lens={lens} setLens={setLens} />
             </div>
             <DayList trip={trip} units={units} selected={selected} onSelect={select} lens={lens} />

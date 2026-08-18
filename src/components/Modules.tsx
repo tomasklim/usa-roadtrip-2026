@@ -2,9 +2,10 @@ import { MODULES, SLEEP_STYLES } from "../data/itinerary";
 import { distLabel, fmtShort, metersOf, type Trip } from "../lib/trip";
 import type { SleepStyle, Units } from "../types";
 
-export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle }: {
+export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, onSelect }: {
   on: Set<string>; toggle: (id: string) => void; trip: Trip; units: Units;
   sleepStyle: SleepStyle; setSleepStyle: (s: SleepStyle) => void;
+  onSelect: (dayId: string) => void;
 }) {
   return (
     <div className="card panel">
@@ -19,14 +20,34 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle }: 
           const meters = m.days.reduce((s, d) => s + metersOf(d.id), 0);
           return (
             <label className={`mod${active ? " on" : ""}`} key={m.id}>
-              <input type="checkbox" checked={active} onChange={() => toggle(m.id)} />
+              <input
+                type="checkbox"
+                checked={active}
+                onChange={() => {
+                  toggle(m.id);
+                  // Switching a module on jumps the map to it, so you can see
+                  // what you just added without hunting for it.
+                  if (!active) onSelect(m.days[0].id);
+                }}
+              />
               <span className="rc">
                 <span className="mt">{m.name}</span>
                 <span className="md">{m.desc}</span>
               </span>
               <span className="mc">
                 {m.cost}<br />+{distLabel(meters, units)}<br />
-                <span className={`risk ${m.risk}`}>{m.risk === "hi" ? "risk" : "easy"}</span>
+                {active ? (
+                  <button
+                    className="mini"
+                    style={{ marginTop: 3 }}
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); onSelect(m.days[0].id); }}
+                    title="Show this module on the map"
+                  >
+                    ◎ map
+                  </button>
+                ) : (
+                  <span className={`risk ${m.risk}`}>{m.risk === "hi" ? "risk" : "easy"}</span>
+                )}
               </span>
             </label>
           );

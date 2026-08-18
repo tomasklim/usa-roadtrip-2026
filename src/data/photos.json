@@ -341,5 +341,47 @@
     "credit": "Acroterion",
     "license": "CC BY-SA 4.0",
     "alt": "The Beartooth Highway curving across the treeless alpine plateau below snowy peaks"
+  },
+  "snoqualmiefalls": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Snoqualmie_Falls%2C_Snoqualmie%2C_WA.jpeg/960px-Snoqualmie_Falls%2C_Snoqualmie%2C_WA.jpeg",
+    "page": "https://commons.wikimedia.org/wiki/File:Snoqualmie_Falls,_Snoqualmie,_WA.jpeg",
+    "credit": "Meher Anand Kasam",
+    "license": "CC BY-SA 3.0",
+    "alt": "Snoqualmie Falls plunging into its gorge at sunset with Salish Lodge on the cliff above"
+  },
+  "crystalmountain": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Mount_Rainier_from_just_north_of_Crystal_Mountain_summit_house_%287_March_2025%29.jpg/960px-Mount_Rainier_from_just_north_of_Crystal_Mountain_summit_house_%287_March_2025%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Mount_Rainier_from_just_north_of_Crystal_Mountain_summit_house_(7_March_2025).jpg",
+    "credit": "Buidhe",
+    "license": "CC BY-SA 4.0",
+    "alt": "Mount Rainier seen across snowy ridges from the summit of the Crystal Mountain ski area"
+  },
+  "northwesttrek": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Herd_2510.jpg/960px-Herd_2510.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Herd_2510.jpg",
+    "credit": "Chris Light",
+    "license": "CC BY-SA 4.0",
+    "alt": "Bison grazing beside the tram road in the forest of Northwest Trek Wildlife Park"
+  },
+  "ballardlocks": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Hiram_M._Chittenden_Locks_Seattle.jpg/960px-Hiram_M._Chittenden_Locks_Seattle.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiram_M._Chittenden_Locks_Seattle.jpg",
+    "credit": "Ron Clausen",
+    "license": "CC BY-SA 4.0",
+    "alt": "A small boat waiting inside the chamber of the Hiram M. Chittenden (Ballard) Locks in Seattle"
+  },
+  "kerrypark": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Seattle_Skyline_Kerry_Park.jpg/960px-Seattle_Skyline_Kerry_Park.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Seattle_Skyline_Kerry_Park.jpg",
+    "credit": "Sajad Mohamad",
+    "license": "CC BY-SA 4.0",
+    "alt": "The Space Needle and Seattle skyline from Kerry Park with Mount Rainier on the horizon"
+  },
+  "museumofflight": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Aircraft_in_the_great_gallery_of_the_Museum_of_Flight_%286194334038%29.jpg/960px-Aircraft_in_the_great_gallery_of_the_Museum_of_Flight_%286194334038%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Aircraft_in_the_great_gallery_of_the_Museum_of_Flight_(6194334038).jpg",
+    "credit": "Frank Kovalchek from Anchorage, Alaska, USA",
+    "license": "CC BY 2.0",
+    "alt": "Aircraft including a Blackbird and a DC-3 filling the glass-walled Great Gallery of the Museum of Flight"
   }
 }

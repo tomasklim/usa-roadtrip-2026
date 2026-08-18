@@ -364,7 +364,8 @@
   "day": "seaA",
   "tags": [],
   "city": "Snoqualmie WA",
-  "desc": "A 268 ft drop with a viewing platform at the lip, 30 min east of Seattle. A detour on the way out rather than on the way to Rainier."
+  "desc": "A 268 ft drop with a viewing platform at the lip, 30 min east of Seattle. A detour on the way out rather than on the way to Rainier.",
+  "photo": "snoqualmiefalls"
  },
  {
   "id": "lake-mcdonald",
@@ -922,7 +923,8 @@
   "day": "seaA",
   "tags": [],
   "city": "Pierce County WA",
-  "desc": "The highest gondola in Washington, running through autumn, with Rainier filling the whole sky from the top. Ten minutes off the road to Sunrise."
+  "desc": "The highest gondola in Washington, running through autumn, with Rainier filling the whole sky from the top. Ten minutes off the road to Sunrise.",
+  "photo": "crystalmountain"
  },
  {
   "id": "northwest-trek",
@@ -933,7 +935,8 @@
   "day": "seaB",
   "tags": [],
   "city": "Eatonville WA",
-  "desc": "A tram tour through 435 free-range acres of bison, elk, moose, caribou and bighorn sheep. A useful warm-up for Yellowstone, and it is directly on the road from Ashford."
+  "desc": "A tram tour through 435 free-range acres of bison, elk, moose, caribou and bighorn sheep. A useful warm-up for Yellowstone, and it is directly on the road from Ashford.",
+  "photo": "northwesttrek"
  },
  {
   "id": "ballard-locks",
@@ -944,7 +947,8 @@
   "day": "sea1",
   "tags": [],
   "city": "Seattle WA",
-  "desc": "A working ship canal with a glass-walled fish ladder underneath it. Late September is the tail of the salmon run, so you can watch them climb."
+  "desc": "A working ship canal with a glass-walled fish ladder underneath it. Late September is the tail of the salmon run, so you can watch them climb.",
+  "photo": "ballardlocks"
  },
  {
   "id": "kerry-park",
@@ -955,7 +959,8 @@
   "day": "sea1",
   "tags": [],
   "city": "Seattle WA",
-  "desc": "The postcard view: Space Needle, downtown and Mount Rainier stacked behind each other. Tiny park, five minutes, best at dusk."
+  "desc": "The postcard view: Space Needle, downtown and Mount Rainier stacked behind each other. Tiny park, five minutes, best at dusk.",
+  "photo": "kerrypark"
  },
  {
   "id": "museum-of-flight",
@@ -966,6 +971,7 @@
   "day": "sea1",
   "tags": [],
   "city": "Seattle WA",
-  "desc": "Far better than it sounds: the first Air Force One, a Concorde, an SR-71 and the original Boeing factory. Good rainy-day insurance."
+  "desc": "Far better than it sounds: the first Air Force One, a Concorde, an SR-71 and the original Boeing factory. Good rainy-day insurance.",
+  "photo": "museumofflight"
  }
 ]

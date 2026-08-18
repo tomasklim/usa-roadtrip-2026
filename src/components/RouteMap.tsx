@@ -355,7 +355,8 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
       <div className={`mapwrap${panel ? " haspanel" : ""}`} ref={wrapRef}
            style={height != null ? { height } : undefined}>
         <MapContainer center={[45.5, -114]} zoom={5} scrollWheelZoom={false} zoomSnap={0.25}
-                      zoomDelta={0.5} wheelPxPerZoomLevel={90} className="leaflet-container">
+                      zoomDelta={0.5} wheelPxPerZoomLevel={90} keyboard={false}
+                      className="leaflet-container">
           <TileLayer key={`${basemap}-${dark}`} url={bm.url(dark)} attribution={bm.attr} maxZoom={bm.max} />
           <Resizer />
           <PinchZoom />

@@ -43,7 +43,7 @@ export function difficulty(meters: number): Difficulty {
 }
 
 const SEATTLE_CAR = ["seaA", "seaB", "olyA", "olyB"];
-const SLC_CAR = ["s1", "antelope", "s2", "dinoA", "dinoB", "s3", "s4", "s5", "s5b",
+const SLC_CAR = ["s1", "antelope", "s2", "dinoA", "dinoB", "s3", "s4", "s4b", "s5", "s5b",
                  "s6", "s7", "cody", "s8", "s9", "craters2", "s10"];
 
 function blockDays(t: Trip, ids: string[]) {

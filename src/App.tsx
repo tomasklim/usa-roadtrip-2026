@@ -21,6 +21,7 @@ export default function App() {
   const [basemap, setBasemap] = useStored<Basemap>("basemap", "terrain");
   const [layers, setLayers] = useStored<Layers>("layers2", { sights: true, food: true, chargers: false, stores: false });
   const [mapHeight, setMapHeight] = useStored<number | null>("mapHeight", null);
+  const [wheelZoom, setWheelZoom] = useStored<boolean>("wheelZoom", false);
   const [sleepStyle, setSleepStyle] = useStored<SleepStyle>("sleepStyle", "balanced");
   const [selected, setSelected] = useState<string | null>(null);
 
@@ -109,13 +110,16 @@ export default function App() {
             distances are measured rather than guessed, and each day exports as GPX for the car.
             <b> Use ← and → to walk through the trip day by day</b> — the map follows and opens the
             detail as it goes, and nothing scrolls unless you ask it to with the button in the card.
-            Escape clears the selection. Pins are colour-coded by what they are: blue for sights,
+            Escape clears the selection. <b>Pinch on the trackpad zooms the map</b>, while a plain
+            two-finger scroll still scrolls the page — and there is a toggle in the map bar if you would
+            rather the wheel zoomed as well. Pins are colour-coded by what they are: blue for sights,
             rust for food, purple for oysters, gold for In-N-Out, green for Superchargers and teal for
             Whole Foods. Hover any pin for its name; zoom in past level 8 and the names stay on.
           </p>
           <RouteMap trip={trip} units={units} selected={selected} onSelect={select}
                     layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
-                    dark={dark} mapHeight={mapHeight} setMapHeight={setMapHeight}
+                    dark={dark} wheelZoom={wheelZoom} setWheelZoom={setWheelZoom}
+                    mapHeight={mapHeight} setMapHeight={setMapHeight}
                     onStep={step} onScrollTo={scrollToDay} />
 
           <div className="planner">

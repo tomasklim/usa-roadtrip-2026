@@ -99,6 +99,40 @@ const BASEMAPS: Record<Basemap, { url: (dark: boolean) => string; attr: string; 
   }
 };
 
+/**
+ * Trackpad pinch arrives as a wheel event with ctrlKey set, which Leaflet does
+ * not distinguish from a plain two-finger scroll. Handling it ourselves means
+ * pinch zooms the map while ordinary scrolling still scrolls the page.
+ */
+function PinchZoom() {
+  const map = useMap();
+  useEffect(() => {
+    const el = map.getContainer();
+    const onWheel = (e: WheelEvent) => {
+      if (!e.ctrlKey) return;
+      e.preventDefault();
+      const pt = map.mouseEventToContainerPoint(e as unknown as MouseEvent);
+      const at = map.containerPointToLatLng(pt);
+      const next = map.getZoom() - e.deltaY * 0.012;
+      const clamped = Math.max(map.getMinZoom(), Math.min(map.getMaxZoom(), next));
+      map.setZoomAround(at, clamped, { animate: false });
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [map]);
+  return null;
+}
+
+/** Lets the scroll-wheel-zoom preference be flipped without remounting the map. */
+function WheelZoom({ on }: { on: boolean }) {
+  const map = useMap();
+  useEffect(() => {
+    if (on) map.scrollWheelZoom.enable();
+    else map.scrollWheelZoom.disable();
+  }, [map, on]);
+  return null;
+}
+
 /** Keeps Leaflet in step with a container that changes size (sticky column, theme swap). */
 function Resizer() {
   const map = useMap();
@@ -197,12 +231,13 @@ function PoiLayer({ layers, pois, onScrollTo }: {
 }
 
 export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, basemap, setBasemap,
-                          dark, mapHeight, setMapHeight, onStep, onScrollTo }: {
+                          dark, wheelZoom, setWheelZoom, mapHeight, setMapHeight, onStep, onScrollTo }: {
   trip: Trip; units: Units; selected: string | null;
   onSelect: (id: string) => void;
   layers: Layers; setLayers: (l: Layers) => void;
   basemap: Basemap; setBasemap: (b: Basemap) => void;
   dark: boolean;
+  wheelZoom: boolean; setWheelZoom: (v: boolean) => void;
   mapHeight: number | null; setMapHeight: (h: number | null) => void;
   onStep: (delta: number) => void;
   onScrollTo: (dayId: string) => void;
@@ -257,9 +292,12 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
   return (
     <div className="card mapcard">
       <div className="mapwrap" ref={wrapRef} style={height != null ? { height } : undefined}>
-        <MapContainer center={[45.5, -114]} zoom={5} scrollWheelZoom={false} className="leaflet-container">
+        <MapContainer center={[45.5, -114]} zoom={5} scrollWheelZoom={false} zoomSnap={0.25}
+                      zoomDelta={0.5} wheelPxPerZoomLevel={90} className="leaflet-container">
           <TileLayer key={`${basemap}-${dark}`} url={bm.url(dark)} attribution={bm.attr} maxZoom={bm.max} />
           <Resizer />
+          <PinchZoom />
+          <WheelZoom on={wheelZoom} />
           <Framer trip={trip} selected={selected} />
           <PopupOpener selected={selected} refs={markerRefs} />
 
@@ -394,6 +432,12 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
             </button>
           ))}
         </div>
+        <button className={`pill${wheelZoom ? " on" : ""}`} onClick={() => setWheelZoom(!wheelZoom)}
+                title={wheelZoom
+                  ? "Scroll wheel zooms the map — click to give scrolling back to the page"
+                  : "Pinch already zooms; click to let a plain scroll zoom too"}>
+          {wheelZoom ? "⊙ scroll zooms map" : "⊙ scroll zoom off"}
+        </button>
         <button className="pill" onClick={fillScreen}
                 title={height != null ? "Back to the automatic height" : "Fill the screen height"}>
           {height != null ? "⤡ Auto" : "⤢ Taller"}

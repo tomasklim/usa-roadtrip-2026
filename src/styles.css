@@ -58,6 +58,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
 h1,h2,h3,h4{font-family:var(--sans);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin:0}
 a{color:var(--brand)}
 button{font-family:inherit}
+button:focus-visible,a:focus-visible,[role="button"]:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 .wrap{max-width:1400px;margin:0 auto;padding:0 20px}
 .wrap.narrow{max-width:1120px}
 .tnum{font-variant-numeric:tabular-nums}
@@ -113,7 +114,7 @@ nav.links a:hover{background:var(--brand-soft);color:var(--brand)}
   color:var(--brand);padding-left:8px;white-space:nowrap}
 @media(max-width:700px){.actwhere{flex:1 0 100%;padding:6px 0 0}}
 
-section{padding:44px 0;border-bottom:1px solid var(--line)}
+section{padding:44px 0;border-bottom:1px solid var(--line);scroll-margin-top:calc(var(--head) + 8px)}
 .shead{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:8px}
 .shead h2{font-size:clamp(1.4rem,3vw,1.95rem)}
 .shead .num{font-family:var(--mono);font-size:.68rem;color:var(--brand);letter-spacing:.14em;
@@ -555,4 +556,23 @@ svg.bars{display:block;width:100%;height:auto}
   border-radius:0 9px 9px 0;font-size:.86rem;margin:14px 0 0}
 footer{padding:32px 0 46px;color:var(--muted);font-size:.82rem}
 footer p{margin:0 0 6px}
+@media(max-width:640px){
+  :root{--head:96px}
+  .wrap{padding-left:14px;padding-right:14px}
+  .top .wrap{height:var(--head);display:flex;flex-wrap:wrap;align-content:center;gap:6px 8px}
+  .brand{order:1;font-size:.94rem}
+  .unitsw{order:2;margin-left:auto}
+  .hbtn{order:3}
+  nav.links{order:4;flex:1 0 100%;margin-left:0;padding-top:5px;border-top:1px solid var(--line)}
+  nav.links a{font-size:.75rem;padding:4px 8px}
+  .tripbar{padding:19px 0 17px}
+  .tripbar h1{font-size:1.3rem}
+  .mapcard{margin-left:-14px;margin-right:-14px}
+  .mapbar{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .mapbar::-webkit-scrollbar{display:none}
+  .mapbar .spacer{display:none}
+  .mapbar .pill,.mapbar .baseline{flex:none}
+  .stepnow{flex:0 0 150px;max-width:150px}
+  .grid2,.checks{grid-template-columns:minmax(0,1fr)}
+}
 @media print{header.top,.side,.mapcard,.dfoot{display:none}.planner{grid-template-columns:1fr}}

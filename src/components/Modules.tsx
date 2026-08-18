@@ -63,7 +63,7 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
               <div className="modbody">
                 <div className="modtop">
                   <span className="modname">{m.name}</span>
-                  <span className={`risk ${m.risk}`}>{m.risk === "hi" ? "risk" : "easy"}</span>
+                  <span className={`risk ${m.risk}`}>{m.risk === "hi" ? "risk" : "lower risk"}</span>
                 </div>
                 <p className="moddesc" title={m.desc}>{m.desc}</p>
 

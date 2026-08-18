@@ -33,7 +33,7 @@ export const SLEEP_CARDS = [
   { h: "Showers, which become the real problem", body: "Past three or four car nights, washing is the constraint, not sleep. <b>Pilot and Flying J truck stops</b> sell private showers in Idaho Falls, Pocatello, Ogden and Salt Lake City. Colter Bay has paid showers; <b>Mammoth Campground has none</b>, so use public showers in Gardiner. Check current gym membership terms instead of relying on an old nationwide-shower price." },
   { h: "Staying warm at 2,000 m", body: "The cold nights on this route are Hyalite above Bozeman, West Yellowstone and Shadow Mountain — all around 2,000 m, all capable of −5 °C in early October. You want <b>bags rated to −7 °C, not −0 °C</b>, a wool hat each, and a plan for condensation: crack two windows a centimetre, and keep a microfibre cloth by the bed for the morning." },
   { h: "Two people, one narrow bed", body: "104 cm is narrower than a UK double. Sleep <b>head-to-toe</b> if either of you moves a lot, and put the wider shoulders on the boot side where the wheel arches do not intrude. Do a test night at home before you commit to twelve of them." },
-  { h: "The Bay Area caveat", body: "Sleeping in the car works <b>north of the bridge, never in the city</b> — San Francisco car break-ins are an epidemic and an obviously-lived-in car is a target. Marin does it properly instead: <b>Samuel P. Taylor SP</b> (~$35, redwoods, 15 min from Point Reyes), <b>China Camp SP</b>, and <b>Kirby Cove</b> directly under the Golden Gate if you win the reservation lottery. Switch the sleep style to Car first and the SF nights follow." },
+  { h: "The Bay Area caveat", body: "Do not plan to sleep in the car in San Francisco. Marin alternatives include <b>Samuel P. Taylor SP</b>, <b>China Camp SP</b> and <b>Kirby Cove</b>, but each changes the next day's start and adds driving. The mapped itinerary therefore returns to a San Francisco hotel every night; treat Marin camping as a manual route change, not a switchable saving." },
   { h: "What a bed still buys you", body: "Shoulder-season motels in Gardiner, West Yellowstone and Jackson can still be expensive, so compare real refundable rates before locking the budget. A bed buys a <b>shower, laundry, a charge and a table to plan on</b> — which is why the balanced option keeps one in Gardiner, Red Lodge and Bozeman." }
 ];
 
@@ -60,7 +60,7 @@ export const CHECKS = [
   { id: "redlodge", t: "Confirm the Red Lodge destination chargers are available", d: "Tesla lists two public chargers at up to 16 kW, open 24/7. The Beartooth day still depends on a long overnight charge, so confirm them in the Tesla app and keep a backup before leaving Gardiner." },
   { id: "pass", t: "Buy the $250 non-resident annual park pass", d: "Covers Yellowstone, Grand Teton, Rainier, Craters and Dinosaur NM. Non-residents otherwise pay $100 per person on top at the 11 busiest parks — Yellowstone alone would be $235 for the two of you." },
   { id: "tomales", t: "Book The Boat at Hog Island", d: "Your base itinerary lands on Saturday Oct 10, when the farm runs its full-service café. Shuck-your-own is Thursday only; reserve the correct service." },
-  { id: "hama", t: "Check Hama Hama's opening days", d: "Peak oyster number one, and the Hood Canal day is built around it. The saloon is seasonal and not open every weekday in autumn." },
+  { id: "hama", t: "Reserve Hama Hama for Saturday Sept 26", d: "The Oyster Saloon is open Friday–Sunday, 11:00–17:00. Reservations for the coming weekend open on Monday; the table deposit includes two dozen oysters." },
   { id: "chico", t: "Book dinner at Chico Hot Springs", d: "The best meal in rural Montana, and the dining room fills. Mention the gluten and dairy when you book." },
   { id: "mattress", t: "Buy and cut the mattress", d: "IKEA foam 140 × 200, cut to 105 cm wide with a bread knife. Test-fit in a Model Y before you fly if you possibly can." },
   { id: "bear", t: "Buy bear spray in Jackson or Bozeman", d: "You cannot fly with it in either direction. Buy it there ($40–50) and leave it behind. Grizzly country throughout Yellowstone and the Tetons." },
@@ -72,6 +72,7 @@ export const CHECKS = [
 export const BUDGET_CFG = [
   { id: "turoDay", label: "Salt Lake Turo, all-in per day", min: 30, max: 200, step: 1, val: 64, fmt: (v: number) => "$" + v },
   { id: "seaDay", label: "Seattle car, per day", min: 40, max: 200, step: 5, val: 95, fmt: (v: number) => "$" + v },
+  { id: "bayDay", label: "Bay Area car, per day", min: 40, max: 250, step: 5, val: 140, fmt: (v: number) => "$" + v },
   { id: "cap", label: "Miles included per day", min: 75, max: 400, step: 25, val: 150, fmt: (v: number) => (v >= 400 ? "unlimited" : v + " mi") },
   { id: "overMi", label: "Cost per extra mile", min: 0, max: 1, step: 0.01, val: 0.27, fmt: (v: number) => "$" + v.toFixed(2) },
   { id: "motelNights", label: "Motel and hotel nights", min: 0, max: 22, step: 1, val: 16, fmt: (v: number) => v + " nights" },

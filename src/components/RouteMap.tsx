@@ -30,6 +30,14 @@ const KIND_LABEL: Record<Cat, string> = {
   charge: "supercharger", store: "Whole Foods", day: "day"
 };
 
+const markerEvents = (label: string, onClick?: () => void) => ({
+  add: (e: L.LeafletEvent) => {
+    const el = (e.target as L.Marker).getElement();
+    if (el) el.setAttribute("aria-label", label);
+  },
+  ...(onClick ? { click: onClick } : {})
+});
+
 function foodCat(tags: string[]): Cat {
   if (tags.includes("ino")) return "ino";
   if (tags.includes("oy")) return "oyster";
@@ -246,7 +254,8 @@ function PoiLayer({ layers, pois, onOpenDay, dayLabel }: {
         if (cat === "sight" ? !layers.sights : !layers.food) return null;
         return (
           <Marker key={p.id} position={[p.lat, p.lon]} icon={dropIcon(cat)}
-                  title={p.name} alt={`${KIND_LABEL[cat]}: ${p.name}`}>
+                  title={p.name} alt={`${KIND_LABEL[cat]}: ${p.name}`}
+                  eventHandlers={markerEvents(`${KIND_LABEL[cat]}: ${p.name}`)}>
             {showLabels
               ? <Tooltip permanent direction="right" offset={[10, -10]} className="maplbl">{p.name}</Tooltip>
               : <Tooltip direction="top" offset={[0, -24]} className="hovlbl">{p.name}</Tooltip>}
@@ -446,7 +455,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                 title={`Day ${d.num}: ${d.title}`}
                 alt={`Day ${d.num}: ${d.title}`}
                 zIndexOffset={selected === d.id ? 1000 : 500}
-                eventHandlers={{ click: () => onSelect(d.id) }}
+                eventHandlers={markerEvents(`Day ${d.num}: ${d.title}`, () => onSelect(d.id))}
                 ref={(m) => { markerRefs.current[d.id] = m; }}
               >
                 <Tooltip direction="top" offset={[0, -14]} className="hovlbl">
@@ -481,7 +490,8 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
           {layers.chargers && CHARGERS.map((c) => (
             <Marker key={c.id} position={[c.lat, c.lon]}
                     icon={dropIcon("charge", true, c.fast ? "" : "slow")}
-                    title={c.name} alt={`charger: ${c.name}`}>
+                    title={c.name} alt={`charger: ${c.name}`}
+                    eventHandlers={markerEvents(`charger: ${c.name}`)}>
               <Tooltip direction="top" offset={[0, -18]} className="hovlbl">
                 {c.name}{c.stalls ? ` · ${c.stalls} stalls` : ""}
               </Tooltip>
@@ -497,7 +507,8 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
           {layers.stores && STORES.map((st) => (
             <Marker key={st.id} position={[st.lat, st.lon]} icon={dropIcon("store", !st.key)}
                     title={`Whole Foods${st.city ? `: ${st.city}` : ""}`}
-                    alt={`Whole Foods${st.city ? `: ${st.city}` : ""}`}>
+                    alt={`Whole Foods${st.city ? `: ${st.city}` : ""}`}
+                    eventHandlers={markerEvents(`Whole Foods${st.city ? `: ${st.city}` : ""}`)}>
               <Tooltip direction="top" offset={[0, -18]} className="hovlbl">
                 Whole Foods{st.city ? ` · ${st.city}` : ""}
               </Tooltip>

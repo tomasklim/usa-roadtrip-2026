@@ -142,12 +142,12 @@ export function OverviewPanel({ trip, units, width, sheet, onStart, onClose }: {
         <button className="mini" onClick={onClose} title="Hide this panel">✕</button>
       </div>
       <div className="detail-body ov">
-        <h3>Two short driving blocks, with a flight between them</h3>
+        <h3>Focused rental blocks, with flights over the dead miles</h3>
         <p>
           Seattle to Yellowstone is 1,300 km each way and the car has to come back, so a single loop
           out of Seattle costs about 5,000 km of driving. Flying over the transit instead brings it
-          down to <b>{distLabel(trip.meters, units)}</b> — and turns half the driving days into short
-          park days.
+          down to <b>{distLabel(trip.meters, units)}</b> — and keeps the long-distance transfers out
+          of the holiday.
         </p>
         <div className="ovstats">
           {stats.map(([big, small], i) => (
@@ -156,15 +156,17 @@ export function OverviewPanel({ trip, units, width, sheet, onStart, onClose }: {
         </div>
         <h4>The shape of it</h4>
         <ol className="ovsteps">
-          <li><b>Seattle</b> — two days on foot, then a {r.seattle.days}-day car across Mount Rainier
+          <li><b>Seattle</b> — an arrival afternoon and a full day on foot, then a {r.seattle.days}-day car across Mount Rainier
             and up Hood Canal for the trip's best oysters ({distLabel(r.seattle.meters, units)}).</li>
           <li><b>Fly to Salt Lake City</b> — collect the Tesla and drive onto the Bonneville Salt Flats
             the same afternoon.</li>
           <li><b>North through the parks</b> — Bear Lake, Grand Teton, Yellowstone, the Beartooth
             Highway and Bozeman's dinosaurs: {r.slc.days} days, {distLabel(r.slc.meters, units)}.</li>
           <li><b>Back to Salt Lake</b> via Idaho Falls and Lava Hot Springs, car back {fmtShort(trip.carReturn)}.</li>
-          <li><b>Fly to San Francisco</b> — {trip.sfNights} nights, Point Reyes, and the second of the
-            trip's two oyster stops. Home Oct 13.</li>
+          <li><b>Fly to San Francisco</b> — {trip.sfNights} night{trip.sfNights === 1 ? "" : "s"}
+            {r.sf.days > 0
+              ? `, then a ${r.sf.days}-day Bay Area car for Point Reyes, Silicon Valley and Marin`
+              : "; the active modules leave no Bay Area driving days"}. Home Oct 13.</li>
         </ol>
         <h4>Driving the map</h4>
         <ul className="ovhelp">

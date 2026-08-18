@@ -8,23 +8,25 @@ import type { Day, Units } from "../types";
  */
 export function TripBar({ trip, units }: { trip: Trip; units: Units }) {
   const r = rentals(trip);
+  const shortDays = trip.days.filter((d) => (d.meters ?? 0) > 0 && (d.meters ?? 0) < 200_000).length;
+  const rentalBlocks = [r.seattle, r.slc, r.sf].filter((block) => block.days > 0).length;
   return (
     <div className="tripbar">
       <div className="wrap">
         <div className="kicker">
           21 days · Sept 23 – Oct 13, 2026 · two people · gluten-free and dairy-free
         </div>
-        <h1>Yellowstone, the Tetons and the Bonneville salt — in two short drives instead of one long one</h1>
+        <h1>Yellowstone, the Tetons and Bonneville — a fly-drive route with focused rental blocks</h1>
         <div className="routeline">
           Seattle <b>→</b> Mount Rainier <b>→</b> Hood Canal <b>✈</b> Salt Lake City <b>→</b> Bonneville
           Salt Flats <b>→</b> Bear Lake <b>→</b> Grand Teton <b>→</b> Yellowstone <b>→</b> Beartooth
-          Highway <b>→</b> Bozeman <b>→</b> Lava Hot Springs <b>✈</b> San Francisco
+          Highway <b>→</b> Bozeman <b>→</b> Lava Hot Springs <b>✈</b> San Francisco <b>→</b> Point Reyes
         </div>
         <p>
           <b>{distLabel(trip.meters, units)}</b> of driving over <b>{trip.driveDays} days</b> behind the
-          wheel, half of them under 200 km — because the 1,300 km run out to Yellowstone gets flown
-          rather than driven. Two rental cars ({r.seattle.days} days in Washington,{" "}
-          {r.slc.days} in the Rockies), <b>{trip.carNights} nights sleeping in the car</b>, two oyster
+          wheel, including <b>{shortDays} under 200 km</b> — because the 1,300 km run out to Yellowstone gets flown
+          rather than driven. {rentalBlocks} rental blocks ({r.seattle.days} days in Washington,{" "}
+          {r.slc.days} in the Rockies{r.sf.days > 0 ? ` and ${r.sf.days} around the Bay` : ""}), <b>{trip.carNights} nights sleeping in the car</b>, two oyster
           stops worth building a day around, and one Supercharger problem in Gardiner that has to be
           solved before you leave.
         </p>
@@ -88,6 +90,6 @@ const shorten = (name: string) =>
       .replace("Salt, Bear Lake and the Tetons", "Salt & the Tetons")
       .replace("Yellowstone and the Beartooth", "Yellowstone")
       .replace("Dinosaurs, hot springs and back to the salt", "Dinosaurs & hot springs")
-      .replace("San Francisco", "San Francisco");
+      .replace("San Francisco and the Bay Area", "San Francisco & Bay Area");
 
 export type { Day };

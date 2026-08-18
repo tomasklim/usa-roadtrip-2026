@@ -1,11 +1,11 @@
-import { buildTrip, CAP_DAYS, distLabel, fmtShort, rentals, turoDays } from "../src/lib/trip";
+import { buildTrip, CAP_DAYS, distLabel, fmtShort, rentals, ROUTES, turoDays } from "../src/lib/trip";
 import { MODULES } from "../src/data/itinerary";
 
-const combos: string[][] = [
-  [], ["cody"], ["craters"], ["dino"], ["olympic"], ["antelope"],
-  ["cody", "craters"], ["dino", "olympic"], ["craters", "antelope"],
-  ["cody", "craters", "dino", "olympic", "antelope"]
-];
+// Every possible module ordering/state, so splice arithmetic and dates are not
+// only exercised in a few hand-picked combinations.
+const combos: string[][] = Array.from({ length: 2 ** MODULES.length }, (_, mask) =>
+  MODULES.filter((_, i) => (mask & (1 << i)) !== 0).map((m) => m.id)
+);
 
 console.log(`window ${CAP_DAYS} days (Sept 23 – Oct 13)\n`);
 console.log("modules".padEnd(44), "days".padStart(5), "total".padStart(9), "SLC car".padStart(9),
@@ -21,6 +21,8 @@ for (const c of combos) {
   for (let i = 1; i < dates.length; i++) if (dates[i] - dates[i - 1] !== 864e5) problems.push("date gap");
   const ids = t.days.map((d) => d.id);
   if (new Set(ids).size !== ids.length) problems.push("duplicate ids: " + ids.filter((x, i) => ids.indexOf(x) !== i));
+  const staleHours = t.days.filter((d) => ROUTES[d.id]?.seconds && Math.abs(d.hours - ROUTES[d.id].seconds / 3600) > 0.11);
+  if (staleHours.length) problems.push("stale wheel hours: " + staleHours.map((d) => d.id));
   if (t.days.length > CAP_DAYS && t.overrun === 0) problems.push("over cap but overrun=0");
   if (r.slc.days === 0) problems.push("no SLC rental block");
   if (t.meters <= 0) problems.push("zero distance");

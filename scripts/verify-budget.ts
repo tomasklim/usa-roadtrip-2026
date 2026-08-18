@@ -22,7 +22,7 @@ const lines: [string, number][] = [
   ["park pass", 250], ["gear", 170], ["domestic flights", 520],
   [`SF hotel ${t.sfNights}n`, t.sfNights * S.sfNight],
   ["SF activities", 200 * Math.max(1, t.sfNights)],
-  ["Point Reyes car", 140]
+  [`Bay Area car ${r.sf.days}d`, r.sf.days * S.bayDay]
 ];
 const total = lines.reduce((a, [, v]) => a + v, 0);
 lines.forEach(([l, v]) => console.log(`   ${l.padEnd(26)} ${usd(v).padStart(8)}`));

@@ -49,6 +49,8 @@ export function Glance({ trip, units, onSelect }: {
 export function LoadChart({ trip, units, onSelect }: {
   trip: Trip; units: Units; onSelect: (id: string) => void;
 }) {
+  const easyLimit = units === "mi" ? 130 : 210;
+  const transferLimit = units === "mi" ? 350 : 565;
   const data = trip.days.filter((d) => (d.meters ?? 0) > 0);
   const w = 900, h = 290, pad = { l: 38, r: 8, t: 34, b: 28 };
   const iw = w - pad.l - pad.r, ih = h - pad.t - pad.b;
@@ -75,9 +77,9 @@ export function LoadChart({ trip, units, onSelect }: {
       <div className="wrap narrow">
         <div className="shead"><span className="num">04</span><h2>Where it hurts</h2></div>
         <p className="sub">
-          Distance per driving day, split by which car you are in. Under 130 {units} is an easy day,
-          over 350 {units} is a transfer. Click a bar to jump to that day. The San Francisco days are
-          not shown because there is no driving in them at all.
+          Distance per driving day, split by which car you are in. Under {easyLimit} {units} is an easy day,
+          over {transferLimit} {units} is a transfer. Click a bar to jump to that day. Bay Area day trips are
+          included and grouped under their own rental block.
         </p>
         <div className="card chart">
           <svg className="bars" viewBox={`0 0 ${w} ${h}`} role="img" aria-label={`Distance per day in ${units}`}>
@@ -159,9 +161,9 @@ export function Charging() {
           <h3 style={{ fontSize: ".98rem" }}>Northern Yellowstone — the one real risk</h3>
           <p style={{ margin: "6px 0 0", fontSize: ".89rem", color: "var(--muted)" }}>
             Gardiner has no Supercharger — only an L2 at Yellowstone Forever (2 ports) and a CCS L3 at
-            the Sinclair. Without charging there, Bozeman SC → Gardiner → Lamar → the whole park loop →
-            West Yellowstone SC is over 300 miles on one battery, and that does not work. Two fixes,
-            and you want both:
+            the Sinclair. The route arrives from West Yellowstone, then spends four days between Gardiner,
+            Lamar and Red Lodge before reaching Bozeman. That only works with overnight charging in
+            Gardiner and Red Lodge. Two safeguards matter:
           </p>
           <ul style={{ fontSize: ".89rem" }}>
             <li>book a Gardiner motel <b>with an L2 charger</b> — eight hours overnight adds roughly 240 miles;</li>

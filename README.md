@@ -1,16 +1,16 @@
 # Northwest Roadtrip 2026
 
 Interactive plan for a 21-day trip through the Pacific Northwest and the northern Rockies,
-Sept 23 – Oct 13, 2026, built around one deliberate decision: **two short driving blocks with a
-flight between them, instead of one long loop.**
+Sept 23 – Oct 13, 2026, built around one deliberate decision: **fly over the dead miles and use
+three focused rental blocks instead of one long loop.**
 
 Seattle to Yellowstone is 1,300 km each way and the car has to come back, so a Seattle-based loop
-costs about 5,000 km of driving. Flying over the transit brings it down to **3,890 km** — and, more
+costs about 5,000 km of driving. Flying over the transit brings the base plan down to **4,190 km** — and, more
 importantly, turns half the driving days into short park days.
 
 **Seattle + Mount Rainier + Hood Canal oysters** → fly to Salt Lake City →
 **Bonneville Salt Flats → Bear Lake → Grand Teton → Yellowstone → Beartooth Highway → Bozeman →
-Lava Hot Springs → Salt Lake City** → fly to **San Francisco**.
+Lava Hot Springs → Salt Lake City** → fly to **San Francisco → Point Reyes → Silicon Valley → Marin**.
 
 ## What the page does
 

@@ -44,12 +44,6 @@ export function Flights() {
             </div>
           ))}
         </div>
-        <div className="tip">
-          <b>Two things worth knowing.</b> The transatlantic booking showed <b>1 passenger</b>, and
-          everything on this page — budget, lodging, food — is costed for two, so that is one gap.
-          And take the <b>morning</b> Seattle → Salt Lake flight: it is only 1 h 50 m, so a morning
-          departure puts you on the salt flats the same afternoon.
-        </div>
       </div>
     </section>
   );

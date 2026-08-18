@@ -84,8 +84,13 @@ nav.links a:hover{background:var(--brand-soft);color:var(--brand)}
 /* ---------- hero ---------- */
 /* ---------- title strip: one line, not six tiles ---------- */
 .tripbar{padding:26px 0 22px;border-bottom:1px solid var(--line);background:var(--bg2)}
-.tripbar h1{font-size:clamp(1.35rem,2.7vw,2.05rem);margin:8px 0 9px;max-width:34ch;text-wrap:balance}
-.tripbar p{margin:0;color:var(--muted);max-width:74ch;font-size:.93rem}
+.tripbar h1{font-size:clamp(1.3rem,2.4vw,1.85rem);margin:8px 0 10px;max-width:44ch;text-wrap:balance}
+/* The itinerary as one line: useful, but it is a caption, not the headline. */
+.routeline{font-family:var(--mono);font-size:.73rem;line-height:1.75;color:var(--muted);
+  max-width:92ch;margin:0 0 11px;padding:8px 10px;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius-sm)}
+.routeline b{color:var(--brand);font-weight:700;padding:0 1px}
+.tripbar p{margin:0;color:var(--muted);max-width:78ch;font-size:.91rem;line-height:1.6}
 .tripbar p b{color:var(--text);font-weight:700;font-variant-numeric:tabular-nums}
 
 /* ---------- act progress bar ---------- */

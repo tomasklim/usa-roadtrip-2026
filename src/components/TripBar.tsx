@@ -1,5 +1,5 @@
 import { ACTS } from "../data/itinerary";
-import { distLabel, fmtShort, type Trip } from "../lib/trip";
+import { distLabel, fmtShort, rentals, type Trip } from "../lib/trip";
 import type { Day, Units } from "../types";
 
 /**
@@ -7,15 +7,26 @@ import type { Day, Units } from "../types";
  * useful number. Everything else lives in the map panel or the glance table.
  */
 export function TripBar({ trip, units }: { trip: Trip; units: Units }) {
+  const r = rentals(trip);
   return (
     <div className="tripbar">
       <div className="wrap">
-        <div className="kicker">Sept 23 – Oct 13, 2026 · two people · Tesla Model Y</div>
-        <h1>Seattle · Rainier → Bonneville → Tetons → Yellowstone → San Francisco</h1>
+        <div className="kicker">
+          21 days · Sept 23 – Oct 13, 2026 · two people · gluten-free and dairy-free
+        </div>
+        <h1>Yellowstone, the Tetons and the Bonneville salt — in two short drives instead of one long one</h1>
+        <div className="routeline">
+          Seattle <b>→</b> Mount Rainier <b>→</b> Hood Canal <b>✈</b> Salt Lake City <b>→</b> Bonneville
+          Salt Flats <b>→</b> Bear Lake <b>→</b> Grand Teton <b>→</b> Yellowstone <b>→</b> Beartooth
+          Highway <b>→</b> Bozeman <b>→</b> Lava Hot Springs <b>✈</b> San Francisco
+        </div>
         <p>
-          Two short driving blocks with a flight between them, because Seattle to Yellowstone is
-          1,300 km each way. <b>{distLabel(trip.meters, units)}</b> of driving over{" "}
-          <b>{trip.driveDays} days</b> behind the wheel — half of them under 200 km.
+          <b>{distLabel(trip.meters, units)}</b> of driving over <b>{trip.driveDays} days</b> behind the
+          wheel, half of them under 200 km — because the 1,300 km run out to Yellowstone gets flown
+          rather than driven. Two rental cars ({r.seattle.days} days in Washington,{" "}
+          {r.slc.days} in the Rockies), <b>{trip.carNights} nights sleeping in the car</b>, two oyster
+          stops worth building a day around, and one Supercharger problem in Gardiner that has to be
+          solved before you leave.
         </p>
       </div>
     </div>

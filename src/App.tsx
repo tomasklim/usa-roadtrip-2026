@@ -9,6 +9,7 @@ import { Charging, Glance, LoadChart, RiskSection, SleepSection } from "./compon
 import { FoodGuide } from "./components/FoodGuide";
 import { Budget } from "./components/Budget";
 import { Checklist } from "./components/Checklist";
+import { RoadsideStops } from "./components/RoadsideStops";
 import { MODULES } from "./data/itinerary";
 import { buildTrip } from "./lib/trip";
 import { useStored } from "./lib/useStored";
@@ -64,6 +65,14 @@ export default function App() {
   // down to a card you did not ask for is worse than useless. The popups carry
   // an explicit button instead.
   const select = useCallback((id: string) => setSelected(id), []);
+
+  const selectOnMap = useCallback((id: string) => {
+    setSelected(id);
+    requestAnimationFrame(() => {
+      document.querySelector<HTMLElement>(".mapcard")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }, []);
 
   const scrollToDay = useCallback((id: string) => {
     // Deferred a frame: a day added by switching a module on is not in the DOM yet.
@@ -128,6 +137,7 @@ export default function App() {
             <Modules on={on} toggle={toggle} trip={trip} units={units}
                      sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={select}
                      onHover={setGhost} />
+            <RoadsideStops trip={trip} onSelect={selectOnMap} />
           </div>
 
           <button className="listtoggle" onClick={() => setShowList(!showList)} aria-expanded={showList}>

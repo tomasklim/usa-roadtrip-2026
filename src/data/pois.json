@@ -1204,5 +1204,60 @@
   "tags": [],
   "city": "Santa Cruz CA",
   "desc": "California's oldest amusement park (1907) on a proper surf beach \u2014 the Giant Dipper is a wooden coaster older than the Golden Gate. Steamer Lane's surfers are ten minutes west."
+ },
+ {
+  "id": "upper-mesa-falls",
+  "name": "Upper Mesa Falls",
+  "kind": "sight",
+  "lat": 44.18765,
+  "lon": -111.32976,
+  "day": "s9",
+  "tags": [],
+  "city": "Caribou-Targhee National Forest ID",
+  "desc": "A 114-foot waterfall on the Henrys Fork, reached by a 29-mile scenic byway. Allow 1\u20131\u00bd hours for the detour and viewpoints; use it only if the October road is dry."
+ },
+ {
+  "id": "idaho-potato-museum",
+  "name": "Idaho Potato Museum",
+  "kind": "sight",
+  "lat": 43.18955,
+  "lon": -112.34366,
+  "day": "s10",
+  "tags": [],
+  "city": "Blackfoot ID",
+  "desc": "A 1913 railroad depot with potato history, the largest potato crisp and a free tater for out-of-state visitors. Open Mon\u2013Sat 10\u20134 from October through April."
+ },
+ {
+  "id": "hill-aerospace-museum",
+  "name": "Hill Aerospace Museum",
+  "kind": "sight",
+  "lat": 41.16222,
+  "lon": -112.0176,
+  "day": "s10",
+  "tags": [],
+  "city": "Hill Air Force Base UT",
+  "desc": "Free and just off I-15, with more than 70 aircraft including an SR-71 and F-117. Open Tue\u2013Sat 9\u20134; choose this or the potato museum on the rental-return day."
+ },
+ {
+  "id": "filoli",
+  "name": "Filoli Historic House & Garden",
+  "kind": "sight",
+  "lat": 37.47188,
+  "lon": -122.3108,
+  "day": "sf3",
+  "tags": [],
+  "city": "Woodside CA",
+  "desc": "A 1917 country estate, formal gardens and natural lands: the Woodside wealth stop you can actually enter. Open daily 10\u20135; book a timed arrival window for Sunday."
+ },
+ {
+  "id": "marine-mammal-center",
+  "name": "The Marine Mammal Center",
+  "kind": "sight",
+  "lat": 37.83523,
+  "lon": -122.53096,
+  "day": "sf4",
+  "tags": [],
+  "city": "Marin Headlands CA",
+  "desc": "A working rescue hospital where visitors can see recovering seals and sea lions. Open Friday\u2013Monday 10\u20134; reserve a free ticket for the baseline Monday."
  }
 ]

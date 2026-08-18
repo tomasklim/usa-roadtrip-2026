@@ -41,6 +41,8 @@
   --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 32px -16px rgba(0,0,0,.7);
 }
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+/* Safety net: clip rather than hidden, so position:sticky keeps working. */
+html,body{max-width:100%;overflow-x:clip}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
   font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.15;letter-spacing:-.01em;margin:0}
@@ -115,6 +117,12 @@ section{padding:44px 0;border-bottom:1px solid var(--line)}
 
 /* ---------- planner: sticky map beside the day list ---------- */
 .planner{display:grid;gap:18px;grid-template-columns:1fr}
+.controls{display:grid;gap:12px;grid-template-columns:1fr;margin-bottom:16px}
+@media(min-width:820px){.controls{grid-template-columns:1.6fr 1fr;align-items:start}}
+.listtoggle{width:100%;border:1px dashed var(--line2);background:var(--bg);color:var(--muted);
+  border-radius:11px;padding:11px 14px;font-size:.87rem;cursor:pointer;font-family:inherit;
+  margin-bottom:14px;text-align:left}
+.listtoggle:hover{border-color:var(--rust);color:var(--text)}
 @media(min-width:1080px){
   .planner{grid-template-columns:minmax(280px,.62fr) minmax(0,1fr);align-items:start}
   /* Give the map more of the screen as the monitor grows. */
@@ -142,10 +150,41 @@ section{padding:44px 0;border-bottom:1px solid var(--line)}
   display:flex;flex-direction:column;box-shadow:-14px 0 34px -18px rgba(0,0,0,.45);
   animation:slidein .18s ease-out}
 @keyframes slidein{from{transform:translateX(14px);opacity:.4}to{transform:none;opacity:1}}
+.detail-grip{position:absolute;top:0;bottom:0;width:9px;z-index:1150;cursor:ew-resize;
+  touch-action:none;background:transparent}
+.detail-grip::before{content:"";position:absolute;left:3px;top:50%;transform:translateY(-50%);
+  width:3px;height:40px;border-radius:99px;background:var(--line2)}
+.detail-grip:hover::before,.detail-grip.dragging::before{background:var(--rust);height:64px}
 .detail-head{display:flex;align-items:center;gap:6px;padding:8px 10px;
   border-bottom:1px solid var(--line);background:var(--surface2);flex:none}
 .detail-count{font-family:var(--mono);font-size:.72rem;color:var(--muted);min-width:4.5ch;text-align:center}
 .detail-body{overflow-y:auto;overscroll-behavior:contain;flex:1;padding:0}
+.detail-title{font-family:var(--serif);font-size:.95rem;font-weight:600;padding-left:3px}
+.detail-body.ov{padding:14px 15px 18px}
+.detail-body.ov h3{font-size:1.06rem;line-height:1.25;margin-bottom:8px}
+.detail-body.ov h4{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);
+  margin:18px 0 7px;font-family:var(--sans);font-weight:700}
+.detail-body.ov p{margin:0;font-size:.87rem;color:var(--muted)}
+.ovstats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:14px}
+.ovstats>div{background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:8px 9px}
+.ovstats b{display:block;font-family:var(--serif);font-size:1.05rem;line-height:1.1}
+.ovstats span{display:block;color:var(--muted);font-size:.7rem;margin-top:3px;line-height:1.3}
+.ovsteps{margin:0;padding-left:19px;font-size:.85rem}
+.ovsteps li{margin:7px 0;line-height:1.45}
+.ovsteps li b{font-weight:600}
+.ovhelp{margin:0;padding-left:17px;font-size:.83rem;color:var(--muted)}
+.ovhelp li{margin:6px 0;line-height:1.45}
+.ovhelp .k{display:inline-block;font-size:.68rem;font-weight:700;padding:1px 5px;border-radius:5px;
+  white-space:nowrap}
+.ovhelp .k.sight{background:var(--sky-soft);color:var(--sky)}
+.ovhelp .k.food{background:var(--rust-soft);color:var(--rust)}
+.ovhelp .k.oyster{background:var(--plum-soft);color:var(--plum)}
+.ovhelp .k.ino{background:var(--gold-soft);color:var(--gold)}
+.ovhelp .k.charge{background:var(--pine-soft);color:var(--pine)}
+.ovhelp .k.store{background:var(--teal-soft);color:var(--teal)}
+.ovgo{margin-top:18px;width:100%;border:1px solid var(--rust);background:var(--rust);color:#fff;
+  border-radius:10px;padding:9px 12px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:inherit}
+.ovgo:hover{filter:brightness(1.08)}
 .detail .day.incard{border:0;border-radius:0;box-shadow:none;background:transparent}
 .detail .day.incard .dh{background:transparent;cursor:default;padding:12px 13px 10px}
 .detail .day.incard .dbody{padding:0 13px 12px}
@@ -160,10 +199,13 @@ section{padding:44px 0;border-bottom:1px solid var(--line)}
   .mapwrap.haspanel .leaflet-bottom{margin-bottom:62%}
 }
 @media(max-width:1079px){.mapwrap{height:clamp(360px,62vh,680px)}}
-/* True edge-to-edge map: break out of the content column entirely. */
-.mapcard{margin:0 0 20px;width:100vw;margin-left:calc(50% - 50vw);border-radius:0;
-  border-left:0;border-right:0}
-@media(min-width:1080px){.mapwrap{height:clamp(420px,calc(100vh - 260px),1000px)}}
+/* Edge-to-edge map. On phones use negative margins rather than 100vw, which can
+   overflow once a scrollbar or a wide child is in play. */
+.mapcard{margin:0 -20px 20px;border-radius:0;border-left:0;border-right:0}
+@media(min-width:1080px){
+  .mapcard{width:100vw;margin-left:calc(50% - 50vw);margin-right:0}
+  .mapwrap{height:clamp(420px,calc(100vh - 260px),1000px)}
+}
 .stepnow{font-size:.79rem;color:var(--muted);white-space:nowrap;overflow:hidden;
   text-overflow:ellipsis;max-width:min(46vw,420px);font-weight:600}
 .grip{height:13px;display:flex;align-items:center;justify-content:center;cursor:ns-resize;
@@ -198,6 +240,7 @@ section{padding:44px 0;border-bottom:1px solid var(--line)}
 .leaflet-popup-content{margin:0;font-size:.85rem;line-height:1.45;width:auto!important}
 .leaflet-popup-content-wrapper{padding:0;overflow:hidden}
 .pop{width:270px}
+@media(max-width:400px){.pop{width:min(270px,76vw)}}
 .pop .pop-hero{display:block;width:100%;height:150px;object-fit:cover;background:var(--surface2)}
 .pop .pop-body{padding:10px 12px 11px}
 .pop .pop-kind{font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700;

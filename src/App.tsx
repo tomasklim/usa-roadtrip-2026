@@ -23,6 +23,8 @@ export default function App() {
   const [mapHeight, setMapHeight] = useStored<number | null>("mapHeight", null);
   const [wheelZoom, setWheelZoom] = useStored<boolean>("wheelZoom", false);
   const [panel, setPanel] = useStored<boolean>("panel", true);
+  const [panelWidth, setPanelWidth] = useStored<number>("panelWidth", 400);
+  const [showList, setShowList] = useStored<boolean>("showList", false);
   const [sleepStyle, setSleepStyle] = useStored<SleepStyle>("sleepStyle", "balanced");
   const [selected, setSelected] = useState<string | null>(null);
 
@@ -106,34 +108,33 @@ export default function App() {
         <div className="wrap">
           <div className="shead"><span className="num">02</span><h2>The route, day by day</h2></div>
           <p className="sub">
-            The map is live: pan it, switch the base layer, turn on sights, food and Superchargers, and
-            click any pin or route line to pull up that day. Every line is real road geometry, so the
-            distances are measured rather than guessed, and each day exports as GPX for the car.
-            <b> Use ← and → to walk through the trip day by day</b> — the map follows and the day opens
-            in a panel over the right-hand side, so you never leave the map. Turn the panel off in the
-            map bar if you would rather read the list below.
-            Escape clears the selection. <b>Pinch on the trackpad zooms the map</b>, while a plain
-            two-finger scroll still scrolls the page — and there is a toggle in the map bar if you would
-            rather the wheel zoomed as well. Pins are colour-coded by what they are: blue for sights,
-            rust for food, purple for oysters, gold for In-N-Out, green for Superchargers and teal for
-            Whole Foods. Hover any pin for its name; zoom in past level 8 and the names stay on.
+            Everything is on the map: the panel on the right explains the trip and then becomes the
+            day you have selected. Distances are measured on real road geometry, not estimated.
           </p>
+
           <RouteMap trip={trip} units={units} selected={selected} onSelect={select}
                     layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
                     dark={dark} wheelZoom={wheelZoom} setWheelZoom={setWheelZoom}
-                    panel={panel} setPanel={setPanel} lens={lens}
+                    panel={panel} setPanel={setPanel}
+                    panelWidth={panelWidth} setPanelWidth={setPanelWidth} lens={lens}
                     onClear={() => setSelected(null)}
                     mapHeight={mapHeight} setMapHeight={setMapHeight}
                     onStep={step} onScrollTo={scrollToDay} />
 
-          <div className="planner">
-            <div className="side">
-              <Modules on={on} toggle={toggle} trip={trip} units={units}
-                       sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={select} />
-              <LensBar lens={lens} setLens={setLens} />
-            </div>
-            <DayList trip={trip} units={units} selected={selected} onSelect={select} lens={lens} />
+          <div className="controls">
+            <Modules on={on} toggle={toggle} trip={trip} units={units}
+                     sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={select} />
+            <LensBar lens={lens} setLens={setLens} />
           </div>
+
+          <button className="listtoggle" onClick={() => setShowList(!showList)}>
+            {showList
+              ? "▴  Hide the written itinerary"
+              : `▾  Read the whole itinerary as text — all ${trip.days.length} days`}
+          </button>
+          {showList && (
+            <DayList trip={trip} units={units} selected={selected} onSelect={select} lens={lens} />
+          )}
         </div>
       </section>
 

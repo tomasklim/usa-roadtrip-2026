@@ -8,7 +8,7 @@ import chargersRaw from "../data/chargers.json";
 import { ROUTES, distLabel, downloadGpx, toGpx, difficulty } from "../lib/trip";
 import type { Trip } from "../lib/trip";
 import type { Charger, Photo, Poi, Units } from "../types";
-import { DayPanel } from "./DayPanel";
+import { DayPanel, OverviewPanel } from "./DayPanel";
 import type { Lens } from "./DayList";
 
 const POIS = poisRaw as unknown as Poi[];
@@ -71,6 +71,19 @@ function PopCard({ cat, title, sub, body, photoKey, onJump, jumpLabel }: {
       </div>
     </div>
   );
+}
+
+/** Tracks the breakpoint reactively — a stale value leaves the panel the wrong width. */
+function useIsWide(min = 860) {
+  const [wide, setWide] = useState(() => typeof window === "undefined" || window.innerWidth > min);
+  useEffect(() => {
+    const mq = window.matchMedia(`(min-width: ${min + 1}px)`);
+    const on = () => setWide(mq.matches);
+    on();
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, [min]);
+  return wide;
 }
 
 /** Labels only make sense once the map is zoomed in enough not to be a mess. */
@@ -147,7 +160,9 @@ function Resizer() {
   return null;
 }
 
-function Framer({ trip, selected }: { trip: Trip; selected: string | null }) {
+function Framer({ trip, selected, padRight }: {
+  trip: Trip; selected: string | null; padRight: number;
+}) {
   const map = useMap();
   const didInit = useRef(false);
 
@@ -160,14 +175,16 @@ function Framer({ trip, selected }: { trip: Trip; selected: string | null }) {
   useEffect(() => {
     if (didInit.current || !allBounds) return;
     didInit.current = true;
-    map.fitBounds(allBounds, { padding: [24, 24] });
-  }, [map, allBounds]);
+    map.fitBounds(allBounds, { paddingTopLeft: [24, 24], paddingBottomRight: [padRight + 24, 24] });
+  }, [map, allBounds, padRight]);
 
   useEffect(() => {
     if (!selected) return;
     const line = ROUTES[selected]?.line;
     if (line && line.length > 1) {
-      map.flyToBounds(L.latLngBounds(line), { padding: [40, 40], duration: 0.7 });
+      map.flyToBounds(L.latLngBounds(line), {
+        paddingTopLeft: [40, 40], paddingBottomRight: [padRight + 40, 40], duration: 0.7
+      });
     } else {
       // Non-driving day: centre on the previous leg's end point if there is one.
       const idx = trip.days.findIndex((d) => d.id === selected);
@@ -203,8 +220,10 @@ const dayIcon = (label: string, isMod: boolean, sel: boolean) =>
   });
 
 /** Sights and restaurants, with a name label once the map is zoomed in. */
-function PoiLayer({ layers, pois, onScrollTo }: {
-  layers: Layers; pois: Poi[]; onScrollTo: (dayId: string) => void;
+function PoiLayer({ layers, pois, onOpenDay, dayLabel }: {
+  layers: Layers; pois: Poi[];
+  onOpenDay: (dayId: string) => void;
+  dayLabel: (dayId: string) => string;
 }) {
   const zoom = useZoom();
   const showLabels = zoom >= 8;
@@ -223,7 +242,8 @@ function PoiLayer({ layers, pois, onScrollTo }: {
                        sub={`${p.city}${p.approx ? " · approximate" : ""}`}
                        body={p.desc}
                        photoKey={p.photo}
-                       onJump={() => onScrollTo(p.day)} />
+                       onJump={() => onOpenDay(p.day)}
+                       jumpLabel={`Open ${dayLabel(p.day)} →`} />
             </Popup>
           </Marker>
         );
@@ -233,7 +253,8 @@ function PoiLayer({ layers, pois, onScrollTo }: {
 }
 
 export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, basemap, setBasemap,
-                          dark, wheelZoom, setWheelZoom, panel, setPanel, lens, onClear,
+                          dark, wheelZoom, setWheelZoom, panel, setPanel, panelWidth, setPanelWidth,
+                          lens, onClear,
                           mapHeight, setMapHeight, onStep, onScrollTo }: {
   trip: Trip; units: Units; selected: string | null;
   onSelect: (id: string) => void;
@@ -242,6 +263,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
   dark: boolean;
   wheelZoom: boolean; setWheelZoom: (v: boolean) => void;
   panel: boolean; setPanel: (v: boolean) => void;
+  panelWidth: number; setPanelWidth: (w: number) => void;
   lens: Lens;
   onClear: () => void;
   mapHeight: number | null; setMapHeight: (h: number | null) => void;
@@ -249,6 +271,19 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
   onScrollTo: (dayId: string) => void;
 }) {
   const markerRefs = useRef<Record<string, L.Marker | null>>({});
+  const wide = useIsWide();
+  // The panel covers the right edge, so framing has to account for it.
+  const panelPad = panel && wide ? panelWidth : 0;
+
+  /** Opens a day: in the panel if it is on, otherwise by scrolling to its card. */
+  const openDay = (dayId: string) => {
+    onSelect(dayId);
+    if (!panel) onScrollTo(dayId);
+  };
+  const dayLabel = (dayId: string) => {
+    const d = trip.days.find((x) => x.id === dayId);
+    return d ? `day ${d.num}` : "that day";
+  };
   const activeIds = new Set(trip.days.map((d) => d.id));
   const idx = selected ? trip.days.findIndex((d) => d.id === selected) : -1;
   const cur = idx >= 0 ? trip.days[idx] : null;
@@ -284,6 +319,26 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
     setLiveH(null);
   };
 
+  // Panel width drag, committed to storage only on release.
+  const wdrag = useRef<{ x: number; w: number } | null>(null);
+  const [wgrab, setWgrab] = useState(false);
+  const startWidth = (e: React.PointerEvent<HTMLDivElement>) => {
+    wdrag.current = { x: e.clientX, w: panelWidth };
+    setWgrab(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+  const onWidth = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!wdrag.current) return;
+    const next = wdrag.current.w - (e.clientX - wdrag.current.x);
+    setPanelWidth(Math.round(Math.max(280, Math.min(window.innerWidth * 0.72, next))));
+  };
+  const endWidth = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!wdrag.current) return;
+    wdrag.current = null;
+    setWgrab(false);
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
+  };
+
   const fillScreen = () => {
     if (height != null) { setMapHeight(null); setLiveH(null); }
     else setMapHeight(Math.round(window.innerHeight - 150));
@@ -297,7 +352,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
 
   return (
     <div className="card mapcard">
-      <div className={`mapwrap${panel && cur ? " haspanel" : ""}`} ref={wrapRef}
+      <div className={`mapwrap${panel ? " haspanel" : ""}`} ref={wrapRef}
            style={height != null ? { height } : undefined}>
         <MapContainer center={[45.5, -114]} zoom={5} scrollWheelZoom={false} zoomSnap={0.25}
                       zoomDelta={0.5} wheelPxPerZoomLevel={90} className="leaflet-container">
@@ -305,8 +360,8 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
           <Resizer />
           <PinchZoom />
           <WheelZoom on={wheelZoom} />
-          <Framer trip={trip} selected={selected} />
-          <PopupOpener selected={selected} refs={markerRefs} />
+          <Framer trip={trip} selected={selected} padRight={panelPad} />
+          {!panel && <PopupOpener selected={selected} refs={markerRefs} />}
 
           {trip.days.map((d) => {
             const line = ROUTES[d.id]?.line;
@@ -345,22 +400,24 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                 <Tooltip direction="top" offset={[0, -14]} className="hovlbl">
                   Day {d.num} · {d.title}
                 </Tooltip>
-                <Popup maxWidth={280} minWidth={270} autoPan>
-                  <PopCard
-                    cat="day"
-                    title={`Day ${d.num} — ${d.title}`}
-                    sub={`${d.leg} · ${distLabel(d.meters ?? 0, units)} · ${d.hours} h · ${difficulty(d.meters ?? 0)}`}
-                    body={d.why}
-                    photoKey={d.photos?.[0]}
-                    onJump={() => onScrollTo(d.id)}
-                    jumpLabel={`Open day ${d.num} below ↓`}
-                  />
-                </Popup>
+                {!panel && (
+                  <Popup maxWidth={280} minWidth={270} autoPan>
+                    <PopCard
+                      cat="day"
+                      title={`Day ${d.num} — ${d.title}`}
+                      sub={`${d.leg} · ${distLabel(d.meters ?? 0, units)} · ${d.hours} h · ${difficulty(d.meters ?? 0)}`}
+                      body={d.why}
+                      photoKey={d.photos?.[0]}
+                      onJump={() => onScrollTo(d.id)}
+                      jumpLabel={`Open day ${d.num} below ↓`}
+                    />
+                  </Popup>
+                )}
               </Marker>
             );
           })}
 
-          <PoiLayer layers={layers} pois={visiblePois} onScrollTo={onScrollTo} />
+          <PoiLayer layers={layers} pois={visiblePois} onOpenDay={openDay} dayLabel={dayLabel} />
 
           {layers.chargers && CHARGERS.map((c) => (
             <Marker key={c.id} position={[c.lat, c.lon]}
@@ -393,9 +450,28 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
           ))}
         </MapContainer>
 
-        {panel && cur && (
-          <DayPanel day={cur} units={units} lens={lens} count={trip.days.length}
-                    onClose={onClear} onStep={onStep} onScrollTo={onScrollTo} />
+        {panel && (cur
+          ? <DayPanel day={cur} units={units} lens={lens} count={trip.days.length}
+                      width={wide ? panelWidth : undefined as unknown as number}
+                      onClose={onClear} onStep={onStep} onScrollTo={onScrollTo} />
+          : <OverviewPanel trip={trip} units={units}
+                           width={wide ? panelWidth : undefined as unknown as number}
+                           onStart={() => onSelect(trip.days[0].id)}
+                           onClose={() => setPanel(false)} />)}
+        {panel && wide && (
+          <div
+            className={`detail-grip${wgrab ? " dragging" : ""}`}
+            style={{ right: panelWidth }}
+            onPointerDown={startWidth}
+            onPointerMove={onWidth}
+            onPointerUp={endWidth}
+            onPointerCancel={endWidth}
+            onDoubleClick={() => setPanelWidth(400)}
+            role="separator"
+            aria-orientation="vertical"
+            aria-label="Drag to resize the day panel, double-click to reset"
+            title="Drag to resize · double-click to reset"
+          />
         )}
       </div>
 

@@ -31,8 +31,7 @@ export function Budget({ trip }: { trip: Trip }) {
 
   const lines: [string, number][] = [
     [`Salt Lake Turo, ${td} days × ${usd(s.turoDay)}`, td * s.turoDay],
-    [`Seattle car, ${r.seattle.days} days × ${usd(Math.round(s.turoDay * 0.7))}`,
-      r.seattle.days * Math.round(s.turoDay * 0.7)],
+    [`Seattle car, ${r.seattle.days} days × ${usd(s.seaDay)}`, r.seattle.days * s.seaDay],
     [Number.isFinite(included)
       ? (over > 0
           ? `Extra miles (${num(over)} over ${num(included as number)})`
@@ -50,11 +49,13 @@ export function Budget({ trip }: { trip: Trip }) {
   if (trip.days.some((d) => d.id === "sf2")) lines.push(["Car for the Point Reyes day", 140]);
 
   const total = lines.reduce((a, [, v]) => a + v, 0);
+  // Defaults come from the real quote on listing 3758006: US$566.50 for 9 days,
+  // 1,350 miles included, $0.27 a mile over.
   const capNote = s.cap >= 400
     ? "The slider is on unlimited distance."
     : over > 0
-      ? `At ${s.cap} mi/day you owe ${usd(over * s.overMi)}. Shortening the route killed most of this risk — the old 3,125 mi plan would have cost ${usd(Math.max(0, 3125 - 100 * 15) * s.overMi)} at a 100 mi/day cap.`
-      : `The Salt Lake block is only ${num(slcMiles)} mi over ${td} days, so it fits inside the cap with room to spare. This used to be the single biggest financial risk of the trip.`;
+      ? `${num(slcMiles)} mi driven against ${num(included as number)} included, so ${num(over)} mi over at ${usd(s.overMi * 100)}/100 mi — ${usd(over * s.overMi)}. Booking more days is the cheap fix: each extra day adds about $62 of rental but ${s.cap} more included miles.`
+      : `${num(slcMiles)} mi driven against ${num(included as number)} included — inside the cap. At 12 days the quoted 150 mi/day allotment covers the whole Salt Lake block.`;
 
   return (
     <section id="budget">
@@ -62,7 +63,9 @@ export function Budget({ trip }: { trip: Trip }) {
         <div className="shead"><span className="num">08</span><h2>Budget</h2></div>
         <p className="sub">
           For two, excluding the transatlantic flights you have already bought. It reads from whichever
-          modules are switched on, so the total moves when the plan does.
+          modules are switched on, so the total moves when the plan does. The car defaults come from the
+          real quote on listing 3758006 — <b>US$566.50 all-in for 9 days</b>, 1,350 miles included,
+          $0.27 a mile over — scaled to the twelve days the route actually needs.
         </p>
         <div className="budget">
           <div className="card sliders">

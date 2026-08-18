@@ -48,8 +48,9 @@ export const RISKS = [
 ];
 
 export const CHECKS = [
-  { id: "turo", block: true, t: "Confirm the Salt Lake Turo listing 3758006", d: "Price per day, mileage cap, and written permission for out-of-state travel (WY, MT, ID) AND for driving to the Bonneville Salt Flats — salt is corrosive and many listings ban leaving pavement. Ask for the CCS Combo 1 adapter in the same message; Gardiner and Cody both need it." },
-  { id: "dates", block: true, t: "Extend the Turo booking to Sept 27 – Oct 7", d: "Your search was Sept 28 – Oct 5, which is eight days. The route needs eleven. Confirm the host has the extra days before you book the flights around it." },
+  { id: "dates", block: true, t: "Extend the Turo booking from 9 days to 12", d: "The quote runs Sept 27 → Oct 6. The route needs Sept 27 → Oct 8, and the extra days pay for themselves: three more days add about $186 of rental but include 450 more miles, which saves about $122 of overage. Net cost of three extra days with the car: roughly $68." },
+  { id: "turo", block: true, t: "Get written permission for Bonneville and the other states", d: "Salt is corrosive and many listings ban leaving pavement, so get it in the Turo message thread before you go anywhere near the flats. Same message: out-of-state travel (WY, MT, ID), and ask the host to include the CCS Combo 1 adapter — Gardiner has no Supercharger and Cody is CCS-only." },
+  { id: "airport", t: "Consider a non-airport pickup", d: "The quote includes a $52 airport permit fee, which scales with the rental length — about $69 over twelve days. If the host will hand the car over somewhere in the city instead, that fee usually disappears. Weigh it against arriving with luggage on a flight." },
   { id: "sea-car", block: true, t: "Book the second car in Seattle, Sept 25–26", d: "Two days for Mount Rainier and Hood Canal. FSD is pointless over two days, so this can be an ordinary airport rental — pick on price. Same pickup and drop-off point." },
   { id: "hops", block: true, t: "Book SEA → SLC and SLC → SFO", d: "Take the MORNING Seattle flight: it is 1 h 50 m, so a morning departure puts you on the salt flats that afternoon. Both routes are frequent (Delta hub at SLC), so book after the car is confirmed, not before." },
   { id: "driver", block: true, t: "Add your girlfriend as an additional driver", d: "In the Turo app, and it has to clear approval before pickup. Do it for the Seattle rental too." },
@@ -68,9 +69,10 @@ export const CHECKS = [
 ];
 
 export const BUDGET_CFG = [
-  { id: "turoDay", label: "Turo, per day", min: 60, max: 200, step: 5, val: 110, fmt: (v: number) => "$" + v },
-  { id: "cap", label: "Miles included per day", min: 75, max: 400, step: 25, val: 200, fmt: (v: number) => (v >= 400 ? "unlimited" : v + " mi") },
-  { id: "overMi", label: "Cost per extra mile", min: 0, max: 1, step: 0.05, val: 0.5, fmt: (v: number) => "$" + v.toFixed(2) },
+  { id: "turoDay", label: "Salt Lake Turo, all-in per day", min: 30, max: 200, step: 1, val: 64, fmt: (v: number) => "$" + v },
+  { id: "seaDay", label: "Seattle car, per day", min: 40, max: 200, step: 5, val: 95, fmt: (v: number) => "$" + v },
+  { id: "cap", label: "Miles included per day", min: 75, max: 400, step: 25, val: 150, fmt: (v: number) => (v >= 400 ? "unlimited" : v + " mi") },
+  { id: "overMi", label: "Cost per extra mile", min: 0, max: 1, step: 0.01, val: 0.27, fmt: (v: number) => "$" + v.toFixed(2) },
   { id: "motelNights", label: "Motel and hotel nights", min: 0, max: 22, step: 1, val: 16, fmt: (v: number) => v + " nights" },
   { id: "motel", label: "Motel, per night", min: 70, max: 300, step: 10, val: 130, fmt: (v: number) => "$" + v },
   { id: "kwh", label: "Charging, per kWh", min: 0.2, max: 0.6, step: 0.02, val: 0.4, fmt: (v: number) => "$" + v.toFixed(2) },

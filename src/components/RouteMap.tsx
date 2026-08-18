@@ -124,7 +124,7 @@ const poiIcon = (glyph: string) =>
   });
 
 export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, basemap, setBasemap,
-                          dark, mapHeight, setMapHeight, onStep }: {
+                          dark, mapHeight, setMapHeight, onStep, onScrollTo }: {
   trip: Trip; units: Units; selected: string | null;
   onSelect: (id: string) => void;
   layers: Layers; setLayers: (l: Layers) => void;
@@ -132,6 +132,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
   dark: boolean;
   mapHeight: number | null; setMapHeight: (h: number | null) => void;
   onStep: (delta: number) => void;
+  onScrollTo: (dayId: string) => void;
 }) {
   const markerRefs = useRef<Record<string, L.Marker | null>>({});
   const activeIds = new Set(trip.days.map((d) => d.id));
@@ -232,6 +233,9 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                     {d.sleep && <> · {d.sleep.t === "car" ? "car night" : "bed"}</>}
                   </div>
                   <div className="pop-why">{d.why}</div>
+                  <button className="pop-btn" onClick={() => onScrollTo(d.id)}>
+                    Open day {d.num} below ↓
+                  </button>
                 </Popup>
               </Marker>
             );
@@ -245,6 +249,9 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                 <b>{p.name}</b>
                 <div className="pm">{p.city}{p.approx ? " · approximate" : ""}</div>
                 {p.desc && <div className="pop-why">{p.desc}</div>}
+                <button className="pop-btn" onClick={() => onScrollTo(p.day)}>
+                  Open this day below ↓
+                </button>
               </Popup>
             </Marker>
           ))}
@@ -259,6 +266,9 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                   {p.tags.map((t) => <span className={`tag ${t}`} key={t}>{TAG_LABEL[t]}</span>)}
                 </div>
                 {p.desc && <div className="pop-why">{p.desc}</div>}
+                <button className="pop-btn" onClick={() => onScrollTo(p.day)}>
+                  Open this day below ↓
+                </button>
               </Popup>
             </Marker>
           ))}

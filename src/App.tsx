@@ -48,7 +48,25 @@ export default function App() {
     });
   }, [setMods]);
 
+  // Selecting never scrolls the page — the map is the point, and being yanked
+  // down to a card you did not ask for is worse than useless. The popups carry
+  // an explicit button instead.
   const select = useCallback((id: string) => setSelected(id), []);
+
+  const scrollToDay = useCallback((id: string) => {
+    // Deferred a frame: a day added by switching a module on is not in the DOM yet.
+    requestAnimationFrame(() => {
+      const el = document.getElementById(`day-${id}`);
+      if (!el) return;
+      const wide = window.matchMedia("(min-width: 1080px)").matches;
+      el.scrollIntoView({ behavior: "smooth", block: wide ? "center" : "start" });
+    });
+  }, []);
+
+  const selectAndScroll = useCallback((id: string) => {
+    setSelected(id);
+    scrollToDay(id);
+  }, [scrollToDay]);
 
   /** Move the selection along the itinerary; used by the arrow keys and the map buttons. */
   const step = useCallback((delta: number) => {
@@ -76,17 +94,6 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKey);
   }, [step]);
 
-  // Scrolling happens in an effect, not in the click handler: switching a module
-  // on selects one of its days, and that card does not exist in the DOM until
-  // after the re-render.
-  useEffect(() => {
-    if (!selected) return;
-    const el = document.getElementById(`day-${selected}`);
-    if (!el) return;
-    const wide = window.matchMedia("(min-width: 1080px)").matches;
-    el.scrollIntoView({ behavior: "smooth", block: wide ? "center" : "start" });
-  }, [selected, trip.days]);
-
   return (
     <>
       <Header units={units} setUnits={setUnits} theme={theme} setTheme={setTheme} />
@@ -106,7 +113,7 @@ export default function App() {
           <RouteMap trip={trip} units={units} selected={selected} onSelect={select}
                     layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
                     dark={dark} mapHeight={mapHeight} setMapHeight={setMapHeight}
-                    onStep={step} />
+                    onStep={step} onScrollTo={scrollToDay} />
 
           <div className="planner">
             <div className="side">
@@ -119,8 +126,8 @@ export default function App() {
         </div>
       </section>
 
-      <Glance trip={trip} units={units} onSelect={select} />
-      <LoadChart trip={trip} units={units} onSelect={select} />
+      <Glance trip={trip} units={units} onSelect={selectAndScroll} />
+      <LoadChart trip={trip} units={units} onSelect={selectAndScroll} />
       <Charging />
       <FoodGuide trip={trip} />
       <SleepSection trip={trip} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} />

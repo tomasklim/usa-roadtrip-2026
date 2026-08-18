@@ -45,6 +45,7 @@ export function difficulty(meters: number): Difficulty {
 const SEATTLE_CAR = ["seaA", "seaB", "olyA", "olyB"];
 const SLC_CAR = ["s1", "antelope", "s2", "dinoA", "dinoB", "s3", "s4", "s4b", "s5", "s5b",
                  "s6", "s7", "cody", "s8", "s9", "craters2", "s10"];
+const SF_CAR = ["sf2"];
 
 function blockDays(t: Trip, ids: string[]) {
   const idx = t.days.map((d, i) => (ids.includes(d.id) ? i : -1)).filter((i) => i >= 0);
@@ -109,7 +110,7 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced"):
   const overrun = Math.max(0, days.length - CAP_DAYS);
 
   days.forEach((d, i) => {
-    d.num = i;
+    d.num = i + 1;
     d.date = START + i * DAY_MS;
     d.meters = metersOf(d.id);
     // Sleeping style is applied here so every downstream count — the hero, the
@@ -120,7 +121,7 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced"):
   });
 
   const meters = days.reduce((s, d) => s + (d.meters ?? 0), 0);
-  const driveDays = days.filter((d) => (d.meters ?? 0) > 0 && d.kind !== "sf").length;
+  const driveDays = days.filter((d) => (d.meters ?? 0) > 0).length;
   const carNights = days.filter((d) => d.sleep?.t === "car").length;
   const sfNights = days.filter((d) => d.kind === "sf").length;
   // The car goes back on the last day of the Salt Lake rental block.
@@ -144,12 +145,14 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced"):
 export function blockOf(id: string): string {
   if (SEATTLE_CAR.includes(id)) return "Seattle car";
   if (SLC_CAR.includes(id)) return "Salt Lake car";
+  if (SF_CAR.includes(id)) return "San Francisco car";
   return "No car";
 }
 
 export const rentals = (t: Trip) => ({
   seattle: blockDays(t, SEATTLE_CAR),
-  slc: blockDays(t, SLC_CAR)
+  slc: blockDays(t, SLC_CAR),
+  sf: blockDays(t, SF_CAR)
 });
 
 /** The Salt Lake rental is the long one, so it carries the mileage-cap risk. */

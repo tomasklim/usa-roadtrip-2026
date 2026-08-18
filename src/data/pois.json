@@ -1103,5 +1103,106 @@
   "tags": [],
   "city": "Marin County CA",
   "desc": "784 m above the whole Bay Area, a paved road almost to the top. On a clear day you see the Farallon Islands 50 km out to sea."
+ },
+ {
+  "id": "atherton",
+  "name": "Atherton \u2014 the richest ZIP code in America",
+  "kind": "sight",
+  "lat": 37.45377,
+  "lon": -122.20583,
+  "day": "sf3",
+  "tags": [],
+  "city": "Atherton CA",
+  "desc": "94027: repeatedly the most expensive ZIP in the US, average home about $8M. Eric Schmidt, Sheryl Sandberg and half the venture aristocracy live behind these hedges. You see gates and trees \u2014 that is the point."
+ },
+ {
+  "id": "woodside",
+  "name": "Woodside \u2014 billionaire horse country",
+  "kind": "sight",
+  "lat": 37.42806,
+  "lon": -122.25074,
+  "day": "sf3",
+  "tags": [],
+  "city": "Woodside CA",
+  "desc": "Estates hidden in the redwood hills: Larry Ellison's 23-acre Japanese imperial villa, Neil Young's old ranch. The town centre is one general store \u2014 the money is deliberately invisible."
+ },
+ {
+  "id": "bucks-woodside",
+  "name": "Buck's of Woodside",
+  "kind": "food",
+  "lat": 37.42979,
+  "lon": -122.25519,
+  "day": "sf3",
+  "tags": [
+   "gf"
+  ],
+  "city": "Woodside CA",
+  "desc": "The diner where Netscape, Hotmail and PayPal were pitched over pancakes \u2014 VCs still take breakfast meetings under the toy collection. Eggs and bacon are safely GF/DF."
+ },
+ {
+  "id": "old-palo-alto",
+  "name": "Old Palo Alto \u2014 Steve Jobs' street",
+  "kind": "sight",
+  "lat": 37.43224,
+  "lon": -122.14132,
+  "day": "sf3",
+  "tags": [],
+  "city": "Palo Alto CA",
+  "desc": "Jobs lived at 2101 Waverley in a normal-looking Tudor house with an apple orchard \u2014 no gate, no guard. Zuckerberg's first house is a few blocks away. Understated on purpose."
+ },
+ {
+  "id": "flintstone-house",
+  "name": "The Flintstone House",
+  "kind": "sight",
+  "lat": 37.53132,
+  "lon": -122.35904,
+  "day": "sf3",
+  "tags": [],
+  "city": "Hillsborough CA",
+  "desc": "A bulbous orange free-form house above I-280, in old-money Hillsborough. Visible from the freeway \u2014 which is itself billed as the world's most beautiful."
+ },
+ {
+  "id": "billionaires-row",
+  "name": "Billionaire's Row, Pacific Heights",
+  "kind": "sight",
+  "lat": 37.7928,
+  "lon": -122.4417,
+  "day": "sf1",
+  "tags": [],
+  "city": "San Francisco CA",
+  "desc": "The Gold Coast: Broadway between Divisadero and Lyon. Getty, Ellison and Danielle Steel's Spreckels Mansion, with the bay as the back garden. Walk down the Lyon Street Steps at the end."
+ },
+ {
+  "id": "sea-cliff",
+  "name": "Sea Cliff",
+  "kind": "sight",
+  "lat": 37.78874,
+  "lon": -122.4875,
+  "day": "sf1",
+  "tags": [],
+  "city": "San Francisco CA",
+  "desc": "The only SF neighbourhood with private ocean frontage \u2014 mansions between Baker Beach and Lands End. Robin Williams lived here. Malibu energy, fog included."
+ },
+ {
+  "id": "belvedere",
+  "name": "Belvedere Island",
+  "kind": "sight",
+  "lat": 37.8664,
+  "lon": -122.4627,
+  "day": "sf4",
+  "tags": [],
+  "city": "Marin County CA",
+  "desc": "An island of mansions stacked above the water, every one facing the SF skyline. One of the wealthiest towns in California \u2014 drive the loop road, then walk Tiburon's Main Street next door."
+ },
+ {
+  "id": "santa-cruz-boardwalk",
+  "name": "Santa Cruz Beach Boardwalk",
+  "kind": "sight",
+  "lat": 36.9644,
+  "lon": -122.0176,
+  "day": "sf4",
+  "tags": [],
+  "city": "Santa Cruz CA",
+  "desc": "California's oldest amusement park (1907) on a proper surf beach \u2014 the Giant Dipper is a wooden coaster older than the Golden Gate. Steamer Lane's surfers are ten minutes west."
  }
 ]

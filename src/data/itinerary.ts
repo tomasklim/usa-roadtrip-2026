@@ -322,7 +322,9 @@ export const BASE: Day[] = [
   hi: ["One hour forty-five in the air and the driving is completely over",
        "Golden Gate at golden hour — cliché, and worth it anyway",
        "No car needed in the city, and parking here is genuinely expensive and annoying"],
-  ideas: ["Ferry Building for the food hall and the Bay Bridge view",
+  ideas: ["Billionaire's Row in Pacific Heights: Broadway between Divisadero and Lyon — Getty, Ellison, the Spreckels Mansion — then down the Lyon Street Steps",
+          "Sea Cliff, the only neighbourhood with private ocean frontage: SF's Malibu, fog included",
+          "Ferry Building for the food hall and the Bay Bridge view",
           "Walk or cycle the bridge to Sausalito and take the ferry back",
           "Chinatown for ox tongue and tripe, which is exactly your kind of unusual",
           "Mission taquerias: lengua and al pastor on corn tortillas, naturally safe",
@@ -356,7 +358,12 @@ export const BASE: Day[] = [
        "The Googleplex and the Android statue garden in Mountain View, plus the best museum of the day next door",
        "Computer History Museum: from the abacus to the transistor to the web — two hours that reframe what one garage-sized idea can turn into",
        "Tesla's Fremont factory on the way back — the plant GM and Toyota gave up on, now building the car you just drove 3,000 km"],
-  ideas: ["Stanford: walk the Main Quad and Memorial Church, and look at the students — nobody there is waiting for permission",
+  ideas: ["The money tour threads right in: Atherton (the richest ZIP code in America — you see hedges and gates, which is the point), then Woodside, where Larry Ellison's imperial villa hides in the redwoods",
+          "Breakfast at Buck's of Woodside, the diner where Netscape, Hotmail and PayPal were pitched — VCs still hold morning meetings under the toy collection",
+          "Old Palo Alto: Steve Jobs' Tudor house at 2101 Waverley, no gate, no guard — the most understated billionaire street on Earth",
+          "Drive I-280 back instead of 101 — billed as the world's most beautiful freeway, past the Flintstone House above the reservoir",
+          "Santa Cruz is 30 min over the hill on Highway 17 if you want to end the valley day with surf: Steamer Lane and the oldest boardwalk in California",
+          "Stanford: walk the Main Quad and Memorial Church, and look at the students — nobody there is waiting for permission",
           "Meta HQ at 1 Hacker Way: the thumbs-up sign out front is the classic photo, five minutes",
           "In-N-Out in Mountain View for lunch among the badge-wearing locals",
           "University Avenue in Palo Alto: half the tables are startup pitches, and eavesdropping is free",
@@ -374,7 +381,9 @@ export const BASE: Day[] = [
        "Muir Woods: thousand-year-old redwoods in a valley John Muir called the best tree-lovers monument on Earth",
        "Mount Tamalpais East Peak: the whole Bay Area at your feet, and on a clear day the Farallones",
        "Sausalito for the ferry back — the skyline across the water is the best view of the city there is"],
-  ideas: ["Muir Woods needs a parking reservation — book it now, not there",
+  ideas: ["Belvedere Island: a loop road of mansions stacked over the water, every one facing the skyline — then Tiburon's Main Street next door",
+          "Or flip the day south instead: Highway 1 through Half Moon Bay and Pescadero to Santa Cruz — surfers at Steamer Lane, the 1907 boardwalk, redwoods at Henry Cowell on the way back",
+          "Muir Woods needs a parking reservation — book it now, not there",
           "Hawk Hill in the Marin Headlands: the classic Golden Gate photo, bridge towers against the city",
           "Stinson Beach and the Panoramic Highway if you want the coast road",
           "Or genuinely do nothing: sleep in, one last Mission taco run, pack slowly. Three weeks in, an empty day is worth more than another sight",
@@ -543,7 +552,11 @@ export const CAR_NIGHTS: Record<string, { where: string; tier: 1 | 2; note?: str
   craters2: { tier: 1, where: "BLM dispersed near Arco, beside the lava", note: "Dark-sky country; Craters is an official International Dark Sky Park" },
   dinoA:    { tier: 2, where: "BLM near Flaming Gorge or Split Mountain", note: "Red rock and total silence" },
   dinoB:    { tier: 1, where: "Shadow Mountain, Bridger-Teton NF", note: "After 356 mi you will not care where you are" },
-  antelope: { tier: 1, where: "Antelope Island Campground", note: "Bison, salt and a very strange smell" }
+  antelope: { tier: 1, where: "Antelope Island Campground", note: "Bison, salt and a very strange smell" },
+  // Bay Area: legal, cheap campgrounds in Marin. Never sleep in the car inside
+  // San Francisco itself — car break-ins there are an epidemic.
+  sf2: { tier: 1, where: "Samuel P. Taylor State Park campground, in the redwoods 15 min from Point Reyes", note: "~$35 and you are already out there for the oyster farm — beats driving back into the city" },
+  sf4: { tier: 2, where: "China Camp State Park, or Kirby Cove under the Golden Gate if you win the reservation", note: "Last night before a 16:30 flight — doable, but a hotel shower before 14 hours of flying has its value" }
 };
 
 export const SLEEP_STYLES = [

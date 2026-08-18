@@ -21,7 +21,11 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
     for (const m of MODULES) {
       const next = new Set(on);
       if (next.has(m.id)) next.delete(m.id); else next.add(m.id);
-      (m.conflicts ?? []).forEach((c) => { if (!on.has(m.id)) next.delete(c); });
+      if (!on.has(m.id)) {
+        MODULES.forEach((other) => {
+          if (other.id !== m.id && conflicts(m.id, other.id)) next.delete(other.id);
+        });
+      }
       const other = buildTrip(next, sleepStyle);
       const sign = on.has(m.id) ? -1 : 1;
       out[m.id] = {
@@ -148,6 +152,12 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
 }
 
 const fmt = (n: number) => (n > 0 ? `+${n}` : n < 0 ? `−${Math.abs(n)}` : "±0");
+
+const conflicts = (a: string, b: string) => {
+  const am = MODULES.find((m) => m.id === a);
+  const bm = MODULES.find((m) => m.id === b);
+  return !!am?.conflicts?.includes(b) || !!bm?.conflicts?.includes(a);
+};
 
 function Verdict({ trip }: { trip: Trip }) {
   if (trip.overrun > 0) {

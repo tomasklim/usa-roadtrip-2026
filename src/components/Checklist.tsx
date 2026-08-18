@@ -1,8 +1,13 @@
 import { CHECKS } from "../data/reference";
 import { useStored } from "../lib/useStored";
 
+const VALID_CHECKS = new Set(CHECKS.map((c) => c.id));
+const normalizeChecks = (value: unknown) => Array.isArray(value)
+  ? [...new Set(value.filter((id): id is string => typeof id === "string" && VALID_CHECKS.has(id)))]
+  : [];
+
 export function Checklist() {
-  const [doneRaw, setDone] = useStored<string[]>("checks", []);
+  const [doneRaw, setDone] = useStored<string[]>("checks", [], normalizeChecks);
   const done = new Set(Array.isArray(doneRaw) ? doneRaw : []);
   const pct = Math.round((done.size / CHECKS.length) * 100);
 

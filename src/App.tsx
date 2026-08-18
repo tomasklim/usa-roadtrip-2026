@@ -9,24 +9,25 @@ import { Charging, Glance, LoadChart, RiskSection, SleepSection } from "./compon
 import { FoodGuide } from "./components/FoodGuide";
 import { Budget } from "./components/Budget";
 import { Checklist } from "./components/Checklist";
+import { MODULES } from "./data/itinerary";
 import { buildTrip } from "./lib/trip";
 import { useStored } from "./lib/useStored";
 import type { SleepStyle, Units } from "./types";
 import type { Tab } from "./components/DayPanel";
 
 export default function App() {
-  const [mods, setMods] = useStored<string[]>("mods", []);
-  const [units, setUnits] = useStored<Units>("units", "mi");
-  const [theme, setTheme] = useStored<string | null>("theme", null);
-  const [tab, setTab] = useStored<Tab>("tab", "plan");
-  const [basemap, setBasemap] = useStored<Basemap>("basemap", "terrain");
-  const [layers, setLayers] = useStored<Layers>("layers2", { sights: true, food: true, chargers: false, stores: false });
-  const [mapHeight, setMapHeight] = useStored<number | null>("mapHeight", null);
-  const [wheelZoom, setWheelZoom] = useStored<boolean>("wheelZoom", false);
-  const [panel, setPanel] = useStored<boolean>("panel", true);
-  const [panelWidth, setPanelWidth] = useStored<number>("panelWidth", 400);
-  const [showList, setShowList] = useStored<boolean>("showList", false);
-  const [sleepStyle, setSleepStyle] = useStored<SleepStyle>("sleepStyle", "balanced");
+  const [mods, setMods] = useStored<string[]>("mods", [], normalizeMods);
+  const [units, setUnits] = useStored<Units>("units", "mi", NORMALIZE_UNITS);
+  const [theme, setTheme] = useStored<string | null>("theme", null, NORMALIZE_THEME);
+  const [tab, setTab] = useStored<Tab>("tab", "plan", NORMALIZE_TAB);
+  const [basemap, setBasemap] = useStored<Basemap>("basemap", "terrain", NORMALIZE_BASEMAP);
+  const [layers, setLayers] = useStored<Layers>("layers2", DEFAULT_LAYERS, normalizeLayers);
+  const [mapHeight, setMapHeight] = useStored<number | null>("mapHeight", null, NORMALIZE_MAP_HEIGHT);
+  const [wheelZoom, setWheelZoom] = useStored<boolean>("wheelZoom", false, NORMALIZE_FALSE);
+  const [panel, setPanel] = useStored<boolean>("panel", true, NORMALIZE_TRUE);
+  const [panelWidth, setPanelWidth] = useStored<number>("panelWidth", 400, NORMALIZE_PANEL_WIDTH);
+  const [showList, setShowList] = useStored<boolean>("showList", false, NORMALIZE_FALSE);
+  const [sleepStyle, setSleepStyle] = useStored<SleepStyle>("sleepStyle", "balanced", NORMALIZE_SLEEP);
   const [selected, setSelected] = useState<string | null>(null);
   const [ghost, setGhost] = useState<string | null>(null);
 
@@ -45,10 +46,11 @@ export default function App() {
       if (next.has(id)) next.delete(id);
       else {
         next.add(id);
-        // Modules that rewrite the same base days cannot both be on.
-        const mod = MODULE_CONFLICTS[id];
-        mod?.forEach((c) => next.delete(c));
-        Object.entries(MODULE_CONFLICTS).forEach(([k, v]) => { if (v.includes(id)) next.delete(k); });
+        // Conflicts are symmetric even if only one module declares the relation.
+        const selected = MODULES.find((m) => m.id === id);
+        MODULES.forEach((other) => {
+          if (other.id !== id && selected && conflicts(selected.id, other.id)) next.delete(other.id);
+        });
       }
       return [...next];
     });
@@ -162,6 +164,54 @@ export default function App() {
   );
 }
 
-const MODULE_CONFLICTS: Record<string, string[]> = {
-  alvord: ["craters", "bend"]
+const VALID_MODS = new Set(MODULES.map((m) => m.id));
+const DEFAULT_LAYERS: Layers = { sights: true, food: true, chargers: false, stores: false };
+
+const normalizeMods = (value: unknown) => {
+  if (!Array.isArray(value)) return [];
+  return value.reduce<string[]>((out, id) => {
+    if (typeof id !== "string" || !VALID_MODS.has(id)) return out;
+    const withoutConflicts = out.filter((other) => !conflicts(id, other));
+    if (!withoutConflicts.includes(id)) withoutConflicts.push(id);
+    return withoutConflicts;
+  }, []);
 };
+
+const oneOf = <T,>(allowed: readonly T[], fallback: T) =>
+  (value: unknown): T => allowed.includes(value as T) ? value as T : fallback;
+
+const bool = (fallback: boolean) => (value: unknown) => typeof value === "boolean" ? value : fallback;
+
+const finite = (min: number, max: number, fallback: number) => (value: unknown) =>
+  typeof value === "number" && Number.isFinite(value) ? Math.max(min, Math.min(max, value)) : fallback;
+
+const finiteOrNull = (min: number, max: number) => (value: unknown) =>
+  value == null ? null : typeof value === "number" && Number.isFinite(value)
+    ? Math.max(min, Math.min(max, value))
+    : null;
+
+const normalizeLayers = (value: unknown): Layers => {
+  const v = value && typeof value === "object" ? value as Partial<Layers> : {};
+  return {
+    sights: typeof v.sights === "boolean" ? v.sights : DEFAULT_LAYERS.sights,
+    food: typeof v.food === "boolean" ? v.food : DEFAULT_LAYERS.food,
+    chargers: typeof v.chargers === "boolean" ? v.chargers : DEFAULT_LAYERS.chargers,
+    stores: typeof v.stores === "boolean" ? v.stores : DEFAULT_LAYERS.stores
+  };
+};
+
+const conflicts = (a: string, b: string) => {
+  const am = MODULES.find((m) => m.id === a);
+  const bm = MODULES.find((m) => m.id === b);
+  return !!am?.conflicts?.includes(b) || !!bm?.conflicts?.includes(a);
+};
+
+const NORMALIZE_UNITS = oneOf<Units>(["mi", "km"], "mi");
+const NORMALIZE_THEME = oneOf<string | null>(["light", "dark", null], null);
+const NORMALIZE_TAB = oneOf<Tab>(["plan", "food", "sleep", "charge"], "plan");
+const NORMALIZE_BASEMAP = oneOf<Basemap>(["terrain", "streets", "satellite"], "terrain");
+const NORMALIZE_SLEEP = oneOf<SleepStyle>(["motel", "balanced", "car"], "balanced");
+const NORMALIZE_FALSE = bool(false);
+const NORMALIZE_TRUE = bool(true);
+const NORMALIZE_MAP_HEIGHT = finiteOrNull(260, 1800);
+const NORMALIZE_PANEL_WIDTH = finite(280, 1200, 400);

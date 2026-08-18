@@ -8,13 +8,29 @@ const DEFAULTS: Slide = Object.fromEntries(BUDGET_CFG.map((c) => [c.id, c.val]))
 const usd = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
 const num = (n: number) => Math.round(n).toLocaleString("en-US");
 
+const normalizeSlide = (value: unknown): Slide => {
+  const raw = value && typeof value === "object" ? value as Record<string, unknown> : {};
+  return Object.fromEntries(BUDGET_CFG.map((c) => {
+    const n = raw[c.id];
+    return [c.id, typeof n === "number" && Number.isFinite(n)
+      ? Math.max(c.min, Math.min(c.max, n))
+      : c.val];
+  }));
+};
+
+const normalizeTouched = (value: unknown): Record<string, boolean> => {
+  const raw = value && typeof value === "object" ? value as Record<string, unknown> : {};
+  return Object.fromEntries(BUDGET_CFG.map((c) => [c.id, raw[c.id] === true]));
+};
+
 export function Budget({ trip }: { trip: Trip }) {
-  const [raw, setRaw] = useStored<Slide>("slide", DEFAULTS);
-  const [touched, setTouched] = useStored<Record<string, boolean>>("touched", {});
+  const [raw, setRaw] = useStored<Slide>("slide", DEFAULTS, normalizeSlide);
+  const [touched, setTouched] = useStored<Record<string, boolean>>("touched", {}, normalizeTouched);
   const s: Slide = { ...DEFAULTS, ...raw };
 
   // Lodging follows the itinerary until it is dragged by hand.
-  const lodgingNights = Math.max(0, trip.days.length - 1 - trip.carNights - trip.sfNights);
+  const sfCarNights = trip.days.filter((d) => d.kind === "sf" && d.sleep?.t === "car").length;
+  const lodgingNights = Math.max(0, trip.days.length - 1 - (trip.carNights - sfCarNights) - trip.sfNights);
   useEffect(() => {
     if (!touched.motelNights && s.motelNights !== lodgingNights) {
       setRaw({ ...s, motelNights: lodgingNights });
@@ -45,10 +61,17 @@ export function Budget({ trip }: { trip: Trip }) {
     ["Non-resident annual park pass", 250],
     ["Bear spray, mattress, bedding", 170],
     ["Domestic flights SEA → SLC and SLC → SFO, 2 people", 520],
-    [`San Francisco hotel, ${trip.sfNights} nights × ${usd(s.sfNight)}`, trip.sfNights * s.sfNight],
+    ...(() => {
+      const sfCar = trip.days.filter((d) => d.kind === "sf" && d.sleep?.t === "car").length;
+      const rows: [string, number][] = [
+        [`San Francisco hotel, ${trip.sfNights - sfCar} nights × ${usd(s.sfNight)}`, (trip.sfNights - sfCar) * s.sfNight]
+      ];
+      if (sfCar) rows.push([`Marin campgrounds, ${sfCar} night${sfCar === 1 ? "" : "s"} × $35`, sfCar * 35]);
+      return rows;
+    })(),
     ["San Francisco food and activities", 200 * Math.max(1, trip.sfNights)]
   ];
-  const bayCarDays = ["sf2", "sf3"].filter((id) => trip.days.some((d) => d.id === id)).length;
+  const bayCarDays = ["sf2", "sf3", "sf4"].filter((id) => trip.days.some((d) => d.id === id)).length;
   if (bayCarDays) lines.push([`Bay Area car — Point Reyes + Silicon Valley, ${bayCarDays} days`, bayCarDays * 140]);
 
   const total = lines.reduce((a, [, v]) => a + v, 0);

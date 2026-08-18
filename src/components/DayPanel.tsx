@@ -51,7 +51,7 @@ export function DayPanel({ day, units, count, width, tab, setTab, sheet, onClose
       <Grab sheet={sheet} />
       <div className="detail-head">
         <button className="mini" onClick={() => onStep(-1)} title="Previous day (←)">←</button>
-        <span className="detail-count tnum">{(day.num ?? 0) + 1} / {count}</span>
+        <span className="detail-count tnum">{day.num ?? 1} / {count}</span>
         <button className="mini" onClick={() => onStep(1)} title="Next day (→)">→</button>
         <span style={{ flex: 1 }} />
         <button className="mini" onClick={() => onScrollTo(day.id)} title="Show this day in the list below">list ↓</button>
@@ -177,7 +177,7 @@ export function OverviewPanel({ trip, units, width, sheet, onStart, onClose }: {
           <li><b>Pinch</b> to zoom. A plain two-finger scroll still scrolls the page.</li>
           <li>The bar above the map is the five acts — click one to jump to it.</li>
         </ul>
-        <button className="ovgo" onClick={onStart}>Start at day 0 →</button>
+        <button className="ovgo" onClick={onStart}>Start at day 1 →</button>
       </div>
     </aside>
   );

@@ -13,7 +13,13 @@ export function Flights() {
         <div className="flights">
           {FLIGHTS.map((f) => (
             <div className="card flight" key={f.dir}>
-              <div className="fd"><span className="tick">✓</span><b>{f.date}</b></div>
+              <div className="fd">
+                <span className="tick" style={f.booked ? undefined : { background: "var(--gold)" }}>
+                  {f.booked ? "✓" : "!"}
+                </span>
+                <b>{f.date}</b>
+                {!f.booked && <span className="chip" style={{ marginLeft: "auto" }}>to book</span>}
+              </div>
               <div className="fends">
                 <div className="side1">
                   <div className="ap">{f.from}</div>
@@ -39,9 +45,10 @@ export function Flights() {
           ))}
         </div>
         <div className="tip">
-          <b>Worth knowing:</b> the booking screenshot showed <b>1 passenger</b>. Everything else on this
-          page — budget, lodging, food — is costed for two, so if the second ticket is not booked yet,
-          that is the one gap.
+          <b>Two things worth knowing.</b> The transatlantic booking showed <b>1 passenger</b>, and
+          everything on this page — budget, lodging, food — is costed for two, so that is one gap.
+          And take the <b>morning</b> Seattle → Salt Lake flight: it is only 1 h 50 m, so a morning
+          departure puts you on the salt flats the same afternoon.
         </div>
       </div>
     </section>

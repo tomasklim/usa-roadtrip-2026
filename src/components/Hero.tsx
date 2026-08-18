@@ -15,11 +15,13 @@ export function Hero({ trip, units }: { trip: Trip; units: Units }) {
     <div className="hero">
       <div className="wrap">
         <div className="kicker">Sept 23 – Oct 13, 2026 · Tesla Model Y · FSD · two people</div>
-        <h1>Seattle → Glacier → Yellowstone → Bonneville → back → San Francisco</h1>
+        <h1>Seattle · Rainier → Bonneville → Tetons → Yellowstone → San Francisco</h1>
         <p className="lede">
-          A northern loop through the Rockies for two, sleeping alternately in the car and in motels,
-          with a food line built on oysters, In-N-Out and unusual meat — all gluten-free and dairy-free.
-          Every mile below is measured on real road geometry, not estimated.
+          Two short driving blocks with a flight between them instead of one long loop — because
+          Seattle to Yellowstone is 1,300 km each way and no clever routing fixes that. Sleeping
+          alternately in the car and in beds, with a food line built on unusual meat, two properly
+          great oyster stops, and In-N-Out. Gluten-free and dairy-free throughout, and every distance
+          below is measured on real road geometry rather than estimated.
         </p>
         <div className="stats">
           {stats.map(([cls, big, small], i) => (

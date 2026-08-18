@@ -1,43 +1,43 @@
-import { buildTrip, CAP_DAYS, distLabel, fmtShort, turoDays } from "../src/lib/trip";
+import { buildTrip, CAP_DAYS, distLabel, fmtShort, rentals, turoDays } from "../src/lib/trip";
 import { MODULES } from "../src/data/itinerary";
 
 const combos: string[][] = [
-  [], ["beartooth"], ["dino"], ["craters"], ["bend"], ["alvord"], ["rainier"], ["olympic"], ["bigsur"],
-  ["beartooth", "dino"], ["craters", "bigsur"], ["beartooth", "rainier", "bigsur"],
-  ["alvord", "beartooth"], ["alvord", "craters", "bend"],
-  ["beartooth", "dino", "craters", "bend", "rainier", "olympic", "bigsur"]
+  [], ["cody"], ["craters"], ["dino"], ["olympic"], ["antelope"], ["bigsur"],
+  ["cody", "craters"], ["dino", "olympic"], ["craters", "bigsur"],
+  ["cody", "craters", "dino", "olympic", "antelope", "bigsur"]
 ];
 
-console.log(`window is ${CAP_DAYS} days (Sept 23 – Oct 13)\n`);
-console.log("modules".padEnd(46), "days".padStart(5), "mi".padStart(7), "drive".padStart(6),
-            "SF".padStart(3), "cut".padStart(4), "over".padStart(5), "  car back");
+console.log(`window ${CAP_DAYS} days (Sept 23 – Oct 13)\n`);
+console.log("modules".padEnd(44), "days".padStart(5), "total".padStart(9), "SLC car".padStart(9),
+            "SEA car".padStart(9), "SF".padStart(3), "cut".padStart(4), "over".padStart(5));
 let fails = 0;
 for (const c of combos) {
   const t = buildTrip(new Set(c));
-  const label = c.join("+") || "(base)";
+  const r = rentals(t);
   const problems: string[] = [];
-  if (t.days.length > CAP_DAYS && t.overrun === 0) problems.push("length exceeds cap but overrun=0");
-  if (t.days.some((d) => d.date === undefined)) problems.push("day without a date");
   const dates = t.days.map((d) => d.date!);
+  if (dates.some((d) => d === undefined)) problems.push("undated day");
   if (new Set(dates).size !== dates.length) problems.push("duplicate dates");
   for (let i = 1; i < dates.length; i++) if (dates[i] - dates[i - 1] !== 864e5) problems.push("date gap");
   const ids = t.days.map((d) => d.id);
-  if (new Set(ids).size !== ids.length) problems.push("duplicate day ids");
+  if (new Set(ids).size !== ids.length) problems.push("duplicate ids: " + ids.filter((x, i) => ids.indexOf(x) !== i));
+  if (t.days.length > CAP_DAYS && t.overrun === 0) problems.push("over cap but overrun=0");
+  if (r.slc.days === 0) problems.push("no SLC rental block");
   if (t.meters <= 0) problems.push("zero distance");
   console.log(
-    (problems.length ? "✗ " : "✓ ") + label.padEnd(44),
-    String(t.days.length).padStart(5), distLabel(t.meters, "mi").padStart(7),
-    String(t.driveDays).padStart(6), String(t.sfNights).padStart(3),
-    String(t.droppedSf).padStart(4), String(t.overrun).padStart(5),
-    " " + fmtShort(t.carReturn), problems.join("; ")
+    (problems.length ? "✗ " : "✓ ") + (c.join("+") || "(base)").padEnd(42),
+    String(t.days.length).padStart(5), distLabel(t.meters, "km").padStart(9),
+    `${r.slc.days}d/${Math.round(r.slc.meters / 1000)}km`.padStart(9),
+    `${r.seattle.days}d/${Math.round(r.seattle.meters / 1000)}km`.padStart(9),
+    String(t.sfNights).padStart(3), String(t.droppedSf).padStart(4), String(t.overrun).padStart(5),
+    problems.join("; ")
   );
   if (problems.length) fails++;
 }
-// Conflicting branches must not both apply.
-const both = buildTrip(new Set(["alvord", "bend"]));
-const hasAlvord = both.days.some((d) => d.modId === "alvord");
-const hasBend = both.days.some((d) => d.modId === "bend");
-console.log(`\nalvord+bend forced together → alvord:${hasAlvord} bend:${hasBend} (UI prevents this; data must not corrupt)`);
-console.log(`turoDays(base) = ${turoDays(buildTrip(new Set()))}`);
+const base = buildTrip(new Set());
+console.log(`\nbase: ${distLabel(base.meters, "mi")} / ${distLabel(base.meters, "km")}, ${base.driveDays} driving days`);
+console.log(`longest day: ${distLabel(Math.max(...base.days.map((d) => d.meters ?? 0)), "km")}`);
+console.log(`days over 400 km: ${base.days.filter((d) => (d.meters ?? 0) > 400000).length}`);
+console.log(`turoDays (SLC block): ${turoDays(base)}, car back ${fmtShort(base.carReturn)}`);
 console.log(`\n${MODULES.length} modules, ${fails} failing combos`);
 if (fails) process.exit(1);

@@ -42,6 +42,20 @@ export function difficulty(meters: number): Difficulty {
   return "crux";
 }
 
+const SEATTLE_CAR = ["rainier1", "hoodcanal", "olympic1", "olympic2"];
+const SLC_CAR = ["s1", "antelope", "s2", "dinoA", "dinoB", "s3", "s4", "s5", "s5b",
+                 "s6", "s7", "cody", "s8", "s9", "craters2", "s10"];
+
+function blockDays(t: Trip, ids: string[]) {
+  const idx = t.days.map((d, i) => (ids.includes(d.id) ? i : -1)).filter((i) => i >= 0);
+  if (!idx.length) return { days: 0, meters: 0 };
+  const first = Math.min(...idx), last = Math.max(...idx);
+  return {
+    days: last - first + 1,
+    meters: t.days.slice(first, last + 1).reduce((s, d) => s + (d.meters ?? 0), 0)
+  };
+}
+
 /* ---------- assembly ---------- */
 export interface Trip {
   days: Day[];
@@ -103,40 +117,36 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced"):
     const car = CAR_NIGHTS[d.id];
     const wantCar = car && (sleepStyle === "car" || (sleepStyle === "balanced" && car.tier === 1));
     if (wantCar) d.sleep = { t: "car", where: car.where, note: car.note };
-    else if (d.sleep?.t === "car" && BEDS_FALLBACK[d.id]) d.sleep = { t: "motel", where: BEDS_FALLBACK[d.id] };
   });
 
   const meters = days.reduce((s, d) => s + (d.meters ?? 0), 0);
   const driveDays = days.filter((d) => (d.meters ?? 0) > 0 && d.kind !== "sf").length;
   const carNights = days.filter((d) => d.sleep?.t === "car").length;
   const sfNights = days.filter((d) => d.kind === "sf").length;
-  const sea2 = days.find((d) => d.id === "sea2");
+  // The car goes back on the last day of the Salt Lake rental block.
+  const lastCarDay = [...days].reverse().find((d) => SLC_CAR.includes(d.id));
   const firstSf = days.find((d) => d.kind === "sf");
 
   return {
     days, meters, driveDays, carNights, droppedSf, overrun, sfNights,
-    carReturn: sea2?.date ?? START,
+    carReturn: lastCarDay?.date ?? START,
     flyDate: firstSf?.date ?? START,
     spare: Math.max(0, CAP_DAYS - days.length)
   };
 }
 
 /**
- * The two days the base itinerary hard-codes as car nights need a bed to fall
- * back to when the style says beds.
+ * The trip now has two separate rentals — two days in Seattle for Rainier and
+ * Hood Canal, and the Salt Lake block for the parks. The budget and the mileage
+ * cap both need them counted apart.
  */
-const BEDS_FALLBACK: Record<string, string> = {
-  d4: "Motel in Missoula",
-  d9: "Motel in Jackson",
-  alvord2: "The bunkhouse at Alvord Hot Springs"
-};
+export const rentals = (t: Trip) => ({
+  seattle: blockDays(t, SEATTLE_CAR),
+  slc: blockDays(t, SLC_CAR)
+});
 
-/** Miles per Turo day, used by the budget and the mileage-cap warning. */
-export const turoDays = (t: Trip) => {
-  const first = t.days.findIndex((d) => d.id === "d1");
-  const last = t.days.findIndex((d) => d.id === "sea2");
-  return first < 0 || last < 0 ? t.driveDays : last - first + 1;
-};
+/** The Salt Lake rental is the long one, so it carries the mileage-cap risk. */
+export const turoDays = (t: Trip) => rentals(t).slc.days || t.driveDays;
 
 /* ---------- GPX export ---------- */
 export function toGpx(name: string, legs: { id: string; title: string }[]): string {

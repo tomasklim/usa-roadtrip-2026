@@ -1,20 +1,19 @@
 export const CHARGE_ROWS: [string, string, string, string, "" | "gap" | "crit"][] = [
-  ["Seattle → Spokane", "I-90 / US-2", "Ellensburg, Moses Lake, Ritzville, Spokane", "Dense. Non-issue.", ""],
-  ["Spokane → Kalispell", "US-2 / US-93", "Coeur d'Alene, Sandpoint (L2), Kalispell", "Fine, but top up in Kalispell.", ""],
-  ["Glacier National Park", "Going-to-the-Sun", "Nothing inside the park", "Go in full. The loop is only ~140 mi.", "gap"],
-  ["Kalispell → Missoula → Bozeman", "US-93 / I-90", "Missoula, Butte, Bozeman", "Dense. Non-issue.", ""],
-  ["Bozeman → Gardiner → park loop → West Yellowstone", "US-89 / park roads", "Bozeman SC, then Gardiner L2 + CCS L3 only", "300+ mi on one charge unless you charge in Gardiner. Book a motel with an L2 AND carry a CCS adapter.", "crit"],
-  ["Beartooth module", "US-212 / WY-296", "Red Lodge L2 (unconfirmed), Cody CCS. No Tesla fast charging within 18 mi of the whole loop", "Rests entirely on the Red Lodge overnight charge, which OSM does not list — verify it, or start from Billings at 100%.", "crit"],
-  ["West Yellowstone → Jackson", "US-191 / US-89", "West Yellowstone SC, Jackson SC", "Comfortable.", ""],
-  ["Jackson → Salt Lake City", "US-89", "Montpelier, Logan, SLC", "Comfortable.", ""],
-  ["SLC → Bonneville → Wells NV", "I-80", "SLC, West Wendover, Wells", "Fine. Wendover has car washes for the salt.", ""],
-  ["Wells NV → Twin Falls", "US-93", "Nothing in Jackpot — 130 mi Wells to Twin Falls", "Leave Wells above 60%.", "gap"],
-  ["Twin Falls → Boise", "I-84", "Twin Falls, Mountain Home, Boise", "Dense.", ""],
-  ["Boise → Hood River", "I-84", "Ontario, Baker City, La Grande, Pendleton, Hood River", "Dense, but it is a 400 mi day.", ""],
-  ["Alvord module", "US-95 / OR-205", "Winnemucca SC, then nothing until Hines/Burns SC", "~190 mi with zero charging, partly gravel. Highest risk on the map.", "crit"],
-  ["Hood River → Seattle", "I-84 / I-5", "Hood River, Portland, Centralia, Seattle", "Dense.", ""],
-  ["Olympic module", "US-101", "Aberdeen, Forks (L2 only), Port Angeles SC", "Forks is thin. Arrive with margin.", "gap"],
-  ["Mount Rainier module", "WA-706 / WA-410", "Nothing useful in the park", "Go in full from Seattle; it is a 260 mi loop.", "gap"]
+  ["Seattle → Mount Rainier → Seattle", "WA-706 / WA-410", "Nothing useful inside the park", "Go in full; it is a 410 km loop. Enumclaw side has L2.", "gap"],
+  ["Seattle → Hood Canal → Seattle", "US-101", "Olympia SC, Shelton and Hoodsport L2", "Fine. The ferry route is shorter and has chargers either side.", ""],
+  ["SLC → Bonneville → SLC", "I-80", "SLC everywhere, West Wendover SC", "Easy. Wendover has car washes for the salt.", ""],
+  ["SLC → Logan Canyon → Bear Lake → Jackson", "US-89", "Logan, Montpelier, Jackson", "Comfortable, even at 485 km.", ""],
+  ["Grand Teton day", "Teton Park Road", "Jackson SC", "Non-issue — 160 km on one charge.", ""],
+  ["Jackson → Old Faithful → West Yellowstone", "US-89 / park roads", "Jackson SC, West Yellowstone SC", "Nothing in between, but only 220 km.", ""],
+  ["West Yellowstone → Canyon → Gardiner", "park roads", "Nothing in the park; Gardiner has L2 + CCS L3 only", "Arrive near 100% and charge overnight on the motel L2. No Supercharger in Gardiner.", "crit"],
+  ["Lamar Valley day, based in Gardiner", "US-212", "Gardiner L2 only", "195 km out and back on the Gardiner charge. Two nights there means two charges.", "gap"],
+  ["Beartooth: Gardiner → Red Lodge → Gardiner", "US-212", "Red Lodge L2 (unconfirmed), nothing else within 18 mi", "Rests entirely on the Red Lodge overnight charge, which OSM does not list. Verify it.", "crit"],
+  ["Cody module", "WY-296 / US-14", "CCS L3 at the Buffalo Bill Center, Cody", "317 km, two passes, no Supercharger. Needs the CCS adapter.", "crit"],
+  ["Gardiner → Chico → Bozeman", "US-89", "Bozeman SC, Belgrade SC (8 stalls)", "Short and easy — 143 km.", ""],
+  ["Bozeman → West Yellowstone → Idaho Falls", "US-191 / US-20", "West Yellowstone SC, Idaho Falls SC", "Comfortable.", ""],
+  ["Craters of the Moon module", "US-20 / US-26", "Arco has L2 only", "Plan West Yellowstone to Idaho Falls as one charge — the lava field detour is 610 km total.", "gap"],
+  ["Idaho Falls → Lava Hot Springs → SLC", "I-15", "Pocatello, Brigham City, Ogden, SLC", "Dense the whole way.", ""],
+  ["Dinosaur NM module", "US-40 / US-191", "Heber City SC, then Vernal is unverified", "Check Vernal in the app before committing; Rock Springs SC is the fallback.", "gap"]
 ];
 
 export const FOOD_RULES = [
@@ -29,12 +28,12 @@ export const SLEEP_CARDS = [
   { h: "The mattress", body: "The platform is <b>75 × 41 in (190 × 104 cm)</b>, up to 83 in long with the front seats slid forward. Buy a 140 × 200 cm foam mattress from IKEA and <b>cut it down to 105 cm wide with a bread knife</b> — 8–10 cm of foam is the sweet spot between comfort and headroom." },
   { h: "Levelling the floor", body: "The floor is not flat: there is a step where the folded seats meet the boot floor. Fill it with the sub-boot lid plus folded blankets or a duffel. Do it properly once at home and you will never think about it again." },
   { h: "Camp Mode and the battery", body: "Camp Mode holds cabin temperature and draws roughly <b>10–15% over eight hours</b> in mild weather. In a Yellowstone or Glacier frost, budget <b>20–25% a night</b>. Only plan car nights where you can charge the next morning." },
-  { h: "Where it is legal", body: "Rest areas: <b>Washington 8 h, Montana 12 h, Idaho 10 h</b> on interstates or 16 h on other state highways. Walmart lots usually fine. Best of all, <b>free dispersed camping in national forests</b> — Lolo, Bridger-Teton, Gallatin." },
+  { h: "Where it is legal", body: "Rest areas: <b>Washington 8 h, Montana 12 h, Idaho 10 h</b> on interstates or 16 h on other state highways. Walmart lots usually fine. Best of all, <b>free dispersed camping in national forests</b> — Bridger-Teton, Gallatin, Caribou-Targhee." },
   { h: "Not inside the parks", body: "Sleeping in a vehicle is <b>prohibited in national parks</b> outside designated campgrounds. Mammoth Campground in Yellowstone is open year-round and reservable, which makes it the practical base for a dawn run into Lamar Valley." },
-  { h: "Showers, which become the real problem", body: "Past three or four car nights, washing is the constraint, not sleep. <b>Pilot and Flying J truck stops</b> sell a proper private shower for $15–18 and there is one in Spokane, Missoula, Twin Falls, Boise and Portland. Campground showers at Apgar and Colter Bay are coin-operated. Planet Fitness's $25 black-card month gets you showers nationwide, which is the trick long-haul travellers actually use." },
-  { h: "Staying warm at 2,000 m", body: "The cold nights on this route are Hyalite, West Yellowstone and Shadow Mountain — all around 2,000 m, all capable of −5 °C in early October. You want <b>bags rated to −7 °C, not −0 °C</b>, a wool hat each, and a plan for condensation: crack two windows a centimetre, and keep a microfibre cloth by the bed for the morning." },
+  { h: "Showers, which become the real problem", body: "Past three or four car nights, washing is the constraint, not sleep. <b>Pilot and Flying J truck stops</b> sell a proper private shower for $15–18 and there is one in Idaho Falls, Pocatello, Ogden and Salt Lake City. Campground showers at Colter Bay in Grand Teton and Mammoth in Yellowstone are coin-operated. Planet Fitness's $25 black-card month gets you showers nationwide, which is the trick long-haul travellers actually use." },
+  { h: "Staying warm at 2,000 m", body: "The cold nights on this route are Hyalite above Bozeman, West Yellowstone and Shadow Mountain — all around 2,000 m, all capable of −5 °C in early October. You want <b>bags rated to −7 °C, not −0 °C</b>, a wool hat each, and a plan for condensation: crack two windows a centimetre, and keep a microfibre cloth by the bed for the morning." },
   { h: "Two people, one narrow bed", body: "104 cm is narrower than a UK double. Sleep <b>head-to-toe</b> if either of you moves a lot, and put the wider shoulders on the boot side where the wheel arches do not intrude. Do a test night at home before you commit to twelve of them." },
-  { h: "What a bed still buys you", body: "Shoulder-season motels in Gardiner, West Yellowstone and Whitefish run $90–140, so this is not really about money. A bed buys a <b>shower, laundry, a charge and a table to plan on</b> — which is why the balanced option keeps one in Salt Lake City and Boise, roughly every fourth night." }
+  { h: "What a bed still buys you", body: "Shoulder-season motels in Gardiner, West Yellowstone and Whitefish run $90–140, so this is not really about money. A bed buys a <b>shower, laundry, a charge and a table to plan on</b> — which is why the balanced option keeps one in Gardiner, Red Lodge and Bozeman." }
 ];
 
 export const RISKS = [
@@ -49,19 +48,23 @@ export const RISKS = [
 ];
 
 export const CHECKS = [
-  { id: "miles", block: true, t: "Turo mileage cap — check the listing", d: "The route is about 3,100 mi. At 200 mi/day you get 2,800 included and owe roughly $150. At 100 mi/day, the minimum allowed for the Deluxe class a Model Y LR sits in, you owe about $850. Message the host for a flat rate, or find an unlimited-distance listing." },
-  { id: "driver", block: true, t: "Add your girlfriend as an additional driver", d: "Done in the Turo app, and it has to clear their approval before pickup. Not optional if you both want to drive." },
-  { id: "glacier", block: true, t: "Check Glacier vehicle reservations", d: "Going-to-the-Sun Road has used timed-entry reservations in recent summers. Late September is usually clear of it, but the dates change every year — verify, and book on recreation.gov if needed." },
-  { id: "esta", block: true, t: "ESTA for both of you + international driving permit", d: "ESTA takes minutes but can be held for days. The IDP is a formality alongside a Czech licence, and Turo hosts sometimes ask for it." },
-  { id: "host", block: true, t: "Written OK from the host: Bonneville, out-of-state, CCS adapter", d: "Salt is corrosive and many listings ban off-road driving. Get it in writing in the Turo thread, ask about winter tyres, and ask them to include the CCS Combo 1 adapter — Gardiner and Cody both need it." },
-  { id: "pass", t: "Buy the $250 non-resident annual park pass", d: "From Jan 1, 2026 non-residents pay $250 for the annual pass, or a $100 per-person surcharge at the 11 busiest parks. Yellowstone alone would be $35 + 2 × $100 = $235 without it, so the pass pays for itself immediately." },
-  { id: "gardiner", t: "Book a Gardiner motel with an L2 charger", d: "This is the fix for the trip's one real charging problem. Filter for it, and confirm by message that the charger works and is available to guests." },
-  { id: "tomales", t: "Book the Tomales Bay oyster farm", d: "Hog Island's shuck-your-own picnic tables sell out weeks ahead, and it is the best two hours of the San Francisco leg." },
+  { id: "turo", block: true, t: "Confirm the Salt Lake Turo listing 3758006", d: "Price per day, mileage cap, and written permission for out-of-state travel (WY, MT, ID) AND for driving to the Bonneville Salt Flats — salt is corrosive and many listings ban leaving pavement. Ask for the CCS Combo 1 adapter in the same message; Gardiner and Cody both need it." },
+  { id: "dates", block: true, t: "Extend the Turo booking to Sept 27 – Oct 7", d: "Your search was Sept 28 – Oct 5, which is eight days. The route needs eleven. Confirm the host has the extra days before you book the flights around it." },
+  { id: "sea-car", block: true, t: "Book the second car in Seattle, Sept 25–26", d: "Two days for Mount Rainier and Hood Canal. FSD is pointless over two days, so this can be an ordinary airport rental — pick on price. Same pickup and drop-off point." },
+  { id: "hops", block: true, t: "Book SEA → SLC and SLC → SFO", d: "Take the MORNING Seattle flight: it is 1 h 50 m, so a morning departure puts you on the salt flats that afternoon. Both routes are frequent (Delta hub at SLC), so book after the car is confirmed, not before." },
+  { id: "driver", block: true, t: "Add your girlfriend as an additional driver", d: "In the Turo app, and it has to clear approval before pickup. Do it for the Seattle rental too." },
+  { id: "esta", block: true, t: "ESTA for both of you + international driving permit", d: "ESTA takes minutes but can be held for days. The IDP is a formality alongside a Czech licence, and hosts sometimes ask." },
+  { id: "gardiner", t: "Book a Gardiner motel with an L2 charger — two nights", d: "This is the fix for the trip's one real charging problem, and you are there two nights, so it charges twice. Confirm by message that the charger works and is available to guests." },
+  { id: "redlodge", t: "Verify the Red Lodge Tesla destination chargers", d: "The Beartooth day depends on them and OpenStreetMap does not list them. Phone the motel. If they are gone, plan the pass as an out-and-back on the battery you arrive with." },
+  { id: "pass", t: "Buy the $250 non-resident annual park pass", d: "Covers Yellowstone, Grand Teton, Rainier, Craters and Dinosaur NM. Non-residents otherwise pay $100 per person on top at the 11 busiest parks — Yellowstone alone would be $235 for the two of you." },
+  { id: "tomales", t: "Book the Tomales Bay oyster farm", d: "Hog Island's shuck-your-own tables sell out weeks ahead, and it is peak oyster number two of exactly two." },
+  { id: "hama", t: "Check Hama Hama's opening days", d: "Peak oyster number one, and the Hood Canal day is built around it. The saloon is seasonal and not open every weekday in autumn." },
+  { id: "chico", t: "Book dinner at Chico Hot Springs", d: "The best meal in rural Montana, and the dining room fills. Mention the gluten and dairy when you book." },
   { id: "mattress", t: "Buy and cut the mattress", d: "IKEA foam 140 × 200, cut to 105 cm wide with a bread knife. Test-fit in a Model Y before you fly if you possibly can." },
-  { id: "lodging", t: "Book Glacier, Gardiner, West Yellowstone and Jackson", d: "Shoulder season is cheap but the gateway towns are small. These four fill first; the rest can be same-day." },
-  { id: "bear", t: "Plan on buying bear spray in Kalispell", d: "You cannot fly with it in either direction. Buy it there ($40–50) and leave it behind. Grizzly country in both Glacier and Yellowstone." },
-  { id: "offline", t: "Download offline maps for the whole route", d: "Cell coverage dies in eastern Oregon, northern Nevada and most of Yellowstone. Download Google Maps offline areas, and save the GPX files from this page." },
-  { id: "warm", t: "Pack for a hard frost", d: "Nights at 6,000–8,000 ft in October go below freezing. Sleeping bags rated to -5 °C, hats, and a plan for window condensation." }
+  { id: "bear", t: "Buy bear spray in Jackson or Bozeman", d: "You cannot fly with it in either direction. Buy it there ($40–50) and leave it behind. Grizzly country throughout Yellowstone and the Tetons." },
+  { id: "sunrise", t: "Check the Sunrise Road status at Rainier", d: "It closes earlier than Paradise, usually in early October, and it is the better of the two viewpoints. If it is shut, Paradise plus the Skyline Trail is the day." },
+  { id: "offline", t: "Download offline maps and the GPX files", d: "Cell coverage dies in Yellowstone, the Gallatin canyon and most of eastern Idaho. Download Google Maps offline areas and save the GPX from this page." },
+  { id: "warm", t: "Pack for a hard frost", d: "Nights at 1,800–2,100 m in October go below freezing. Sleeping bags rated to −7 °C, hats, and a plan for window condensation." }
 ];
 
 export const BUDGET_CFG = [

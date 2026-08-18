@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { BUDGET_CFG } from "../data/reference";
-import { turoDays, type Trip } from "../lib/trip";
+import { rentals, turoDays, type Trip } from "../lib/trip";
 import { useStored } from "../lib/useStored";
 
 type Slide = Record<string, number>;
@@ -22,22 +22,28 @@ export function Budget({ trip }: { trip: Trip }) {
   }, [lodgingNights, touched.motelNights, s.motelNights]);
 
   const td = turoDays(trip);
+  const r = rentals(trip);
   const miles = trip.meters / 1609.344;
+  const slcMiles = r.slc.meters / 1609.344;
   const included = s.cap >= 400 ? Infinity : s.cap * td;
-  const over = Math.max(0, miles - included);
+  const over = Math.max(0, slcMiles - included);
   const kwh = miles / 4;
 
   const lines: [string, number][] = [
-    [`Turo, ${td} days × ${usd(s.turoDay)}`, td * s.turoDay],
+    [`Salt Lake Turo, ${td} days × ${usd(s.turoDay)}`, td * s.turoDay],
+    [`Seattle car, ${r.seattle.days} days × ${usd(Math.round(s.turoDay * 0.7))}`,
+      r.seattle.days * Math.round(s.turoDay * 0.7)],
     [Number.isFinite(included)
-      ? (over > 0 ? `Extra miles (${num(over)} over ${num(included as number)})` : "Extra miles (inside the cap)")
+      ? (over > 0
+          ? `Extra miles (${num(over)} over ${num(included as number)})`
+          : `Extra miles — none: ${num(slcMiles)} mi driven, ${num(included as number)} included`)
       : "Extra miles (unlimited distance)", over * s.overMi],
     [`Charging (~${num(kwh)} kWh at 4 mi/kWh)`, kwh * s.kwh],
     [`Motels and hotels, ${s.motelNights} nights × ${usd(s.motel)}`, s.motelNights * s.motel],
     [`Food, 2 people × ${trip.days.length} days × ${usd(s.foodDay)}`, 2 * trip.days.length * s.foodDay],
     ["Non-resident annual park pass", 250],
     ["Bear spray, mattress, bedding", 170],
-    ["Flights SEA → SFO, 2 people", 240],
+    ["Domestic flights SEA → SLC and SLC → SFO, 2 people", 520],
     [`San Francisco hotel, ${trip.sfNights} nights × ${usd(s.sfNight)}`, trip.sfNights * s.sfNight],
     ["San Francisco food and activities", 200 * Math.max(1, trip.sfNights)]
   ];
@@ -46,8 +52,10 @@ export function Budget({ trip }: { trip: Trip }) {
 
   const total = lines.reduce((a, [, v]) => a + v, 0);
   const capNote = s.cap >= 400
-    ? "You have the slider on unlimited distance, which is the single best thing you can negotiate on this trip."
-    : `The mileage cap is the biggest unknown — check the listing before booking, because at 100 mi/day this line alone would be ${usd(Math.max(0, miles - 100 * td) * s.overMi)}.`;
+    ? "The slider is on unlimited distance."
+    : over > 0
+      ? `At ${s.cap} mi/day you owe ${usd(over * s.overMi)}. Shortening the route killed most of this risk — the old 3,125 mi plan would have cost ${usd(Math.max(0, 3125 - 100 * 15) * s.overMi)} at a 100 mi/day cap.`
+      : `The Salt Lake block is only ${num(slcMiles)} mi over ${td} days, so it fits inside the cap with room to spare. This used to be the single biggest financial risk of the trip.`;
 
   return (
     <section id="budget">

@@ -48,7 +48,8 @@ export function Budget({ trip }: { trip: Trip }) {
     [`San Francisco hotel, ${trip.sfNights} nights × ${usd(s.sfNight)}`, trip.sfNights * s.sfNight],
     ["San Francisco food and activities", 200 * Math.max(1, trip.sfNights)]
   ];
-  if (trip.days.some((d) => d.id === "sf2")) lines.push(["Car for the Point Reyes day", 140]);
+  const bayCarDays = ["sf2", "sf3"].filter((id) => trip.days.some((d) => d.id === id)).length;
+  if (bayCarDays) lines.push([`Bay Area car — Point Reyes + Silicon Valley, ${bayCarDays} days`, bayCarDays * 140]);
 
   const total = lines.reduce((a, [, v]) => a + v, 0);
   // Defaults come from the real quote on listing 3758006: US$566.50 for 9 days,

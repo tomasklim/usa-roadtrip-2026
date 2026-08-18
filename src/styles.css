@@ -8,6 +8,7 @@
   --sky:#0369a1; --sky-soft:#d6ebf8;
   --gold:#a16207; --gold-soft:#f8ecc9;
   --plum:#7e22ce; --plum-soft:#eee0fb;
+  --teal:#0f766e; --teal-soft:#ccfbf1;
   --shadow:0 1px 2px rgba(50,38,25,.06),0 8px 24px -12px rgba(50,38,25,.18);
   --radius:14px;
   --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -24,6 +25,7 @@
   --sky:#5cc0f5; --sky-soft:#0c2a3d;
   --gold:#eab308; --gold-soft:#2f2609;
   --plum:#c084fc; --plum-soft:#2a1640;
+  --teal:#2dd4bf; --teal-soft:#0b2f2b;
   --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 32px -16px rgba(0,0,0,.7);
 }}
 :root[data-theme="dark"]{
@@ -35,6 +37,7 @@
   --sky:#5cc0f5; --sky-soft:#0c2a3d;
   --gold:#eab308; --gold-soft:#2f2609;
   --plum:#c084fc; --plum-soft:#2a1640;
+  --teal:#2dd4bf; --teal-soft:#0b2f2b;
   --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 32px -16px rgba(0,0,0,.7);
 }
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
@@ -167,7 +170,22 @@ section{padding:44px 0;border-bottom:1px solid var(--line)}
 .leaflet-popup-content-wrapper{background:var(--surface);color:var(--text);border-radius:11px;
   box-shadow:var(--shadow)}
 .leaflet-popup-tip{background:var(--surface)}
-.leaflet-popup-content{margin:10px 12px;font-size:.85rem;line-height:1.45}
+.leaflet-popup-content{margin:0;font-size:.85rem;line-height:1.45;width:auto!important}
+.leaflet-popup-content-wrapper{padding:0;overflow:hidden}
+.pop{width:270px}
+.pop .pop-hero{display:block;width:100%;height:150px;object-fit:cover;background:var(--surface2)}
+.pop .pop-body{padding:10px 12px 11px}
+.pop .pop-kind{font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700;
+  display:inline-block;padding:1px 6px;border-radius:5px;margin-bottom:5px}
+.pop .pop-kind.sight{background:var(--sky-soft);color:var(--sky)}
+.pop .pop-kind.food{background:var(--rust-soft);color:var(--rust)}
+.pop .pop-kind.oyster{background:var(--plum-soft);color:var(--plum)}
+.pop .pop-kind.ino{background:var(--gold-soft);color:var(--gold)}
+.pop .pop-kind.charge{background:var(--pine-soft);color:var(--pine)}
+.pop .pop-kind.store{background:var(--teal-soft);color:var(--teal)}
+.pop .pop-kind.day{background:var(--rust-soft);color:var(--rust)}
+.pop .pop-credit{font-size:.63rem;color:var(--faint);padding:4px 12px 0}
+.pop .pop-credit a{color:var(--faint)}
 .leaflet-popup-content b{font-family:var(--serif);font-size:.95rem}
 .leaflet-popup-content .pm{color:var(--muted);font-size:.78rem}
 .leaflet-popup-content .pop-img{width:100%;height:118px;object-fit:cover;border-radius:8px;
@@ -190,8 +208,30 @@ section{padding:44px 0;border-bottom:1px solid var(--line)}
 .daypin.mod{border-color:var(--plum)}
 .daypin.sel{background:var(--rust);color:#fff;transform:scale(1.18)}
 .daypin.mod.sel{background:var(--plum)}
-.poipin{display:grid;place-items:center;border-radius:99px;font-size:11px;
-  border:1.5px solid var(--line2);background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+/* Teardrop pin: rotate the box 45° for the point, counter-rotate the glyph. */
+.drop{width:28px;height:28px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);
+  display:grid;place-items:center;border:2px solid #fff;box-shadow:0 2px 5px rgba(0,0,0,.35);
+  transition:transform .12s}
+.drop>span{transform:rotate(45deg);font-size:13px;line-height:1;display:block}
+.drop:hover{transform:rotate(-45deg) scale(1.15)}
+.drop.sight{background:var(--sky)}
+.drop.food{background:var(--rust)}
+.drop.oyster{background:var(--plum)}
+.drop.ino{background:var(--gold)}
+.drop.charge{background:var(--pine)}
+.drop.charge.slow{background:var(--sky);opacity:.85}
+.drop.store{background:var(--teal)}
+.drop.small{width:21px;height:21px}
+.drop.small>span{font-size:10px}
+
+/* Name label beside the pin, shown once you are zoomed in far enough. */
+.leaflet-tooltip.maplbl{background:color-mix(in srgb,var(--surface) 92%,transparent);
+  color:var(--text);border:1px solid var(--line);border-radius:6px;box-shadow:none;
+  padding:1px 6px;font-size:10.5px;font-weight:600;font-family:var(--sans);white-space:nowrap}
+.leaflet-tooltip.maplbl::before{display:none}
+.leaflet-tooltip.hovlbl{background:var(--text);color:var(--bg);border:0;border-radius:6px;
+  padding:3px 8px;font-size:11px;font-weight:600;font-family:var(--sans);box-shadow:var(--shadow)}
+.leaflet-tooltip.hovlbl::before{border-top-color:var(--text)}
 
 /* ---------- modules panel ---------- */
 .panel{padding:14px 15px}

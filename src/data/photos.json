@@ -222,5 +222,124 @@
     "credit": "King of Hearts",
     "license": "CC BY-SA 4.0",
     "alt": "Moss-draped trees and ferns in the Hoh Rainforest of Olympic National Park"
+  },
+  "jennylake": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Jenny_Lake%2C_Tetons.jpg/960px-Jenny_Lake%2C_Tetons.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Jenny_Lake,_Tetons.jpg",
+    "credit": "Grand Teton National Park",
+    "license": "Public domain",
+    "alt": "Snow-dusted Teton peaks rising directly above the still water of Jenny Lake"
+  },
+  "chiefjoseph": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/View-from-dead-indian-pass-summit-along-chief-jospeh-scenic-byway-WY-October-2010-joni-packard-40620016_%286097550158%29.jpg/960px-View-from-dead-indian-pass-summit-along-chief-jospeh-scenic-byway-WY-October-2010-joni-packard-40620016_%286097550158%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:View-from-dead-indian-pass-summit-along-chief-jospeh-scenic-byway-WY-October-2010-joni-packard-40620016_(6097550158).jpg",
+    "credit": "Forest Service - Northern Region",
+    "license": "Public domain",
+    "alt": "Wide valley and mountain slopes seen from Dead Indian Pass on the Chief Joseph Scenic Byway"
+  },
+  "flaminggorge": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Evening_view_of_Flaming_Gorge_from_Sheep_Creek_Overlook%2C_2009.jpg/960px-Evening_view_of_Flaming_Gorge_from_Sheep_Creek_Overlook%2C_2009.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Evening_view_of_Flaming_Gorge_from_Sheep_Creek_Overlook,_2009.jpg",
+    "credit": "DimiTalen",
+    "license": "CC0",
+    "alt": "Red rock cliffs above the deep blue water of Flaming Gorge Reservoir"
+  },
+  "lavahotsprings": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Kirkham_Hot_Springs_%2816036174416%29.jpg/960px-Kirkham_Hot_Springs_%2816036174416%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Kirkham_Hot_Springs_(16036174416).jpg",
+    "credit": "j.a.woodhouse from United States",
+    "license": "CC BY 2.0",
+    "alt": "Steaming turquoise hot spring pools beside a river in the Idaho mountains"
+  },
+  "antelopeisland": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/American_Bison_-_Antelope_Island%2C_UT.jpg/960px-American_Bison_-_Antelope_Island%2C_UT.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:American_Bison_-_Antelope_Island,_UT.jpg",
+    "credit": "Stumuluri",
+    "license": "CC BY-SA 4.0",
+    "alt": "A lone bison standing in dry grassland on Antelope Island above the Great Salt Lake"
+  },
+  "staircase": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/North_Fork_Skokomish_River_%2814343815017%29.jpg/960px-North_Fork_Skokomish_River_%2814343815017%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:North_Fork_Skokomish_River_(14343815017).jpg",
+    "credit": "Chris M Morris",
+    "license": "CC BY 2.0",
+    "alt": "The North Fork Skokomish River rushing between mossy rocks in the Staircase rainforest"
+  },
+  "mountwalker": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Olympic_Mountains_seen_from_Union_on_Hood_Canal.jpg/960px-Olympic_Mountains_seen_from_Union_on_Hood_Canal.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Olympic_Mountains_seen_from_Union_on_Hood_Canal.jpg",
+    "credit": "Nomadic Lana",
+    "license": "CC BY 2.5",
+    "alt": "The snow-covered Olympic Mountains rising beyond the water of Hood Canal"
+  },
+  "portgamble": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Port_Gamble_Historic_District_general_store.jpg/960px-Port_Gamble_Historic_District_general_store.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Port_Gamble_Historic_District_general_store.jpg",
+    "credit": "Washington Our Home",
+    "license": "CC BY-SA 4.0",
+    "alt": "The clapboard general store of the historic mill town of Port Gamble, Washington"
+  },
+  "hoodcanalbridge": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Hood_Canal_Bridge_from_west_shore%2C_2021.jpg/960px-Hood_Canal_Bridge_from_west_shore%2C_2021.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Hood_Canal_Bridge_from_west_shore,_2021.jpg",
+    "credit": "SounderBruce",
+    "license": "CC BY-SA 4.0",
+    "alt": "Traffic crossing the Hood Canal floating bridge between forested shores"
+  },
+  "lakecushman": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Mount_Ellinor_Trail_-_Lake_Cushman_View3.jpg/960px-Mount_Ellinor_Trail_-_Lake_Cushman_View3.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Mount_Ellinor_Trail_-_Lake_Cushman_View3.jpg",
+    "credit": "Elwhajeff",
+    "license": "Public domain",
+    "alt": "Lake Cushman winding through forested ridges seen from high on Mount Ellinor"
+  },
+  "olympiacapitol": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/MK03170_Washington_State_Capitol_%28Olympia%29.jpg/960px-MK03170_Washington_State_Capitol_%28Olympia%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:MK03170_Washington_State_Capitol_(Olympia).jpg",
+    "credit": "Martin Kraft",
+    "license": "CC BY-SA 4.0",
+    "alt": "The columned portico and dome of the Washington State Capitol in Olympia"
+  },
+  "gallatincanyon": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Gallatin_River_at_Elkhorn_%2852395286894%29.jpg/960px-Gallatin_River_at_Elkhorn_%2852395286894%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Gallatin_River_at_Elkhorn_(52395286894).jpg",
+    "credit": "Forest Service - Northern Region",
+    "license": "Public domain",
+    "alt": "The Gallatin River running clear over rocks below the forested walls of Gallatin Canyon"
+  },
+  "cody": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Shops_and_restaurants_along_Sheridan_Avenue%2C_Cody%2C_2009.jpg/960px-Shops_and_restaurants_along_Sheridan_Avenue%2C_Cody%2C_2009.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Shops_and_restaurants_along_Sheridan_Avenue,_Cody,_2009.jpg",
+    "credit": "DimiTalen",
+    "license": "CC0",
+    "alt": "Historic brick storefronts and antique shops along Sheridan Avenue in Cody, Wyoming"
+  },
+  "saltlakecity": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Salt_Lake_City_skyline_%282020%29_from_Ensign_Peak.jpg/960px-Salt_Lake_City_skyline_%282020%29_from_Ensign_Peak.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Salt_Lake_City_skyline_(2020)_from_Ensign_Peak.jpg",
+    "credit": "Iansmh98",
+    "license": "CC BY-SA 4.0",
+    "alt": "Salt Lake City spread out below the Wasatch Range, with the Utah State Capitol in front"
+  },
+  "sanfrancisco": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Painted_Ladies_San_Francisco_January_2013_panorama_2.jpg/960px-Painted_Ladies_San_Francisco_January_2013_panorama_2.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Painted_Ladies_San_Francisco_January_2013_panorama_2.jpg",
+    "credit": "King of Hearts",
+    "license": "CC BY-SA 3.0",
+    "alt": "The Painted Ladies Victorian houses on Alamo Square with the San Francisco skyline behind"
+  },
+  "vernal": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Utah_Field_House_of_Natural_History_State_Park_Museum%2C_Sep_17.jpg/960px-Utah_Field_House_of_Natural_History_State_Park_Museum%2C_Sep_17.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Utah_Field_House_of_Natural_History_State_Park_Museum,_Sep_17.jpg",
+    "credit": "An Errant Knight",
+    "license": "CC BY-SA 4.0",
+    "alt": "The Utah Field House of Natural History dinosaur museum in Vernal under a clear sky"
+  },
+  "beartooth2": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Beartooth_Highway_MT-WY1.jpg/960px-Beartooth_Highway_MT-WY1.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Beartooth_Highway_MT-WY1.jpg",
+    "credit": "Acroterion",
+    "license": "CC BY-SA 4.0",
+    "alt": "The Beartooth Highway curving across the treeless alpine plateau below snowy peaks"
   }
 }

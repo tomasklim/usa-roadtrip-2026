@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { CircleMarker, MapContainer, TileLayer, Polyline, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Polyline, Marker, Popup, Tooltip, useMap, useMapEvent } from "react-leaflet";
 import L from "leaflet";
 import poisRaw from "../data/pois.json";
 import storesRaw from "../data/stores.json";
@@ -16,15 +16,66 @@ const STORES = storesRaw as unknown as {
 }[];
 const PHOTOS = photosRaw as unknown as Record<string, Photo>;
 
-const TAG_LABEL: Record<string, string> = {
-  gf: "GF", df: "DF", meat: "unusual meat", oy: "oysters", ino: "In-N-Out"
+/** Which category a marker belongs to — drives its colour, glyph and label. */
+type Cat = "sight" | "food" | "oyster" | "ino" | "charge" | "store" | "day";
+
+const GLYPH: Record<Cat, string> = {
+  sight: "◎", food: "🍽", oyster: "🦪", ino: "🍔", charge: "⚡", store: "🛒", day: "•"
+};
+const KIND_LABEL: Record<Cat, string> = {
+  sight: "sight", food: "food", oyster: "oysters", ino: "In-N-Out",
+  charge: "supercharger", store: "Whole Foods", day: "day"
 };
 
-/** Popup thumbnail. Kept small so opening a popup does not pull a 250 kB image. */
-function Thumb({ k }: { k?: string }) {
-  const ph = k ? PHOTOS[k] : undefined;
-  if (!ph) return null;
-  return <img className="pop-img" src={ph.url} alt={ph.alt} loading="lazy" decoding="async" />;
+function foodCat(tags: string[]): Cat {
+  if (tags.includes("ino")) return "ino";
+  if (tags.includes("oy")) return "oyster";
+  return "food";
+}
+
+const dropIcon = (cat: Cat, small = false, extra = "") =>
+  L.divIcon({
+    className: "",
+    html: `<div class="drop ${cat}${small ? " small" : ""}${extra ? " " + extra : ""}"><span>${GLYPH[cat]}</span></div>`,
+    iconSize: small ? [21, 21] : [28, 28],
+    iconAnchor: small ? [10, 21] : [14, 28],
+    popupAnchor: [0, small ? -20 : -26]
+  });
+
+/**
+ * MapHub-style card: the photograph is the content, the words sit underneath.
+ */
+function PopCard({ cat, title, sub, body, photoKey, onJump, jumpLabel }: {
+  cat: Cat; title: string; sub?: string; body?: string;
+  photoKey?: string; onJump?: () => void; jumpLabel?: string;
+}) {
+  const ph = photoKey ? PHOTOS[photoKey] : undefined;
+  return (
+    <div className="pop">
+      {ph && <img className="pop-hero" src={ph.url} alt={ph.alt} loading="lazy" decoding="async" />}
+      {ph && (
+        <div className="pop-credit">
+          Photo by <a href={ph.page} target="_blank" rel="noreferrer noopener">{ph.credit}</a>, {ph.license}
+        </div>
+      )}
+      <div className="pop-body">
+        <span className={`pop-kind ${cat}`}>{KIND_LABEL[cat]}</span>
+        <b style={{ display: "block", fontFamily: "var(--serif)", fontSize: "1rem" }}>{title}</b>
+        {sub && <div className="pm">{sub}</div>}
+        {body && <div className="pop-why">{body}</div>}
+        {onJump && (
+          <button className="pop-btn" onClick={onJump}>{jumpLabel ?? "Open this day below ↓"}</button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/** Labels only make sense once the map is zoomed in enough not to be a mess. */
+function useZoom(initial = 5) {
+  const [z, setZ] = useState(initial);
+  useMapEvent("zoomend", (e) => setZ(e.target.getZoom()));
+  return z;
 }
 
 export type Layers = { sights: boolean; food: boolean; chargers: boolean; stores: boolean };
@@ -115,13 +166,35 @@ const dayIcon = (label: string, isMod: boolean, sel: boolean) =>
     iconAnchor: [13, 13]
   });
 
-const poiIcon = (glyph: string) =>
-  L.divIcon({
-    className: "",
-    html: `<div class="poipin" style="width:20px;height:20px">${glyph}</div>`,
-    iconSize: [20, 20],
-    iconAnchor: [10, 10]
-  });
+/** Sights and restaurants, with a name label once the map is zoomed in. */
+function PoiLayer({ layers, pois, onScrollTo }: {
+  layers: Layers; pois: Poi[]; onScrollTo: (dayId: string) => void;
+}) {
+  const zoom = useZoom();
+  const showLabels = zoom >= 8;
+  return (
+    <>
+      {pois.map((p) => {
+        const cat: Cat = p.kind === "sight" ? "sight" : foodCat(p.tags);
+        if (cat === "sight" ? !layers.sights : !layers.food) return null;
+        return (
+          <Marker key={p.id} position={[p.lat, p.lon]} icon={dropIcon(cat)}>
+            {showLabels
+              ? <Tooltip permanent direction="right" offset={[10, -10]} className="maplbl">{p.name}</Tooltip>
+              : <Tooltip direction="top" offset={[0, -24]} className="hovlbl">{p.name}</Tooltip>}
+            <Popup maxWidth={280} minWidth={270}>
+              <PopCard cat={cat} title={p.name}
+                       sub={`${p.city}${p.approx ? " · approximate" : ""}`}
+                       body={p.desc}
+                       photoKey={p.photo}
+                       onJump={() => onScrollTo(p.day)} />
+            </Popup>
+          </Marker>
+        );
+      })}
+    </>
+  );
+}
 
 export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, basemap, setBasemap,
                           dark, mapHeight, setMapHeight, onStep, onScrollTo }: {
@@ -220,88 +293,58 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                 key={`pin-${d.id}`}
                 position={at}
                 icon={dayIcon(String(d.num), !!d.isMod, selected === d.id)}
-                zIndexOffset={selected === d.id ? 1000 : 0}
+                zIndexOffset={selected === d.id ? 1000 : 500}
                 eventHandlers={{ click: () => onSelect(d.id) }}
                 ref={(m) => { markerRefs.current[d.id] = m; }}
               >
-                <Popup maxWidth={280} minWidth={240}>
-                  <Thumb k={d.photos?.[0]} />
-                  <b>Day {d.num} — {d.title}</b>
-                  <div className="pm">{d.leg}</div>
-                  <div className="pm">
-                    {distLabel(d.meters ?? 0, units)} · {d.hours} h · {difficulty(d.meters ?? 0)}
-                    {d.sleep && <> · {d.sleep.t === "car" ? "car night" : "bed"}</>}
-                  </div>
-                  <div className="pop-why">{d.why}</div>
-                  <button className="pop-btn" onClick={() => onScrollTo(d.id)}>
-                    Open day {d.num} below ↓
-                  </button>
+                <Tooltip direction="top" offset={[0, -14]} className="hovlbl">
+                  Day {d.num} · {d.title}
+                </Tooltip>
+                <Popup maxWidth={280} minWidth={270} autoPan>
+                  <PopCard
+                    cat="day"
+                    title={`Day ${d.num} — ${d.title}`}
+                    sub={`${d.leg} · ${distLabel(d.meters ?? 0, units)} · ${d.hours} h · ${difficulty(d.meters ?? 0)}`}
+                    body={d.why}
+                    photoKey={d.photos?.[0]}
+                    onJump={() => onScrollTo(d.id)}
+                    jumpLabel={`Open day ${d.num} below ↓`}
+                  />
                 </Popup>
               </Marker>
             );
           })}
 
-          {layers.sights && visiblePois.filter((p) => p.kind === "sight").map((p) => (
-            <Marker key={p.id} position={[p.lat, p.lon]} icon={poiIcon("◎")}
-                    eventHandlers={{ click: () => onSelect(p.day) }}>
-              <Popup maxWidth={280} minWidth={240}>
-                <Thumb k={p.photo} />
-                <b>{p.name}</b>
-                <div className="pm">{p.city}{p.approx ? " · approximate" : ""}</div>
-                {p.desc && <div className="pop-why">{p.desc}</div>}
-                <button className="pop-btn" onClick={() => onScrollTo(p.day)}>
-                  Open this day below ↓
-                </button>
-              </Popup>
-            </Marker>
-          ))}
+          <PoiLayer layers={layers} pois={visiblePois} onScrollTo={onScrollTo} />
 
-          {layers.food && visiblePois.filter((p) => p.kind === "food").map((p) => (
-            <Marker key={p.id} position={[p.lat, p.lon]} icon={poiIcon("🍽")}
-                    eventHandlers={{ click: () => onSelect(p.day) }}>
-              <Popup maxWidth={280} minWidth={240}>
-                <b>{p.name}</b>
-                <div className="pm">
-                  {p.city}
-                  {p.tags.map((t) => <span className={`tag ${t}`} key={t}>{TAG_LABEL[t]}</span>)}
-                </div>
-                {p.desc && <div className="pop-why">{p.desc}</div>}
-                <button className="pop-btn" onClick={() => onScrollTo(p.day)}>
-                  Open this day below ↓
-                </button>
+          {layers.chargers && CHARGERS.map((c) => (
+            <Marker key={c.id} position={[c.lat, c.lon]}
+                    icon={dropIcon("charge", true, c.fast ? "" : "slow")}>
+              <Tooltip direction="top" offset={[0, -18]} className="hovlbl">
+                {c.name}{c.stalls ? ` · ${c.stalls} stalls` : ""}
+              </Tooltip>
+              <Popup maxWidth={280} minWidth={270}>
+                <PopCard cat="charge" title={c.name}
+                         sub={`${c.city || "Supercharger"}${c.stalls ? ` · ${c.stalls} stalls` : ""}`}
+                         body={c.fast ? "Tesla Supercharger — a full stop of 20-30 minutes gets you most of a battery."
+                                      : "Destination or slow charger. Useful overnight, not for a top-up on the move."} />
               </Popup>
             </Marker>
           ))}
 
           {layers.stores && STORES.map((st) => (
-            <CircleMarker key={st.id} center={[st.lat, st.lon]} radius={st.key ? 6 : 4}
-                          pathOptions={{ className: st.key ? "wf-key" : "wf", weight: 1.5 }}>
-              <Popup maxWidth={260}>
-                <b>Whole Foods{st.city ? ` · ${st.city}` : ""}</b>
-                <div className="pm">{st.street}</div>
-                <div className="pm">{st.km} km off the route</div>
-                <div className="pop-why">
-                  {st.key
-                    ? "The only one for 40 km in any direction — this is a restock stop worth planning around: gluten-free bread, dairy-free everything, and a hot bar you can eat from safely."
-                    : "One of several nearby. Reliable for gluten-free and dairy-free restocking."}
-                </div>
+            <Marker key={st.id} position={[st.lat, st.lon]} icon={dropIcon("store", !st.key)}>
+              <Tooltip direction="top" offset={[0, -18]} className="hovlbl">
+                Whole Foods{st.city ? ` · ${st.city}` : ""}
+              </Tooltip>
+              <Popup maxWidth={280} minWidth={270}>
+                <PopCard cat="store" title={`Whole Foods${st.city ? ` · ${st.city}` : ""}`}
+                         sub={`${st.street} · ${st.km} km off the route`}
+                         body={st.key
+                           ? "The only one for 40 km in any direction — a restock stop worth planning around: gluten-free bread, dairy-free everything, and a hot bar you can eat from safely."
+                           : "One of several nearby. Reliable for gluten-free and dairy-free restocking."} />
               </Popup>
-            </CircleMarker>
-          ))}
-
-          {layers.chargers && CHARGERS.map((c) => (
-            <CircleMarker
-              key={c.id}
-              center={[c.lat, c.lon]}
-              radius={c.fast ? 5 : 3.5}
-              pathOptions={{ className: c.fast ? "ch-fast" : "ch-slow", weight: 1.5 }}
-            >
-              <Popup>
-                <b>{c.name}</b>
-                <div className="pm">{c.city}{c.stalls ? ` · ${c.stalls} stalls` : ""}</div>
-                <div className="pm">{c.fast ? "Supercharger" : "Destination / slow charger"}</div>
-              </Popup>
-            </CircleMarker>
+            </Marker>
           ))}
         </MapContainer>
       </div>
@@ -327,17 +370,22 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
         <button className="pill" onClick={() => onStep(1)} title="Next day (→)">→</button>
         <span className="spacer" />
         <button className={`pill${layers.sights ? " on" : ""}`}
-                onClick={() => setLayers({ ...layers, sights: !layers.sights })}>◎ Sights</button>
+                onClick={() => setLayers({ ...layers, sights: !layers.sights })}>
+          <i style={{ background: "var(--sky)" }} />Sights
+        </button>
         <button className={`pill${layers.food ? " on" : ""}`}
-                onClick={() => setLayers({ ...layers, food: !layers.food })}>🍽 Food</button>
+                onClick={() => setLayers({ ...layers, food: !layers.food })}>
+          <i style={{ background: "var(--rust)" }} />Food 🦪 🍔
+        </button>
         <button className={`pill${layers.chargers ? " on" : ""}`}
                 onClick={() => setLayers({ ...layers, chargers: !layers.chargers })}>
-          ⚡ Superchargers{CHARGERS.length ? ` (${CHARGERS.filter((c) => c.fast).length})` : ""}
+          <i style={{ background: "var(--pine)" }} />
+          Superchargers{CHARGERS.length ? ` (${CHARGERS.filter((c) => c.fast).length})` : ""}
         </button>
         <button className={`pill${layers.stores ? " on" : ""}`}
                 onClick={() => setLayers({ ...layers, stores: !layers.stores })}
                 title="Whole Foods — gluten-free and dairy-free restocking">
-          🛒 Whole Foods ({STORES.length})
+          <i style={{ background: "var(--teal)" }} />Whole Foods ({STORES.length})
         </button>
         <div className="baseline" role="group" aria-label="Base map">
           {(["terrain", "streets", "satellite"] as Basemap[]).map((b) => (

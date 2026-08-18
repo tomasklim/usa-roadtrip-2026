@@ -108,7 +108,10 @@ export default function App() {
             click any pin or route line to pull up that day. Every line is real road geometry, so the
             distances are measured rather than guessed, and each day exports as GPX for the car.
             <b> Use ← and → to walk through the trip day by day</b> — the map follows and opens the
-            detail as it goes. Escape clears the selection.
+            detail as it goes, and nothing scrolls unless you ask it to with the button in the card.
+            Escape clears the selection. Pins are colour-coded by what they are: blue for sights,
+            rust for food, purple for oysters, gold for In-N-Out, green for Superchargers and teal for
+            Whole Foods. Hover any pin for its name; zoom in past level 8 and the names stay on.
           </p>
           <RouteMap trip={trip} units={units} selected={selected} onSelect={select}
                     layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}

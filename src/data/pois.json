@@ -551,7 +551,8 @@
   "day": "s3",
   "tags": [],
   "city": "Grand Teton National Park WY",
-  "desc": "Glacial, clear, and the shuttle boat cuts two miles off the walk to Hidden Falls. Moose in the willows."
+  "desc": "Glacial, clear, and the shuttle boat cuts two miles off the walk to Hidden Falls. Moose in the willows.",
+  "photo": "jennylake"
  },
  {
   "id": "bear-lake",
@@ -645,7 +646,8 @@
   "day": "cody",
   "tags": [],
   "city": "Wyoming",
-  "desc": "WY-296 over Dead Indian Pass, named for the route the Nez Perce took in 1877. Almost nobody drives it."
+  "desc": "WY-296 over Dead Indian Pass, named for the route the Nez Perce took in 1877. Almost nobody drives it.",
+  "photo": "chiefjoseph"
  },
  {
   "id": "flaming-gorge-reservoir",
@@ -656,7 +658,8 @@
   "day": "dinoB",
   "tags": [],
   "city": "Utah",
-  "desc": "Ninety miles of red rock canyon and improbably blue water on the Green River."
+  "desc": "Ninety miles of red rock canyon and improbably blue water on the Green River.",
+  "photo": "flaminggorge"
  },
  {
   "id": "dinosaur-national-monument",
@@ -808,7 +811,8 @@
   "day": "s10",
   "tags": [],
   "city": "Lava Hot Springs ID",
-  "desc": "Five pools of mineral water at 43 \u00b0C, run by the state and startlingly cheap. Splits the run back to Salt Lake."
+  "desc": "Five pools of mineral water at 43 \u00b0C, run by the state and startlingly cheap. Splits the run back to Salt Lake.",
+  "photo": "lavahotsprings"
  },
  {
   "id": "antelope-island",
@@ -819,7 +823,8 @@
   "day": "antelope",
   "tags": [],
   "city": "Davis County UT",
-  "desc": "A free-roaming herd of about 700 bison on an island in the Great Salt Lake. You float in the water; the smell is part of the deal."
+  "desc": "A free-roaming herd of about 700 bison on an island in the Great Salt Lake. You float in the water; the smell is part of the deal.",
+  "photo": "antelopeisland"
  },
  {
   "id": "metropolitan-grill",
@@ -845,7 +850,8 @@
   "day": "seaB",
   "tags": [],
   "city": "Hoodsport WA",
-  "desc": "Olympic National Park's east entrance: old-growth rainforest and the Skokomish rapids, 40 min up from Hoodsport. The real park without the drive to Hoh."
+  "desc": "Olympic National Park's east entrance: old-growth rainforest and the Skokomish rapids, 40 min up from Hoodsport. The real park without the drive to Hoh.",
+  "photo": "staircase"
  },
  {
   "id": "mount-walker",
@@ -856,7 +862,8 @@
   "day": "seaB",
   "tags": [],
   "city": "Quilcene WA",
-  "desc": "The only drivable summit in the eastern Olympics. One viewpoint looks over Puget Sound to Seattle and Rainier, the other straight into the Olympic range."
+  "desc": "The only drivable summit in the eastern Olympics. One viewpoint looks over Puget Sound to Seattle and Rainier, the other straight into the Olympic range.",
+  "photo": "mountwalker"
  },
  {
   "id": "port-gamble",
@@ -867,7 +874,8 @@
   "day": "seaB",
   "tags": [],
   "city": "Kitsap County WA",
-  "desc": "An 1853 company mill town preserved essentially intact and listed on the National Register. General store, small museum, and almost nobody there."
+  "desc": "An 1853 company mill town preserved essentially intact and listed on the National Register. General store, small museum, and almost nobody there.",
+  "photo": "portgamble"
  },
  {
   "id": "hood-canal-bridge",
@@ -878,7 +886,8 @@
   "day": "seaB",
   "tags": [],
   "city": "Jefferson County WA",
-  "desc": "One of the longest floating bridges on Earth at 2.4 km. It swings open sideways to let submarines through to the Bangor base."
+  "desc": "One of the longest floating bridges on Earth at 2.4 km. It swings open sideways to let submarines through to the Bangor base.",
+  "photo": "hoodcanalbridge"
  },
  {
   "id": "lake-cushman",
@@ -889,7 +898,8 @@
   "day": "seaB",
   "tags": [],
   "city": "Mason County WA",
-  "desc": "A glacial lake under the Olympics with startlingly clear water, on the way up to Staircase."
+  "desc": "A glacial lake under the Olympics with startlingly clear water, on the way up to Staircase.",
+  "photo": "lakecushman"
  },
  {
   "id": "olympia-capitol",
@@ -900,7 +910,8 @@
   "day": "seaB",
   "tags": [],
   "city": "Olympia WA",
-  "desc": "The tallest self-supporting masonry dome in the US, five minutes off the route, and free to walk into."
+  "desc": "The tallest self-supporting masonry dome in the US, five minutes off the route, and free to walk into.",
+  "photo": "olympiacapitol"
  },
  {
   "id": "crystal-mountain",

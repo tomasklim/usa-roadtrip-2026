@@ -253,7 +253,7 @@ export const BASE: Day[] = [
 
 { id: "s7", kind: "drive", act: "III",
   title: "Back over the top", leg: "Red Lodge → Beartooth Pass → Cooke City → Lamar → Gardiner",
-  hours: 4, photos: [],
+  hours: 4, photos: ["beartooth2"],
   hi: ["The same pass in the opposite light, which is genuinely a different road",
        "One more run through Lamar Valley on the way back — third chance at wolves",
        "Short day, so there is time to stop at everything you drove past yesterday"],
@@ -287,7 +287,7 @@ export const BASE: Day[] = [
 
 { id: "s9", kind: "drive", act: "IV",
   title: "South through the Gallatin canyon", leg: "Bozeman → Big Sky → West Yellowstone → Idaho Falls",
-  hours: 4.5, photos: [],
+  hours: 4.5, photos: ["gallatincanyon"],
   hi: ["US-191 down the Gallatin canyon, where they filmed A River Runs Through It",
        "Back past West Yellowstone and out into the Idaho potato plains — a total change of landscape",
        "Idaho Falls splits what would otherwise be a 690 km slog back to Salt Lake"],
@@ -302,7 +302,7 @@ export const BASE: Day[] = [
 
 { id: "s10", kind: "drive", act: "IV",
   title: "Hot springs, then hand back the keys", leg: "Idaho Falls → Lava Hot Springs → Salt Lake City",
-  hours: 5, photos: [],
+  hours: 5, photos: ["lavahotsprings", "saltlakecity"],
   hi: ["Lava Hot Springs: five pools of mineral water at 43 °C, run by the state, and dirt cheap",
        "Down through the Portneuf gap and into Utah past the Great Salt Lake",
        "Return the car in Salt Lake with the whole loop behind you — 2,716 km and not one repeated day"],
@@ -350,7 +350,7 @@ export const BASE: Day[] = [
 
 { id: "sf3", kind: "sf", act: "V",
   title: "San Francisco, properly", leg: "San Francisco",
-  hours: 0, photos: [],
+  hours: 0, photos: ["sanfrancisco"],
   hi: ["Whatever the first two days made you want more of",
        "In-N-Out at Fisherman's Wharf closes the loop that started on the salt flats",
        "Golden Gate Park is bigger than Central Park and has a bison paddock in it"],
@@ -365,7 +365,7 @@ export const BASE: Day[] = [
 
 { id: "sf4", kind: "sf", act: "V",
   title: "A day with nothing in it", leg: "San Francisco, or wherever you feel like",
-  hours: 0, photos: [],
+  hours: 0, photos: ["pointreyes"],
   hi: ["Deliberately unplanned. Three weeks in, this is worth more than another attraction",
        "Good options if you want one: Napa, Sonoma, Big Sur, or Berkeley",
        "Or nothing at all — sleep in, eat well, walk somewhere"],
@@ -379,7 +379,7 @@ export const BASE: Day[] = [
 
 { id: "depart", kind: "depart", act: "V",
   title: "Fly home", leg: "San Francisco 16:30 → Prague 16:00+1 · Condor, 1 stop",
-  hours: 0, photos: [],
+  hours: 0, photos: ["goldengate"],
   hi: ["Morning free — the flight is not until half past four",
        "SFO is 30 minutes out on BART, which beats a taxi in traffic",
        "14 h 30 m, one stop, landing in Prague late afternoon the next day"],
@@ -398,7 +398,7 @@ export const MODULES: Module[] = [
   days: [
   { id: "cody", kind: "drive", act: "III",
     title: "Chief Joseph and Dead Indian Pass", leg: "Red Lodge → Belfry → Cody → Chief Joseph Byway → Cooke City → Gardiner",
-    hours: 6, photos: [],
+    hours: 6, photos: ["chiefjoseph", "cody"],
     hi: ["The Chief Joseph Scenic Byway, WY-296, which almost nobody drives",
          "Dead Indian Pass, named for the route the Nez Perce took in 1877",
          "Cody: the Buffalo Bill Center of the West is five museums in one and genuinely excellent",
@@ -434,7 +434,7 @@ export const MODULES: Module[] = [
   days: [
   { id: "dinoA", kind: "drive", act: "II",
     title: "East to the bones", leg: "SLC → Heber City → Uinta Basin → Vernal",
-    hours: 4, photos: [],
+    hours: 4, photos: ["vernal"],
     hi: ["Over the Wasatch and down into the Uinta Basin, which looks like nowhere else in Utah",
          "Vernal, a town with a pink dinosaur on the main street",
          "Utah Field House of Natural History as the warm-up act"],
@@ -500,7 +500,7 @@ export const MODULES: Module[] = [
   days: [
   { id: "antelope", kind: "drive", act: "II",
     title: "Bison on the Great Salt Lake", leg: "SLC → Antelope Island → SLC",
-    hours: 3, photos: [],
+    hours: 3, photos: ["antelopeisland"],
     hi: ["A free-roaming herd of about 700 bison on an island in a salt lake",
          "The lake is so saline you float in it, and the smell is genuinely part of the experience",
          "Frary Peak and the causeway at sunset, which is one of Utah's best"],

@@ -141,7 +141,7 @@ export default function App() {
         </div>
       </section>
 
-      <Flights />
+      <Flights trip={trip} />
       <Glance trip={trip} units={units} onSelect={selectAndScroll} />
       <LoadChart trip={trip} units={units} onSelect={selectAndScroll} />
       <Charging />
@@ -160,7 +160,7 @@ export default function App() {
           </p>
           <p>
             Check conditions the morning of, not the night before: <span style={{ fontFamily: "var(--mono)" }}>nps.gov/yell</span>,{" "}
-            <span style={{ fontFamily: "var(--mono)" }}>nps.gov/glac</span>, and text <b>GNPROADS</b> to <b>333111</b>.
+            <span style={{ fontFamily: "var(--mono)" }}>nps.gov/mora</span>, and the relevant state 511 service.
           </p>
         </div>
       </footer>

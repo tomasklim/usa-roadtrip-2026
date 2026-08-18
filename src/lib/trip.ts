@@ -45,7 +45,7 @@ export function difficulty(meters: number): Difficulty {
 const SEATTLE_CAR = ["seaA", "seaB", "olyA", "olyB"];
 const SLC_CAR = ["s1", "antelope", "s2", "dinoA", "dinoB", "s3", "s4", "s4b", "s5", "s5b",
                  "s6", "s7", "cody", "s8", "s9", "craters2", "s10"];
-const SF_CAR = ["sf2"];
+const SF_CAR = ["sf2", "sf3", "sf4"];
 
 function blockDays(t: Trip, ids: string[]) {
   const idx = t.days.map((d, i) => (ids.includes(d.id) ? i : -1)).filter((i) => i >= 0);

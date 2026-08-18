@@ -1,6 +1,6 @@
-import { BASE, MODULES } from "../data/itinerary";
+import { BASE, CAR_NIGHTS, MODULES } from "../data/itinerary";
 import routesRaw from "../data/routes.json";
-import type { Day, Leg, Units } from "../types";
+import type { Day, Leg, SleepStyle, Units } from "../types";
 
 export const ROUTES = routesRaw as unknown as Record<string, Leg>;
 
@@ -58,7 +58,7 @@ export interface Trip {
   spare: number;
 }
 
-export function buildTrip(on: Set<string>): Trip {
+export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced"): Trip {
   let days: Day[] = BASE.map((d) => ({ ...d }));
   const active = MODULES.filter((m) => on.has(m.id));
 
@@ -98,6 +98,12 @@ export function buildTrip(on: Set<string>): Trip {
     d.num = i;
     d.date = START + i * DAY_MS;
     d.meters = metersOf(d.id);
+    // Sleeping style is applied here so every downstream count — the hero, the
+    // budget's lodging line, the day cards — reads from one decision.
+    const car = CAR_NIGHTS[d.id];
+    const wantCar = car && (sleepStyle === "car" || (sleepStyle === "balanced" && car.tier === 1));
+    if (wantCar) d.sleep = { t: "car", where: car.where, note: car.note };
+    else if (d.sleep?.t === "car" && BEDS_FALLBACK[d.id]) d.sleep = { t: "motel", where: BEDS_FALLBACK[d.id] };
   });
 
   const meters = days.reduce((s, d) => s + (d.meters ?? 0), 0);
@@ -114,6 +120,16 @@ export function buildTrip(on: Set<string>): Trip {
     spare: Math.max(0, CAP_DAYS - days.length)
   };
 }
+
+/**
+ * The two days the base itinerary hard-codes as car nights need a bed to fall
+ * back to when the style says beds.
+ */
+const BEDS_FALLBACK: Record<string, string> = {
+  d4: "Motel in Missoula",
+  d9: "Motel in Jackson",
+  alvord2: "The bunkhouse at Alvord Hot Springs"
+};
 
 /** Miles per Turo day, used by the budget and the mileage-cap warning. */
 export const turoDays = (t: Trip) => {

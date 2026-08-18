@@ -11,7 +11,7 @@ import { Budget } from "./components/Budget";
 import { Checklist } from "./components/Checklist";
 import { buildTrip } from "./lib/trip";
 import { useStored } from "./lib/useStored";
-import type { Units } from "./types";
+import type { SleepStyle, Units } from "./types";
 
 export default function App() {
   const [mods, setMods] = useStored<string[]>("mods", []);
@@ -19,12 +19,13 @@ export default function App() {
   const [theme, setTheme] = useStored<string | null>("theme", null);
   const [lens, setLens] = useStored<Lens>("lens", "all");
   const [basemap, setBasemap] = useStored<Basemap>("basemap", "terrain");
-  const [layers, setLayers] = useStored<Layers>("layers", { sights: true, food: false, chargers: false });
+  const [layers, setLayers] = useStored<Layers>("layers2", { sights: true, food: true, chargers: false, stores: false });
   const [mapHeight, setMapHeight] = useStored<number | null>("mapHeight", null);
+  const [sleepStyle, setSleepStyle] = useStored<SleepStyle>("sleepStyle", "balanced");
   const [selected, setSelected] = useState<string | null>(null);
 
   const on = useMemo(() => new Set(Array.isArray(mods) ? mods : []), [mods]);
-  const trip = useMemo(() => buildTrip(on), [on]);
+  const trip = useMemo(() => buildTrip(on, sleepStyle), [on, sleepStyle]);
 
   useEffect(() => {
     if (theme) document.documentElement.setAttribute("data-theme", theme);
@@ -76,7 +77,8 @@ export default function App() {
               <RouteMap trip={trip} units={units} selected={selected} onSelect={select}
                         layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
                         dark={dark} mapHeight={mapHeight} setMapHeight={setMapHeight} />
-              <Modules on={on} toggle={toggle} trip={trip} units={units} />
+              <Modules on={on} toggle={toggle} trip={trip} units={units}
+                       sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} />
               <LensBar lens={lens} setLens={setLens} />
             </div>
             <DayList trip={trip} units={units} selected={selected} onSelect={select} lens={lens} />
@@ -88,7 +90,7 @@ export default function App() {
       <LoadChart trip={trip} units={units} onSelect={select} />
       <Charging />
       <FoodGuide trip={trip} />
-      <SleepSection />
+      <SleepSection trip={trip} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} />
       <Budget trip={trip} />
       <Checklist />
       <RiskSection />

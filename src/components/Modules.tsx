@@ -1,9 +1,10 @@
-import { MODULES } from "../data/itinerary";
+import { MODULES, SLEEP_STYLES } from "../data/itinerary";
 import { distLabel, fmtShort, metersOf, type Trip } from "../lib/trip";
-import type { Units } from "../types";
+import type { SleepStyle, Units } from "../types";
 
-export function Modules({ on, toggle, trip, units }: {
+export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle }: {
   on: Set<string>; toggle: (id: string) => void; trip: Trip; units: Units;
+  sleepStyle: SleepStyle; setSleepStyle: (s: SleepStyle) => void;
 }) {
   return (
     <div className="card panel">
@@ -32,6 +33,23 @@ export function Modules({ on, toggle, trip, units }: {
         })}
       </div>
       <Verdict trip={trip} />
+
+      <h3 style={{ marginTop: 16 }}>Where you sleep</h3>
+      <p className="hint">
+        {trip.carNights} night{trip.carNights === 1 ? "" : "s"} in the car,{" "}
+        {Math.max(0, trip.days.length - 1 - trip.carNights)} in a bed.
+      </p>
+      <div className="mapbar" style={{ padding: 0, border: 0 }}>
+        {SLEEP_STYLES.map((st) => (
+          <button key={st.id} className={`pill${sleepStyle === st.id ? " on" : ""}`}
+                  title={st.desc} onClick={() => setSleepStyle(st.id)}>
+            {st.label}
+          </button>
+        ))}
+      </div>
+      <p className="hint" style={{ margin: "9px 0 0" }}>
+        {SLEEP_STYLES.find((s) => s.id === sleepStyle)?.desc}
+      </p>
     </div>
   );
 }

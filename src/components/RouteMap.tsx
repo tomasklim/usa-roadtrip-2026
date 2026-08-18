@@ -2,15 +2,32 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { CircleMarker, MapContainer, TileLayer, Polyline, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import poisRaw from "../data/pois.json";
+import storesRaw from "../data/stores.json";
+import photosRaw from "../data/photos.json";
 import chargersRaw from "../data/chargers.json";
 import { ROUTES, distLabel, downloadGpx, toGpx, difficulty } from "../lib/trip";
 import type { Trip } from "../lib/trip";
-import type { Charger, Poi, Units } from "../types";
+import type { Charger, Photo, Poi, Units } from "../types";
 
 const POIS = poisRaw as unknown as Poi[];
 const CHARGERS = chargersRaw as unknown as Charger[];
+const STORES = storesRaw as unknown as {
+  id: string; name: string; lat: number; lon: number; city: string; street: string; km: number; key: boolean;
+}[];
+const PHOTOS = photosRaw as unknown as Record<string, Photo>;
 
-export type Layers = { sights: boolean; food: boolean; chargers: boolean };
+const TAG_LABEL: Record<string, string> = {
+  gf: "GF", df: "DF", meat: "unusual meat", oy: "oysters", ino: "In-N-Out"
+};
+
+/** Popup thumbnail. Kept small so opening a popup does not pull a 250 kB image. */
+function Thumb({ k }: { k?: string }) {
+  const ph = k ? PHOTOS[k] : undefined;
+  if (!ph) return null;
+  return <img className="pop-img" src={ph.url} alt={ph.alt} loading="lazy" decoding="async" />;
+}
+
+export type Layers = { sights: boolean; food: boolean; chargers: boolean; stores: boolean };
 export type Basemap = "terrain" | "streets" | "satellite";
 
 const BASEMAPS: Record<Basemap, { url: (dark: boolean) => string; attr: string; max: number }> = {
@@ -187,27 +204,60 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                 zIndexOffset={selected === d.id ? 1000 : 0}
                 eventHandlers={{ click: () => onSelect(d.id) }}
               >
-                <Popup>
+                <Popup maxWidth={280} minWidth={240}>
+                  <Thumb k={d.photos?.[0]} />
                   <b>Day {d.num} — {d.title}</b>
                   <div className="pm">{d.leg}</div>
                   <div className="pm">
                     {distLabel(d.meters ?? 0, units)} · {d.hours} h · {difficulty(d.meters ?? 0)}
+                    {d.sleep && <> · {d.sleep.t === "car" ? "car night" : "bed"}</>}
                   </div>
+                  <div className="pop-why">{d.why}</div>
                 </Popup>
               </Marker>
             );
           })}
 
           {layers.sights && visiblePois.filter((p) => p.kind === "sight").map((p) => (
-            <Marker key={p.id} position={[p.lat, p.lon]} icon={poiIcon("◎")}>
-              <Popup><b>{p.name}</b><div className="pm">{p.city}</div></Popup>
+            <Marker key={p.id} position={[p.lat, p.lon]} icon={poiIcon("◎")}
+                    eventHandlers={{ click: () => onSelect(p.day) }}>
+              <Popup maxWidth={280} minWidth={240}>
+                <Thumb k={p.photo} />
+                <b>{p.name}</b>
+                <div className="pm">{p.city}{p.approx ? " · approximate" : ""}</div>
+                {p.desc && <div className="pop-why">{p.desc}</div>}
+              </Popup>
             </Marker>
           ))}
 
           {layers.food && visiblePois.filter((p) => p.kind === "food").map((p) => (
-            <Marker key={p.id} position={[p.lat, p.lon]} icon={poiIcon("🍽")}>
-              <Popup><b>{p.name}</b><div className="pm">{p.city}</div></Popup>
+            <Marker key={p.id} position={[p.lat, p.lon]} icon={poiIcon("🍽")}
+                    eventHandlers={{ click: () => onSelect(p.day) }}>
+              <Popup maxWidth={280} minWidth={240}>
+                <b>{p.name}</b>
+                <div className="pm">
+                  {p.city}
+                  {p.tags.map((t) => <span className={`tag ${t}`} key={t}>{TAG_LABEL[t]}</span>)}
+                </div>
+                {p.desc && <div className="pop-why">{p.desc}</div>}
+              </Popup>
             </Marker>
+          ))}
+
+          {layers.stores && STORES.map((st) => (
+            <CircleMarker key={st.id} center={[st.lat, st.lon]} radius={st.key ? 6 : 4}
+                          pathOptions={{ className: st.key ? "wf-key" : "wf", weight: 1.5 }}>
+              <Popup maxWidth={260}>
+                <b>Whole Foods{st.city ? ` · ${st.city}` : ""}</b>
+                <div className="pm">{st.street}</div>
+                <div className="pm">{st.km} km off the route</div>
+                <div className="pop-why">
+                  {st.key
+                    ? "The only one for 40 km in any direction — this is a restock stop worth planning around: gluten-free bread, dairy-free everything, and a hot bar you can eat from safely."
+                    : "One of several nearby. Reliable for gluten-free and dairy-free restocking."}
+                </div>
+              </Popup>
+            </CircleMarker>
           ))}
 
           {layers.chargers && CHARGERS.map((c) => (
@@ -248,6 +298,11 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
         <button className={`pill${layers.chargers ? " on" : ""}`}
                 onClick={() => setLayers({ ...layers, chargers: !layers.chargers })}>
           ⚡ Superchargers{CHARGERS.length ? ` (${CHARGERS.filter((c) => c.fast).length})` : ""}
+        </button>
+        <button className={`pill${layers.stores ? " on" : ""}`}
+                onClick={() => setLayers({ ...layers, stores: !layers.stores })}
+                title="Whole Foods — gluten-free and dairy-free restocking">
+          🛒 Whole Foods ({STORES.length})
         </button>
         <span className="spacer" />
         <div className="baseline" role="group" aria-label="Base map">

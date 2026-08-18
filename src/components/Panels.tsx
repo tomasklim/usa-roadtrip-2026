@@ -1,7 +1,8 @@
 import { CHARGE_ROWS, FOOD_RULES, RISKS, SLEEP_CARDS } from "../data/reference";
+import { SLEEP_STYLES } from "../data/itinerary";
 import { difficulty, distLabel, fmtShort } from "../lib/trip";
 import type { Trip } from "../lib/trip";
-import type { Units } from "../types";
+import type { SleepStyle, Units } from "../types";
 import type { Lens } from "./DayList";
 
 const LENSES: [Lens, string][] = [
@@ -184,11 +185,63 @@ export function Cards({ id, num, title, sub, cards }: {
   );
 }
 
-export const SleepSection = () => (
-  <Cards id="sleep" num="07" title="Sleeping: a mattress in the Model Y"
-         sub="With the rear seats folded there is a 75 × 41 in (190 × 104 cm) platform, up to 83 in long with the front seats pushed forward. Tight for two, but it works."
-         cards={SLEEP_CARDS} />
-);
+export function SleepSection({ trip, sleepStyle, setSleepStyle }: {
+  trip: Trip; sleepStyle: SleepStyle; setSleepStyle: (s: SleepStyle) => void;
+}) {
+  const carNights = trip.days.filter((d) => d.sleep?.t === "car");
+  const nights = Math.max(0, trip.days.length - 1);
+  return (
+    <section id="sleep">
+      <div className="wrap narrow">
+        <div className="shead"><span className="num">07</span><h2>Sleeping: a mattress in the Model Y</h2></div>
+        <p className="sub">
+          With the rear seats folded there is a <b>75 × 41 in (190 × 104 cm)</b> platform, up to 83 in
+          long with the front seats pushed forward. Tight for two, but it works — and the real
+          constraint is not space, it is temperature and showers.
+        </p>
+
+        <div className="card panel" style={{ marginBottom: 14 }}>
+          <h3>How much do you want to sleep in the car?</h3>
+          <p className="hint">
+            Currently <b>{carNights.length} of {nights} nights</b> in the car.
+            Every option here is a real, legal spot — the difference is how cold it gets.
+          </p>
+          <div className="mapbar" style={{ padding: 0, border: 0 }}>
+            {SLEEP_STYLES.map((st) => (
+              <button key={st.id} className={`pill${sleepStyle === st.id ? " on" : ""}`}
+                      onClick={() => setSleepStyle(st.id)}>{st.label}</button>
+            ))}
+          </div>
+          {carNights.length > 0 && (
+            <div className="tscroll" style={{ marginTop: 14 }}>
+              <table>
+                <thead><tr><th>Night</th><th>Where</th><th>Why it works, or does not</th></tr></thead>
+                <tbody>
+                  {carNights.map((d) => (
+                    <tr key={d.id}>
+                      <td className="n">{d.date ? fmtShort(d.date) : ""}</td>
+                      <td>{d.sleep!.where}</td>
+                      <td style={{ color: "var(--muted)" }}>{d.sleep!.note ?? "—"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+
+        <div className="grid2">
+          {SLEEP_CARDS.map((c) => (
+            <div className="card rcard" key={c.h}>
+              <h3>{c.h}</h3>
+              <p dangerouslySetInnerHTML={{ __html: c.body }} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export const RiskSection = () => (
   <Cards id="risks" num="10" title="Risks and plan B"

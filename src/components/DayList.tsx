@@ -109,6 +109,7 @@ function DayCard({ day, units, lens, selected, onSelect }: {
               <div className="rl">Sleeping</div>
               <span className={`sleep-${day.sleep.t}`}>{day.sleep.t === "car" ? "In the car" : "Motel"}</span>
               {" — "}{day.sleep.where}
+              {day.sleep.note && <><br /><span style={{ color: "var(--muted)", fontSize: ".85rem" }}>{day.sleep.note}</span></>}
             </div>
           </div>
         )}

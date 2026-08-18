@@ -164,6 +164,11 @@ section{padding:44px 0;border-bottom:1px solid var(--line)}
 .leaflet-popup-content{margin:10px 12px;font-size:.85rem;line-height:1.45}
 .leaflet-popup-content b{font-family:var(--serif);font-size:.95rem}
 .leaflet-popup-content .pm{color:var(--muted);font-size:.78rem}
+.leaflet-popup-content .pop-img{width:100%;height:118px;object-fit:cover;border-radius:8px;
+  display:block;margin:0 0 8px;background:var(--surface2)}
+.leaflet-popup-content .pop-why{margin-top:7px;font-size:.82rem;line-height:1.45;color:var(--text)}
+.leaflet-container path.wf-key{stroke:var(--gold);fill:var(--gold);fill-opacity:.85}
+.leaflet-container path.wf{stroke:var(--gold);fill:var(--gold);fill-opacity:.45}
 .leaflet-bar a{background:var(--surface);color:var(--text);border-color:var(--line)}
 .leaflet-bar a:hover{background:var(--surface2)}
 .leaflet-control-attribution{background:color-mix(in srgb,var(--surface) 85%,transparent)!important;

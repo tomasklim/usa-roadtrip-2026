@@ -592,3 +592,44 @@ export const MODULES: Module[] = [
     charge: ["Port Angeles SC", "Sequim L2"],
     why: "Ends the driving on the two things you came for: a mountain view and oysters at the source." }] }
 ];
+
+/**
+ * Where a night in the car actually works, per day.
+ *
+ * tier 1 — mild elevation, easy access, no real downside.
+ * tier 2 — works, but it is a cold night (mostly 1,800–2,100 m in October) or a
+ *          town where a bed is genuinely nicer.
+ *
+ * Days absent from this map must be a bed: Gardiner and Winnemucca because the
+ * overnight charge is the whole plan, Seattle and San Francisco because they are
+ * cities and the last nights before flights.
+ */
+export const CAR_NIGHTS: Record<string, { where: string; tier: 1 | 2; note?: string }> = {
+  d1:  { tier: 1, where: "Riverside State Park or the Walmart on Spokane's east side", note: "600 m, mild. Easy first night to test the setup" },
+  d2:  { tier: 2, where: "Dispersed camping in Flathead NF along Hungry Horse Reservoir", note: "1,000 m and properly cold; 20 min from the park entrance" },
+  d3:  { tier: 2, where: "Same Flathead NF spot, or Apgar Campground inside the park", note: "Apgar has toilets and is walking distance from Lake McDonald" },
+  d4:  { tier: 1, where: "Dispersed camping in Lolo NF south of Missoula", note: "Free, legal, quiet — the easiest car night of the trip" },
+  d5:  { tier: 2, where: "Hyalite Canyon, Gallatin NF south of Bozeman", note: "2,000 m. Spectacular, and you will use the whole sleeping bag" },
+  d7:  { tier: 2, where: "Gallatin NF dispersed just outside West Yellowstone", note: "2,000 m and often below freezing — but the Supercharger is 10 min away in the morning" },
+  d8:  { tier: 1, where: "Shadow Mountain, Bridger-Teton NF", note: "The Tetons from the tailgate. The best car night on the route" },
+  d9:  { tier: 1, where: "Shadow Mountain again, Bridger-Teton NF", note: "No reason to move if you got a good spot" },
+  d10: { tier: 2, where: "Big Cottonwood Canyon, or Antelope Island Campground", note: "A bed in Salt Lake buys a shower and laundry, which by now matters" },
+  d11: { tier: 1, where: "BLM land on the Snake River rim near Shoshone Falls", note: "Low, mild, and the canyon at sunrise is worth waking up for" },
+  d12: { tier: 2, where: "Boise NF up ID-21, about 30 min out of town", note: "Fine, but you are going out for Basque food — a bed in town is the sane call" },
+  d13: { tier: 1, where: "Mount Hood NF dispersed, or Viento State Park on the Columbia", note: "Low and mild, with the Gorge wind for company" },
+  // module days
+  dino1:    { tier: 2, where: "Dispersed BLM near Flaming Gorge", note: "Red rock and total silence" },
+  craters1: { tier: 2, where: "Boise NF up ID-21", note: "After a 375 mi day you may want the bed" },
+  bend1:    { tier: 2, where: "Deschutes NF dispersed west of Bend", note: "1,200 m, cold but easy" },
+  bend2:    { tier: 1, where: "Mount Hood NF or Viento State Park", note: "Same easy Gorge options" },
+  alvord2:  { tier: 1, where: "On the Alvord playa itself, or the Alvord Hot Springs bunkhouse", note: "Sleeping on a dry lake bed under those stars is the point of the module" },
+  alvord3:  { tier: 2, where: "Deschutes NF west of Bend", note: "You have earned a bed, but the forest is right there" },
+  alvord4:  { tier: 1, where: "Mount Hood NF or Viento State Park" },
+  olympic1: { tier: 2, where: "Bogachiel State Park or dispersed off the Hoh road", note: "Rainforest means wet, not just cold — condensation will be serious" }
+};
+
+export const SLEEP_STYLES = [
+  { id: "motel" as const, label: "Beds", desc: "A bed every night. Simplest, and about $1,900 of lodging." },
+  { id: "balanced" as const, label: "Balanced", desc: "Car on the mild, easy nights; a bed where altitude or a good dinner argues for one." },
+  { id: "car" as const, label: "Car first", desc: "Every night the car works, including the cold ones at 2,000 m. Cheapest by a long way." }
+];

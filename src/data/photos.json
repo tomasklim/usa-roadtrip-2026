@@ -1,1 +1,226 @@
-{}
+{
+  "seattle": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Seattle_Close_Mt._Rainier_Victor_Grigas.jpg/960px-Seattle_Close_Mt._Rainier_Victor_Grigas.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Seattle_Close_Mt._Rainier_Victor_Grigas.jpg",
+    "credit": "Victorgrigas",
+    "license": "CC BY-SA 3.0",
+    "alt": "Seattle's downtown skyline with snow-capped Mount Rainier rising behind it"
+  },
+  "pikeplace": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Pike_Place_Market_Seattle.jpg/960px-Pike_Place_Market_Seattle.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Pike_Place_Market_Seattle.jpg",
+    "credit": "Daniel Schwen",
+    "license": "CC BY-SA 4.0",
+    "alt": "Shoppers under the neon Public Market and Farmers Market signs in Seattle"
+  },
+  "leavenworth": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Main_street_in_Leavenworth%2C_Washington_%282023-06-18%29_%28cropped%29.jpg/960px-Main_street_in_Leavenworth%2C_Washington_%282023-06-18%29_%28cropped%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Main_street_in_Leavenworth,_Washington_(2023-06-18)_(cropped).jpg",
+    "credit": "Roc0ast3r",
+    "license": "CC0",
+    "alt": "Bavarian-style buildings lining the main street of Leavenworth, Washington"
+  },
+  "lakemcdonald": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Fall_day_on_lake_McDonald.jpg/960px-Fall_day_on_lake_McDonald.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Fall_day_on_lake_McDonald.jpg",
+    "credit": "Ryan Hagerty",
+    "license": "Public domain",
+    "alt": "Coloured pebble shore of Lake McDonald under autumn storm clouds"
+  },
+  "goingtothesun": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Going-to-the-Sun_Road.jpg/960px-Going-to-the-Sun_Road.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Going-to-the-Sun_Road.jpg",
+    "credit": "NPS / Tim Rains",
+    "license": "Public domain",
+    "alt": "Going-to-the-Sun Road cut into a cliff above a glacial valley"
+  },
+  "bisonrange": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Bison_at_National_Bison_Range.jpg/960px-Bison_at_National_Bison_Range.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Bison_at_National_Bison_Range.jpg",
+    "credit": "Jesse Achtenberg, U.S. Fish and Wildlife Service",
+    "license": "Public domain",
+    "alt": "A herd of American bison grazing on open Montana grassland"
+  },
+  "trex": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Tyrannosaurus_rex_skeleton_%28cast_of_specimen_MOR_555%29_at_Cleveland_Museum_of_Natural_History.jpg/960px-Tyrannosaurus_rex_skeleton_%28cast_of_specimen_MOR_555%29_at_Cleveland_Museum_of_Natural_History.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Tyrannosaurus_rex_skeleton_(cast_of_specimen_MOR_555)_at_Cleveland_Museum_of_Natural_History.jpg",
+    "credit": "Robosorne",
+    "license": "CC BY-SA 3.0",
+    "alt": "A mounted Tyrannosaurus rex skeleton looming over a museum hall"
+  },
+  "chicohotsprings": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Granite_Hot_Springs_pool_%2815008293208%29.jpg/960px-Granite_Hot_Springs_pool_%2815008293208%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Granite_Hot_Springs_pool_(15008293208).jpg",
+    "credit": "pychap",
+    "license": "CC BY 2.0",
+    "alt": "Bathers in a steaming natural hot spring pool ringed by pine forest"
+  },
+  "mammothterraces": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Mammoth_Terraces.jpg/960px-Mammoth_Terraces.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Mammoth_Terraces.jpg",
+    "credit": "Frank Schulenburg",
+    "license": "CC BY-SA 4.0",
+    "alt": "White travertine terraces of Mammoth Hot Springs in Yellowstone"
+  },
+  "lamarvalley": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Bison_grazing_in_Lamar_Valley_at_sunrise_%2842023761225%29.jpg/960px-Bison_grazing_in_Lamar_Valley_at_sunrise_%2842023761225%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Bison_grazing_in_Lamar_Valley_at_sunrise_(42023761225).jpg",
+    "credit": "Jacob W. Frank for Yellowstone National Park",
+    "license": "Public domain",
+    "alt": "Bison grazing across the wide Lamar Valley at sunrise"
+  },
+  "artistpoint": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Lower_Falls_from_Artist_Point_%2819087799399%29.jpg/960px-Lower_Falls_from_Artist_Point_%2819087799399%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Lower_Falls_from_Artist_Point_(19087799399).jpg",
+    "credit": "Yellowstone National Park from Yellowstone NP, USA",
+    "license": "Public domain",
+    "alt": "The Lower Falls of the Yellowstone seen from Artist Point"
+  },
+  "grandprismatic": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Aerial_image_of_Grand_Prismatic_Spring_%28view_from_the_south%29.jpg/960px-Aerial_image_of_Grand_Prismatic_Spring_%28view_from_the_south%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Grand_Prismatic_Spring_(view_from_the_south).jpg",
+    "credit": "Carsten Steger",
+    "license": "CC BY-SA 4.0",
+    "alt": "Aerial view of the rainbow-coloured Grand Prismatic Spring"
+  },
+  "oldfaithful": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Spring_Old_Faithful_eruption_from_Observation_Point.jpg/960px-Spring_Old_Faithful_eruption_from_Observation_Point.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Spring_Old_Faithful_eruption_from_Observation_Point.jpg",
+    "credit": "Yellowstone National Park",
+    "license": "Public domain",
+    "alt": "Old Faithful geyser shooting a tall column of steam and water"
+  },
+  "mormonrow": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Moulton_Barn-Mormon_Row-Grand_Teton.jpg/960px-Moulton_Barn-Mormon_Row-Grand_Teton.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Moulton_Barn-Mormon_Row-Grand_Teton.jpg",
+    "credit": "Viplav Valluri",
+    "license": "CC BY-SA 4.0",
+    "alt": "The weathered Moulton Barn on Mormon Row below the Teton range"
+  },
+  "schwabacher": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Schwabacher_Landing_Sunrise_-_Grand_Teton_National_Park_-_Flickr_-_aparlette.jpg/960px-Schwabacher_Landing_Sunrise_-_Grand_Teton_National_Park_-_Flickr_-_aparlette.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Schwabacher_Landing_Sunrise_-_Grand_Teton_National_Park_-_Flickr_-_aparlette.jpg",
+    "credit": "Andrew Parlette",
+    "license": "CC BY 2.0",
+    "alt": "The Teton peaks mirrored in still water at sunrise"
+  },
+  "bearlake": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Bear_Lake%2C_USA.jpg/960px-Bear_Lake%2C_USA.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Bear_Lake,_USA.jpg",
+    "credit": "Diogeninja",
+    "license": "CC BY-SA 3.0",
+    "alt": "Turquoise water of Bear Lake seen from a hillside overlook"
+  },
+  "bonneville": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/2014-07-05_13_01_24_View_west-northwest_across_the_Bonneville_Salt_Flats%2C_Utah_from_the_Bonneville_Salt_Flats_Rest_Area_on_Interstate_80.JPG/960px-2014-07-05_13_01_24_View_west-northwest_across_the_Bonneville_Salt_Flats%2C_Utah_from_the_Bonneville_Salt_Flats_Rest_Area_on_Interstate_80.JPG",
+    "page": "https://commons.wikimedia.org/wiki/File:2014-07-05_13_01_24_View_west-northwest_across_the_Bonneville_Salt_Flats,_Utah_from_the_Bonneville_Salt_Flats_Rest_Area_on_Interstate_80.JPG",
+    "credit": "Famartin",
+    "license": "CC BY-SA 4.0",
+    "alt": "Flat white salt crust of the Bonneville Salt Flats below distant mountains"
+  },
+  "shoshonefalls": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Shoshone_Falls%2C_Idaho.jpg/960px-Shoshone_Falls%2C_Idaho.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Shoshone_Falls,_Idaho.jpg",
+    "credit": "Frank Schulenburg",
+    "license": "CC BY-SA 4.0",
+    "alt": "Wide curtain of water pouring over Shoshone Falls in Idaho"
+  },
+  "basque": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Restaurant_Menta_%28Esnazu%29_-_Cotelettes_d%27agneau.jpg/960px-Restaurant_Menta_%28Esnazu%29_-_Cotelettes_d%27agneau.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Restaurant_Menta_(Esnazu)_-_Cotelettes_d%27agneau.jpg",
+    "credit": "Tangopaso",
+    "license": "Public domain",
+    "alt": "Grilled lamb chops with onions served on a pewter platter"
+  },
+  "columbiagorge": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/The_Columbia_River_Gorge_from_Dog_Mountain.jpg/960px-The_Columbia_River_Gorge_from_Dog_Mountain.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:The_Columbia_River_Gorge_from_Dog_Mountain.jpg",
+    "credit": "Mattsjc",
+    "license": "CC BY 4.0",
+    "alt": "The Columbia River winding between the steep walls of its gorge"
+  },
+  "multnomah": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Multnomah_Falls_%2819741462372%29.jpg/960px-Multnomah_Falls_%2819741462372%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Multnomah_Falls_(19741462372).jpg",
+    "credit": "Tony Webster from Minneapolis, Minnesota",
+    "license": "CC BY 2.0",
+    "alt": "Multnomah Falls dropping down a mossy basalt cliff among green trees"
+  },
+  "oysters": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Wicked_Pissah_Oysters.jpg/960px-Wicked_Pissah_Oysters.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Wicked_Pissah_Oysters.jpg",
+    "credit": "FordsFishShack",
+    "license": "CC BY-SA 4.0",
+    "alt": "Raw oysters on the half shell on ice with lemon and sauce"
+  },
+  "goldengate": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Golden_Gate_Bridge_as_seen_from_Marshall%E2%80%99s_Beach%2C_March_2018.jpg/960px-Golden_Gate_Bridge_as_seen_from_Marshall%E2%80%99s_Beach%2C_March_2018.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Golden_Gate_Bridge_as_seen_from_Marshall%E2%80%99s_Beach,_March_2018.jpg",
+    "credit": "Frank Schulenburg",
+    "license": "CC BY-SA 4.0",
+    "alt": "The Golden Gate Bridge seen from the rocky shore of Marshall's Beach"
+  },
+  "pointreyes": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Coastline_as_seen_from_Chimney_Rock%2C_Point_Reyes_National_Seashore.jpg/960px-Coastline_as_seen_from_Chimney_Rock%2C_Point_Reyes_National_Seashore.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Coastline_as_seen_from_Chimney_Rock,_Point_Reyes_National_Seashore.jpg",
+    "credit": "Frank Schulenburg",
+    "license": "CC BY-SA 4.0",
+    "alt": "Green headlands and cliffs meeting the ocean at Point Reyes"
+  },
+  "beartooth": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Beartooth_Highway_Showing_Switchbacks.jpg/960px-Beartooth_Highway_Showing_Switchbacks.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Beartooth_Highway_Showing_Switchbacks.jpg",
+    "credit": "WizardFusion",
+    "license": "Public domain",
+    "alt": "The Beartooth Highway curving across a high alpine plateau"
+  },
+  "dinosaurquarry": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Wall_of_Bones_in_the_Quarry_Building_at_Dinosaur_National_Monument_2012.JPG/960px-Wall_of_Bones_in_the_Quarry_Building_at_Dinosaur_National_Monument_2012.JPG",
+    "page": "https://commons.wikimedia.org/wiki/File:Wall_of_Bones_in_the_Quarry_Building_at_Dinosaur_National_Monument_2012.JPG",
+    "credit": "Drake411",
+    "license": "CC BY-SA 3.0",
+    "alt": "Hundreds of dinosaur bones exposed in the tilted quarry rock wall"
+  },
+  "craters": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Craters_of_the_Moon_National_Monument_-_66.jpg/960px-Craters_of_the_Moon_National_Monument_-_66.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Craters_of_the_Moon_National_Monument_-_66.jpg",
+    "credit": "dwhartwig",
+    "license": "CC BY 2.0",
+    "alt": "Black lava cinder field with scattered pines and distant mountains"
+  },
+  "smithrock": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Scenic_view_of_Smith_Rock.jpg/960px-Scenic_view_of_Smith_Rock.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Scenic_view_of_Smith_Rock.jpg",
+    "credit": "Ennetws",
+    "license": "Public domain",
+    "alt": "Smith Rock's tan cliffs above the winding Crooked River"
+  },
+  "alvord": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Steens_Mountain_from_Alvord_desert_floor%2C_Oregon_%2851994289002%29.jpg/960px-Steens_Mountain_from_Alvord_desert_floor%2C_Oregon_%2851994289002%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Steens_Mountain_from_Alvord_desert_floor,_Oregon_(51994289002).jpg",
+    "credit": "Bonnie Moreland",
+    "license": "Public domain",
+    "alt": "Cracked white playa of the Alvord Desert below Steens Mountain at dusk"
+  },
+  "bixby": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Bixby_Creek_Bridge%2C_California%2C_USA_-_May_2013.jpg/960px-Bixby_Creek_Bridge%2C_California%2C_USA_-_May_2013.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Bixby_Creek_Bridge,_California,_USA_-_May_2013.jpg",
+    "credit": "Diliff",
+    "license": "CC BY-SA 3.0",
+    "alt": "The arched Bixby Creek Bridge spanning a canyon on the Big Sur coast"
+  },
+  "rainier": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Mt_Rainier_%26_Reflection_Lakes_%288082913563%29.jpg/960px-Mt_Rainier_%26_Reflection_Lakes_%288082913563%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Mt_Rainier_%26_Reflection_Lakes_(8082913563).jpg",
+    "credit": "Navin75",
+    "license": "CC BY-SA 2.0",
+    "alt": "Mount Rainier and evergreen forest reflected in Reflection Lakes"
+  },
+  "hoh": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Hoh_Rain_Forest_Olympic_June_2018_001.jpg/960px-Hoh_Rain_Forest_Olympic_June_2018_001.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Hoh_Rain_Forest_Olympic_June_2018_001.jpg",
+    "credit": "King of Hearts",
+    "license": "CC BY-SA 4.0",
+    "alt": "Moss-draped trees and ferns in the Hoh Rainforest of Olympic National Park"
+  }
+}

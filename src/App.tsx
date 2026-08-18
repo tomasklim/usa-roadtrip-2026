@@ -1,23 +1,24 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
+import { ActBar, TripBar } from "./components/TripBar";
 import { Flights } from "./components/Flights";
 import { Modules } from "./components/Modules";
 import { RouteMap, type Basemap, type Layers } from "./components/RouteMap";
-import { DayList, type Lens } from "./components/DayList";
-import { Charging, Glance, LensBar, LoadChart, RiskSection, SleepSection } from "./components/Panels";
+import { DayList } from "./components/DayList";
+import { Charging, Glance, LoadChart, RiskSection, SleepSection } from "./components/Panels";
 import { FoodGuide } from "./components/FoodGuide";
 import { Budget } from "./components/Budget";
 import { Checklist } from "./components/Checklist";
 import { buildTrip } from "./lib/trip";
 import { useStored } from "./lib/useStored";
 import type { SleepStyle, Units } from "./types";
+import type { Tab } from "./components/DayPanel";
 
 export default function App() {
   const [mods, setMods] = useStored<string[]>("mods", []);
   const [units, setUnits] = useStored<Units>("units", "mi");
   const [theme, setTheme] = useStored<string | null>("theme", null);
-  const [lens, setLens] = useStored<Lens>("lens", "all");
+  const [tab, setTab] = useStored<Tab>("tab", "plan");
   const [basemap, setBasemap] = useStored<Basemap>("basemap", "terrain");
   const [layers, setLayers] = useStored<Layers>("layers2", { sights: true, food: true, chargers: false, stores: false });
   const [mapHeight, setMapHeight] = useStored<number | null>("mapHeight", null);
@@ -27,6 +28,7 @@ export default function App() {
   const [showList, setShowList] = useStored<boolean>("showList", false);
   const [sleepStyle, setSleepStyle] = useStored<SleepStyle>("sleepStyle", "balanced");
   const [selected, setSelected] = useState<string | null>(null);
+  const [ghost, setGhost] = useState<string | null>(null);
 
   const on = useMemo(() => new Set(Array.isArray(mods) ? mods : []), [mods]);
   const trip = useMemo(() => buildTrip(on, sleepStyle), [on, sleepStyle]);
@@ -101,12 +103,11 @@ export default function App() {
   return (
     <>
       <Header units={units} setUnits={setUnits} theme={theme} setTheme={setTheme} />
-      <Hero trip={trip} units={units} />
-      <Flights />
+      <TripBar trip={trip} units={units} />
 
-      <section id="plan">
+      <section id="plan" style={{ paddingTop: 18 }}>
         <div className="wrap">
-          <div className="shead"><span className="num">02</span><h2>The route, day by day</h2></div>
+          <ActBar trip={trip} selected={selected} onPick={select} />
           <p className="sub">
             Everything is on the map: the panel on the right explains the trip and then becomes the
             day you have selected. Distances are measured on real road geometry, not estimated.
@@ -116,15 +117,16 @@ export default function App() {
                     layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
                     dark={dark} wheelZoom={wheelZoom} setWheelZoom={setWheelZoom}
                     panel={panel} setPanel={setPanel}
-                    panelWidth={panelWidth} setPanelWidth={setPanelWidth} lens={lens}
+                    panelWidth={panelWidth} setPanelWidth={setPanelWidth} tab={tab} setTab={setTab}
+                    ghost={ghost}
                     onClear={() => setSelected(null)}
                     mapHeight={mapHeight} setMapHeight={setMapHeight}
                     onStep={step} onScrollTo={scrollToDay} />
 
           <div className="controls">
             <Modules on={on} toggle={toggle} trip={trip} units={units}
-                     sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={select} />
-            <LensBar lens={lens} setLens={setLens} />
+                     sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={select}
+                     onHover={setGhost} />
           </div>
 
           <button className="listtoggle" onClick={() => setShowList(!showList)}>
@@ -133,11 +135,12 @@ export default function App() {
               : `▾  Read the whole itinerary as text — all ${trip.days.length} days`}
           </button>
           {showList && (
-            <DayList trip={trip} units={units} selected={selected} onSelect={select} lens={lens} />
+            <DayList trip={trip} units={units} selected={selected} onSelect={select} />
           )}
         </div>
       </section>
 
+      <Flights />
       <Glance trip={trip} units={units} onSelect={selectAndScroll} />
       <LoadChart trip={trip} units={units} onSelect={selectAndScroll} />
       <Charging />

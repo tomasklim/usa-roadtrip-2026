@@ -3,26 +3,6 @@ import { SLEEP_STYLES } from "../data/itinerary";
 import { blockOf, difficulty, distLabel, fmtShort } from "../lib/trip";
 import type { Trip } from "../lib/trip";
 import type { SleepStyle, Units } from "../types";
-import type { Lens } from "./DayList";
-
-const LENSES: [Lens, string][] = [
-  ["all", "Everything"], ["hi", "Highlights"], ["food", "Food"],
-  ["charge", "Charging"], ["sleep", "Sleeping"]
-];
-
-export function LensBar({ lens, setLens }: { lens: Lens; setLens: (l: Lens) => void }) {
-  return (
-    <div className="card panel">
-      <h3>Focus</h3>
-      <p className="hint">Trim the day cards down to whatever you are solving right now.</p>
-      <div className="mapbar" style={{ padding: 0, border: 0 }}>
-        {LENSES.map(([k, label]) => (
-          <button key={k} className={`pill${lens === k ? " on" : ""}`} onClick={() => setLens(k)}>{label}</button>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export function Glance({ trip, units, onSelect }: {
   trip: Trip; units: Units; onSelect: (id: string) => void;

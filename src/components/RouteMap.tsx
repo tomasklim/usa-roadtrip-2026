@@ -6,10 +6,11 @@ import storesRaw from "../data/stores.json";
 import photosRaw from "../data/photos.json";
 import chargersRaw from "../data/chargers.json";
 import { ROUTES, distLabel, downloadGpx, toGpx, difficulty } from "../lib/trip";
+import { MODULES } from "../data/itinerary";
 import type { Trip } from "../lib/trip";
 import type { Charger, Photo, Poi, Units } from "../types";
 import { DayPanel, OverviewPanel } from "./DayPanel";
-import type { Lens } from "./DayList";
+import type { Tab } from "./DayPanel";
 
 const POIS = poisRaw as unknown as Poi[];
 const CHARGERS = chargersRaw as unknown as Charger[];
@@ -254,7 +255,7 @@ function PoiLayer({ layers, pois, onOpenDay, dayLabel }: {
 
 export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, basemap, setBasemap,
                           dark, wheelZoom, setWheelZoom, panel, setPanel, panelWidth, setPanelWidth,
-                          lens, onClear,
+                          tab, setTab, ghost, onClear,
                           mapHeight, setMapHeight, onStep, onScrollTo }: {
   trip: Trip; units: Units; selected: string | null;
   onSelect: (id: string) => void;
@@ -264,7 +265,8 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
   wheelZoom: boolean; setWheelZoom: (v: boolean) => void;
   panel: boolean; setPanel: (v: boolean) => void;
   panelWidth: number; setPanelWidth: (w: number) => void;
-  lens: Lens;
+  tab: Tab; setTab: (t: Tab) => void;
+  ghost: string | null;
   onClear: () => void;
   mapHeight: number | null; setMapHeight: (h: number | null) => void;
   onStep: (delta: number) => void;
@@ -272,6 +274,10 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
 }) {
   const markerRefs = useRef<Record<string, L.Marker | null>>({});
   const wide = useIsWide();
+  const ghostLegs = ghost
+    ? (MODULES.find((m) => m.id === ghost)?.days ?? [])
+        .map((d) => d.id).filter((id) => ROUTES[id]?.line?.length > 1)
+    : [];
   // The panel covers the right edge, so framing has to account for it.
   const panelPad = panel && wide ? panelWidth : 0;
 
@@ -317,6 +323,36 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
     if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
     if (liveH != null) setMapHeight(liveH);
     setLiveH(null);
+  };
+
+  /**
+   * Phone sheet: three snap points, the Google/Apple Maps gesture. Dragging sets
+   * a live height; releasing snaps to the nearest of peek / half / full.
+   */
+  const SNAPS = [0.14, 0.52, 0.92];
+  const [snap, setSnap] = useState(1);
+  const [liveSnap, setLiveSnap] = useState<number | null>(null);
+  const sdrag = useRef<{ y: number; frac: number } | null>(null);
+  const sheetFrac = liveSnap ?? SNAPS[snap];
+  const startSheet = (e: React.PointerEvent<HTMLDivElement>) => {
+    sdrag.current = { y: e.clientY, frac: sheetFrac };
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+  const onSheet = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!sdrag.current) return;
+    const h = wrapRef.current?.getBoundingClientRect().height ?? 500;
+    const next = sdrag.current.frac - (e.clientY - sdrag.current.y) / h;
+    setLiveSnap(Math.max(0.1, Math.min(0.95, next)));
+  };
+  const endSheet = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!sdrag.current) return;
+    sdrag.current = null;
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
+    const f = liveSnap ?? sheetFrac;
+    let best = 0;
+    SNAPS.forEach((v, i) => { if (Math.abs(v - f) < Math.abs(SNAPS[best] - f)) best = i; });
+    setSnap(best);
+    setLiveSnap(null);
   };
 
   // Panel width drag, committed to storage only on release.
@@ -418,6 +454,11 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
             );
           })}
 
+          {ghostLegs.map((id) => (
+            <Polyline key={`ghost-${id}`} positions={ROUTES[id].line}
+                      pathOptions={{ className: "rt-ghost", weight: 4, dashArray: "3 7", opacity: .95 }} />
+          ))}
+
           <PoiLayer layers={layers} pois={visiblePois} onOpenDay={openDay} dayLabel={dayLabel} />
 
           {layers.chargers && CHARGERS.map((c) => (
@@ -452,11 +493,13 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
         </MapContainer>
 
         {panel && (cur
-          ? <DayPanel day={cur} units={units} lens={lens} count={trip.days.length}
+          ? <DayPanel day={cur} units={units} count={trip.days.length} tab={tab} setTab={setTab}
                       width={wide ? panelWidth : undefined as unknown as number}
+                      sheet={wide ? undefined : { frac: sheetFrac, onStart: startSheet, onMove: onSheet, onEnd: endSheet }}
                       onClose={onClear} onStep={onStep} onScrollTo={onScrollTo} />
           : <OverviewPanel trip={trip} units={units}
                            width={wide ? panelWidth : undefined as unknown as number}
+                           sheet={wide ? undefined : { frac: sheetFrac, onStart: startSheet, onMove: onSheet, onEnd: endSheet }}
                            onStart={() => onSelect(trip.days[0].id)}
                            onClose={() => setPanel(false)} />)}
         {panel && wide && (

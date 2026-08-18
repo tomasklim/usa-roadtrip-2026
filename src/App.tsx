@@ -20,6 +20,7 @@ export default function App() {
   const [lens, setLens] = useStored<Lens>("lens", "all");
   const [basemap, setBasemap] = useStored<Basemap>("basemap", "terrain");
   const [layers, setLayers] = useStored<Layers>("layers", { sights: true, food: false, chargers: false });
+  const [mapHeight, setMapHeight] = useStored<number | null>("mapHeight", null);
   const [selected, setSelected] = useState<string | null>(null);
 
   const on = useMemo(() => new Set(Array.isArray(mods) ? mods : []), [mods]);
@@ -74,7 +75,7 @@ export default function App() {
             <div className="side">
               <RouteMap trip={trip} units={units} selected={selected} onSelect={select}
                         layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
-                        dark={dark} />
+                        dark={dark} mapHeight={mapHeight} setMapHeight={setMapHeight} />
               <Modules on={on} toggle={toggle} trip={trip} units={units} />
               <LensBar lens={lens} setLens={setLens} />
             </div>

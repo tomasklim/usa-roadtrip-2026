@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { CircleMarker, MapContainer, TileLayer, Polyline, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import poisRaw from "../data/pois.json";
@@ -93,16 +93,52 @@ const poiIcon = (glyph: string) =>
     iconAnchor: [10, 10]
   });
 
-export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, basemap, setBasemap, dark }: {
+export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, basemap, setBasemap,
+                          dark, mapHeight, setMapHeight }: {
   trip: Trip; units: Units; selected: string | null;
   onSelect: (id: string) => void;
   layers: Layers; setLayers: (l: Layers) => void;
   basemap: Basemap; setBasemap: (b: Basemap) => void;
   dark: boolean;
+  mapHeight: number | null; setMapHeight: (h: number | null) => void;
 }) {
   const activeIds = new Set(trip.days.map((d) => d.id));
   const visiblePois = POIS.filter((p) => activeIds.has(p.day));
   const bm = BASEMAPS[basemap];
+
+  // Height is dragged locally and only committed to storage on release, so a
+  // drag does not write to localStorage on every pointer move.
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<{ y: number; h: number } | null>(null);
+  const [liveH, setLiveH] = useState<number | null>(null);
+  const [dragging, setDragging] = useState(false);
+  const height = liveH ?? mapHeight;
+
+  const startDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    const h = wrapRef.current?.getBoundingClientRect().height ?? 520;
+    dragRef.current = { y: e.clientY, h };
+    setLiveH(Math.round(h));
+    setDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+  const onDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragRef.current) return;
+    const next = dragRef.current.h + (e.clientY - dragRef.current.y);
+    setLiveH(Math.round(Math.max(260, Math.min(1800, next))));
+  };
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!dragRef.current) return;
+    dragRef.current = null;
+    setDragging(false);
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
+    if (liveH != null) setMapHeight(liveH);
+    setLiveH(null);
+  };
+
+  const fillScreen = () => {
+    if (height != null) { setMapHeight(null); setLiveH(null); }
+    else setMapHeight(Math.round(window.innerHeight - 150));
+  };
 
   const dl = () =>
     downloadGpx(
@@ -112,7 +148,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
 
   return (
     <div className="card mapcard">
-      <div className="mapwrap">
+      <div className="mapwrap" ref={wrapRef} style={height != null ? { height } : undefined}>
         <MapContainer center={[45.5, -114]} zoom={5} scrollWheelZoom={false} className="leaflet-container">
           <TileLayer key={`${basemap}-${dark}`} url={bm.url(dark)} attribution={bm.attr} maxZoom={bm.max} />
           <Resizer />
@@ -191,6 +227,19 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
         </MapContainer>
       </div>
 
+      <div
+        className={`grip${dragging ? " dragging" : ""}`}
+        onPointerDown={startDrag}
+        onPointerMove={onDrag}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onDoubleClick={() => { setMapHeight(null); setLiveH(null); }}
+        role="separator"
+        aria-orientation="horizontal"
+        aria-label="Drag to resize the map, double-click to reset"
+        title="Drag to resize · double-click to reset"
+      />
+
       <div className="mapbar">
         <button className={`pill${layers.sights ? " on" : ""}`}
                 onClick={() => setLayers({ ...layers, sights: !layers.sights })}>◎ Sights</button>
@@ -208,6 +257,10 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
             </button>
           ))}
         </div>
+        <button className="pill" onClick={fillScreen}
+                title={height != null ? "Back to the automatic height" : "Fill the screen height"}>
+          {height != null ? "⤡ Auto" : "⤢ Taller"}
+        </button>
         <button className="pill" onClick={dl} title="Download the whole route as GPX">↓ GPX</button>
       </div>
     </div>

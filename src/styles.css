@@ -114,13 +114,31 @@ section{padding:44px 0;border-bottom:1px solid var(--line)}
 .planner{display:grid;gap:18px;grid-template-columns:1fr}
 @media(min-width:1080px){
   .planner{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:start}
+  /* Give the map more of the screen as the monitor grows. */
+  @media(min-width:1600px){
+    .wrap{max-width:1560px}
+    .planner{grid-template-columns:minmax(0,1.32fr) minmax(0,1fr)}
+  }
+  @media(min-width:1920px){
+    .wrap{max-width:1780px}
+    .planner{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}
+  }
   .side{position:sticky;top:calc(var(--head) + 12px);max-height:calc(100vh - var(--head) - 24px);
     overflow:auto;display:grid;gap:12px;padding-right:2px}
 }
 .side{display:grid;gap:12px}
 .mapcard{padding:0;overflow:hidden}
-.mapwrap{height:min(52vh,520px);min-height:340px;width:100%}
-@media(max-width:1079px){.mapwrap{height:60vh;min-height:380px}}
+/* Default scales with the viewport but leaves room for the module panel beneath
+   it in the sticky column; a drag handle overrides it and the value persists. */
+.mapwrap{height:clamp(340px,calc(100vh - 420px),900px);width:100%}
+@media(max-width:1079px){.mapwrap{height:clamp(360px,62vh,680px)}}
+.grip{height:13px;display:flex;align-items:center;justify-content:center;cursor:ns-resize;
+  background:var(--surface2);border-top:1px solid var(--line);touch-action:none;user-select:none}
+.grip:hover{background:var(--line)}
+.grip::before{content:"";width:38px;height:3px;border-radius:99px;background:var(--line2)}
+.grip:hover::before{background:var(--muted)}
+.grip.dragging{background:var(--rust-soft)}
+.grip.dragging::before{background:var(--rust)}
 .leaflet-container{height:100%;width:100%;background:var(--surface2);
   font-family:var(--sans);font-size:12px}
 .leaflet-container path.ch-fast{stroke:var(--pine);fill:var(--pine);fill-opacity:.85}

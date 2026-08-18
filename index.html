@@ -1,0 +1,1314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northwest Roadtrip 2026 — Seattle · Glacier · Yellowstone · Bonneville · SF</title>
+<meta name="description" content="Interactive plan for a 14-day, 3,000-mile Tesla Model Y roadtrip: Seattle → Glacier → Yellowstone → Grand Teton → Salt Lake City → Bonneville Salt Flats → Boise → Columbia Gorge → Seattle, finishing in San Francisco. Sept 23 – Oct 11, 2026.">
+<meta name="theme-color" content="#14120f">
+<meta property="og:title" content="Northwest Roadtrip 2026">
+<meta property="og:description" content="14 days, 3,000 miles, one Model Y. Glacier, Yellowstone, Bonneville Salt Flats — and a gluten-free, dairy-free food line built on oysters and In-N-Out.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%97%3C/text%3E%3C/svg%3E">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#f7f3ec; --bg2:#efe8dc; --surface:#fffdf9; --surface2:#f5efe4;
+  --text:#1c1917; --muted:#6f665c; --faint:#9a9086;
+  --line:#e3dacb; --line2:#d3c7b3;
+  --rust:#c2410c; --rust-soft:#fde5d3;
+  --pine:#15803d; --pine-soft:#d8f0dd;
+  --sky:#0369a1; --sky-soft:#d6ebf8;
+  --gold:#a16207; --gold-soft:#f8ecc9;
+  --plum:#7e22ce; --plum-soft:#eee0fb;
+  --shadow:0 1px 2px rgba(50,38,25,.06),0 8px 24px -12px rgba(50,38,25,.18);
+  --radius:14px;
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --serif:ui-serif,"Iowan Old Style",Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#131110; --bg2:#0d0c0b; --surface:#1d1a17; --surface2:#262220;
+    --text:#f4efe7; --muted:#a79d90; --faint:#7d7368;
+    --line:#332e29; --line2:#453e37;
+    --rust:#fb923c; --rust-soft:#3d2210;
+    --pine:#4ade80; --pine-soft:#0f2e1b;
+    --sky:#5cc0f5; --sky-soft:#0c2a3d;
+    --gold:#eab308; --gold-soft:#2f2609;
+    --plum:#c084fc; --plum-soft:#2a1640;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 32px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131110; --bg2:#0d0c0b; --surface:#1d1a17; --surface2:#262220;
+  --text:#f4efe7; --muted:#a79d90; --faint:#7d7368;
+  --line:#332e29; --line2:#453e37;
+  --rust:#fb923c; --rust-soft:#3d2210;
+  --pine:#4ade80; --pine-soft:#0f2e1b;
+  --sky:#5cc0f5; --sky-soft:#0c2a3d;
+  --gold:#eab308; --gold-soft:#2f2609;
+  --plum:#c084fc; --plum-soft:#2a1640;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 32px -16px rgba(0,0,0,.7);
+}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;letter-spacing:-.01em;margin:0}
+a{color:var(--rust)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.tnum{font-variant-numeric:tabular-nums}
+
+header.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:56px}
+.brand{font-family:var(--serif);font-weight:600;font-size:1.02rem;white-space:nowrap}
+.brand span{color:var(--muted);font-weight:400}
+nav.links{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+nav.links::-webkit-scrollbar{display:none}
+nav.links a{color:var(--muted);text-decoration:none;font-size:.83rem;padding:6px 9px;border-radius:8px;white-space:nowrap}
+nav.links a:hover{background:var(--surface2);color:var(--text)}
+.themebtn{flex:none;background:var(--surface);border:1px solid var(--line);color:var(--muted);
+  width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:15px;line-height:1}
+.themebtn:hover{color:var(--text);border-color:var(--line2)}
+
+.hero{padding:44px 0 28px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,var(--bg2),var(--bg))}
+.kicker{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);font-weight:600}
+.hero h1{font-size:clamp(2rem,5.2vw,3.4rem);margin:10px 0 12px}
+.hero p.lede{color:var(--muted);max-width:64ch;margin:0;font-size:1.03rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:10px;margin-top:26px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:13px 14px}
+.stat b{display:block;font-family:var(--serif);font-size:1.72rem;line-height:1;letter-spacing:-.02em}
+.stat small{display:block;color:var(--muted);font-size:.76rem;margin-top:6px;letter-spacing:.02em}
+.stat.accent b{color:var(--rust)}
+
+section{padding:46px 0;border-bottom:1px solid var(--line)}
+.shead{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.shead h2{font-size:clamp(1.4rem,3vw,1.95rem)}
+.shead .num{font-family:var(--mono);font-size:.74rem;color:var(--faint);letter-spacing:.1em}
+.sub{color:var(--muted);max-width:72ch;margin:0 0 22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+
+.controls{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:860px){.controls{grid-template-columns:1.45fr 1fr}}
+.panel{padding:16px 17px}
+.panel h3{font-size:.95rem;margin-bottom:4px}
+.panel .hint{color:var(--muted);font-size:.8rem;margin:0 0 13px}
+.mods{display:grid;gap:8px}
+.mod{display:flex;gap:11px;align-items:flex-start;padding:10px 11px;border:1px solid var(--line);
+  border-radius:11px;cursor:pointer;background:var(--bg);transition:border-color .15s,background .15s}
+.mod:hover{border-color:var(--line2)}
+.mod input{margin:3px 0 0;accent-color:var(--rust);width:16px;height:16px;flex:none;cursor:pointer}
+.mod.on{border-color:var(--rust);background:var(--rust-soft)}
+.mod .mt{font-weight:600;font-size:.89rem}
+.mod .md{color:var(--muted);font-size:.79rem;line-height:1.45}
+.mod .mc{margin-left:auto;text-align:right;flex:none;font-family:var(--mono);font-size:.72rem;color:var(--muted);white-space:nowrap}
+.risk{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.05em;padding:1px 5px;border-radius:5px;text-transform:uppercase}
+.risk.hi{background:var(--rust-soft);color:var(--rust)}
+.risk.lo{background:var(--pine-soft);color:var(--pine)}
+.lenses{display:flex;flex-wrap:wrap;gap:6px}
+.lens{border:1px solid var(--line);background:var(--bg);color:var(--muted);border-radius:99px;
+  padding:6px 13px;font-size:.82rem;cursor:pointer;font-family:inherit}
+.lens:hover{border-color:var(--line2);color:var(--text)}
+.lens.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.warn{margin-top:13px;padding:11px 13px;border-radius:11px;font-size:.84rem;line-height:1.5;
+  background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 35%,transparent);color:var(--text)}
+.warn.ok{background:var(--pine-soft);border-color:color-mix(in srgb,var(--pine) 35%,transparent)}
+.warn b{color:var(--gold)}
+.warn.ok b{color:var(--pine)}
+
+.mapcard{padding:8px;overflow:hidden}
+svg.map{display:block;width:100%;height:auto}
+.st{fill:var(--surface2);stroke:var(--line2);stroke-width:1.1}
+.st-lbl{fill:var(--faint);font-size:11px;font-family:var(--sans);letter-spacing:.16em;
+  text-anchor:middle;pointer-events:none;text-transform:uppercase}
+.route{fill:none;stroke:var(--rust);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
+.route.modroute{stroke:var(--plum);stroke-dasharray:7 4}
+.fly{fill:none;stroke:var(--sky);stroke-width:1.8;stroke-dasharray:2 6;stroke-linecap:round;opacity:.85}
+.pin{cursor:pointer}
+.pin circle{fill:var(--surface);stroke:var(--rust);stroke-width:2;transition:r .12s}
+.pin.modpin circle{stroke:var(--plum)}
+.pin text{fill:var(--text);font-size:9.5px;font-weight:700;text-anchor:middle;
+  font-family:var(--sans);pointer-events:none}
+.pin:hover circle,.pin.hl circle{fill:var(--rust);r:11}
+.pin:hover text,.pin.hl text{fill:#fff}
+.pin.modpin:hover circle,.pin.modpin.hl circle{fill:var(--plum)}
+.city{fill:var(--muted);font-size:9.5px;font-family:var(--sans);pointer-events:none}
+.maplegend{display:flex;flex-wrap:wrap;gap:14px;padding:10px 12px 4px;font-size:.77rem;color:var(--muted)}
+.maplegend i{display:inline-block;width:18px;height:0;border-top-width:2.5px;border-top-style:solid;
+  vertical-align:middle;margin-right:6px}
+
+.days{display:grid;gap:12px}
+.day{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);
+  box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:76px}
+.day.ismod{border-color:color-mix(in srgb,var(--plum) 45%,var(--line))}
+.day.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%,22%{background:var(--rust-soft)}100%{background:var(--surface)}}
+.dh{display:flex;gap:14px;align-items:baseline;padding:14px 16px;border-bottom:1px solid var(--line);
+  background:var(--surface2);flex-wrap:wrap}
+.dnum{font-family:var(--serif);font-size:1.5rem;line-height:1;color:var(--rust);flex:none;min-width:2ch}
+.day.ismod .dnum{color:var(--plum)}
+.dwhen{font-size:.78rem;color:var(--muted);letter-spacing:.03em;white-space:nowrap}
+.dtitle{font-family:var(--serif);font-size:1.09rem;line-height:1.3;flex:1 1 260px;min-width:0}
+.dmeta{margin-left:auto;display:flex;gap:8px;flex:none;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:.71rem;padding:3px 8px;border-radius:7px;
+  background:var(--bg);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.chip.mi{color:var(--rust);border-color:color-mix(in srgb,var(--rust) 35%,transparent)}
+.dbody{padding:4px 16px 14px}
+.row{display:flex;gap:11px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.row:last-child{border-bottom:0}
+.row .ico{flex:none;width:22px;text-align:center;font-size:.95rem;line-height:1.55;opacity:.9}
+.row .rc{min-width:0;flex:1}
+.rl{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);
+  font-weight:700;margin-bottom:3px}
+.row ul{margin:0;padding-left:17px}
+.row li{margin:2px 0}
+.row li::marker{color:var(--line2)}
+.why{color:var(--muted);font-style:italic;font-family:var(--serif);font-size:.94rem}
+.tag{display:inline-block;font-size:.66rem;font-weight:700;padding:1px 5px;border-radius:5px;
+  margin-left:5px;vertical-align:1px;letter-spacing:.03em}
+.tag.gf{background:var(--pine-soft);color:var(--pine)}
+.tag.df{background:var(--sky-soft);color:var(--sky)}
+.tag.meat{background:var(--rust-soft);color:var(--rust)}
+.tag.oy{background:var(--plum-soft);color:var(--plum)}
+.tag.ino{background:var(--gold-soft);color:var(--gold)}
+.sleep-car{color:var(--pine);font-weight:600}
+.sleep-motel{color:var(--sky);font-weight:600}
+.alert{margin-top:9px;font-size:.83rem;background:var(--gold-soft);border-left:3px solid var(--gold);
+  padding:8px 11px;border-radius:0 8px 8px 0}
+
+.chart{padding:16px}
+svg.bars{display:block;width:100%;height:auto}
+.bar{fill:var(--rust);opacity:.85;cursor:pointer}
+.bar:hover{opacity:1}
+.bar.hard{fill:var(--gold)}
+.bar.modbar{fill:var(--plum)}
+.bx{fill:var(--faint);font-size:9px;text-anchor:middle;font-family:var(--mono)}
+.bv{fill:var(--muted);font-size:8.5px;text-anchor:middle;font-family:var(--mono)}
+.gl{stroke:var(--line);stroke-width:1}
+.gt{fill:var(--faint);font-size:8.5px;font-family:var(--mono)}
+
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.87rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.71rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);
+  font-weight:700;background:var(--surface2)}
+tbody tr:last-child td{border-bottom:0}
+tr.gap td{background:var(--gold-soft)}
+tr.crit td{background:var(--rust-soft)}
+td.n{font-family:var(--mono);white-space:nowrap}
+
+.food{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(268px,1fr))}
+.fcard{padding:15px 16px}
+.fcard h3{font-size:1rem;margin-bottom:3px}
+.fcard .place{color:var(--muted);font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px}
+.fcard ul{margin:0;padding-left:16px;font-size:.89rem}
+.fcard li{margin:5px 0}
+.rules{padding:15px 16px;margin-bottom:14px;border-left:3px solid var(--pine)}
+.rules ul{margin:8px 0 0;padding-left:18px;font-size:.9rem}
+.rules li{margin:5px 0}
+
+.budget{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:880px){.budget{grid-template-columns:1fr 1fr}}
+.sliders{padding:16px}
+.sl{margin-bottom:15px}
+.sl:last-child{margin-bottom:0}
+.sl label{display:flex;justify-content:space-between;gap:10px;font-size:.85rem;margin-bottom:5px}
+.sl label b{font-family:var(--mono);font-weight:600;color:var(--rust);font-size:.85rem}
+.sl input[type=range]{width:100%;accent-color:var(--rust);margin:0}
+.bill{padding:16px;display:flex;flex-direction:column}
+.bline{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:.88rem}
+.bline span:last-child{font-family:var(--mono);white-space:nowrap}
+.bline.sum{border-bottom:0;border-top:2px solid var(--text);margin-top:8px;padding-top:12px;
+  font-family:var(--serif);font-size:1.25rem;font-weight:600}
+.bline.sum span:last-child{font-family:var(--serif)}
+.bnote{color:var(--muted);font-size:.78rem;margin:12px 0 0}
+
+.checks{display:grid;gap:9px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.chk{display:flex;gap:11px;padding:12px 13px;border:1px solid var(--line);border-radius:11px;
+  background:var(--surface);cursor:pointer;align-items:flex-start}
+.chk input{margin:3px 0 0;accent-color:var(--pine);width:17px;height:17px;flex:none;cursor:pointer}
+.chk.done{background:var(--pine-soft);border-color:color-mix(in srgb,var(--pine) 35%,transparent)}
+.chk.done .ct{text-decoration:line-through;opacity:.65}
+.chk .ct{font-weight:600;font-size:.89rem}
+.chk .cd{color:var(--muted);font-size:.8rem;line-height:1.45;margin-top:2px}
+.chk.block{border-left:3px solid var(--rust)}
+.progress{height:5px;background:var(--surface2);border-radius:99px;overflow:hidden;margin:0 0 16px}
+.progress i{display:block;height:100%;background:var(--pine);transition:width .25s}
+
+.grid2{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.rcard{padding:15px 16px}
+.rcard h3{font-size:.98rem;margin-bottom:7px}
+.rcard p{margin:0;font-size:.88rem;color:var(--muted)}
+.rcard .dl{font-family:var(--mono);font-size:.78rem;color:var(--rust);margin-top:8px;display:block}
+footer{padding:34px 0 48px;color:var(--muted);font-size:.83rem}
+footer p{margin:0 0 6px}
+.tip{background:var(--sky-soft);border-left:3px solid var(--sky);padding:11px 13px;border-radius:0 9px 9px 0;
+  font-size:.87rem;margin:14px 0 0}
+@media print{header.top,.controls,.themebtn{display:none}section{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Northwest Roadtrip <span>’26</span></div>
+    <nav class="links">
+      <a href="#map">Map</a>
+      <a href="#plan">Itinerary</a>
+      <a href="#load">Driving load</a>
+      <a href="#charging">Charging</a>
+      <a href="#food">Food</a>
+      <a href="#sleep">Sleeping</a>
+      <a href="#budget">Budget</a>
+      <a href="#checklist">Checklist</a>
+      <a href="#risks">Risks</a>
+      <a href="#sf">SF finale</a>
+    </nav>
+    <button class="themebtn" id="theme" title="Toggle theme" aria-label="Toggle theme">◐</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Sept 23 – Oct 11, 2026 · Tesla Model Y · FSD · two people</div>
+    <h1>Seattle → Glacier → Yellowstone → Bonneville → back → San Francisco</h1>
+    <p class="lede">A northern loop through the Rockies for two, sleeping alternately in the car and
+      in motels, with a food line built on oysters, In-N-Out and unusual meat — all gluten-free
+      and dairy-free.</p>
+    <div class="stats" id="stats"></div>
+  </div>
+</div>
+
+<section id="map">
+  <div class="wrap">
+    <div class="shead"><span class="num">01</span><h2>The route</h2></div>
+    <p class="sub">Click any numbered pin to jump to that day. Purple dashed segments are optional
+      modules you can switch on below; the dotted blue line is flown, not driven.</p>
+    <div class="card mapcard">
+      <div id="mapbox"></div>
+      <div class="maplegend">
+        <span><i style="border-color:var(--rust)"></i>base route (driving)</span>
+        <span><i style="border-color:var(--plum);border-top-style:dashed"></i>modules switched on</span>
+        <span><i style="border-color:var(--sky);border-top-style:dotted"></i>flights</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <div class="shead"><span class="num">02</span><h2>Day by day</h2></div>
+    <p class="sub">The base plan is 14 driving days and about 3,000 miles, which fits the original
+      Oct 11 flight home with three nights in San Francisco. Nothing that got cut was thrown away —
+      it all lives in the modules, and can be switched back on even mid-trip.</p>
+
+    <div class="controls" style="margin-bottom:22px">
+      <div class="card panel">
+        <h3>Modules — what you can add back</h3>
+        <p class="hint">Switching one on recalculates the map, mileage, dates and budget.</p>
+        <div class="mods" id="mods"></div>
+        <div id="daywarn"></div>
+      </div>
+      <div class="card panel">
+        <h3>Focus</h3>
+        <p class="hint">Filter the day cards down to whatever you are solving right now.</p>
+        <div class="lenses" id="lenses"></div>
+        <div class="tip" style="margin-top:16px">
+          <b>Pace:</b> <span id="avgmi" class="tnum">214</span> miles/day on average. There is exactly
+          one heavy transfer — Boise to the Columbia Gorge. Everything else is a park day under
+          200 miles, where you stop whenever you feel like it.
+        </div>
+      </div>
+    </div>
+
+    <div class="days" id="days"></div>
+  </div>
+</section>
+
+<section id="load">
+  <div class="wrap">
+    <div class="shead"><span class="num">03</span><h2>Where it hurts</h2></div>
+    <p class="sub">Miles per day. Anything under 200 is a relaxed day with stops; over 300 is a
+      transfer where FSD and a podcast earn their keep.</p>
+    <div class="card chart" id="chart"></div>
+  </div>
+</section>
+
+<section id="charging">
+  <div class="wrap">
+    <div class="shead"><span class="num">04</span><h2>Charging</h2></div>
+    <p class="sub">A Model Y Long Range realistically does 250–280 miles at highway speed, less in
+      the mountains and in the cold. Highlighted rows need active management — and one of them is
+      genuinely critical.</p>
+    <div class="card" style="padding:2px 0">
+      <div class="tscroll"><table id="chargetbl"></table></div>
+    </div>
+    <div class="card rules" style="margin-top:14px;border-left-color:var(--rust)">
+      <h3 style="font-size:.98rem">Northern Yellowstone — the one real risk</h3>
+      <p style="margin:6px 0 0;font-size:.89rem;color:var(--muted)">
+        Gardiner has no Supercharger — only an L2 at Yellowstone Forever (2 ports) and a
+        <b>CCS</b> L3 at the Gardiner Sinclair. Without a charge, the stretch from the Bozeman
+        Supercharger through Gardiner, Lamar Valley and the whole park loop to the West Yellowstone
+        Supercharger is over 300 miles on one battery, and that does not work. There are two
+        fixes and you want both:
+      </p>
+      <ul style="font-size:.89rem">
+        <li>book a Gardiner motel <b>with an L2 charger</b> — eight hours overnight adds roughly 240 miles;</li>
+        <li>ask the Turo host for the <b>CCS Combo 1 adapter</b> as a backup.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="food">
+  <div class="wrap">
+    <div class="shead"><span class="num">05</span><h2>Eating gluten-free and dairy-free</h2></div>
+    <p class="sub">Two allergies and a love of meat fit this route better than you would expect —
+      oysters, steak and Basque cooking are naturally gluten-free.</p>
+    <div class="card rules">
+      <h3 style="font-size:.98rem">Rules that always work</h3>
+      <ul id="foodrules"></ul>
+    </div>
+    <div class="food" id="foodgrid"></div>
+  </div>
+</section>
+
+<section id="sleep">
+  <div class="wrap">
+    <div class="shead"><span class="num">06</span><h2>Sleeping: a mattress in the Model Y</h2></div>
+    <p class="sub">With the rear seats folded there is a <b>75 × 41 in (190 × 104 cm)</b> platform,
+      up to 83 in long with the front seats pushed forward. Tight for two, but it works.</p>
+    <div class="grid2" id="sleepgrid"></div>
+  </div>
+</section>
+
+<section id="budget">
+  <div class="wrap">
+    <div class="shead"><span class="num">07</span><h2>Budget</h2></div>
+    <p class="sub">For two people, excluding the transatlantic flights. Drag the sliders — the total
+      reads from whichever modules are currently switched on.</p>
+    <div class="budget">
+      <div class="card sliders" id="sliders"></div>
+      <div class="card bill" id="bill"></div>
+    </div>
+  </div>
+</section>
+
+<section id="checklist">
+  <div class="wrap">
+    <div class="shead"><span class="num">08</span><h2>Before you fly</h2></div>
+    <p class="sub">The first five are blocking — skip them and the trip either breaks or gets a
+      lot more expensive. Ticks are saved in your browser.</p>
+    <div class="progress"><i id="chkbar" style="width:0"></i></div>
+    <div class="checks" id="checks"></div>
+  </div>
+</section>
+
+<section id="risks">
+  <div class="wrap">
+    <div class="shead"><span class="num">09</span><h2>Risks and plan B</h2></div>
+    <p class="sub">Late September and early October is the edge of the season in the Rockies.
+      These are the dates the roads close on, and what to do when the weather turns.</p>
+    <div class="grid2" id="riskgrid"></div>
+  </div>
+</section>
+
+<section id="sf">
+  <div class="wrap">
+    <div class="shead"><span class="num">10</span><h2>The San Francisco finale</h2></div>
+    <p class="sub">After two weeks of motels and sleeping in the car, this is the payoff. Oysters,
+      the Pacific, and no driving unless you want it.</p>
+    <div class="grid2" id="sfgrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Northwest Roadtrip 2026</b> — interactive plan. Road closure dates, entrance fees and
+      Supercharger locations verified August 2026.</p>
+    <p>Check current conditions before you go: <span style="font-family:var(--mono)">nps.gov/yell</span>,
+      <span style="font-family:var(--mono)">nps.gov/glac</span>, and text <b>GNPROADS</b> to <b>333111</b>.</p>
+  </div>
+</footer>
+<script>
+"use strict";
+
+/* ======================================================================
+   GEOGRAPHY — hand-built outlines, no external tiles.
+   Most western state borders are straight lines of latitude/longitude,
+   so a recognisable map needs surprisingly few vertices.
+   ====================================================================== */
+const PROJ = { lon0:-125.6, lat1:49.7, latMin:35.4, lonMax:-103.4, s:50, kx:0.7345 };
+const W = Math.round((PROJ.lonMax - PROJ.lon0) * PROJ.kx * PROJ.s);
+const H = Math.round((PROJ.lat1 - PROJ.latMin) * PROJ.s);
+const p = (lon, lat) => [
+  +((lon - PROJ.lon0) * PROJ.kx * PROJ.s).toFixed(1),
+  +((PROJ.lat1 - lat) * PROJ.s).toFixed(1)
+];
+
+const STATES = [
+  { ab:"WA", at:[-120.4,47.5], pts:[[-117.03,49.0],[-123.0,49.0],[-123.15,48.4],[-124.72,48.39],
+    [-124.4,47.3],[-123.9,46.35],[-122.9,46.08],[-121.0,45.65],[-119.0,45.93],[-117.03,46.0]] },
+  { ab:"OR", at:[-120.5,43.9], pts:[[-116.9,45.99],[-117.2,44.3],[-117.03,42.0],[-124.21,42.0],
+    [-124.4,43.0],[-124.1,44.3],[-123.95,45.5],[-123.9,46.25],[-122.9,46.08],[-121.0,45.65],[-119.0,45.93]] },
+  { ab:"ID", at:[-114.6,44.3], pts:[[-117.03,49.0],[-117.03,45.99],[-116.9,45.99],[-116.5,45.6],
+    [-117.2,44.3],[-117.03,42.0],[-111.05,42.0],[-111.05,44.75],[-112.4,44.6],[-113.0,44.85],
+    [-113.45,45.6],[-114.35,45.55],[-114.5,46.65],[-115.7,47.3],[-116.05,48.0],[-116.05,49.0]] },
+  { ab:"MT", at:[-109.6,47.4], pts:[[-116.05,49.0],[-104.05,49.0],[-104.05,45.0],[-111.05,45.0],
+    [-111.05,44.75],[-112.4,44.6],[-113.0,44.85],[-113.45,45.6],[-114.35,45.55],[-114.5,46.65],
+    [-115.7,47.3],[-116.05,48.0]] },
+  { ab:"WY", at:[-107.6,43.0], pts:[[-111.05,45.0],[-104.05,45.0],[-104.05,41.0],[-111.05,41.0]] },
+  { ab:"UT", at:[-111.6,39.3], pts:[[-114.05,42.0],[-111.05,42.0],[-111.05,41.0],[-109.05,41.0],
+    [-109.05,37.0],[-114.05,37.0]] },
+  { ab:"NV", at:[-117.2,39.4], pts:[[-120.0,42.0],[-114.05,42.0],[-114.05,36.15],[-114.75,36.1],
+    [-114.6,35.0],[-120.0,39.0]] },
+  { ab:"CA", at:[-121.4,38.6], pts:[[-124.21,42.0],[-120.0,42.0],[-120.0,39.0],[-115.28,35.5],
+    [-120.7,35.5],[-121.0,35.75],[-121.5,36.3],[-121.9,36.9],[-122.4,37.5],[-122.5,37.85],
+    [-123.0,38.3],[-123.7,39.0],[-124.1,40.0],[-124.4,40.5]] },
+  { ab:"CO", at:[-106.2,39.0], pts:[[-109.05,41.0],[-102.05,41.0],[-102.05,37.0],[-109.05,37.0]] },
+  { ab:"AZ", at:[-111.6,34.6], pts:[[-114.05,37.0],[-109.05,37.0],[-109.05,35.4],[-113.3,35.4],
+    [-114.05,36.15],[-114.75,36.1],[-114.6,35.4],[-114.6,35.4]] }
+];
+
+const CITIES = [
+  ["Seattle",-122.33,47.61,"end"], ["Portland",-122.68,45.52,"start"],
+  ["Spokane",-117.43,47.66,"start"], ["Kalispell",-114.31,48.20,"start"],
+  ["Missoula",-113.99,46.87,"end"], ["Bozeman",-111.04,45.68,"start"],
+  ["Billings",-108.50,45.78,"start"], ["Jackson",-110.76,43.48,"start"],
+  ["Salt Lake City",-111.89,40.76,"start"], ["Boise",-116.20,43.62,"end"],
+  ["Twin Falls",-114.46,42.56,"start"], ["Bend",-121.31,44.06,"end"],
+  ["San Francisco",-122.42,37.77,"end"]
+];
+
+/* ======================================================================
+   BASE ITINERARY — 14 driving days, ~3,000 miles
+   ====================================================================== */
+const T = { GF:["gf","GF"], DF:["df","DF"], MEAT:["meat","unusual meat"],
+            OY:["oy","oysters"], INO:["ino","In-N-Out"] };
+
+const BASE = [
+{ n:0, arrive:true, title:"Land in Seattle, first oysters", leg:"Prague → Seattle (SEA)",
+  miles:0, hours:0, wp:[[-122.33,47.61]],
+  hi:["Nine hours back — you will be wide awake at 4am, which is perfect for the rest of the trip",
+      "Do not pick up the car today; sleep off the flight first"],
+  sleep:{ t:"motel", where:"Hotel in Seattle (city, not near the airport)" },
+  food:[{ nm:"The Walrus and the Carpenter", note:"Ballard oyster bar, the best in the city", tags:[T.OY,T.GF,T.DF] },
+        { nm:"Taylor Shellfish Oyster Bar", note:"Their own farms in Puget Sound — a dozen kinds", tags:[T.OY,T.GF,T.DF] }],
+  charge:[], why:"Land, eat oysters, sleep. The jet lag will have you up before dawn anyway." },
+
+{ n:1, title:"Over the Cascades to Spokane", leg:"Seattle → Snoqualmie Falls → Leavenworth → Spokane",
+  miles:300, hours:5.5, wp:[[-122.33,47.61],[-121.84,47.54],[-120.66,47.60],[-120.31,47.42],[-119.0,47.6],[-117.43,47.66]],
+  hi:["Snoqualmie Falls — 268 ft, 30 minutes out of Seattle",
+      "Leavenworth, a Bavarian theme town that is somehow completely committed to the bit",
+      "The Cascades hand over to high desert scablands within an hour"],
+  sleep:{ t:"motel", where:"Motel in Spokane" },
+  food:[{ nm:"Leavenworth bratwurst", note:"Ask about milk powder in the sausage — often present", tags:[T.MEAT] }],
+  charge:["Ellensburg or Wenatchee SC","Moses Lake SC","Spokane SC"],
+  why:"You are awake at 5am anyway, so bank the miles on day one while the excitement is fresh." },
+
+{ n:2, title:"Into Montana and Glacier's front door", leg:"Spokane → Coeur d'Alene → Sandpoint → Kalispell → Lake McDonald",
+  miles:255, hours:5, wp:[[-117.43,47.66],[-116.78,47.68],[-116.55,48.28],[-115.5,48.3],[-114.31,48.20],[-113.98,48.50]],
+  hi:["Lake Coeur d'Alene and Lake Pend Oreille, back to back",
+      "Buy bear spray in Kalispell — you cannot fly with it, so it gets bought here and left behind",
+      "Sunset over Lake McDonald, whose coloured pebbles are the most photographed rocks in Montana"],
+  sleep:{ t:"motel", where:"Columbia Falls or Whitefish — book ahead, the park gateway fills up" },
+  food:[{ nm:"Bison and elk in Whitefish", note:"Montana game meat, naturally GF if you skip the sauce", tags:[T.MEAT,T.GF] },
+        { nm:"Huckleberry everything", note:"Local obsession, in season through September", tags:[T.GF] }],
+  charge:["Coeur d'Alene SC","Kalispell SC — top up before the park, there is nothing inside"],
+  why:"Glacier goes early in the trip on purpose: its alpine road can close for the winter any time from mid-October." },
+
+{ n:3, title:"Going-to-the-Sun Road", leg:"Glacier NP: Lake McDonald → Logan Pass → St. Mary → Many Glacier",
+  miles:130, hours:4, wp:[[-113.98,48.50],[-113.72,48.70],[-113.42,48.75],[-113.66,48.80],[-113.98,48.50]],
+  hi:["Going-to-the-Sun Road — 50 miles carved into a cliff face, arguably the best drive in the US",
+      "Logan Pass and the Hidden Lake Overlook trail, with bighorn sheep on the boardwalk",
+      "Many Glacier: the most dramatic basin in the park, if the road is open"],
+  sleep:{ t:"motel", where:"Same base — or the car at a Forest Service site outside the park boundary" },
+  food:[{ nm:"Pack a cooler", note:"In-park food is thin and unreliable for allergies", tags:[T.GF,T.DF] }],
+  charge:["No charging inside the park — enter with a full battery, the loop is short enough"],
+  alert:"Many Glacier flooded and was evacuated in June 2026. Confirm the road is open before you commit the day.",
+  why:"The single best driving day of the trip, and it needs a whole day to be worth it." },
+
+{ n:4, title:"Bison range and the Mission Valley", leg:"Glacier → Flathead Lake → National Bison Range → Missoula",
+  miles:200, hours:4.5, wp:[[-113.98,48.50],[-114.10,47.90],[-114.25,47.35],[-113.99,46.87]],
+  hi:["Flathead Lake, the biggest freshwater lake west of the Mississippi",
+      "National Bison Range — a herd of 350 seen from the car on a one-way gravel loop",
+      "First real night in the car, with easy free dispersed camping in Lolo National Forest"],
+  sleep:{ t:"car", where:"Dispersed camping in Lolo NF south of Missoula — free, legal, quiet" },
+  food:[{ nm:"Missoula bison burger", note:"Protein style equivalent: ask for it wrapped in lettuce", tags:[T.MEAT,T.GF] }],
+  charge:["Missoula SC"],
+  why:"A gentle day after Glacier, and the first test of the mattress while it is still relatively warm." },
+
+{ n:5, title:"The biggest T. rex collection on Earth", leg:"Missoula → Butte → Bozeman (Museum of the Rockies)",
+  miles:200, hours:4, wp:[[-113.99,46.87],[-112.53,46.00],[-111.04,45.68]],
+  hi:["Butte's Berkeley Pit — a mile-wide toxic copper lake you pay to look at, which is very Montana",
+      "Museum of the Rockies: Jack Horner's collection, the largest set of T. rex fossils anywhere",
+      "This is the dinosaur fix, and it costs zero detour miles"],
+  sleep:{ t:"motel", where:"Bozeman — charge overnight if the motel has an L2" },
+  food:[{ nm:"Rocky Mountain oysters in Butte", note:"Bull testicles. Almost always breaded, so ask for them un-breaded or just enjoy the menu", tags:[T.MEAT] },
+        { nm:"Bozeman steakhouse", note:"Montana beef, plain grilled, is the safest great meal on this route", tags:[T.MEAT,T.GF,T.DF] }],
+  charge:["Butte SC","Bozeman SC — the last real fast charge before Yellowstone's north side"],
+  why:"Replaces the Utah dinosaur detour entirely: better fossils, 300 fewer miles." },
+
+{ n:6, title:"Hot springs, then the north gate", leg:"Bozeman → Paradise Valley → Chico Hot Springs → Gardiner → Mammoth → Lamar",
+  miles:110, hours:3, wp:[[-111.04,45.68],[-110.56,45.66],[-110.70,45.34],[-110.70,45.03],[-110.70,44.98],[-110.22,44.90],[-110.70,45.03]],
+  hi:["Chico Hot Springs — 1900s plunge pool in Paradise Valley, and the best dining room in rural Montana",
+      "Mammoth Hot Springs terraces, with elk bugling through the village during the rut",
+      "First evening in Lamar Valley, which is when the wildlife actually moves"],
+  sleep:{ t:"motel", where:"Gardiner — book one WITH an L2 charger (see the charging section)" },
+  food:[{ nm:"Chico Hot Springs dining room", note:"Game meats, properly cooked; tell them about the allergies when booking", tags:[T.MEAT,T.GF] }],
+  charge:["Gardiner: L2 at Yellowstone Forever (2 ports) + CCS L3 at the Sinclair. No Supercharger."],
+  alert:"This is the charging pinch point of the whole trip. Arrive from Bozeman near 100%.",
+  why:"A short, soft day: hot springs in the afternoon, wildlife at dusk, no rush anywhere." },
+
+{ n:7, title:"Wolves at dawn, then the Grand Canyon of the Yellowstone",
+  leg:"Lamar Valley → Tower → Dunraven Pass → Artist Point → Hayden Valley → Norris → West Yellowstone",
+  miles:150, hours:5, wp:[[-110.70,45.03],[-110.22,44.90],[-110.42,44.92],[-110.50,44.73],[-110.47,44.65],[-110.70,44.72],[-110.86,44.65],[-111.10,44.66]],
+  hi:["Lamar Valley at first light — the best wolf watching in the lower 48, and you will have it nearly alone",
+      "Dunraven Pass, which closes for winter on Oct 12 this year",
+      "Artist Point over the Lower Falls: the postcard that actually looks better in person",
+      "Hayden Valley in the evening: bison herds, and bears feeding hard before hibernation"],
+  sleep:{ t:"motel", where:"West Yellowstone — Supercharger in town, which resets everything" },
+  food:[{ nm:"Bison burger, West Yellowstone", note:"Lettuce wrap; fries are usually a shared fryer, so ask", tags:[T.MEAT] }],
+  charge:["West Yellowstone SC — three separate sites in town"],
+  why:"Dawn in Lamar is non-negotiable; the rest of the day flows downhill to a Supercharger." },
+
+{ n:8, title:"Geysers, then the Tetons appear", leg:"Grand Prismatic → Old Faithful → Craig Pass → West Thumb → Grand Teton → Jackson",
+  miles:150, hours:5, wp:[[-111.10,44.66],[-110.84,44.52],[-110.83,44.46],[-110.57,44.42],[-110.67,44.14],[-110.64,43.90],[-110.67,43.66],[-110.76,43.48]],
+  hi:["Grand Prismatic from the Fairy Falls overlook — the boardwalk view is steam, the overlook is the colour",
+      "Old Faithful, plus the Upper Geyser Basin, which has more geysers than the rest of the planet combined",
+      "Coming over Craig Pass and having the Tetons simply appear is one of the great reveals in America"],
+  sleep:{ t:"motel", where:"Jackson" },
+  food:[{ nm:"Local Bar & Grill, Jackson", note:"Elk, bison, wagyu — a proper meat night", tags:[T.MEAT,T.GF] }],
+  charge:["Old Faithful area L2 (slow, verify)","Jackson SC"],
+  why:"Yellowstone's greatest hits in one direction, ending with the best mountain skyline on the continent." },
+
+{ n:9, title:"A day off, in the Tetons", leg:"Grand Teton NP: Schwabacher Landing, Mormon Row, Jenny Lake, Signal Mountain",
+  miles:90, hours:2.5, wp:[[-110.76,43.48],[-110.67,43.66],[-110.73,43.79],[-110.64,43.90],[-110.76,43.48]],
+  hi:["Schwabacher Landing at sunrise — the Teton reflection shot, best in the first ten minutes of light",
+      "Mormon Row barns, the most photographed farm buildings in the US",
+      "Cottonwoods and aspens peak right about now; moose in the willows near Jenny Lake",
+      "Jackson town square, the elk antler arches, and a free night in the national forest"],
+  sleep:{ t:"car", where:"Bridger-Teton NF dispersed camping — free, and the views beat any motel" },
+  food:[{ nm:"Jackson farmers-market game jerky", note:"Elk and bison jerky travels well and is GF/DF", tags:[T.MEAT,T.GF,T.DF] }],
+  charge:["Jackson SC before you leave town"],
+  why:"The one deliberate rest day. Two weeks of driving needs a day where nothing has to happen." },
+
+{ n:10, title:"Turquoise lake, golden canyon, first In-N-Out", leg:"Jackson → Star Valley → Bear Lake → Logan Canyon → Salt Lake City",
+  miles:300, hours:6, wp:[[-110.76,43.48],[-111.00,43.00],[-111.30,42.32],[-111.30,42.00],[-111.83,41.74],[-111.89,40.76]],
+  hi:["Bear Lake, which is a genuinely improbable Caribbean turquoise at 5,900 ft",
+      "Logan Canyon in full autumn colour — maples and aspens, and almost no traffic",
+      "In-N-Out, finally. Double-Double protein style, no cheese, fries well done"],
+  sleep:{ t:"motel", where:"Salt Lake City" },
+  food:[{ nm:"In-N-Out", note:"Protein style = lettuce instead of bun. Spread is egg-based, so dairy-free. Fries are potato + sunflower oil in their own fryer", tags:[T.INO,T.GF,T.DF] },
+        { nm:"Crown Burgers pastrami burger", note:"A Utah institution — ask for it as a lettuce wrap", tags:[T.MEAT] }],
+  charge:["Montpelier or Logan SC","SLC — Superchargers everywhere"],
+  why:"A long transfer, but through the prettiest corridor between Wyoming and Utah rather than the interstate." },
+
+{ n:11, title:"Full throttle on salt", leg:"SLC → Bonneville Salt Flats → Wendover → Wells NV → Jackpot → Twin Falls",
+  miles:330, hours:6, wp:[[-111.89,40.76],[-113.85,40.75],[-114.04,40.74],[-114.96,41.11],[-114.66,41.98],[-114.46,42.56]],
+  hi:["Bonneville Salt Flats: a dead-flat white horizon where land speed records get set. Racing season ends Sept 29, so you get it empty",
+      "Wash the undercarriage in Wendover immediately afterwards — salt is brutally corrosive",
+      "US-93 north through empty Nevada, and Jackpot, a casino town that exists purely because Idaho outlawed gambling",
+      "Shoshone Falls in Twin Falls — taller than Niagara, and often nearly dry by October"],
+  sleep:{ t:"motel", where:"Twin Falls" },
+  food:[{ nm:"Casino steakhouse, Jackpot", note:"Cheap prime rib in the middle of nowhere, and it is genuinely fine", tags:[T.MEAT,T.GF] }],
+  charge:["West Wendover NV SC","Wells NV SC — then 130 miles to Twin Falls with nothing in Jackpot"],
+  alert:"Never drive onto wet salt: it is prohibited, it wrecks cars, and you can break through the crust. Get the host's written OK first.",
+  why:"The one pure-spectacle stop that has nothing to do with mountains — and a Tesla belongs on salt." },
+
+{ n:12, title:"Fossil horses and the Basque Block", leg:"Twin Falls → Hagerman Fossil Beds → Thousand Springs → Boise",
+  miles:150, hours:3.5, wp:[[-114.46,42.56],[-114.90,42.81],[-115.3,42.9],[-116.20,43.62]],
+  hi:["Hagerman Fossil Beds — the Hagerman horse, the most complete fossil horse ever found",
+      "Thousand Springs, where an entire underground river comes out of a canyon wall",
+      "Boise's Basque Block: one of the largest Basque communities outside Spain, and the single best meal of the trip for you"],
+  sleep:{ t:"motel", where:"Boise — or the car; Boise is easy for either" },
+  food:[{ nm:"Leku Ona", note:"Oxtail, lamb chops, morcilla blood sausage — Basque cooking is meat-forward and mostly GF", tags:[T.MEAT,T.GF] },
+        { nm:"Bar Gernika", note:"Beef tongue is the house dish. Ask for it without bread", tags:[T.MEAT] },
+        { nm:"In-N-Out Boise / Meridian / Nampa", note:"Three of them within 20 minutes", tags:[T.INO,T.GF,T.DF] }],
+  charge:["Twin Falls SC","Boise / Meridian SC"],
+  why:"An easy day on purpose, because the food here deserves an appetite and an early arrival." },
+
+{ n:13, title:"The long one", leg:"Boise → Baker City → Pendleton → Columbia Gorge → Hood River",
+  miles:390, hours:6.5, wp:[[-116.20,43.62],[-116.96,44.03],[-117.83,44.77],[-118.09,45.32],[-118.79,45.67],[-120.5,45.65],[-121.18,45.60],[-121.52,45.71]],
+  hi:["Blue Mountains and the old Oregon Trail route — this is the historic way west",
+      "The Columbia River Gorge opens up at The Dalles and just keeps getting better",
+      "Multnomah Falls and the waterfall corridor, if there is light left"],
+  sleep:{ t:"motel", where:"Hood River — windsurfing town, good beds, cider instead of beer" },
+  food:[{ nm:"Hood River cider", note:"Beer country is a minefield; Oregon cider is not", tags:[T.GF,T.DF] }],
+  charge:["Ontario OR SC","Baker City SC","Pendleton SC","Hood River SC"],
+  why:"The only genuinely long day. Flat interstate, cruise control on, and the payoff is the Gorge." },
+
+{ n:14, title:"Portland, In-N-Out, and home to Seattle", leg:"Hood River → Portland → Ridgefield WA → Seattle (drop the car)",
+  miles:240, hours:4.5, wp:[[-121.52,45.71],[-122.12,45.58],[-122.68,45.52],[-122.74,45.82],[-122.90,47.04],[-122.33,47.61]],
+  hi:["Portland for lunch: the food cart scene is unusually good at allergy handling",
+      "In-N-Out Ridgefield, right off I-5 — the only one in Washington",
+      "Drop the car in Seattle, then oysters in Ballard without having to drive anywhere"],
+  sleep:{ t:"motel", where:"Hotel in Seattle" },
+  food:[{ nm:"Eem, Portland", note:"Thai barbecue — brisket in curry, and they know their allergens", tags:[T.MEAT,T.GF] },
+        { nm:"Nong's Khao Man Gai", note:"Chicken and rice, three ingredients, naturally safe", tags:[T.GF,T.DF] },
+        { nm:"In-N-Out Ridgefield", note:"Last one before California", tags:[T.INO,T.GF,T.DF] },
+        { nm:"The Walrus and the Carpenter", note:"Closing the loop where it started", tags:[T.OY,T.GF,T.DF] }],
+  charge:["Portland SC","Centralia SC","Seattle — return the car charged per the host's rules"],
+  why:"Two cities, one In-N-Out, and the car handed back before anything can go wrong." }
+];
+/* ======================================================================
+   MODULES — everything that got cut, kept switchable.
+   Two kinds: `after` inserts an extra day, `replaces` swaps a stretch of
+   base days for an alternative branch (so the mileage stays honest).
+   ====================================================================== */
+const MODULES = [
+{ id:"beartooth", after:7, risk:"hi", name:"Beartooth Highway",
+  cost:"+1 day · +200 mi",
+  desc:"A 10,947 ft pass that Charles Kuralt called the most beautiful drive in America. Also the highest charging risk on the map.",
+  dayList:[
+  { title:"Beartooth Highway and the Chief Joseph Byway",
+    leg:"Gardiner → Cooke City → Beartooth Pass → Red Lodge → Billings → Chief Joseph Byway → Cooke City",
+    miles:200, hours:6,
+    wp:[[-110.70,45.03],[-109.94,45.02],[-109.47,44.97],[-109.25,45.19],[-108.50,45.78],[-109.06,44.53],[-109.94,45.02]],
+    hi:["Beartooth Pass at 10,947 ft — switchbacks above the treeline with snowbanks still standing in October",
+        "The Chief Joseph Scenic Byway back toward Cody, which almost nobody drives",
+        "Closes for the winter on Oct 12 this year, so it only works early in your window"],
+    sleep:{ t:"motel", where:"Cooke City or Silver Gate — tiny towns, and they book out" },
+    food:[{ nm:"Red Lodge diner", note:"Eat while the car sits on the L2 — that is the whole reason to stop here", tags:[["meat","unusual meat"]] }],
+    charge:["Charge to 100% at Billings SC","Red Lodge: two Tesla destination chargers, L2 only","Cody: CCS L3 at the Buffalo Bill Center"],
+    alert:"No Supercharger in Red Lodge, Cooke City or Cody. Run this leg off a 100% charge and top up on the Red Lodge L2 while you eat.",
+    why:"The most dramatic road in the Rockies — and the one segment where the battery maths is genuinely tight." }] },
+
+{ id:"dino", replaces:[10,10], risk:"lo", name:"Dinosaur NM + Flaming Gorge",
+  cost:"+1 day · +220 mi",
+  desc:"Swaps the Bear Lake run for a loop through Flaming Gorge to the quarry wall with 1,500 bones still in the rock.",
+  dayList:[
+  { title:"Green River canyons", leg:"Jackson → Rock Springs → Flaming Gorge → Vernal",
+    miles:300, hours:6, wp:[[-110.76,43.48],[-109.22,41.59],[-109.55,40.91],[-109.53,40.46]],
+    hi:["Flaming Gorge: red rock canyon and improbably blue water, almost nobody there in October",
+        "Sheep Creek Geological Loop, where the rock layers stand on end",
+        "Vernal, a town whose main street has a pink dinosaur on it"],
+    sleep:{ t:"motel", where:"Vernal" },
+    food:[{ nm:"Vernal steakhouse", note:"Slim pickings out here — carry backup food in the car", tags:[["meat","unusual meat"]] }],
+    charge:["Rock Springs SC","Vernal charging is unverified — check the app before you commit"],
+    why:"Trades a pretty lake for a canyon and gets you to the bones." },
+  { title:"Fifteen hundred bones in a cliff face", leg:"Dinosaur NM → US-40 → Heber City → Salt Lake City",
+    miles:220, hours:4.5, wp:[[-109.53,40.46],[-109.30,40.44],[-110.4,40.5],[-111.4,40.5],[-111.89,40.76]],
+    hi:["Quarry Exhibit Hall: 1,500 dinosaur bones left exactly where they were found, in a wall you can walk up to",
+        "Utah Field House of Natural History in Vernal as the warm-up",
+        "Over the Uinta Basin and down into Salt Lake — first In-N-Out of the trip waiting"],
+    sleep:{ t:"motel", where:"Salt Lake City" },
+    food:[{ nm:"In-N-Out", note:"Protein style, no cheese. Fries are safe — their own fryer, potato and sunflower oil only", tags:[["ino","In-N-Out"],["gf","GF"],["df","DF"]] }],
+    charge:["Heber City SC","SLC — Superchargers everywhere"],
+    why:"Bones in situ rather than bones in a case. If Bozeman was not enough dinosaur, this is the fix." }] },
+
+{ id:"craters", replaces:[12,12], risk:"lo", name:"Craters of the Moon",
+  cost:"same days · +230 mi",
+  desc:"Costs no extra day — just a much longer day 12. 618 square miles of black lava where Apollo crews trained.",
+  dayList:[
+  { title:"The lava field where Apollo trained", leg:"Twin Falls → Craters of the Moon → Boise",
+    miles:380, hours:7, wp:[[-114.46,42.56],[-114.0,42.9],[-113.52,43.42],[-114.8,43.3],[-116.20,43.62]],
+    hi:["Craters of the Moon: cinder cones, lava tubes and spatter cones, all of it jet black",
+        "Apollo astronauts trained here because it is the closest thing to the Moon in the lower 48",
+        "Long day, but the Basque dinner in Boise is still waiting at the end of it"],
+    sleep:{ t:"motel", where:"Boise" },
+    food:[{ nm:"Leku Ona, Boise", note:"Oxtail, lamb chops, morcilla — worth arriving hungry for", tags:[["meat","unusual meat"],["gf","GF"]] },
+          { nm:"In-N-Out Boise", note:"Three within twenty minutes", tags:[["ino","In-N-Out"],["gf","GF"],["df","DF"]] }],
+    charge:["Twin Falls SC","Arco has L2 only — plan Twin Falls to Boise on one charge","Boise / Meridian SC"],
+    why:"The strangest landscape in Idaho, and it does not cost you a night." }] },
+
+{ id:"bend", replaces:[13,13], risk:"lo", name:"Bend + Oregon high desert",
+  cost:"+1 day · +180 mi",
+  desc:"Swaps the I-84 slog for US-20 across the high desert, with a night in Bend and Smith Rock in the morning.",
+  dayList:[
+  { title:"Two hundred miles of nothing, in the good way", leg:"Boise → Ontario → Burns/Hines → Bend",
+    miles:320, hours:6, wp:[[-116.20,43.62],[-116.96,44.03],[-118.2,43.6],[-119.06,43.57],[-120.5,43.8],[-121.31,44.06]],
+    hi:["US-20 across eastern Oregon: high desert, antelope, and almost no other cars",
+        "The Hines/Burns Supercharger is the single stall that makes this route possible at all",
+        "Bend arrives like a mirage — good food, real beds, cider instead of beer"],
+    sleep:{ t:"motel", where:"Bend" },
+    food:[{ nm:"Bend, generally", note:"Brewery town, so drink cider; the kitchens handle allergens well", tags:[["gf","GF"],["df","DF"]] }],
+    charge:["Boise SC","Hines/Burns SC — 8 stalls","Bend SC"],
+    why:"The emptiest good road in Oregon, instead of an interstate." },
+  { title:"Smith Rock, Mount Hood and the Gorge", leg:"Bend → Smith Rock → Mount Hood → Columbia Gorge → Hood River",
+    miles:250, hours:5, wp:[[-121.31,44.06],[-121.14,44.36],[-121.55,44.29],[-121.69,45.37],[-121.52,45.71]],
+    hi:["Smith Rock: the birthplace of American sport climbing, and a 45-minute walk gets you the view",
+        "Around Mount Hood on OR-35, with the mountain filling the windscreen",
+        "Down into the Columbia Gorge from the south, which is the better direction"],
+    sleep:{ t:"motel", where:"Hood River" },
+    food:[{ nm:"Hood River cider", note:"Beer country is a minefield; Oregon cider is not", tags:[["gf","GF"],["df","DF"]] }],
+    charge:["Bend SC","Hood River SC"],
+    why:"Mount Hood and the Gorge in one afternoon, which the interstate version misses entirely." }] },
+
+{ id:"alvord", replaces:[11,13], risk:"hi", conflicts:["craters","bend"],
+  name:"Alvord Desert (Nevada branch)", cost:"+1 day · +310 mi",
+  desc:"Drops Boise and the Basque food for empty Nevada, a second drivable playa, and hot springs under Steens Mountain.",
+  dayList:[
+  { title:"Salt, then straight into empty Nevada", leg:"SLC → Bonneville Salt Flats → Wendover → Elko → Winnemucca",
+    miles:400, hours:6.5, wp:[[-111.89,40.76],[-113.85,40.75],[-114.04,40.74],[-115.76,40.83],[-117.73,40.97]],
+    hi:["Bonneville Salt Flats with the racing season over — a dead-flat white horizon, all yours",
+        "Wash the undercarriage in Wendover immediately; salt is brutally corrosive",
+        "I-80 across the Great Basin: mountain range, valley, mountain range, for four hours"],
+    sleep:{ t:"motel", where:"Winnemucca — charge to 100% overnight, you will need all of it" },
+    food:[{ nm:"Basque food in Winnemucca", note:"The Martin Hotel — family-style Basque, and it predates the Boise scene", tags:[["meat","unusual meat"],["gf","GF"]] }],
+    charge:["West Wendover SC","Elko SC","Winnemucca SC — the last charge for 240 miles"],
+    alert:"Never drive on wet salt: prohibited, and it destroys cars. Get the host's written OK before you go anywhere near it.",
+    why:"Bonneville plus the Great Basin, which is the emptiest driving in the continental US." },
+  { title:"The other playa", leg:"Winnemucca → McDermitt → Fields → Alvord Desert",
+    miles:240, hours:5, wp:[[-117.73,40.97],[-117.72,41.99],[-118.67,42.26],[-118.53,42.51]],
+    hi:["Alvord Desert: a dry lake bed you are allowed to drive on, with Steens Mountain rising 5,500 ft above it",
+        "Alvord Hot Springs — a tin tub facing the playa, which is about as good as this trip gets",
+        "Fields, Oregon: population 9, and a general store famous for milkshakes you cannot have"],
+    sleep:{ t:"car", where:"On the playa itself, or the bunkhouse at Alvord Hot Springs" },
+    food:[{ nm:"Fields Station", note:"Burger patty, no bun. There is no plan B for a hundred miles", tags:[["meat","unusual meat"]] }],
+    charge:["NOTHING between Winnemucca and Burns — roughly 240 miles, partly gravel"],
+    alert:"The riskiest leg on the whole map. Full battery, good weather, daylight only, and tell someone where you are going.",
+    why:"Two salt flats in two days, and a soak in the middle of the emptiest place in Oregon." },
+  { title:"Out of the desert", leg:"Alvord Desert → Burns/Hines → Bend",
+    miles:290, hours:5.5, wp:[[-118.53,42.51],[-118.9,43.0],[-119.06,43.57],[-120.5,43.8],[-121.31,44.06]],
+    hi:["Steens Mountain Loop first thing, if the road is still open — 9,700 ft and golden aspens",
+        "The Hines/Burns Supercharger, which will feel like reaching civilisation",
+        "Bend for a proper bed and a proper dinner"],
+    sleep:{ t:"motel", where:"Bend" },
+    food:[{ nm:"Bend", note:"Cider, not beer. Good kitchens.", tags:[["gf","GF"],["df","DF"]] }],
+    charge:["Hines/Burns SC — 8 stalls","Bend SC"],
+    why:"The relief leg. You will have earned the hotel." },
+  { title:"Mount Hood and the Gorge", leg:"Bend → Mount Hood → Columbia Gorge → Hood River",
+    miles:250, hours:5, wp:[[-121.31,44.06],[-121.55,44.29],[-121.69,45.37],[-121.52,45.71]],
+    hi:["Around Mount Hood on OR-35","Into the Columbia Gorge from the south","Multnomah Falls if there is light left"],
+    sleep:{ t:"motel", where:"Hood River" },
+    food:[{ nm:"Hood River cider", note:"Safe and excellent", tags:[["gf","GF"],["df","DF"]] }],
+    charge:["Bend SC","Hood River SC"],
+    why:"Rejoins the base plan for the last day into Seattle." }] },
+
+{ id:"bigsur", after:14, risk:"lo", name:"Big Sur day from San Francisco",
+  cost:"1 SF day · 270 mi",
+  desc:"Highway 1 south to Bixby Bridge and back. Happens after the Turo car is returned, so it needs a one-day rental.",
+  dayList:[
+  { sf:true, title:"Highway 1 to Bixby Bridge",
+    leg:"San Francisco → Half Moon Bay → Santa Cruz → Monterey → Bixby Bridge → back",
+    miles:270, hours:6, wp:[[-122.42,37.77],[-122.43,37.46],[-122.03,36.97],[-121.90,36.60],[-121.90,36.37],[-122.42,37.77]],
+    hi:["Bixby Creek Bridge, the most photographed bridge on the Pacific coast",
+        "Monterey Bay, sea otters and Cannery Row",
+        "Elephant seals at Piedras Blancas if you push further south"],
+    sleep:{ t:"motel", where:"Back in San Francisco" },
+    food:[{ nm:"Oysters in Monterey", note:"Pacific oysters straight off the bay", tags:[["oy","oysters"],["gf","GF"],["df","DF"]] }],
+    charge:["California is solved — Superchargers everywhere"],
+    why:"If the appetite for driving is not dead yet, this is the best 270 miles in California." }] }
+];
+
+/* ======================================================================
+   REFERENCE DATA
+   ====================================================================== */
+const CHARGE_ROWS = [
+  ["Seattle → Spokane","I-90","Ellensburg, Moses Lake, Ritzville, Spokane","Dense. Non-issue.",""],
+  ["Spokane → Kalispell","US-2 / US-93","Coeur d'Alene, Sandpoint (L2), Kalispell","Fine, but top up in Kalispell.",""],
+  ["Glacier NP","Going-to-the-Sun","None inside the park","Enter full. The loop is only ~130 mi.","gap"],
+  ["Kalispell → Missoula → Bozeman","US-93 / I-90","Missoula, Butte, Bozeman","Dense. Non-issue.",""],
+  ["Bozeman → Gardiner → park loop → West Yellowstone","US-89 / park roads","Bozeman SC, then Gardiner L2 + CCS L3 only","300+ mi on one charge unless you charge in Gardiner. Book a motel with L2 AND carry a CCS adapter.","crit"],
+  ["Beartooth module","US-212","Billings SC, Red Lodge L2, Cody CCS","No Supercharger for ~250 mi of mountain driving. Start at 100% from Billings.","crit"],
+  ["West Yellowstone → Jackson","US-191 / US-89","West Yellowstone SC, Jackson SC","Comfortable.",""],
+  ["Jackson → Salt Lake City","US-89","Montpelier, Logan, SLC","Comfortable.",""],
+  ["SLC → Bonneville → Wells NV","I-80","SLC, West Wendover, Wells","Fine. Wendover has car washes for the salt.",""],
+  ["Wells NV → Twin Falls","US-93","Nothing in Jackpot — 130 mi Wells to Twin Falls","Leave Wells above 60%.","gap"],
+  ["Twin Falls → Boise","I-84","Twin Falls, Mountain Home, Boise","Dense.",""],
+  ["Boise → Hood River","I-84","Ontario, Baker City, La Grande, Pendleton, Hood River","Dense, but it is a 390 mi day.",""],
+  ["Alvord module","US-95 / OR-205","Winnemucca SC, then nothing to Hines/Burns SC","~240 mi with zero charging, partly gravel. Highest risk on the map.","crit"],
+  ["Hood River → Seattle","I-84 / I-5","Hood River, Portland, Centralia, Seattle","Dense.",""]
+];
+
+const FOOD_RULES = [
+  "<b>In-N-Out:</b> order it <b>protein style</b> — lettuce instead of the bun. The spread is egg-based, so it is dairy-free; skip the cheese. Fries are nothing but potato and sunflower oil in their own dedicated fryer, so they are safe.",
+  "<b>Shake Shack:</b> they carry a <b>gluten-free bun</b>, but the regular buns are buttered on the same surface — say &ldquo;gluten-free bun, no cheese, clean prep&rdquo;. Shakes and custard are out.",
+  "<b>Oysters</b> are naturally gluten-free and dairy-free. Raw with mignonette, yes. Rockefeller (butter) and anything fried, no.",
+  "<b>Steak, game and Basque cooking</b> are the safest great meals on this route. Plain grilled meat, no sauce, no butter finish — say &ldquo;no butter&rdquo; explicitly, because American kitchens finish steaks with it by default.",
+  "<b>Landmines:</b> beer (all of Oregon), Idaho &ldquo;finger steaks&rdquo; (breaded), Butte pasties (pastry), Rocky Mountain oysters (breaded), and anything described as &ldquo;creamy&rdquo; in a diner."
+];
+
+const FOOD_CARDS = [
+  { h:"Seattle", place:"start and finish", items:[
+    ["The Walrus and the Carpenter","Ballard. The oyster bar everyone else is copying.",["oy","gf","df"]],
+    ["Taylor Shellfish Oyster Bar","Their own Puget Sound farms; a dozen varieties at once.",["oy","gf","df"]],
+    ["Shake Shack, South Lake Union","GF bun, no cheese, clean prep.",["gf"]],
+    ["Pike Place Market","Buy Dungeness crab and eat it on the waterfront.",["gf","df"]]]},
+  { h:"Montana", place:"Whitefish · Missoula · Butte · Bozeman", items:[
+    ["Chico Hot Springs dining room","Paradise Valley. Game meats, and worth booking ahead.",["meat","gf"]],
+    ["Bison and elk","On every menu between Whitefish and Bozeman. Plain grilled is safe.",["meat","gf","df"]],
+    ["Rocky Mountain oysters, Butte","The funniest possible counterpoint to real oysters. Usually breaded — ask.",["meat"]],
+    ["Huckleberry","Local obsession. Jam and syrup, not ice cream.",["gf"]]]},
+  { h:"Wyoming", place:"Jackson · Grand Teton", items:[
+    ["Local Bar & Grill","Elk, bison and wagyu in one sitting.",["meat","gf"]],
+    ["Game jerky at the market","Elk and bison, travels well in the car.",["meat","gf","df"]],
+    ["Snake River Grill","The splurge dinner of the trip if you want one.",["meat","gf"]]]},
+  { h:"Utah", place:"Salt Lake City", items:[
+    ["In-N-Out","First one of the trip. Double-Double protein style.",["ino","gf","df"]],
+    ["Crown Burgers pastrami burger","A genuine Utah invention. Ask for a lettuce wrap.",["meat"]],
+    ["Red Iguana","Mole is the house specialty — ask which ones are dairy-free.",["meat"]]]},
+  { h:"Boise", place:"the Basque Block", items:[
+    ["Leku Ona","Oxtail, lamb chops, morcilla. The best meal on the route for you.",["meat","gf"]],
+    ["Bar Gernika","Beef tongue is the house dish. No bread.",["meat"]],
+    ["Ansots","Basque chorizo to take into the car.",["meat","gf","df"]],
+    ["In-N-Out ×3","Boise, Meridian and Nampa, all within 20 minutes.",["ino","gf","df"]]]},
+  { h:"Oregon", place:"Hood River · Portland", items:[
+    ["Eem, Portland","Thai barbecue. Brisket in curry, and they handle allergens well.",["meat","gf"]],
+    ["Nong's Khao Man Gai","Chicken and rice. Three ingredients, nothing to go wrong.",["gf","df"]],
+    ["Portland oysters","Pacific oysters, half the Seattle price.",["oy","gf","df"]],
+    ["Cider, not beer","Oregon cider is world class and safe.",["gf","df"]]]},
+  { h:"San Francisco", place:"the finale", items:[
+    ["Swan Oyster Depot","A counter, a queue, and a hundred years of practice. Bring cash.",["oy","gf","df"]],
+    ["Hog Island, Ferry Building","Oysters with a view of the Bay Bridge.",["oy","gf","df"]],
+    ["Tomales Bay — shuck your own","Book ahead at Hog Island Farm. The best two hours of the SF leg.",["oy","gf","df"]],
+    ["Lengua and al pastor tacos","Corn tortillas: naturally gluten-free and dairy-free.",["meat","gf","df"]],
+    ["In-N-Out, Fisherman's Wharf","Obviously.",["ino","gf","df"]]]}
+];
+
+const SLEEP_CARDS = [
+  { h:"The mattress", body:"The platform is <b>75 × 41 in (190 × 104 cm)</b>, up to 83 in long with the front seats slid forward. Buy a 140 × 200 cm foam mattress from IKEA and <b>cut it down to 105 cm wide with a bread knife</b> — 8–10 cm of foam is the sweet spot between comfort and headroom." },
+  { h:"Levelling the floor", body:"The floor is not flat: there is a step where the folded seats meet the boot floor. Fill it with the sub-boot lid plus folded blankets or a duffel. Do this once properly at home and you will never think about it again." },
+  { h:"Camp Mode and the battery", body:"Camp Mode holds cabin temperature and draws roughly <b>10–15% over eight hours</b> in mild weather. In a Yellowstone or Glacier frost, budget <b>20–25% a night</b>. Only plan car nights where you can charge the following morning." },
+  { h:"Where it is legal", body:"Rest areas: <b>Washington 8 h, Montana 12 h, Idaho 10 h</b> (interstate) or 16 h on other state highways. Walmart lots usually fine. Best of all: <b>free dispersed camping in national forests</b> — Lolo, Bridger-Teton, Gallatin." },
+  { h:"Not inside the parks", body:"Sleeping in a vehicle is <b>prohibited in national parks</b> outside designated campgrounds. Mammoth Campground in Yellowstone is open year-round and reservable, which makes it the practical base for a dawn run into Lamar Valley." },
+  { h:"Realistic mix for two", body:"The itinerary schedules <b>two free car nights</b> — Lolo National Forest and Bridger-Teton — where the setting genuinely justifies it, and a bed for the rest. Swap any motel night for a rest area or a forest road if you want to save money; shoulder-season motels in Gardiner, West Yellowstone and Whitefish only run $90–140, so suffering for its own sake makes no sense." }
+];
+
+const RISKS = [
+  { h:"Beartooth Highway & Dunraven Pass", body:"Both scheduled to close for winter on <b>Oct 12, 2026</b>, and an early storm can shut them sooner. The base plan clears Yellowstone by Oct 1, so you are well inside the window.", dl:"closes Oct 12" },
+  { h:"Going-to-the-Sun Road", body:"Normally fully open until the third Monday in October (~Oct 19), but the alpine section closes on any serious storm. This is exactly why Glacier sits on days 2–3 rather than at the end.", dl:"alpine section: weather-dependent" },
+  { h:"Yellowstone", body:"Most park roads stay open until <b>Oct 31</b>. From Nov 1 only the North Entrance to Cooke City via Lamar Valley stays open. No timed-entry reservations needed.", dl:"roads close Nov 1" },
+  { h:"Bonneville Salt Flats", body:"The SCTA World Finals runs <b>Sept 23–29</b> and closes the flats to general access. You arrive Oct 4, so it is empty and open. Never drive on wet salt — it is illegal, and it destroys cars.", dl:"racing ends Sept 29" },
+  { h:"Snow, generally", body:"Late-September snow in Yellowstone and Glacier is normal, not exceptional. Check the tyres with the Turo host, do not trust FSD on snow, and keep your hands on the wheel above 6,000 ft.", dl:"check tyres with the host" },
+  { h:"Wildlife on the road", body:"Do not drive at dawn, dusk or night in Montana and Wyoming if you can avoid it. Elk and bison on the road are the single most likely way to end this trip early.", dl:"no night driving in MT/WY" },
+  { h:"Road status, live", body:"Text <b>GNPROADS</b> to <b>333111</b> for Glacier. Yellowstone posts closures on nps.gov/yell. Both change within hours during a storm, so check the morning of, not the night before.", dl:"text GNPROADS to 333111" },
+  { h:"Many Glacier", body:"Flooded and evacuated in June 2026. Confirm the road and the Swiftcurrent area have reopened before you plan day 3 around it.", dl:"verify before departure" }
+];
+
+const SF_CARDS = [
+  { h:"Oysters, three ways", body:"<b>Swan Oyster Depot</b> for the queue and the counter, <b>Hog Island at the Ferry Building</b> for the view, and <b>Hog Island Oyster Farm at Tomales Bay</b> to shuck your own at a picnic table. Book Tomales Bay ahead — it sells out." },
+  { h:"Point Reyes", body:"An hour north: cliffs, the lighthouse, tule elk, and Cypress Tree Tunnel. Pair it with the oyster farm and Marshall Store for a single perfect day trip. This is the best couple's day in the Bay Area." },
+  { h:"The city itself", body:"Ferry Building, a walk across the Golden Gate at golden hour, Chinatown for ox tongue and tripe, and the Mission for lengua tacos on corn tortillas. In-N-Out at Fisherman's Wharf closes the loop." },
+  { h:"Getting around", body:"You do not need a car in the city — but you do for Point Reyes or Big Sur. Rent for one or two days only, or Turo again. Parking in SF is genuinely expensive and genuinely annoying." },
+  { h:"Timing", body:"The base plan gives you <b>three nights</b> (Oct 8–10) before flying home Oct 11. Every module you switch on eats into that, so the switches in the itinerary section show you the trade directly." },
+  { h:"If you extend", body:"Moving the flight home to Oct 13 or 14 buys the Big Sur day and a Napa or Sonoma day without touching the roadtrip. That is the cheapest way to make the finale feel like a holiday rather than a layover." }
+];
+
+const CHECKS = [
+  { id:"miles", block:true, t:"Turo mileage cap — check the listing", d:"The route is ~3,000 mi. At 200 mi/day you get 2,800 included and owe about $100. At 100 mi/day (the minimum allowed for the Deluxe class a Model Y LR sits in) you owe about $800. Message the host for a flat rate, or find an unlimited-distance listing." },
+  { id:"driver", block:true, t:"Add your girlfriend as an additional driver", d:"Done in the Turo app, and it has to clear their approval before pickup. Not optional if you both want to drive." },
+  { id:"glacier", block:true, t:"Check Glacier vehicle reservations", d:"Going-to-the-Sun Road has used timed-entry reservations in recent summers. Late September is usually clear of it, but the dates change every year — verify, and book on recreation.gov if needed." },
+  { id:"esta", block:true, t:"ESTA for both of you + international driving permit", d:"ESTA takes minutes but can be held for days. The IDP is a formality alongside a Czech licence, and Turo hosts sometimes ask for it." },
+  { id:"host", block:true, t:"Written OK from the host: Bonneville, out-of-state, CCS adapter", d:"Salt is corrosive and many listings ban off-road driving. Get it in writing in the Turo message thread, ask about winter tyres, and ask them to include the CCS Combo 1 adapter for Gardiner." },
+  { id:"pass", t:"Buy the $250 non-resident annual park pass", d:"From Jan 1, 2026 non-residents pay $250 for the annual pass, or a $100 per-person surcharge at the 11 busiest parks. Yellowstone alone would be $35 + 2 × $100 = $235 without it, so the pass pays for itself immediately." },
+  { id:"gardiner", t:"Book a Gardiner motel with an L2 charger", d:"This is the fix for the trip's one real charging problem. Filter for it, and confirm by message that the charger works and is available to guests." },
+  { id:"mattress", t:"Buy and cut the mattress", d:"IKEA foam 140 × 200, cut to 105 cm wide with a bread knife. Test-fit it in a Model Y if you can before you fly." },
+  { id:"lodging", t:"Book Glacier, Gardiner, West Yellowstone and Jackson", d:"Shoulder season is cheap but the gateway towns are small. These four fill up first; everything else can be same-day." },
+  { id:"bear", t:"Plan on buying bear spray in Kalispell", d:"You cannot fly with it, in either direction. Buy it there ($40–50) and leave it behind. Grizzly country in both Glacier and Yellowstone." },
+  { id:"offline", t:"Download offline maps for the whole route", d:"Cell coverage dies in eastern Oregon, northern Nevada and most of Yellowstone. Download Google Maps offline areas and screenshot the charging plan." },
+  { id:"warm", t:"Pack for a hard frost", d:"Nights at 6,000–8,000 ft in October go below freezing. Proper sleeping bags rated to -5°C, hats, and a way to stop condensation on the windows." }
+];
+
+const BUDGET_CFG = [
+  { id:"turoDay", label:"Turo, per day", min:60, max:200, step:5, val:110, fmt:v=>"$"+v },
+  { id:"cap", label:"Miles included per day", min:75, max:400, step:25, val:200, fmt:v=>v>=400?"unlimited":v+" mi" },
+  { id:"overMi", label:"Cost per extra mile", min:0, max:1, step:0.05, val:0.5, fmt:v=>"$"+v.toFixed(2) },
+  { id:"motelNights", label:"Motel and hotel nights", min:0, max:19, step:1, val:13, fmt:v=>v+" nights" },
+  { id:"motel", label:"Motel, per night", min:70, max:300, step:10, val:130, fmt:v=>"$"+v },
+  { id:"kwh", label:"Charging, per kWh", min:0.2, max:0.6, step:0.02, val:0.4, fmt:v=>"$"+v.toFixed(2) },
+  { id:"foodDay", label:"Food, per person per day", min:20, max:150, step:5, val:65, fmt:v=>"$"+v },
+  { id:"sfNight", label:"San Francisco hotel, per night", min:120, max:500, step:20, val:260, fmt:v=>"$"+v },
+  { id:"fx", label:"USD → CZK", min:18, max:28, step:0.5, val:22.5, fmt:v=>v.toFixed(1)+" Kč" }
+];
+
+/* ======================================================================
+   STATE
+   ====================================================================== */
+const DAY = 864e5;
+const START = Date.UTC(2026, 8, 23);   // Sept 23 — landing in Seattle
+const HOME  = Date.UTC(2026, 9, 11);   // Oct 11 — flight home from SFO
+const EXT   = Date.UTC(2026, 9, 14);   // Oct 14 — the +3 day option
+
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fmtDate  = t => { const d = new Date(t); return DOW[d.getUTCDay()] + " · " + MON[d.getUTCMonth()] + " " + d.getUTCDate(); };
+const fmtShort = t => { const d = new Date(t); return MON[d.getUTCMonth()] + " " + d.getUTCDate(); };
+const num = n => n.toLocaleString("en-US");
+const usd = n => "$" + Math.round(n).toLocaleString("en-US");
+
+const KEY = k => "nwrt26." + k;
+const load = (k, dflt) => { try { const v = localStorage.getItem(KEY(k)); return v == null ? dflt : JSON.parse(v); } catch (e) { return dflt; } };
+const save = (k, v) => { try { localStorage.setItem(KEY(k), JSON.stringify(v)); } catch (e) {} };
+
+let ON    = new Set(load("mods", []));
+let LENS  = load("lens", "all");
+let CHK   = new Set(load("checks", []));
+let SLIDE = Object.assign({}, ...BUDGET_CFG.map(c => ({ [c.id]: c.val })), load("slide", {}));
+
+/* ======================================================================
+   ITINERARY ASSEMBLY
+   ====================================================================== */
+function buildItinerary() {
+  let days = BASE.map(d => ({ ...d, isMod:false }));
+  const on = MODULES.filter(m => ON.has(m.id));
+
+  // Branch swaps first, highest base-day number down, so indices stay valid.
+  on.filter(m => m.replaces).sort((a, b) => b.replaces[0] - a.replaces[0]).forEach(m => {
+    const i = days.findIndex(d => d.n === m.replaces[0]);
+    const j = days.findIndex(d => d.n === m.replaces[1]);
+    if (i < 0 || j < 0) return;
+    days.splice(i, j - i + 1, ...m.dayList.map(d => ({ ...d, isMod:true, modId:m.id })));
+  });
+
+  // Then plain insertions.
+  on.filter(m => !m.replaces).sort((a, b) => b.after - a.after).forEach(m => {
+    const i = days.findIndex(d => d.n === m.after);
+    const at = i < 0 ? days.length : i + 1;
+    days.splice(at, 0, ...m.dayList.map(d => ({ ...d, isMod:true, modId:m.id })));
+  });
+
+  // Dates: road days walk forward from the landing date; San Francisco days
+  // sit inside the SF window after the car goes back, so they never shift it.
+  let walk = 0;
+  days.filter(d => !d.sf).forEach(d => { d.date = START + walk * DAY; d.num = walk; walk++; });
+  const carReturn = START + (walk - 1) * DAY;
+  const flyDate = carReturn + DAY;
+  let sfSeq = 1;
+  days.filter(d => d.sf).forEach(d => { d.date = flyDate + sfSeq * DAY; d.num = null; sfSeq++; });
+
+  const road = days.filter(d => !d.sf);
+  const roadMiles = road.reduce((s, d) => s + d.miles, 0);
+  const driveDays = road.filter(d => d.miles > 0).length;
+  const carNights = road.filter(d => d.sleep && d.sleep.t === "car").length;
+  const sfNights = Math.max(0, Math.round((HOME - flyDate) / DAY));
+  const sfNightsExt = Math.max(0, Math.round((EXT - flyDate) / DAY));
+
+  return { days, roadMiles, driveDays, carNights, carReturn, flyDate, sfNights, sfNightsExt,
+           sfDays: days.filter(d => d.sf) };
+}
+let IT = buildItinerary();
+
+/* ======================================================================
+   RENDER — hero stats
+   ====================================================================== */
+function renderStats() {
+  const km = Math.round(IT.roadMiles * 1.609);
+  const avg = Math.round(IT.roadMiles / Math.max(1, IT.driveDays));
+  document.getElementById("stats").innerHTML = [
+    ["accent", num(IT.roadMiles), "miles driving"],
+    ["", num(km), "kilometres"],
+    ["", IT.driveDays, "days on the road"],
+    ["", avg, "miles per day, average"],
+    ["", IT.carNights, "nights in the car"],
+    ["", IT.sfNights, "nights in San Francisco"]
+  ].map(([c, b, s]) => `<div class="stat ${c}"><b class="tnum">${b}</b><small>${s}</small></div>`).join("");
+  document.getElementById("avgmi").textContent = avg;
+}
+
+/* ======================================================================
+   RENDER — map
+   ====================================================================== */
+function renderMap() {
+  const pts = a => a.map(([lo, la]) => p(lo, la).join(",")).join(" ");
+  let s = `<svg class="map" viewBox="0 0 ${W} ${H}" role="img" aria-label="Route map of the Pacific Northwest and Mountain West">`;
+
+  STATES.forEach(st => {
+    s += `<polygon class="st" points="${pts(st.pts)}"></polygon>`;
+  });
+  s += `<text class="st-lbl" x="${p(-113, 49.35)[0]}" y="${p(-113, 49.35)[1]}">canada</text>`;
+  STATES.forEach(st => {
+    const [x, y] = p(st.at[0], st.at[1]);
+    s += `<text class="st-lbl" x="${x}" y="${y}">${st.ab}</text>`;
+  });
+
+  // Route: one path per day so module legs can be styled separately.
+  const road = IT.days.filter(d => !d.sf && d.wp && d.wp.length > 1);
+  road.forEach((d, i) => {
+    const prev = i > 0 ? road[i - 1].wp[road[i - 1].wp.length - 1] : null;
+    const seq = prev ? [prev, ...d.wp] : d.wp;
+    s += `<polyline class="route${d.isMod ? " modroute" : ""}" points="${pts(seq)}"></polyline>`;
+  });
+
+  // Flights and the Big Sur loop.
+  s += `<polyline class="fly" points="${pts([[-122.33, 47.61], [-122.42, 37.77]])}"></polyline>`;
+  IT.sfDays.forEach(d => {
+    if (d.wp && d.wp.length > 1) s += `<polyline class="route modroute" points="${pts(d.wp)}"></polyline>`;
+  });
+
+  CITIES.forEach(([nm, lo, la, anc]) => {
+    const [x, y] = p(lo, la);
+    s += `<circle cx="${x}" cy="${y}" r="1.9" fill="var(--muted)"></circle>`
+       + `<text class="city" x="${anc === "end" ? x - 6 : x + 6}" y="${y + 3.4}" text-anchor="${anc}">${nm}</text>`;
+  });
+
+  // Pins, nudged apart when they land on top of each other.
+  const placed = [];
+  IT.days.filter(d => d.num !== null && d.wp && d.wp.length).forEach(d => {
+    const last = d.wp[d.wp.length - 1];
+    let [x, y] = p(last[0], last[1]);
+    for (let k = 0; k < 40; k++) {
+      if (!placed.some(q => Math.hypot(q[0] - x, q[1] - y) < 19)) break;
+      const a = k * 1.9, r = 11 + k * 1.6;
+      [x, y] = [p(last[0], last[1])[0] + Math.cos(a) * r, p(last[0], last[1])[1] + Math.sin(a) * r];
+    }
+    placed.push([x, y]);
+    s += `<g class="pin${d.isMod ? " modpin" : ""}" data-day="${d.num}" tabindex="0" role="button"`
+       + ` aria-label="Day ${d.num}: ${d.title.replace(/"/g, "")}">`
+       + `<circle cx="${x}" cy="${y}" r="9"></circle>`
+       + `<text x="${x}" y="${y + 3.4}">${d.num}</text></g>`;
+  });
+
+  s += "</svg>";
+  document.getElementById("mapbox").innerHTML = s;
+  document.querySelectorAll(".pin").forEach(g => {
+    const go = () => jumpToDay(g.dataset.day);
+    g.addEventListener("click", go);
+    g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+  });
+}
+
+function jumpToDay(n) {
+  const el = document.getElementById("day-" + n);
+  if (!el) return;
+  el.scrollIntoView({ behavior:"smooth", block:"start" });
+  el.classList.remove("flash");
+  void el.offsetWidth;
+  el.classList.add("flash");
+}
+
+/* ======================================================================
+   RENDER — modules, lenses, day cards
+   ====================================================================== */
+function renderMods() {
+  document.getElementById("mods").innerHTML = MODULES.map(m => {
+    const on = ON.has(m.id);
+    return `<label class="mod${on ? " on" : ""}">
+      <input type="checkbox" data-mod="${m.id}"${on ? " checked" : ""}>
+      <span class="rc"><span class="mt">${m.name}</span>
+        <span class="md">${m.desc}</span></span>
+      <span class="mc">${m.cost}<br><span class="risk ${m.risk}">${m.risk === "hi" ? "risk" : "easy"}</span></span>
+    </label>`;
+  }).join("");
+  document.querySelectorAll("[data-mod]").forEach(cb => cb.addEventListener("change", () => {
+    const id = cb.dataset.mod;
+    if (cb.checked) {
+      ON.add(id);
+      const m = MODULES.find(x => x.id === id);
+      (m.conflicts || []).forEach(c => ON.delete(c));
+      MODULES.filter(x => (x.conflicts || []).includes(id)).forEach(x => ON.delete(x.id));
+    } else ON.delete(id);
+    save("mods", [...ON]);
+    rerender();
+  }));
+}
+
+function renderWarn() {
+  const b = document.getElementById("daywarn");
+  const base = `Road trip ends <b>${fmtShort(IT.carReturn)}</b>, fly to San Francisco <b>${fmtShort(IT.flyDate)}</b>.`;
+  if (IT.sfNights >= 2) {
+    b.innerHTML = `<div class="warn ok">${base} That leaves <b>${IT.sfNights} nights in SF</b> before the Oct 11 flight home. Comfortable.</div>`;
+  } else if (IT.sfNights === 1) {
+    b.innerHTML = `<div class="warn">${base} Only <b>1 night in SF</b> left before Oct 11 — worth moving the flight home to Oct 13 or 14, which would give you ${IT.sfNightsExt}.</div>`;
+  } else {
+    b.innerHTML = `<div class="warn">${base} This runs <b>past your Oct 11 flight</b>. You need the three-day extension: flying home Oct 14 gives you ${IT.sfNightsExt} night${IT.sfNightsExt === 1 ? "" : "s"} in SF.</div>`;
+  }
+}
+
+const LENSES = [["all","Everything"],["hi","Highlights"],["food","Food"],["charge","Charging"],["sleep","Sleeping"]];
+function renderLenses() {
+  document.getElementById("lenses").innerHTML = LENSES
+    .map(([k, l]) => `<button class="lens${LENS === k ? " on" : ""}" data-lens="${k}">${l}</button>`).join("");
+  document.querySelectorAll("[data-lens]").forEach(b => b.addEventListener("click", () => {
+    LENS = b.dataset.lens; save("lens", LENS); renderLenses(); renderDays();
+  }));
+}
+
+const tagHtml = tags => (tags || []).map(([c, l]) => `<span class="tag ${c}">${l}</span>`).join("");
+
+function renderDays() {
+  const show = k => LENS === "all" || LENS === k;
+  document.getElementById("days").innerHTML = IT.days.map(d => {
+    const rows = [];
+    if (show("hi")) {
+      rows.push(`<div class="row"><div class="ico">✦</div><div class="rc">
+        <div class="rl">Why this day</div><div class="why">${d.why}</div></div></div>`);
+      rows.push(`<div class="row"><div class="ico">◎</div><div class="rc">
+        <div class="rl">Highlights</div><ul>${d.hi.map(h => `<li>${h}</li>`).join("")}</ul></div></div>`);
+    }
+    if (show("sleep") && d.sleep) {
+      rows.push(`<div class="row"><div class="ico">${d.sleep.t === "car" ? "🚗" : "🛏"}</div><div class="rc">
+        <div class="rl">Sleeping</div>
+        <span class="sleep-${d.sleep.t}">${d.sleep.t === "car" ? "In the car" : "Motel"}</span> — ${d.sleep.where}</div></div>`);
+    }
+    if (show("food") && d.food && d.food.length) {
+      rows.push(`<div class="row"><div class="ico">🍽</div><div class="rc">
+        <div class="rl">Food</div><ul>${d.food.map(f =>
+          `<li><b>${f.nm}</b>${tagHtml(f.tags)}<br><span style="color:var(--muted)">${f.note}</span></li>`).join("")}</ul></div></div>`);
+    }
+    if (show("charge") && d.charge && d.charge.length) {
+      rows.push(`<div class="row"><div class="ico">⚡</div><div class="rc">
+        <div class="rl">Charging</div><ul>${d.charge.map(c => `<li>${c}</li>`).join("")}</ul></div></div>`);
+    }
+    if (d.alert && (show("charge") || show("hi"))) {
+      rows.push(`<div class="alert"><b>Watch out:</b> ${d.alert}</div>`);
+    }
+
+    const label = d.sf ? "SF" : (d.num === 0 ? "0" : d.num);
+    const meta = [
+      d.miles ? `<span class="chip mi">${num(d.miles)} mi</span>` : "",
+      d.hours ? `<span class="chip">${d.hours} h driving</span>` : "",
+      d.isMod ? `<span class="chip" style="color:var(--plum)">module</span>` : ""
+    ].join("");
+
+    return `<article class="day${d.isMod ? " ismod" : ""}" id="day-${d.num === null ? "sf" : d.num}">
+      <div class="dh">
+        <span class="dnum">${label}</span>
+        <span class="dwhen">${fmtDate(d.date)}</span>
+        <span class="dtitle">${d.title}<br><span style="font-family:var(--sans);font-size:.8rem;color:var(--muted)">${d.leg}</span></span>
+        <span class="dmeta">${meta}</span>
+      </div>
+      ${rows.length ? `<div class="dbody">${rows.join("")}</div>` : ""}
+    </article>`;
+  }).join("");
+}
+
+/* ======================================================================
+   RENDER — mileage chart
+   ====================================================================== */
+function renderChart() {
+  const data = IT.days.filter(d => !d.sf && d.miles > 0);
+  const cw = 900, ch = 260, pad = { l: 34, r: 8, t: 12, b: 30 };
+  const iw = cw - pad.l - pad.r, ih = ch - pad.t - pad.b;
+  const max = Math.max(400, Math.ceil(Math.max(...data.map(d => d.miles)) / 100) * 100);
+  const bw = iw / data.length;
+  const y = v => pad.t + ih - (v / max) * ih;
+
+  let s = `<svg class="bars" viewBox="0 0 ${cw} ${ch}" role="img" aria-label="Miles driven per day">`;
+  for (let g = 0; g <= max; g += 100) {
+    s += `<line class="gl" x1="${pad.l}" y1="${y(g)}" x2="${cw - pad.r}" y2="${y(g)}"></line>`
+       + `<text class="gt" x="2" y="${y(g) + 3}">${g}</text>`;
+  }
+  data.forEach((d, i) => {
+    const x = pad.l + i * bw, w = Math.max(6, bw - 6);
+    const cls = d.isMod ? "modbar" : (d.miles >= 300 ? "hard" : "");
+    s += `<rect class="bar ${cls}" x="${x + 3}" y="${y(d.miles)}" width="${w}" height="${pad.t + ih - y(d.miles)}"
+            rx="3" data-day="${d.num}"><title>Day ${d.num}: ${d.leg} — ${d.miles} mi</title></rect>`
+       + `<text class="bv" x="${x + 3 + w / 2}" y="${y(d.miles) - 4}">${d.miles}</text>`
+       + `<text class="bx" x="${x + 3 + w / 2}" y="${ch - 10}">${d.num}</text>`;
+  });
+  s += `<line class="gl" x1="${pad.l}" y1="${pad.t + ih}" x2="${cw - pad.r}" y2="${pad.t + ih}"></line></svg>`;
+  const legend = `<div class="maplegend" style="padding:8px 2px 0">
+    <span><i style="border-color:var(--rust)"></i>normal day</span>
+    <span><i style="border-color:var(--gold)"></i>300+ miles</span>
+    <span><i style="border-color:var(--plum)"></i>module day</span></div>`;
+  document.getElementById("chart").innerHTML = s + legend;
+  document.querySelectorAll(".bar").forEach(r => r.addEventListener("click", () => jumpToDay(r.dataset.day)));
+}
+
+/* ======================================================================
+   RENDER — static reference sections
+   ====================================================================== */
+function renderCharging() {
+  document.getElementById("chargetbl").innerHTML =
+    `<thead><tr><th>Leg</th><th>Road</th><th>Chargers</th><th>Verdict</th></tr></thead><tbody>` +
+    CHARGE_ROWS.map(([leg, road, ch, v, cls]) =>
+      `<tr class="${cls}"><td><b>${leg}</b></td><td class="n">${road}</td><td>${ch}</td><td>${v}</td></tr>`).join("") +
+    `</tbody>`;
+}
+
+function renderFood() {
+  document.getElementById("foodrules").innerHTML = FOOD_RULES.map(r => `<li>${r}</li>`).join("");
+  document.getElementById("foodgrid").innerHTML = FOOD_CARDS.map(c => `
+    <div class="card fcard"><h3>${c.h}</h3><div class="place">${c.place}</div>
+      <ul>${c.items.map(([nm, note, tags]) =>
+        `<li><b>${nm}</b>${tags.map(t => `<span class="tag ${t}">${
+          { gf:"GF", df:"DF", meat:"unusual meat", oy:"oysters", ino:"In-N-Out" }[t]}</span>`).join("")}
+          <br><span style="color:var(--muted)">${note}</span></li>`).join("")}</ul></div>`).join("");
+}
+
+const cardList = (arr, el) => document.getElementById(el).innerHTML = arr.map(c =>
+  `<div class="card rcard"><h3>${c.h}</h3><p>${c.body}</p>${c.dl ? `<span class="dl">${c.dl}</span>` : ""}</div>`).join("");
+
+/* ======================================================================
+   RENDER — checklist
+   ====================================================================== */
+function renderChecks() {
+  document.getElementById("checks").innerHTML = CHECKS.map(c => {
+    const done = CHK.has(c.id);
+    return `<label class="chk${done ? " done" : ""}${c.block ? " block" : ""}">
+      <input type="checkbox" data-chk="${c.id}"${done ? " checked" : ""}>
+      <span class="rc"><span class="ct">${c.t}</span><span class="cd">${c.d}</span></span></label>`;
+  }).join("");
+  document.getElementById("chkbar").style.width = Math.round(CHK.size / CHECKS.length * 100) + "%";
+  document.querySelectorAll("[data-chk]").forEach(cb => cb.addEventListener("change", () => {
+    cb.checked ? CHK.add(cb.dataset.chk) : CHK.delete(cb.dataset.chk);
+    save("checks", [...CHK]); renderChecks();
+  }));
+}
+
+/* ======================================================================
+   RENDER — budget
+   ====================================================================== */
+function renderSliders() {
+  document.getElementById("sliders").innerHTML = BUDGET_CFG.map(c => `
+    <div class="sl"><label for="s-${c.id}">${c.label}<b id="v-${c.id}">${c.fmt(SLIDE[c.id])}</b></label>
+      <input id="s-${c.id}" type="range" min="${c.min}" max="${c.max}" step="${c.step}"
+             value="${SLIDE[c.id]}" data-slide="${c.id}"></div>`).join("");
+  document.querySelectorAll("[data-slide]").forEach(r => r.addEventListener("input", () => {
+    const c = BUDGET_CFG.find(x => x.id === r.dataset.slide);
+    SLIDE[c.id] = parseFloat(r.value);
+    document.getElementById("v-" + c.id).textContent = c.fmt(SLIDE[c.id]);
+    save("slide", SLIDE); renderBill();
+  }));
+}
+
+function renderBill() {
+  const s = SLIDE;
+  const turoDays = IT.driveDays;
+  const included = s.cap >= 400 ? Infinity : s.cap * turoDays;
+  const over = Math.max(0, IT.roadMiles - included);
+  const tripDays = Math.round((IT.flyDate - START) / DAY) + IT.sfNights + 1;
+
+  const lines = [
+    ["Turo, " + turoDays + " days × " + usd(s.turoDay), turoDays * s.turoDay],
+    [over > 0 ? `Extra miles (${num(Math.round(over))} over ${num(included)})` : "Extra miles (inside the cap)", over * s.overMi],
+    [`Charging (~${num(Math.round(IT.roadMiles / 4))} kWh at 4 mi/kWh)`, IT.roadMiles / 4 * s.kwh],
+    [`Motels, ${s.motelNights} nights × ${usd(s.motel)}`, s.motelNights * s.motel],
+    [`Food, 2 people × ${tripDays} days × ${usd(s.foodDay)}`, 2 * tripDays * s.foodDay],
+    ["Non-resident annual park pass", 250],
+    ["Bear spray, mattress, bedding", 170],
+    ["Flights SEA → SFO, 2 people", 240],
+    [`San Francisco hotel, ${IT.sfNights} nights × ${usd(s.sfNight)}`, IT.sfNights * s.sfNight],
+    ["San Francisco food and activities", 600]
+  ];
+  if (ON.has("bigsur")) lines.push(["One-day car rental for Big Sur", 140]);
+
+  const total = lines.reduce((a, [, v]) => a + v, 0);
+  document.getElementById("bill").innerHTML =
+    lines.map(([l, v]) => `<div class="bline"><span>${l}</span><span>${usd(v)}</span></div>`).join("") +
+    `<div class="bline sum"><span>Total for two</span><span>${usd(total)}</span></div>` +
+    `<p class="bnote">≈ ${num(Math.round(total * s.fx / 1000))}k Kč at ${s.fx.toFixed(1)} Kč/$. Excludes the
+      transatlantic flights. The mileage cap is the single biggest unknown — check it on the listing
+      before you book, because at 100 mi/day this line alone swings by ${usd(Math.max(0, IT.roadMiles - 100 * turoDays) * s.overMi)}.</p>`;
+}
+
+/* ======================================================================
+   BOOT
+   ====================================================================== */
+function rerender() {
+  IT = buildItinerary();
+  renderStats(); renderMap(); renderMods(); renderWarn(); renderDays(); renderChart(); renderBill();
+}
+
+(function init() {
+  const saved = load("theme", null);
+  if (saved) document.documentElement.setAttribute("data-theme", saved);
+  document.getElementById("theme").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    const isDark = cur ? cur === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    const next = isDark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    save("theme", next);
+    renderMap(); renderChart();
+  });
+
+  renderLenses(); renderCharging(); renderFood(); renderChecks(); renderSliders();
+  cardList(SLEEP_CARDS, "sleepgrid"); cardList(RISKS, "riskgrid"); cardList(SF_CARDS, "sfgrid");
+  rerender();
+})();
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 import { CHARGE_ROWS, FOOD_RULES, RISKS, SLEEP_CARDS } from "../data/reference";
 import { SLEEP_STYLES } from "../data/itinerary";
-import { difficulty, distLabel, fmtShort } from "../lib/trip";
+import { blockOf, difficulty, distLabel, fmtShort } from "../lib/trip";
 import type { Trip } from "../lib/trip";
 import type { SleepStyle, Units } from "../types";
 import type { Lens } from "./DayList";
@@ -66,7 +66,7 @@ export function LoadChart({ trip, units, onSelect }: {
   trip: Trip; units: Units; onSelect: (id: string) => void;
 }) {
   const data = trip.days.filter((d) => (d.meters ?? 0) > 0);
-  const w = 900, h = 250, pad = { l: 38, r: 8, t: 12, b: 28 };
+  const w = 900, h = 290, pad = { l: 38, r: 8, t: 34, b: 28 };
   const iw = w - pad.l - pad.r, ih = h - pad.t - pad.b;
   const vals = data.map((d) => (units === "mi" ? (d.meters ?? 0) / 1609.344 : (d.meters ?? 0) / 1000));
   const step = units === "mi" ? 100 : 200;
@@ -76,16 +76,39 @@ export function LoadChart({ trip, units, onSelect }: {
   const grid: number[] = [];
   for (let g = 0; g <= max; g += step) grid.push(g);
 
+  // Contiguous runs of days belonging to the same car, so it is obvious which
+  // bars are the Seattle rental and which are the Salt Lake one.
+  const bands: { label: string; from: number; to: number; meters: number }[] = [];
+  data.forEach((d, i) => {
+    const b = blockOf(d.id);
+    const last = bands[bands.length - 1];
+    if (last && last.label === b) { last.to = i; last.meters += d.meters ?? 0; }
+    else bands.push({ label: b, from: i, to: i, meters: d.meters ?? 0 });
+  });
+
   return (
     <section id="load">
       <div className="wrap narrow">
         <div className="shead"><span className="num">04</span><h2>Where it hurts</h2></div>
         <p className="sub">
-          Distance per driving day. Under 130 {units} is easy, over 350 {units} is a transfer where
-          FSD and a podcast earn their keep. Click a bar to jump to the day.
+          Distance per driving day, split by which car you are in. Under 130 {units} is an easy day,
+          over 350 {units} is a transfer. Click a bar to jump to that day. The San Francisco days are
+          not shown because there is no driving in them at all.
         </p>
         <div className="card chart">
           <svg className="bars" viewBox={`0 0 ${w} ${h}`} role="img" aria-label={`Distance per day in ${units}`}>
+            {bands.map((b, i) => {
+              const x1 = pad.l + b.from * bw, x2 = pad.l + (b.to + 1) * bw;
+              return (
+                <g key={i}>
+                  <rect className="band" x={x1} y={pad.t - 22} width={x2 - x1} height={ih + 22} rx={4} />
+                  <text className="bandlbl" x={(x1 + x2) / 2} y={pad.t - 10}>
+                    {b.label} · {distLabel(b.meters, units)}
+                  </text>
+                  {i > 0 && <line className="banddiv" x1={x1} y1={pad.t - 22} x2={x1} y2={pad.t + ih} />}
+                </g>
+              );
+            })}
             {grid.map((g) => (
               <g key={g}>
                 <line className="gl" x1={pad.l} y1={y(g)} x2={w - pad.r} y2={y(g)} />

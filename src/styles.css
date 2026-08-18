@@ -113,7 +113,7 @@ section{padding:44px 0;border-bottom:1px solid var(--line)}
 /* ---------- planner: sticky map beside the day list ---------- */
 .planner{display:grid;gap:18px;grid-template-columns:1fr}
 @media(min-width:1080px){
-  .planner{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:start}
+  .planner{grid-template-columns:minmax(280px,.62fr) minmax(0,1fr);align-items:start}
   /* Give the map more of the screen as the monitor grows. */
   @media(min-width:1600px){
     .wrap{max-width:1560px}
@@ -130,8 +130,14 @@ section{padding:44px 0;border-bottom:1px solid var(--line)}
 .mapcard{padding:0;overflow:hidden}
 /* Default scales with the viewport but leaves room for the module panel beneath
    it in the sticky column; a drag handle overrides it and the value persists. */
-.mapwrap{height:clamp(340px,calc(100vh - 420px),900px);width:100%}
+.mapwrap{height:clamp(340px,calc(100vh - 300px),860px);width:100%}
 @media(max-width:1079px){.mapwrap{height:clamp(360px,62vh,680px)}}
+/* True edge-to-edge map: break out of the content column entirely. */
+.mapcard{margin:0 0 20px;width:100vw;margin-left:calc(50% - 50vw);border-radius:0;
+  border-left:0;border-right:0}
+@media(min-width:1080px){.mapwrap{height:clamp(420px,calc(100vh - 260px),1000px)}}
+.stepnow{font-size:.79rem;color:var(--muted);white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis;max-width:min(46vw,420px);font-weight:600}
 .grip{height:13px;display:flex;align-items:center;justify-content:center;cursor:ns-resize;
   background:var(--surface2);border-top:1px solid var(--line);touch-action:none;user-select:none}
 .grip:hover{background:var(--line)}
@@ -283,6 +289,9 @@ tr.crit td{background:var(--rust-soft)}
 td.n{font-family:var(--mono);white-space:nowrap}
 .chart{padding:16px}
 svg.bars{display:block;width:100%;height:auto}
+.band{fill:var(--surface2);opacity:.55}
+.bandlbl{fill:var(--muted);font-size:10px;text-anchor:middle;font-family:var(--sans);font-weight:600}
+.banddiv{stroke:var(--line2);stroke-width:1;stroke-dasharray:3 3}
 .bar{fill:var(--rust);opacity:.85;cursor:pointer}
 .bar:hover{opacity:1}
 .bar.long{fill:var(--gold)}

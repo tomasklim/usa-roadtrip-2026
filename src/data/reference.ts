@@ -1,6 +1,6 @@
 export const CHARGE_ROWS: [string, string, string, string, "" | "gap" | "crit"][] = [
-  ["Seattle → Mount Rainier → Seattle", "WA-706 / WA-410", "Nothing useful inside the park", "Go in full; it is a 410 km loop. Enumclaw side has L2.", "gap"],
-  ["Seattle → Hood Canal → Seattle", "US-101", "Olympia SC, Shelton and Hoodsport L2", "Fine. The ferry route is shorter and has chargers either side.", ""],
+  ["Seattle → Rainier traverse → Ashford", "WA-410 / WA-123 / WA-706", "Nothing useful inside the park; Enumclaw and Ashford have L2", "Go in full from Seattle — 285 km and no fast charging on the mountain.", "gap"],
+  ["Ashford → Hood Canal → Kingston ferry → Seattle", "US-101 / WA-104", "Olympia SC, Poulsbo L2", "Fine. Not a Tesla anyway — this block is a cheap two-day rental.", ""],
   ["SLC → Bonneville → SLC", "I-80", "SLC everywhere, West Wendover SC", "Easy. Wendover has car washes for the salt.", ""],
   ["SLC → Logan Canyon → Bear Lake → Jackson", "US-89", "Logan, Montpelier, Jackson", "Comfortable, even at 485 km.", ""],
   ["Grand Teton day", "Teton Park Road", "Jackson SC", "Non-issue — 160 km on one charge.", ""],
@@ -13,7 +13,7 @@ export const CHARGE_ROWS: [string, string, string, string, "" | "gap" | "crit"][
   ["Bozeman → West Yellowstone → Idaho Falls", "US-191 / US-20", "West Yellowstone SC, Idaho Falls SC", "Comfortable.", ""],
   ["Craters of the Moon module", "US-20 / US-26", "Arco has L2 only", "Plan West Yellowstone to Idaho Falls as one charge — the lava field detour is 610 km total.", "gap"],
   ["Idaho Falls → Lava Hot Springs → SLC", "I-15", "Pocatello, Brigham City, Ogden, SLC", "Dense the whole way.", ""],
-  ["Dinosaur NM module", "US-40 / US-191", "Heber City SC, then Vernal is unverified", "Check Vernal in the app before committing; Rock Springs SC is the fallback.", "gap"]
+  ["Dinosaur NM module", "US-40 / US-191", "Heber City SC, Vernal SC (8 stalls), Rock Springs SC", "Fine — Vernal turned out to have a Supercharger after all.", ""]
 ];
 
 export const FOOD_RULES = [

@@ -361,10 +361,10 @@
   "kind": "sight",
   "lat": 47.54165,
   "lon": -121.83793,
-  "day": "d1",
+  "day": "seaA",
   "tags": [],
   "city": "Snoqualmie WA",
-  "desc": "A 268 ft drop half an hour out of Seattle, with a viewing platform right at the lip."
+  "desc": "A 268 ft drop with a viewing platform at the lip, 30 min east of Seattle. A detour on the way out rather than on the way to Rainier."
  },
  {
   "id": "lake-mcdonald",
@@ -835,5 +835,126 @@
   ],
   "city": "Seattle WA",
   "desc": "Plain grilled steak, no butter finish. The safest good meal on a jet-lagged arrival night."
+ },
+ {
+  "id": "staircase-rapids",
+  "name": "Staircase, Olympic NP",
+  "kind": "sight",
+  "lat": 47.5162,
+  "lon": -123.33099,
+  "day": "seaB",
+  "tags": [],
+  "city": "Hoodsport WA",
+  "desc": "Olympic National Park's east entrance: old-growth rainforest and the Skokomish rapids, 40 min up from Hoodsport. The real park without the drive to Hoh."
+ },
+ {
+  "id": "mount-walker",
+  "name": "Mount Walker Viewpoint",
+  "kind": "sight",
+  "lat": 47.78891,
+  "lon": -122.90678,
+  "day": "seaB",
+  "tags": [],
+  "city": "Quilcene WA",
+  "desc": "The only drivable summit in the eastern Olympics. One viewpoint looks over Puget Sound to Seattle and Rainier, the other straight into the Olympic range."
+ },
+ {
+  "id": "port-gamble",
+  "name": "Port Gamble",
+  "kind": "sight",
+  "lat": 47.85426,
+  "lon": -122.58376,
+  "day": "seaB",
+  "tags": [],
+  "city": "Kitsap County WA",
+  "desc": "An 1853 company mill town preserved essentially intact and listed on the National Register. General store, small museum, and almost nobody there."
+ },
+ {
+  "id": "hood-canal-bridge",
+  "name": "Hood Canal Bridge",
+  "kind": "sight",
+  "lat": 47.85961,
+  "lon": -122.62399,
+  "day": "seaB",
+  "tags": [],
+  "city": "Jefferson County WA",
+  "desc": "One of the longest floating bridges on Earth at 2.4 km. It swings open sideways to let submarines through to the Bangor base."
+ },
+ {
+  "id": "lake-cushman",
+  "name": "Lake Cushman",
+  "kind": "sight",
+  "lat": 47.46231,
+  "lon": -123.2309,
+  "day": "seaB",
+  "tags": [],
+  "city": "Mason County WA",
+  "desc": "A glacial lake under the Olympics with startlingly clear water, on the way up to Staircase."
+ },
+ {
+  "id": "olympia-capitol",
+  "name": "Washington State Capitol",
+  "kind": "sight",
+  "lat": 47.03577,
+  "lon": -122.90485,
+  "day": "seaB",
+  "tags": [],
+  "city": "Olympia WA",
+  "desc": "The tallest self-supporting masonry dome in the US, five minutes off the route, and free to walk into."
+ },
+ {
+  "id": "crystal-mountain",
+  "name": "Crystal Mountain gondola",
+  "kind": "sight",
+  "lat": 46.93274,
+  "lon": -121.48773,
+  "day": "seaA",
+  "tags": [],
+  "city": "Pierce County WA",
+  "desc": "The highest gondola in Washington, running through autumn, with Rainier filling the whole sky from the top. Ten minutes off the road to Sunrise."
+ },
+ {
+  "id": "northwest-trek",
+  "name": "Northwest Trek Wildlife Park",
+  "kind": "sight",
+  "lat": 46.91752,
+  "lon": -122.2698,
+  "day": "seaB",
+  "tags": [],
+  "city": "Eatonville WA",
+  "desc": "A tram tour through 435 free-range acres of bison, elk, moose, caribou and bighorn sheep. A useful warm-up for Yellowstone, and it is directly on the road from Ashford."
+ },
+ {
+  "id": "ballard-locks",
+  "name": "Ballard Locks",
+  "kind": "sight",
+  "lat": 47.66602,
+  "lon": -122.39775,
+  "day": "sea1",
+  "tags": [],
+  "city": "Seattle WA",
+  "desc": "A working ship canal with a glass-walled fish ladder underneath it. Late September is the tail of the salmon run, so you can watch them climb."
+ },
+ {
+  "id": "kerry-park",
+  "name": "Kerry Park",
+  "kind": "sight",
+  "lat": 47.62936,
+  "lon": -122.3599,
+  "day": "sea1",
+  "tags": [],
+  "city": "Seattle WA",
+  "desc": "The postcard view: Space Needle, downtown and Mount Rainier stacked behind each other. Tiny park, five minutes, best at dusk."
+ },
+ {
+  "id": "museum-of-flight",
+  "name": "Museum of Flight",
+  "kind": "sight",
+  "lat": 47.51823,
+  "lon": -122.29611,
+  "day": "sea1",
+  "tags": [],
+  "city": "Seattle WA",
+  "desc": "Far better than it sounds: the first Air Force One, a Concorde, an SR-71 and the original Boeing factory. Good rainy-day insurance."
  }
 ]

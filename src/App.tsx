@@ -50,6 +50,32 @@ export default function App() {
 
   const select = useCallback((id: string) => setSelected(id), []);
 
+  /** Move the selection along the itinerary; used by the arrow keys and the map buttons. */
+  const step = useCallback((delta: number) => {
+    setSelected((cur) => {
+      const list = trip.days.map((d) => d.id);
+      if (!list.length) return cur;
+      if (!cur) return delta > 0 ? list[0] : list[list.length - 1];
+      const i = list.indexOf(cur);
+      if (i < 0) return list[0];
+      return list[(i + delta + list.length) % list.length];
+    });
+  }, [trip.days]);
+
+  // Left and right arrows walk the itinerary, unless you are typing in a control.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const t = e.target as HTMLElement | null;
+      if (t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+      if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
+      else if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
+      else if (e.key === "Escape") setSelected(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [step]);
+
   // Scrolling happens in an effect, not in the click handler: switching a module
   // on selects one of its days, and that card does not exist in the DOM until
   // after the re-render.
@@ -72,14 +98,18 @@ export default function App() {
           <div className="shead"><span className="num">02</span><h2>The route, day by day</h2></div>
           <p className="sub">
             The map is live: pan it, switch the base layer, turn on sights, food and Superchargers, and
-            click any numbered pin or route line to pull up that day. Every line is real road geometry,
-            so the distances are measured rather than guessed — and each day exports as GPX for the car.
+            click any pin or route line to pull up that day. Every line is real road geometry, so the
+            distances are measured rather than guessed, and each day exports as GPX for the car.
+            <b> Use ← and → to walk through the trip day by day</b> — the map follows and opens the
+            detail as it goes. Escape clears the selection.
           </p>
+          <RouteMap trip={trip} units={units} selected={selected} onSelect={select}
+                    layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
+                    dark={dark} mapHeight={mapHeight} setMapHeight={setMapHeight}
+                    onStep={step} />
+
           <div className="planner">
             <div className="side">
-              <RouteMap trip={trip} units={units} selected={selected} onSelect={select}
-                        layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
-                        dark={dark} mapHeight={mapHeight} setMapHeight={setMapHeight} />
               <Modules on={on} toggle={toggle} trip={trip} units={units}
                        sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={select} />
               <LensBar lens={lens} setLens={setLens} />

@@ -6,7 +6,7 @@
   "lon": -110.79427,
   "city": "Jackson",
   "street": "1155 South Highway 89",
-  "km": 0.9,
+  "km": 0.3,
   "key": true
  },
  {
@@ -16,7 +16,7 @@
   "lon": -111.07857,
   "city": "Bozeman",
   "street": "2905 West Main Street",
-  "km": 3.1,
+  "km": 0.3,
   "key": true
  },
  {
@@ -26,7 +26,7 @@
   "lon": -111.54696,
   "city": "Park City",
   "street": "6598 North Landmark Drive",
-  "km": 0.7,
+  "km": 0.4,
   "key": false
  },
  {
@@ -46,7 +46,7 @@
   "lon": -111.85896,
   "city": "Salt Lake City",
   "street": "1131 East Wilmington Avenue",
-  "km": 3.3,
+  "km": 2.6,
   "key": false
  },
  {
@@ -56,157 +56,7 @@
   "lon": -111.87199,
   "city": "Salt Lake City",
   "street": "544 South 700 East",
-  "km": 1.5,
-  "key": false
- },
- {
-  "id": "wf-6",
-  "name": "Whole Foods Market",
-  "lat": 43.60787,
-  "lon": -116.19462,
-  "city": "Boise",
-  "street": "401 South Broadway Avenue",
-  "km": 0.3,
-  "key": true
- },
- {
-  "id": "wf-7",
-  "name": "Whole Foods Market",
-  "lat": 44.05631,
-  "lon": -121.26592,
-  "city": "Bend",
-  "street": "2610 Northeast Highway 20",
-  "km": 0.6,
-  "key": true
- },
- {
-  "id": "wf-8",
-  "name": "Whole Foods Market",
-  "lat": 37.24933,
-  "lon": -121.87678,
-  "city": "San Jose",
-  "street": "1146 Blossom Hill Road",
-  "km": 6.8,
-  "key": false
- },
- {
-  "id": "wf-9",
-  "name": "Whole Foods Market",
-  "lat": 36.58343,
-  "lon": -121.90032,
-  "city": "Monterey",
-  "street": "800 Del Monte Center",
   "km": 1.4,
-  "key": true
- },
- {
-  "id": "wf-10",
-  "name": "Whole Foods Market",
-  "lat": 37.33216,
-  "lon": -121.9048,
-  "city": "San Jose",
-  "street": "777 The Alameda",
-  "km": 9.5,
-  "key": false
- },
- {
-  "id": "wf-11",
-  "name": "Whole Foods",
-  "lat": 37.33278,
-  "lon": -121.90527,
-  "city": "",
-  "street": "",
-  "km": 9.5,
-  "key": false
- },
- {
-  "id": "wf-12",
-  "name": "Whole Foods Market",
-  "lat": 37.29295,
-  "lon": -121.93062,
-  "city": "Campbell",
-  "street": "1690 South Bascom Avenue",
-  "km": 4.6,
-  "key": false
- },
- {
-  "id": "wf-13",
-  "name": "Whole Foods",
-  "lat": 37.24163,
-  "lon": -121.95949,
-  "city": "",
-  "street": "",
-  "km": 1.7,
-  "key": false
- },
- {
-  "id": "wf-14",
-  "name": "Whole Foods Market",
-  "lat": 37.23613,
-  "lon": -121.96152,
-  "city": "Los Gatos",
-  "street": "15890 Los Gatos Boulevard",
-  "km": 2.3,
-  "key": false
- },
- {
-  "id": "wf-15",
-  "name": "Whole Foods Market",
-  "lat": 36.97426,
-  "lon": -121.96358,
-  "city": "Capitola",
-  "street": "1710 41st Avenue",
-  "km": 2.6,
-  "key": false
- },
- {
-  "id": "wf-16",
-  "name": "Whole Foods Market",
-  "lat": 37.38085,
-  "lon": -121.97592,
-  "city": "Santa Clara",
-  "street": "2732 Augustine Drive",
-  "km": 8.1,
-  "key": false
- },
- {
-  "id": "wf-17",
-  "name": "Whole Foods Market",
-  "lat": 37.55498,
-  "lon": -121.98522,
-  "city": "Fremont",
-  "street": "3111 Mowry Avenue",
-  "km": 17.5,
-  "key": false
- },
- {
-  "id": "wf-18",
-  "name": "Whole Foods Market",
-  "lat": 36.979,
-  "lon": -122.01457,
-  "city": "Santa Cruz",
-  "street": "911 Soquel Avenue",
-  "km": 0.7,
-  "key": false
- },
- {
-  "id": "wf-19",
-  "name": "Whole Foods Market",
-  "lat": 37.37392,
-  "lon": -122.03122,
-  "city": "Sunnyvale",
-  "street": "150 East McKinley Avenue",
-  "km": 3.2,
-  "key": false
- },
- {
-  "id": "wf-20",
-  "name": "Whole Foods Market",
-  "lat": 37.32362,
-  "lon": -122.0396,
-  "city": "Cupertino",
-  "street": "20955 Stevens Creek Boulevard",
-  "km": 1.1,
   "key": false
  },
  {
@@ -216,37 +66,7 @@
   "lon": -122.10133,
   "city": "Redmond",
   "street": "17991 Redmond Way Northeast",
-  "km": 10.1,
-  "key": false
- },
- {
-  "id": "wf-22",
-  "name": "Whole Foods Market",
-  "lat": 37.3989,
-  "lon": -122.11076,
-  "city": "Los Altos",
-  "street": "4800 El Camino Real",
-  "km": 3.1,
-  "key": false
- },
- {
-  "id": "wf-23",
-  "name": "Whole Foods Market",
-  "lat": 37.89345,
-  "lon": -122.11721,
-  "city": "Lafayette",
-  "street": "3502 Mount Diablo Boulevard",
-  "km": 28.8,
-  "key": false
- },
- {
-  "id": "wf-24",
-  "name": "Whole Foods Market",
-  "lat": 37.44239,
-  "lon": -122.1596,
-  "city": "Palo Alto",
-  "street": "774 Emerson Street",
-  "km": 5.3,
+  "km": 18.2,
   "key": false
  },
  {
@@ -256,7 +76,7 @@
   "lon": -122.17977,
   "city": "Kirkland",
   "street": "12501 120th Avenue Northeast",
-  "km": 14.9,
+  "km": 15.9,
   "key": false
  },
  {
@@ -266,57 +86,7 @@
   "lon": -122.18454,
   "city": "Bellevue",
   "street": "888 116th Avenue Northeast",
-  "km": 4.9,
-  "key": false
- },
- {
-  "id": "wf-27",
-  "name": "Whole Foods Market",
-  "lat": 37.4823,
-  "lon": -122.23171,
-  "city": "Redwood City",
-  "street": "1250 Jefferson Avenue",
-  "km": 3.9,
-  "key": false
- },
- {
-  "id": "wf-28",
-  "name": "Whole Foods Market",
-  "lat": 37.85549,
-  "lon": -122.2605,
-  "city": "Berkeley",
-  "street": "3000 Telegraph Avenue",
-  "km": 16.0,
-  "key": false
- },
- {
-  "id": "wf-29",
-  "name": "Whole Foods Market",
-  "lat": 37.81305,
-  "lon": -122.26073,
-  "city": "Oakland",
-  "street": "230 Bay Place",
-  "km": 13.6,
-  "key": false
- },
- {
-  "id": "wf-30",
-  "name": "The Logan Resident and Whole Foods Parking Garage",
-  "lat": 37.83779,
-  "lon": -122.2612,
-  "city": "",
-  "street": "",
-  "km": 14.8,
-  "key": false
- },
- {
-  "id": "wf-31",
-  "name": "Whole Foods Market",
-  "lat": 37.8374,
-  "lon": -122.26202,
-  "city": "Oakland",
-  "street": "5101;5179;5199 Telegraph Avenue",
-  "km": 14.8,
+  "km": 10.9,
   "key": false
  },
  {
@@ -326,27 +96,7 @@
   "lon": -122.27229,
   "city": "Lynnwood",
   "street": "2800 196th Street Southwest",
-  "km": 23.7,
-  "key": false
- },
- {
-  "id": "wf-33",
-  "name": "Whole Foods Market",
-  "lat": 37.544,
-  "lon": -122.29188,
-  "city": "San Mateo",
-  "street": "1010 Park Place",
-  "km": 2.2,
-  "key": false
- },
- {
-  "id": "wf-34",
-  "name": "Whole Foods Market",
-  "lat": 37.88082,
-  "lon": -122.29771,
-  "city": "Berkeley",
-  "street": "1025 Gilman Street",
-  "km": 15.7,
+  "km": 17.1,
   "key": false
  },
  {
@@ -376,7 +126,7 @@
   "lon": -122.33862,
   "city": "",
   "street": "",
-  "km": 1.5,
+  "km": 2.2,
   "key": false
  },
  {
@@ -396,137 +146,7 @@
   "lon": -122.38195,
   "city": "Seattle",
   "street": "4755 Fauntleroy Way Southwest",
-  "km": 4.6,
-  "key": false
- },
- {
-  "id": "wf-40",
-  "name": "Whole Foods Market",
-  "lat": 37.78115,
-  "lon": -122.39978,
-  "city": "San Francisco",
-  "street": "399 4th Street",
-  "km": 1.6,
-  "key": false
- },
- {
-  "id": "wf-41",
-  "name": "Whole Foods Market",
-  "lat": 37.76433,
-  "lon": -122.40272,
-  "city": "San Francisco",
-  "street": "450 Rhode Island Street",
-  "km": 0.4,
-  "key": false
- },
- {
-  "id": "wf-42",
-  "name": "Whole Foods Market",
-  "lat": 37.77889,
-  "lon": -122.41411,
-  "city": "",
-  "street": "1185 Market Street",
-  "km": 1.0,
-  "key": false
- },
- {
-  "id": "wf-43",
-  "name": "Valencia Whole Foods",
-  "lat": 37.75702,
-  "lon": -122.42086,
-  "city": "",
-  "street": "999 Valencia Street",
-  "km": 1.3,
-  "key": false
- },
- {
-  "id": "wf-44",
-  "name": "Whole Foods Market",
-  "lat": 37.79009,
-  "lon": -122.42341,
-  "city": "San Francisco",
-  "street": "1765 California Street",
-  "km": 2.1,
-  "key": false
- },
- {
-  "id": "wf-45",
-  "name": "Whole Foods Market",
-  "lat": 37.76874,
-  "lon": -122.42707,
-  "city": "San Francisco",
-  "street": "2001 Market Street",
-  "km": 0.6,
-  "key": false
- },
- {
-  "id": "wf-46",
-  "name": "Haight Fillmore Whole Foods Co.",
-  "lat": 37.77199,
-  "lon": -122.43056,
-  "city": "",
-  "street": "501 Haight Street",
-  "km": 0.9,
-  "key": false
- },
- {
-  "id": "wf-47",
-  "name": "Whole Foods Market",
-  "lat": 37.75202,
-  "lon": -122.43091,
-  "city": "San Francisco",
-  "street": "3950 24th Street",
-  "km": 2.2,
-  "key": false
- },
- {
-  "id": "wf-48",
-  "name": "Whole Foods Market",
-  "lat": 37.76955,
-  "lon": -122.45279,
-  "city": "San Francisco",
-  "street": "690 Stanyan Street",
-  "km": 2.9,
-  "key": false
- },
- {
-  "id": "wf-49",
-  "name": "Whole Foods Market",
-  "lat": 37.7238,
-  "lon": -122.45468,
-  "city": "San Francisco",
-  "street": "1150 Ocean Avenue",
-  "km": 4.4,
-  "key": false
- },
- {
-  "id": "wf-50",
-  "name": "Whole Foods Market",
-  "lat": 37.72907,
-  "lon": -122.47632,
-  "city": "San Francisco",
-  "street": "3251 20th Avenue",
-  "km": 6.1,
-  "key": false
- },
- {
-  "id": "wf-51",
-  "name": "Whole Foods Market",
-  "lat": 37.97133,
-  "lon": -122.51683,
-  "city": "San Rafael",
-  "street": "340 3rd Street",
-  "km": 23.7,
-  "key": false
- },
- {
-  "id": "wf-52",
-  "name": "Whole Foods Market",
-  "lat": 37.90259,
-  "lon": -122.52604,
-  "city": "Mill Valley",
-  "street": "731 East Blithedale Avenue",
-  "km": 17.2,
+  "km": 5.0,
   "key": false
  },
  {
@@ -536,97 +156,7 @@
   "lon": -122.53599,
   "city": "University Place",
   "street": "3515 Bridgeport Way West",
-  "km": 5.6,
-  "key": false
- },
- {
-  "id": "wf-54",
-  "name": "Whole Foods Market",
-  "lat": 37.89605,
-  "lon": -122.53624,
-  "city": "Mill Valley",
-  "street": "414 Miller Avenue",
-  "km": 17.1,
-  "key": false
- },
- {
-  "id": "wf-55",
-  "name": "Whole Foods Market",
-  "lat": 45.53693,
-  "lon": -122.61866,
-  "city": "Portland",
-  "street": "4301 Northeast Sandy Boulevard",
-  "km": 1.3,
-  "key": false
- },
- {
-  "id": "wf-56",
-  "name": "Whole Foods Market",
-  "lat": 45.52326,
-  "lon": -122.63679,
-  "city": "Portland",
-  "street": "2825 East Burnside Street",
-  "km": 0.8,
-  "key": false
- },
- {
-  "id": "wf-57",
-  "name": "Whole Foods Market",
-  "lat": 45.54902,
-  "lon": -122.65134,
-  "city": "Portland",
-  "street": "3535 Northeast 15th Avenue",
-  "km": 2.0,
-  "key": false
- },
- {
-  "id": "wf-58",
-  "name": "Whole Foods Market",
-  "lat": 45.41578,
-  "lon": -122.66202,
-  "city": "Lake Oswego",
-  "street": "11 South State Street",
-  "km": 11.3,
-  "key": false
- },
- {
-  "id": "wf-59",
-  "name": "Whole Foods Market",
-  "lat": 45.52341,
-  "lon": -122.68353,
-  "city": "Portland",
-  "street": "1210 Northwest Couch Street",
-  "km": 1.4,
-  "key": false
- },
- {
-  "id": "wf-60",
-  "name": "Whole Foods Market",
-  "lat": 45.3944,
-  "lon": -122.75155,
-  "city": "Tigard",
-  "street": "7380 Southwest Bridgeport Road",
-  "km": 15.2,
-  "key": false
- },
- {
-  "id": "wf-61",
-  "name": "Whole Foods Market",
-  "lat": 45.44261,
-  "lon": -122.80182,
-  "city": "Tigard",
-  "street": "12220 Southwest Scholls Ferry Road",
-  "km": 13.4,
-  "key": false
- },
- {
-  "id": "wf-62",
-  "name": "Whole Foods Market",
-  "lat": 45.53371,
-  "lon": -122.87732,
-  "city": "Hillsboro",
-  "street": "9940 Northeast Cornell Road",
-  "km": 15.7,
+  "km": 23.0,
   "key": false
  }
 ]

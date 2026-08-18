@@ -94,6 +94,19 @@ function Framer({ trip, selected }: { trip: Trip; selected: string | null }) {
   return null;
 }
 
+/** Opens the selected day's popup, so stepping with the arrows reads as a slideshow. */
+function PopupOpener({ selected, refs }: {
+  selected: string | null;
+  refs: React.RefObject<Record<string, L.Marker | null>>;
+}) {
+  useEffect(() => {
+    if (!selected) return;
+    const m = refs.current?.[selected];
+    if (m) setTimeout(() => m.openPopup(), 260);
+  }, [selected, refs]);
+  return null;
+}
+
 const dayIcon = (label: string, isMod: boolean, sel: boolean) =>
   L.divIcon({
     className: "",
@@ -111,15 +124,19 @@ const poiIcon = (glyph: string) =>
   });
 
 export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, basemap, setBasemap,
-                          dark, mapHeight, setMapHeight }: {
+                          dark, mapHeight, setMapHeight, onStep }: {
   trip: Trip; units: Units; selected: string | null;
   onSelect: (id: string) => void;
   layers: Layers; setLayers: (l: Layers) => void;
   basemap: Basemap; setBasemap: (b: Basemap) => void;
   dark: boolean;
   mapHeight: number | null; setMapHeight: (h: number | null) => void;
+  onStep: (delta: number) => void;
 }) {
+  const markerRefs = useRef<Record<string, L.Marker | null>>({});
   const activeIds = new Set(trip.days.map((d) => d.id));
+  const idx = selected ? trip.days.findIndex((d) => d.id === selected) : -1;
+  const cur = idx >= 0 ? trip.days[idx] : null;
   const visiblePois = POIS.filter((p) => activeIds.has(p.day));
   const bm = BASEMAPS[basemap];
 
@@ -170,6 +187,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
           <TileLayer key={`${basemap}-${dark}`} url={bm.url(dark)} attribution={bm.attr} maxZoom={bm.max} />
           <Resizer />
           <Framer trip={trip} selected={selected} />
+          <PopupOpener selected={selected} refs={markerRefs} />
 
           {trip.days.map((d) => {
             const line = ROUTES[d.id]?.line;
@@ -203,6 +221,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                 icon={dayIcon(String(d.num), !!d.isMod, selected === d.id)}
                 zIndexOffset={selected === d.id ? 1000 : 0}
                 eventHandlers={{ click: () => onSelect(d.id) }}
+                ref={(m) => { markerRefs.current[d.id] = m; }}
               >
                 <Popup maxWidth={280} minWidth={240}>
                   <Thumb k={d.photos?.[0]} />
@@ -291,6 +310,12 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
       />
 
       <div className="mapbar">
+        <button className="pill" onClick={() => onStep(-1)} title="Previous day (←)">←</button>
+        <span className="stepnow">
+          {cur ? `Day ${cur.num} · ${cur.title}` : "Use ← → to walk the trip"}
+        </span>
+        <button className="pill" onClick={() => onStep(1)} title="Next day (→)">→</button>
+        <span className="spacer" />
         <button className={`pill${layers.sights ? " on" : ""}`}
                 onClick={() => setLayers({ ...layers, sights: !layers.sights })}>◎ Sights</button>
         <button className={`pill${layers.food ? " on" : ""}`}
@@ -304,7 +329,6 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                 title="Whole Foods — gluten-free and dairy-free restocking">
           🛒 Whole Foods ({STORES.length})
         </button>
-        <span className="spacer" />
         <div className="baseline" role="group" aria-label="Base map">
           {(["terrain", "streets", "satellite"] as Basemap[]).map((b) => (
             <button key={b} className={basemap === b ? "on" : ""} onClick={() => setBasemap(b)}>

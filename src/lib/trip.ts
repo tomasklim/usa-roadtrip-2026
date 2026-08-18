@@ -42,7 +42,7 @@ export function difficulty(meters: number): Difficulty {
   return "crux";
 }
 
-const SEATTLE_CAR = ["rainier1", "hoodcanal", "olympic1", "olympic2"];
+const SEATTLE_CAR = ["seaA", "seaB", "olyA", "olyB"];
 const SLC_CAR = ["s1", "antelope", "s2", "dinoA", "dinoB", "s3", "s4", "s5", "s5b",
                  "s6", "s7", "cody", "s8", "s9", "craters2", "s10"];
 
@@ -140,6 +140,13 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced"):
  * Hood Canal, and the Salt Lake block for the parks. The budget and the mileage
  * cap both need them counted apart.
  */
+/** Which rental a day belongs to — used to band the driving-load chart. */
+export function blockOf(id: string): string {
+  if (SEATTLE_CAR.includes(id)) return "Seattle car";
+  if (SLC_CAR.includes(id)) return "Salt Lake car";
+  return "No car";
+}
+
 export const rentals = (t: Trip) => ({
   seattle: blockDays(t, SEATTLE_CAR),
   slc: blockDays(t, SLC_CAR)

@@ -275,7 +275,8 @@ function PoiLayer({ layers, pois, onOpenDay, dayLabel }: {
 export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, basemap, setBasemap,
                           dark, wheelZoom, setWheelZoom, panel, setPanel, panelWidth, setPanelWidth,
                           tab, setTab, ghost, onClear,
-                          mapHeight, setMapHeight, onStep, onScrollTo }: {
+                          mapHeight, setMapHeight, onStep, onScrollTo, embedded = false }: {
+  embedded?: boolean;
   trip: Trip; units: Units; selected: string | null;
   onSelect: (id: string) => void;
   layers: Layers; setLayers: (l: Layers) => void;
@@ -303,7 +304,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
   /** Opens a day: in the panel if it is on, otherwise on its own page. */
   const openDay = (dayId: string) => {
     onSelect(dayId);
-    if (!panel || !wide) onScrollTo(dayId);
+    if (!embedded && (!panel || !wide)) onScrollTo(dayId);
   };
   const dayLabel = (dayId: string) => {
     const d = trip.days.find((x) => x.id === dayId);
@@ -376,7 +377,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
     );
 
   return (
-    <div className="card mapcard">
+    <div className={`card mapcard${embedded ? " embedded-map" : ""}`}>
       <div className={`mapwrap${panel ? " haspanel" : ""}`} ref={wrapRef}
            style={height != null ? { height } : undefined}>
         <MapContainer center={[45.5, -114]} zoom={5} scrollWheelZoom={false} zoomSnap={0.25}
@@ -387,7 +388,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
           <PinchZoom />
           <WheelZoom on={wheelZoom} />
           <Framer trip={trip} selected={selected} padRight={panelPad} />
-          {!panel && <PopupOpener selected={selected} refs={markerRefs} />}
+          {!panel && !embedded && <PopupOpener selected={selected} refs={markerRefs} />}
 
           {trip.days.map((d) => {
             const line = ROUTES[d.id]?.line;
@@ -429,7 +430,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                 <Tooltip direction="top" offset={[0, -14]} className="hovlbl">
                   Day {d.num} · {d.title}
                 </Tooltip>
-                {!panel && (
+                {!panel && !embedded && (
                   <Popup maxWidth={280} minWidth={270} autoPan>
                     <PopCard
                       cat="day"
@@ -516,7 +517,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
         )}
       </div>
 
-      <div
+      {!embedded && <div
         className={`grip${dragging ? " dragging" : ""}`}
         onPointerDown={startDrag}
         onPointerMove={onDrag}
@@ -527,16 +528,16 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
         aria-orientation="horizontal"
         aria-label="Drag to resize the map, double-click to reset"
         title="Drag to resize · double-click to reset"
-      />
+      />}
 
       <details className="map-options"><summary>Map layers & tools <span>Places, charging, basemap & GPX</span></summary>
       <div className="mapbar">
-        <button className="pill" onClick={() => onStep(-1)} title="Previous day (←)">←</button>
+        {!embedded && <><button className="pill" onClick={() => onStep(-1)} title="Previous day (←)">←</button>
         <span className="stepnow">
           {cur ? `Day ${cur.num} · ${cur.title}` : "Use ← → to walk the trip"}
         </span>
         <button className="pill" onClick={() => onStep(1)} title="Next day (→)">→</button>
-        <span className="spacer" />
+        <span className="spacer" /></>}
         <button className={`pill${layers.sights ? " on" : ""}`}
                 aria-pressed={layers.sights}
                 onClick={() => setLayers({ ...layers, sights: !layers.sights })}>
@@ -567,11 +568,11 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
             </button>
           ))}
         </div>
-        <button className={`pill desktop-map-tool${panel ? " on" : ""}`} onClick={() => setPanel(!panel)}
+        {!embedded && <button className={`pill desktop-map-tool${panel ? " on" : ""}`} onClick={() => setPanel(!panel)}
                 aria-pressed={panel}
                 title="Show the selected day in a panel over the map alongside the route">
           ▤ Day panel
-        </button>
+        </button>}
         <button className={`pill${wheelZoom ? " on" : ""}`} onClick={() => setWheelZoom(!wheelZoom)}
                 aria-pressed={wheelZoom}
                 title={wheelZoom
@@ -579,10 +580,10 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                   : "Pinch already zooms; click to let a plain scroll zoom too"}>
           {wheelZoom ? "⊙ scroll zooms map" : "⊙ scroll zoom off"}
         </button>
-        <button className="pill" onClick={fillScreen}
+        {!embedded && <button className="pill" onClick={fillScreen}
                 title={height != null ? "Back to the automatic height" : "Fill the screen height"}>
           {height != null ? "⤡ Auto" : "⤢ Taller"}
-        </button>
+        </button>}
         <button className="pill" onClick={dl} title="Download the whole route as GPX">↓ GPX</button>
       </div>
       </details>

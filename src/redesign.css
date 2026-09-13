@@ -309,3 +309,35 @@ footer a{font-size:.76rem;margin-left:auto;text-decoration:none;white-space:nowr
   .weather-values { gap: 8px; }
   .weather-values strong { font-size: 1.4rem; }
 }
+
+/* One itinerary, with the map visible beside the notes or above them on a phone. */
+.itinerary-view .daily-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 24px; }
+.daily-map-column { min-width: 0; position: sticky; top: calc(var(--head) + 16px); }
+.map-scope { display: flex; gap: 4px; padding: 5px; background: var(--surface2); border-radius: 10px; margin-bottom: 10px; }
+.map-scope button { flex: 1; min-height: 44px; border: 0; border-radius: 7px; background: transparent; color: var(--muted); cursor: pointer; font-size: .84rem; }
+.map-scope button.active { background: var(--surface); color: var(--brand); font-weight: 600; }
+.embedded-map { margin-bottom: 8px; }
+.embedded-map .mapwrap, .daily-map-column .map-loading { height: clamp(340px, 53svh, 620px); min-height: 340px; max-height: none; }
+.embedded-map .map-options > summary > span { display: none; }
+.embedded-map .mapbar { padding: 12px; gap: 8px; }
+.map-reading-hint { margin: 6px 0 0; font-size: .73rem; }
+.itinerary-view .daily-content { padding: 26px; }
+.itinerary-view .daily-content > h2 { font-size: 2.1rem; }
+.mobile-nav { grid-template-columns: repeat(4, 1fr); }
+@media(max-width: 900px) {
+  .itinerary-view .daily-layout { display: grid; grid-template-columns: minmax(0,1fr); gap: 18px; }
+  .daily-map-column { position: static; }
+  .embedded-map .mapwrap, .daily-map-column .map-loading { height: 32svh; min-height: 250px; max-height: 380px; }
+  .itinerary-view .daily-card > .photos .photo { height: 160px; }
+  .itinerary-view .daily-content { padding: 22px 20px; }
+  .itinerary-view > .section-heading { margin-bottom: 14px; }
+  .itinerary-view .day-picker { margin-bottom: 14px; }
+}
+@media print { .daily-map-column { display:none; } }
+.daily-map-column .map-loading { border: 0; border-radius: 0; }
+.map-loading-tools { padding: 16px 20px; min-height: 48px; font-size: .85rem; line-height: 1.65; background: var(--surface); }
+@media(max-width:600px) { .map-loading-tools { padding: 14px 16px; } }
+@media(max-width:900px) {
+  .itinerary-view .daily-card { display: flex; flex-direction: column; }
+  .itinerary-view .daily-card > .photos { order: 2; }
+}

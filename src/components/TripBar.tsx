@@ -19,7 +19,7 @@ export function TripBar({ trip, units, onContinue, dayTitle }: {
           <div className="hero-dates">{fmtShort(START)} — {fmtShort(DEPART)} <span>/ {CAP_DAYS} days / two people</span></div>
           <div className="hero-actions">
             <button className="action primary" onClick={onContinue}>Open the daily plan <span aria-hidden="true">↗</span></button>
-            <a className="action" href="#map">Explore the map</a>
+            <a className="action" href="#itinerary/all">Whole trip map</a>
           </div>
           <span className="hero-resume">Ready to open: {dayTitle}</span>
         </div>

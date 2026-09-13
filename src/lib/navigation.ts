@@ -16,11 +16,14 @@ export function readRoute() {
   let topic: Topic = "checklist";
   if (["overview", "itinerary", "map", "flights", "guide"].includes(id)) view = id as View;
   // Keep old shared links useful after splitting the long page into views.
-  if (id === "plan") view = "map";
+  if (id === "plan" || id === "map") view = "itinerary";
   if (id === "glance" || id === "load") view = "itinerary";
   if (topicIds.has(id)) { view = "guide"; topic = id as Topic; }
   if (id === "guide" && topicIds.has(detail)) topic = detail as Topic;
-  return { view, topic, day: id === "itinerary" || id === "map" ? detail : undefined };
+  return { view, topic,
+    day: (id === "itinerary" || id === "map") && detail !== "all" ? detail : undefined,
+    wholeTrip: (id === "itinerary" && detail === "all") || ((id === "map" || id === "plan") && !detail)
+  };
 }
 
 type Route = ReturnType<typeof readRoute>;

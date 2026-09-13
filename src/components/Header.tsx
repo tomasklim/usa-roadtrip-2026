@@ -4,7 +4,6 @@ import type { View } from "../lib/navigation";
 const LINKS: { id: View; label: string; icon: string }[] = [
   { id: "overview", label: "Overview", icon: "⌂" },
   { id: "itinerary", label: "Day by day", icon: "☷" },
-  { id: "map", label: "Map", icon: "⌖" },
   { id: "flights", label: "Flights", icon: "✈" },
   { id: "guide", label: "Trip kit", icon: "▤" }
 ];

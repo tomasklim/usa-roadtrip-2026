@@ -13,7 +13,7 @@ assert.equal(todayInTrip(trip, new Date("2026-10-15T12:00:00Z")), undefined);
 const win = { location: { hash: "" } };
 Object.defineProperty(globalThis, "window", { value: win, configurable: true });
 for (const [hash, view, topic] of [
-  ["#plan", "map", "checklist"], ["#food", "guide", "food"],
+  ["#plan", "itinerary", "checklist"], ["#food", "guide", "food"],
   ["#guide/sleep", "guide", "sleep"], ["#guide/unknown", "guide", "checklist"],
   ["#glance", "itinerary", "checklist"], ["#unknown", "overview", "checklist"]
 ]) {
@@ -28,7 +28,20 @@ assert.equal(readRoute().day, "sf3");
 const routeFor = (hash: string) => { win.location.hash = hash; return readRoute(); };
 assert.ok(keepScroll(routeFor("#itinerary/sf3"), routeFor("#itinerary/sf2")));
 assert.ok(keepScroll(routeFor("#map/sf3"), routeFor("#map/sf2")));
-assert.ok(!keepScroll(routeFor("#itinerary/sf3"), routeFor("#map/sf3")));
+assert.ok(keepScroll(routeFor("#itinerary/sf3"), routeFor("#map/sf3")));
+assert.ok(keepScroll(routeFor("#itinerary/sf3"), routeFor("#itinerary/all")));
+for (const hash of ["#map", "#plan", "#itinerary/all"]) {
+  const route = routeFor(hash);
+  assert.equal(route.view, "itinerary");
+  assert.equal(route.wholeTrip, true);
+  assert.equal(route.day, undefined);
+}
+for (const hash of ["#map/sf3", "#itinerary/sf3"]) {
+  const route = routeFor(hash);
+  assert.equal(route.view, "itinerary");
+  assert.equal(route.day, "sf3");
+  assert.equal(route.wholeTrip, false);
+}
 assert.ok(!keepScroll(routeFor("#guide/food"), routeFor("#guide/sleep")));
 assert.ok(keepScroll(routeFor("#guide/food"), routeFor("#guide/food")));
 

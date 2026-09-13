@@ -1,5 +1,5 @@
 import { WeatherCard } from "./WeatherCard";
-import { useLayoutEffect, useRef } from "react";
+import type { ReactNode } from "react";
 import { AlertBox, ChargeRow, FoodRow, HiRow, IdeasRow, PhotoStrip, SleepRow, WhyRow } from "./DayParts";
 import { distLabel, downloadGpx, fmtDate, fmtShort, toGpx, type Trip } from "../lib/trip";
 import type { Tab } from "./DayPanel";
@@ -24,27 +24,22 @@ export function DayPicker({ trip, day, onSelect }: { trip: Trip; day: Day; onSel
   </div>;
 }
 
-export function DailyPlan({ trip, day, units, tab, setTab, onSelect, onMap }: {
-  trip: Trip; day: Day; units: Units; tab: Tab; setTab: (tab: Tab) => void; onSelect: (id: string) => void; onMap: (id: string) => void;
+export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map, wholeTrip, onWholeTrip }: {
+  trip: Trip; day: Day; units: Units; tab: Tab; setTab: (tab: Tab) => void; onSelect: (id: string) => void;
+  map: ReactNode; wholeTrip: boolean; onWholeTrip: () => void;
 }) {
-  const railRef = useRef<HTMLElement>(null);
-  useLayoutEffect(() => {
-    const rail = railRef.current;
-    const active = rail?.querySelector<HTMLElement>("[aria-current]");
-    if (rail && active && (active.offsetTop < rail.scrollTop || active.offsetTop + active.offsetHeight > rail.scrollTop + rail.clientHeight)) {
-      rail.scrollTop = active.offsetTop - rail.clientHeight / 3;
-    }
-  }, [day.id]);
   const stops = POIS.filter(p => p.day === day.id).sort((a, b) => Number(b.id === "node-palo-alto") - Number(a.id === "node-palo-alto"));
   return <>
     <DayPicker trip={trip} day={day} onSelect={onSelect} />
     <div className="daily-layout">
-      <nav ref={railRef} className="day-rail" aria-label="All itinerary days">
-        {trip.days.map(d => <button key={d.id} onClick={() => onSelect(d.id)} className={day.id === d.id ? "active" : ""}
-          aria-current={day.id === d.id ? "date" : undefined}>
-          <span className="rail-number">{String(d.num).padStart(2, "0")}</span><span><small>{fmtShort(d.date!)}</small><b>{d.title}</b></span>
-        </button>)}
-      </nav>
+      <div className="daily-map-column" aria-label="Itinerary map">
+        <div className="map-scope" role="group" aria-label="Map view">
+          <button className={!wholeTrip ? "active" : ""} aria-pressed={!wholeTrip} onClick={() => onSelect(day.id)}>Day {day.num} route</button>
+          <button className={wholeTrip ? "active" : ""} aria-pressed={wholeTrip} onClick={onWholeTrip}>Whole trip</button>
+        </div>
+        {map}
+        <p className="hint map-reading-hint">Tap a numbered pin to change the day. Pinch to zoom.</p>
+      </div>
       <article className="daily-card" aria-label={`Day ${day.num} plan`}>
         <PhotoStrip day={day} single />
         <div className="daily-content">
@@ -56,7 +51,6 @@ export function DailyPlan({ trip, day, units, tab, setTab, onSelect, onMap }: {
             <div><span>TONIGHT</span><b>{day.sleep ? (day.sleep.t === "car" ? "A night in the car" : "A bed & a shower") : "Overnight flight"}</b></div>
           </div>
           <div className="daily-actions">
-            <button className="action primary" onClick={() => onMap(day.id)}>⌖ Show on map</button>
             {!!day.meters && <button className="action" onClick={() => downloadGpx(`day-${day.num}.gpx`, toGpx(day.title, [{id:day.id,title:day.title}]))}>↓ Day GPX</button>}
           </div>
           <WeatherCard day={day} />

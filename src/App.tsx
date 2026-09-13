@@ -1,6 +1,6 @@
-import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { Header } from "./components/Header";
-import { ActBar, Chapters, QuickLinks, TripBar } from "./components/TripBar";
+import { Chapters, QuickLinks, TripBar } from "./components/TripBar";
 import { Flights } from "./components/Flights";
 import { Modules } from "./components/Modules";
 import type { Basemap, Layers } from "./components/RouteMap";
@@ -12,7 +12,7 @@ import { Checklist } from "./components/Checklist";
 import { CAR_NIGHTS, MODULES } from "./data/itinerary";
 import { buildTrip } from "./lib/trip";
 import { useStored } from "./lib/useStored";
-import { DailyPlan, DayPicker } from "./components/DailyPlan";
+import { DailyPlan } from "./components/DailyPlan";
 import { navigate, TOPICS, todayInTrip, useNavigation } from "./lib/navigation";
 import { downloadOfflinePlan } from "./lib/offline";
 import type { SleepOverrides, SleepStyle, Units } from "./types";
@@ -27,10 +27,7 @@ export default function App() {
   const [tab, setTab] = useStored<Tab>("tab", "plan", NORMALIZE_TAB);
   const [basemap, setBasemap] = useStored<Basemap>("basemap", "terrain", NORMALIZE_BASEMAP);
   const [layers, setLayers] = useStored<Layers>("layers2", DEFAULT_LAYERS, normalizeLayers);
-  const [mapHeight, setMapHeight] = useStored<number | null>("mapHeight", null, NORMALIZE_MAP_HEIGHT);
   const [wheelZoom, setWheelZoom] = useStored<boolean>("wheelZoom", false, NORMALIZE_FALSE);
-  const [panel, setPanel] = useStored<boolean>("panel", true, NORMALIZE_TRUE);
-  const [panelWidth, setPanelWidth] = useStored<number>("panelWidth", 400, NORMALIZE_PANEL_WIDTH);
   const [showList, setShowList] = useStored<boolean>("showList", false, NORMALIZE_FALSE);
   const [sleepStyle, setSleepStyle] = useStored<SleepStyle>("sleepStyle", "balanced", NORMALIZE_SLEEP);
   const [sleepOverrides, setSleepOverrides] = useStored<SleepOverrides>("sleepOverrides", {}, normalizeSleepOverrides);
@@ -42,8 +39,15 @@ export default function App() {
   const on = useMemo(() => new Set(Array.isArray(mods) ? mods : []), [mods]);
   const trip = useMemo(() => buildTrip(on, sleepStyle, sleepOverrides), [on, sleepStyle, sleepOverrides]);
   const routeDay = trip.days.find(d => d.id === route.day);
-  const activeSelection = routeDay?.id ?? (view === "map" ? null : selected);
   const day = routeDay ?? trip.days.find(d => d.id === selected) ?? todayInTrip(trip) ?? trip.days[0];
+
+  const activeSelection = route.wholeTrip ? null : day.id;
+  const [bringDayIntoView, setBringDayIntoView] = useState(false);
+  useLayoutEffect(() => {
+    if (!bringDayIntoView || view !== "itinerary") return;
+    document.querySelector(".day-picker")?.scrollIntoView({ block: "start", behavior: "instant" });
+    setBringDayIntoView(false);
+  }, [bringDayIntoView, view, day.id]);
 
   useEffect(() => {
     if (route.day && trip.days.some(d => d.id === route.day)) setSelected(route.day);
@@ -80,33 +84,30 @@ export default function App() {
     navigate("itinerary", id);
   }, [setSelected]);
   const selectOnMap = useCallback((id: string) => {
-    setSelected(id);
-    navigate("map", id);
-  }, [setSelected]);
-  const select = selectOnMap;
-  const clearMap = useCallback(() => { setSelected(null); navigate("map"); }, [setSelected]);
-  const scrollToDay = openDaily;
+    openDaily(id);
+    setBringDayIntoView(true);
+  }, [openDaily]);
+  const clearMap = useCallback(() => navigate("itinerary", "all"), []);
 
   /** Keep keyboard navigation, saved selection and the shareable URL together. */
   const step = useCallback((delta: number) => {
     const index = trip.days.findIndex(d => d.id === day.id);
     const next = trip.days[Math.max(0, Math.min(trip.days.length - 1, index + delta))];
-    if (view === "map") selectOnMap(next.id);
-    else openDaily(next.id);
-  }, [trip.days, day.id, view, selectOnMap, openDaily]);
+    openDaily(next.id);
+  }, [trip.days, day.id, openDaily]);
 
   // Links and buttons keep focus after a click; they must not disable day shortcuts.
   // Leave arrow keys to text fields and widgets that use them for their own value.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.defaultPrevented || e.isComposing || e.metaKey || e.ctrlKey || e.altKey || e.shiftKey || !["itinerary", "map"].includes(view)) return;
+      if (e.defaultPrevented || e.isComposing || e.metaKey || e.ctrlKey || e.altKey || e.shiftKey || view !== "itinerary") return;
       const t = e.target instanceof Element ? e.target : null;
       if ((t instanceof HTMLElement && t.isContentEditable) || t?.closest(
         'input, textarea, select, [role="textbox"], [role="combobox"], [role="listbox"], [role="slider"], [role="spinbutton"], [role="menu"], [role="menubar"], [role="tree"], [role="grid"], [role="radiogroup"], [role="tablist"], .leaflet-container'
       )) return;
       if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
       else if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
-      else if (e.key === "Escape" && view === "map") clearMap();
+      else if (e.key === "Escape") clearMap();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -131,11 +132,20 @@ export default function App() {
           </div>
         </>}
 
-        {view === "itinerary" && <div className="wrap view-content">
-          <div className="section-heading"><div><span className="eyebrow">ONE DAY AT A TIME</span><h1>Your daily field notes.</h1></div>
+        {view === "itinerary" && <div className="wrap view-content itinerary-view">
+          <div className="section-heading"><div><span className="eyebrow">THE ROUTE & YOUR DAILY PLAN</span><h1>Your daily field notes.</h1></div>
             <button className="action" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button></div>
           {trip.overrun > 0 && <p className="warn" role="alert">The selected route is {trip.overrun} days too long for the booked flights. <a href="#guide/options">Adjust route options</a>.</p>}
-          <DailyPlan trip={trip} day={day} units={units} tab={tab} setTab={setTab} onSelect={openDaily} onMap={selectOnMap} />
+          <DailyPlan trip={trip} day={day} units={units} tab={tab} setTab={setTab} onSelect={openDaily}
+            wholeTrip={route.wholeTrip} onWholeTrip={clearMap}
+            map={<Suspense fallback={<div className="card mapcard embedded-map"><div className="mapwrap map-loading" role="status">Loading the route map…</div><div className="map-loading-tools">Map layers & tools</div></div>}>
+              <RouteMap embedded trip={trip} units={units} selected={activeSelection} onSelect={openDaily}
+                layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
+                dark={dark} wheelZoom={wheelZoom} setWheelZoom={setWheelZoom}
+                panel={false} setPanel={NOOP} panelWidth={400} setPanelWidth={NOOP} tab={tab} setTab={setTab}
+                ghost={ghost} onClear={clearMap} mapHeight={null} setMapHeight={NOOP}
+                onStep={step} onScrollTo={selectOnMap} />
+            </Suspense>} />
           <details className="full-itinerary" open={showList} onToggle={e => setShowList(e.currentTarget.open)}>
             <summary>Read the complete itinerary <span>{trip.days.length} days</span></summary>
             <DayList trip={trip} units={units} selected={activeSelection} onSelect={selectOnMap} />
@@ -144,22 +154,6 @@ export default function App() {
             <Glance trip={trip} units={units} onSelect={selectOnMap} />
             <LoadChart trip={trip} units={units} onSelect={selectOnMap} />
           </details>
-        </div>}
-
-        {view === "map" && <div className="wrap view-content map-view">
-          <div className="section-heading"><div><span className="eyebrow">FOLLOW THE ROAD</span><h1>The route, in context.</h1></div><button className="action" onClick={clearMap}>Show whole trip</button></div>
-          <DayPicker trip={trip} day={day} onSelect={select} />
-          <ActBar trip={trip} selected={activeSelection} onPick={select} />
-          <Suspense fallback={<div className="map-loading" role="status">Loading the route map…</div>}><RouteMap trip={trip} units={units} selected={activeSelection} onSelect={select}
-                    layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
-                    dark={dark} wheelZoom={wheelZoom} setWheelZoom={setWheelZoom}
-                    panel={panel} setPanel={setPanel}
-                    panelWidth={panelWidth} setPanelWidth={setPanelWidth} tab={tab} setTab={setTab}
-                    ghost={ghost} onClear={clearMap}
-                    mapHeight={mapHeight} setMapHeight={setMapHeight}
-                    onStep={step} onScrollTo={scrollToDay} /></Suspense>
-          {activeSelection && <div className="map-day-link"><div><span className="eyebrow">DAY {day.num} · {day.date ? new Date(day.date).toLocaleDateString("en-GB", {day:"numeric",month:"short",timeZone:"UTC"}) : ""}</span><h2>{day.title}</h2><p>{day.sleep?.where ?? "Flight home"}</p></div><button className="action primary" onClick={() => openDaily(day.id)}>Read this day ↗</button></div>}
-          <p className="hint">Tap a numbered pin to select a day. Pinch to zoom. Open a place pin for details.</p>
         </div>}
 
         {view === "flights" && <div className="view-content flights-view"><Flights trip={trip} /></div>}
@@ -200,14 +194,6 @@ const oneOf = <T,>(allowed: readonly T[], fallback: T) =>
 
 const bool = (fallback: boolean) => (value: unknown) => typeof value === "boolean" ? value : fallback;
 
-const finite = (min: number, max: number, fallback: number) => (value: unknown) =>
-  typeof value === "number" && Number.isFinite(value) ? Math.max(min, Math.min(max, value)) : fallback;
-
-const finiteOrNull = (min: number, max: number) => (value: unknown) =>
-  value == null ? null : typeof value === "number" && Number.isFinite(value)
-    ? Math.max(min, Math.min(max, value))
-    : null;
-
 const normalizeLayers = (value: unknown): Layers => {
   const v = value && typeof value === "object" ? value as Partial<Layers> : {};
   return {
@@ -230,9 +216,7 @@ const NORMALIZE_TAB = oneOf<Tab>(["plan", "food", "sleep", "charge"], "plan");
 const NORMALIZE_BASEMAP = oneOf<Basemap>(["terrain", "streets", "satellite"], "terrain");
 const NORMALIZE_SLEEP = oneOf<SleepStyle>(["motel", "balanced", "car"], "balanced");
 const NORMALIZE_FALSE = bool(false);
-const NORMALIZE_TRUE = bool(true);
-const NORMALIZE_MAP_HEIGHT = finiteOrNull(260, 1800);
-const NORMALIZE_PANEL_WIDTH = finite(280, 1200, 400);
+const NOOP = () => {};
 
 const normalizeDay = (value: unknown) => typeof value === "string" ? value : null;
 

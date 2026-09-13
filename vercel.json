@@ -18,7 +18,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'none'; img-src 'self' data: https://upload.wikimedia.org https://cdn.loc.gov https://*.tile.opentopomap.org https://tile.openstreetmap.org https://server.arcgisonline.com; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self' https://api.open-meteo.com; base-uri 'none'; form-action 'self'"
+          "value": "default-src 'none'; img-src 'self' data: https://upload.wikimedia.org https://tile.loc.gov https://*.tile.opentopomap.org https://tile.openstreetmap.org https://server.arcgisonline.com; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self' https://api.open-meteo.com; base-uri 'none'; form-action 'self'"
         },
         {
           "key": "X-Robots-Tag",

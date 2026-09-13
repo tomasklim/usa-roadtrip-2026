@@ -165,8 +165,11 @@ export default function App() {
           <div className="section-heading"><div><span className="eyebrow">THE ROUTE & YOUR DAILY PLAN</span><h1>Your daily field notes.</h1></div>
             <button className="action" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button></div>
           {trip.overrun > 0 && <p className="warn" role="alert">The selected route is {trip.overrun} days too long for the booked flights. <a href="#guide/options">Adjust route options</a>.</p>}
-          {seattleChoices}{montanaChoices}
           <DailyPlan trip={trip} day={day} units={units} tab={tab} setTab={setTab} onSelect={openDaily}
+            choices={<>
+              {(day.act === "I" || day.id === "seaReturn") && seattleChoices}
+              {["s6", "s7", "s8", "rainLamar", "rainTransfer", "rainRest"].includes(day.id) && montanaChoices}
+            </>}
             map={renderMap(day.id)} />
         </div>}
 

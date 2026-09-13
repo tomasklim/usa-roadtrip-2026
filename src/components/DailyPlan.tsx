@@ -24,13 +24,15 @@ export function DayPicker({ trip, day, onSelect }: { trip: Trip; day: Day; onSel
   </div>;
 }
 
-export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map }: {
+export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map, choices }: {
   trip: Trip; day: Day; units: Units; tab: Tab; setTab: (tab: Tab) => void; onSelect: (id: string) => void;
   map: ReactNode;
+  choices: ReactNode;
 }) {
   const stops = POIS.filter(p => p.day === (day.poiDay ?? day.id)).sort((a, b) => Number(b.id === "node-palo-alto") - Number(a.id === "node-palo-alto"));
   return <>
     <DayPicker trip={trip} day={day} onSelect={onSelect} />
+    {choices}
     <div className="daily-layout">
       <div className="daily-map-column" aria-label="Itinerary map">
         {map}

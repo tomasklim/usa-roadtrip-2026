@@ -21,7 +21,12 @@ export function Header({ units, setUnits, theme, setTheme, view }: {
     </a>
   ));
   return <>
-    <a href="#main" className="skip-link">Skip to content</a>
+    <a href="#main" className="skip-link" onClick={event => {
+      event.preventDefault();
+      const main = document.getElementById("main");
+      main?.focus({ preventScroll: true });
+      main?.scrollIntoView({ block: "start", behavior: "instant" });
+    }}>Skip to content</a>
     <header className="top">
       <div className="wrap">
         <a className="brand" href="#overview"><span className="brand-mark" aria-hidden="true">NW</span>

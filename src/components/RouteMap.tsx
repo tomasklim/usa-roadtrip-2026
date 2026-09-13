@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, TileLayer, Polyline, Marker, Popup, Tooltip, useMap, useMapEvent } from "react-leaflet";
 import L from "leaflet";
 import poisRaw from "../data/pois.json";
@@ -183,30 +183,30 @@ function Framer({ trip, selected, padRight }: {
     return pts.length ? L.latLngBounds(pts) : null;
   }, [trip.days]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (selected || !allBounds) return;
-    map.fitBounds(allBounds, { paddingTopLeft: [24, 24], paddingBottomRight: [padRight + 24, 24] });
+    map.fitBounds(allBounds, { paddingTopLeft: [24, 24], paddingBottomRight: [padRight + 24, 24], animate: false });
   }, [map, allBounds, padRight, selected]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!selected) return;
     const line = ROUTES[selected]?.line;
     if (line && line.length > 1) {
-      map.flyToBounds(L.latLngBounds(line), {
-        paddingTopLeft: [40, 40], paddingBottomRight: [padRight + 40, 40], duration: 0.7
+      map.fitBounds(L.latLngBounds(line), {
+        paddingTopLeft: [40, 40], paddingBottomRight: [padRight + 40, 40], animate: false
       });
     } else {
       // No driving leg: use the day's own anchor. Only fall back to the previous
       // leg when a day has neither, which would otherwise fly Act V to Utah.
       const day = trip.days.find((d) => d.id === selected);
       if (day?.at) {
-        map.flyTo(day.at, day.atZoom ?? 10, { duration: 0.7 });
+        map.setView(day.at, day.atZoom ?? 10, { animate: false });
         return;
       }
       const idx = trip.days.findIndex((d) => d.id === selected);
       for (let i = idx; i >= 0; i--) {
         const prev = ROUTES[trip.days[i].id]?.line;
-        if (prev?.length) { map.flyTo(prev[prev.length - 1], 9, { duration: 0.7 }); return; }
+        if (prev?.length) { map.setView(prev[prev.length - 1], 9, { animate: false }); return; }
       }
     }
   }, [map, selected, trip.days, padRight]);

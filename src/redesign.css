@@ -17,7 +17,8 @@
   --text:#eaece1;--muted:#b1b9aa;--faint:#99a58f;--line:#384638;--line2:#5b6c52;
   --brand:#bdd1a7;--brand-soft:#33432f;--brand-ink:#182317;
 }
-html{scroll-padding-top:calc(var(--head) + 16px)}
+/* Route restoration owns scroll position, including when a tab becomes shorter. */
+html{overflow-anchor:none;scroll-behavior:auto;scroll-padding-top:calc(var(--head) + 16px)}
 body{line-height:1.65}
 .wrap,.wrap.narrow{max-width:1280px;padding-inline:40px}
 button,a,summary,select{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -139,7 +140,7 @@ section .wrap{max-width:none;padding:0}
 .daily-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:5px;border-radius:10px;background:var(--bg)}
 .daily-tabs button{border:0;border-radius:7px;padding:12px 6px;color:var(--muted);background:transparent;font-size:.82rem;cursor:pointer;min-height:44px}
 .daily-tabs button.active{background:var(--surface);color:var(--brand);box-shadow:0 1px 5px #0001;font-weight:600}
-.daily-tab-content{padding:16px 0}
+.daily-tab-content{padding:16px 0;min-height:220px}
 .daily-tab-content .ico{display:none}
 .daily-tab-content .row{padding:14px 0;border-bottom:0}
 .daily-tab-content .rl{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;color:var(--muted)}

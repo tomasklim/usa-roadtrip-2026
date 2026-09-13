@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { AlertBox, ChargeRow, FoodRow, HiRow, IdeasRow, PhotoStrip, SleepRow, WhyRow } from "./DayParts";
 import { distLabel, downloadGpx, fmtDate, fmtShort, toGpx, type Trip } from "../lib/trip";
+import type { Tab } from "./DayPanel";
 import type { Day, Poi, Units } from "../types";
 import { todayInTrip } from "../lib/navigation";
 import poisRaw from "../data/pois.json";
@@ -22,17 +23,17 @@ export function DayPicker({ trip, day, onSelect }: { trip: Trip; day: Day; onSel
   </div>;
 }
 
-export function DailyPlan({ trip, day, units, onSelect, onMap }: {
-  trip: Trip; day: Day; units: Units; onSelect: (id: string) => void; onMap: (id: string) => void;
+export function DailyPlan({ trip, day, units, tab, setTab, onSelect, onMap }: {
+  trip: Trip; day: Day; units: Units; tab: Tab; setTab: (tab: Tab) => void; onSelect: (id: string) => void; onMap: (id: string) => void;
 }) {
-  const [tab, setTab] = useState("plan");
   const railRef = useRef<HTMLElement>(null);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const rail = railRef.current;
     const active = rail?.querySelector<HTMLElement>("[aria-current]");
-    if (rail && active) rail.scrollTop = active.offsetTop - rail.clientHeight / 3;
+    if (rail && active && (active.offsetTop < rail.scrollTop || active.offsetTop + active.offsetHeight > rail.scrollTop + rail.clientHeight)) {
+      rail.scrollTop = active.offsetTop - rail.clientHeight / 3;
+    }
   }, [day.id]);
-  useEffect(() => { setTab("plan"); }, [day.id]);
   const stops = POIS.filter(p => p.day === day.id).sort((a, b) => Number(b.id === "node-palo-alto") - Number(a.id === "node-palo-alto"));
   return <>
     <DayPicker trip={trip} day={day} onSelect={onSelect} />
@@ -59,7 +60,7 @@ export function DailyPlan({ trip, day, units, onSelect, onMap }: {
           </div>
           {day.alert && <AlertBox day={day} />}
           <div className="daily-tabs" role="group" aria-label="Day information">
-            {[["plan", "The plan"], ["food", "Food"], ["sleep", "Sleep"], ["charge", "Charging"]].map(([id, label]) =>
+            {([["plan", "The plan"], ["food", "Food"], ["sleep", "Sleep"], ["charge", "Charging"]] as const).map(([id, label]) =>
               <button key={id} onClick={() => setTab(id)} aria-pressed={tab === id} className={tab === id ? "active" : ""}>{label}</button>)}
           </div>
           <div className="daily-tab-content" key={`${day.id}-${tab}`}>

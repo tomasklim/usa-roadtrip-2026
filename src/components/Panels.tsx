@@ -24,7 +24,7 @@ export function Glance({ trip, units, onSelect }: {
               <tbody>
                 {trip.days.map((d) => (
                   <tr key={d.id} className="clickable" onClick={() => onSelect(d.id)} tabIndex={0}
-                      aria-label={`Open day ${d.num}: ${d.title}`}
+                      aria-label={`Show day ${d.num} on map: ${d.title}`}
                       onKeyDown={(e) => {
                         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onSelect(d.id); }
                       }}>
@@ -108,7 +108,7 @@ export function LoadChart({ trip, units, onSelect }: {
                 <g key={d.id}>
                   <rect className={`bar ${cls}`} x={x + 2.5} y={y(v)} width={bwid}
                         height={pad.t + ih - y(v)} rx={3} onClick={() => onSelect(d.id)}
-                        role="button" tabIndex={0} aria-label={`Open day ${d.num}: ${d.title}`}
+                        role="button" tabIndex={0} aria-label={`Show day ${d.num} on map: ${d.title}`}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onSelect(d.id); }
                         }}>

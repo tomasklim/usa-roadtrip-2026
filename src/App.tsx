@@ -41,7 +41,9 @@ export default function App() {
 
   const on = useMemo(() => new Set(Array.isArray(mods) ? mods : []), [mods]);
   const trip = useMemo(() => buildTrip(on, sleepStyle), [on, sleepStyle]);
-  const day = trip.days.find(d => d.id === selected) ?? todayInTrip(trip) ?? trip.days[0];
+  const routeDay = trip.days.find(d => d.id === route.day);
+  const activeSelection = routeDay?.id ?? (view === "map" ? null : selected);
+  const day = routeDay ?? trip.days.find(d => d.id === selected) ?? todayInTrip(trip) ?? trip.days[0];
 
   useEffect(() => {
     if (route.day && trip.days.some(d => d.id === route.day)) setSelected(route.day);
@@ -76,7 +78,6 @@ export default function App() {
   const openDaily = useCallback((id: string) => {
     setSelected(id);
     navigate("itinerary", id);
-    window.scrollTo({ top: 0, behavior: "instant" });
   }, [setSelected]);
   const selectOnMap = useCallback((id: string) => {
     setSelected(id);
@@ -128,22 +129,22 @@ export default function App() {
           <div className="section-heading"><div><span className="eyebrow">ONE DAY AT A TIME</span><h1>Your daily field notes.</h1></div>
             <button className="action" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button></div>
           {trip.overrun > 0 && <p className="warn" role="alert">The selected route is {trip.overrun} days too long for the booked flights. <a href="#guide/options">Adjust route options</a>.</p>}
-          <DailyPlan trip={trip} day={day} units={units} onSelect={openDaily} onMap={selectOnMap} />
+          <DailyPlan trip={trip} day={day} units={units} tab={tab} setTab={setTab} onSelect={openDaily} onMap={selectOnMap} />
           <details className="full-itinerary" open={showList} onToggle={e => setShowList(e.currentTarget.open)}>
             <summary>Read the complete itinerary <span>{trip.days.length} days</span></summary>
-            <DayList trip={trip} units={units} selected={selected} onSelect={openDaily} />
+            <DayList trip={trip} units={units} selected={activeSelection} onSelect={selectOnMap} />
           </details>
           <details className="full-itinerary"><summary>Distances & driving overview</summary>
-            <Glance trip={trip} units={units} onSelect={openDaily} />
-            <LoadChart trip={trip} units={units} onSelect={openDaily} />
+            <Glance trip={trip} units={units} onSelect={selectOnMap} />
+            <LoadChart trip={trip} units={units} onSelect={selectOnMap} />
           </details>
         </div>}
 
         {view === "map" && <div className="wrap view-content map-view">
           <div className="section-heading"><div><span className="eyebrow">FOLLOW THE ROAD</span><h1>The route, in context.</h1></div><button className="action" onClick={clearMap}>Show whole trip</button></div>
           <DayPicker trip={trip} day={day} onSelect={select} />
-          <ActBar trip={trip} selected={selected} onPick={select} />
-          <Suspense fallback={<div className="map-loading" role="status">Loading the route map…</div>}><RouteMap trip={trip} units={units} selected={selected} onSelect={select}
+          <ActBar trip={trip} selected={activeSelection} onPick={select} />
+          <Suspense fallback={<div className="map-loading" role="status">Loading the route map…</div>}><RouteMap trip={trip} units={units} selected={activeSelection} onSelect={select}
                     layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
                     dark={dark} wheelZoom={wheelZoom} setWheelZoom={setWheelZoom}
                     panel={panel} setPanel={setPanel}
@@ -151,7 +152,7 @@ export default function App() {
                     ghost={ghost} onClear={clearMap}
                     mapHeight={mapHeight} setMapHeight={setMapHeight}
                     onStep={step} onScrollTo={scrollToDay} /></Suspense>
-          {selected && <div className="map-day-link"><div><span className="eyebrow">DAY {day.num} · {day.date ? new Date(day.date).toLocaleDateString("en-GB", {day:"numeric",month:"short",timeZone:"UTC"}) : ""}</span><h2>{day.title}</h2><p>{day.sleep?.where ?? "Flight home"}</p></div><button className="action primary" onClick={() => openDaily(day.id)}>Read this day ↗</button></div>}
+          {activeSelection && <div className="map-day-link"><div><span className="eyebrow">DAY {day.num} · {day.date ? new Date(day.date).toLocaleDateString("en-GB", {day:"numeric",month:"short",timeZone:"UTC"}) : ""}</span><h2>{day.title}</h2><p>{day.sleep?.where ?? "Flight home"}</p></div><button className="action primary" onClick={() => openDaily(day.id)}>Read this day ↗</button></div>}
           <p className="hint">Tap a numbered pin to select a day. Pinch to zoom. Open a place pin for details.</p>
         </div>}
 

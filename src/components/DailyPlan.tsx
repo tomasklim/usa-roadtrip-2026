@@ -24,21 +24,18 @@ export function DayPicker({ trip, day, onSelect }: { trip: Trip; day: Day; onSel
   </div>;
 }
 
-export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map, wholeTrip, onWholeTrip }: {
+export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map }: {
   trip: Trip; day: Day; units: Units; tab: Tab; setTab: (tab: Tab) => void; onSelect: (id: string) => void;
-  map: ReactNode; wholeTrip: boolean; onWholeTrip: () => void;
+  map: ReactNode;
 }) {
   const stops = POIS.filter(p => p.day === day.id).sort((a, b) => Number(b.id === "node-palo-alto") - Number(a.id === "node-palo-alto"));
   return <>
     <DayPicker trip={trip} day={day} onSelect={onSelect} />
     <div className="daily-layout">
       <div className="daily-map-column" aria-label="Itinerary map">
-        <div className="map-scope" role="group" aria-label="Map view">
-          <button className={!wholeTrip ? "active" : ""} aria-pressed={!wholeTrip} onClick={() => onSelect(day.id)}>Day {day.num} route</button>
-          <button className={wholeTrip ? "active" : ""} aria-pressed={wholeTrip} onClick={onWholeTrip}>Whole trip</button>
-        </div>
         {map}
         <p className="hint map-reading-hint">Tap a numbered pin to change the day. Pinch to zoom.</p>
+        <WeatherCard day={day} />
       </div>
       <article className="daily-card" aria-label={`Day ${day.num} plan`}>
         <PhotoStrip day={day} single />
@@ -53,7 +50,6 @@ export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map, wholeT
           <div className="daily-actions">
             {!!day.meters && <button className="action" onClick={() => downloadGpx(`day-${day.num}.gpx`, toGpx(day.title, [{id:day.id,title:day.title}]))}>↓ Day GPX</button>}
           </div>
-          <WeatherCard day={day} />
           {day.alert && <AlertBox day={day} />}
           <div className="daily-tabs" role="group" aria-label="Day information">
             {([["plan", "The plan"], ["food", "Food"], ["sleep", "Sleep"], ["charge", "Charging"]] as const).map(([id, label]) =>

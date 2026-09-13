@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { Day } from "../types";
 import type { Trip } from "./trip";
 
-export type View = "overview" | "itinerary" | "map" | "flights" | "guide";
+export type View = "overview" | "itinerary" | "plan" | "flights" | "guide";
 export const TOPICS = [
   ["checklist", "Before you go"], ["food", "Food"], ["sleep", "Sleep"],
   ["charging", "Charging"], ["risks", "Road conditions"], ["budget", "Budget"], ["options", "Route options"]
@@ -14,15 +14,16 @@ export function readRoute() {
   const [id, detail] = window.location.hash.slice(1).split("/");
   let view: View = "overview";
   let topic: Topic = "checklist";
-  if (["overview", "itinerary", "map", "flights", "guide"].includes(id)) view = id as View;
-  // Keep old shared links useful after splitting the long page into views.
-  if (id === "plan" || id === "map") view = "itinerary";
-  if (id === "glance" || id === "load") view = "itinerary";
+  if (["overview", "itinerary", "plan", "flights", "guide"].includes(id)) view = id as View;
+  // Old whole-map links now open the introduction; day links still open that day.
+  if (id === "map") view = detail && detail !== "all" ? "itinerary" : "overview";
+  if (id === "itinerary" && detail === "all") view = "overview";
+  if (id === "glance" || id === "load") view = "plan";
   if (topicIds.has(id)) { view = "guide"; topic = id as Topic; }
   if (id === "guide" && topicIds.has(detail)) topic = detail as Topic;
   return { view, topic,
-    day: (id === "itinerary" || id === "map") && detail !== "all" ? detail : undefined,
-    wholeTrip: (id === "itinerary" && detail === "all") || ((id === "map" || id === "plan") && !detail)
+    day: view === "itinerary" ? detail : undefined,
+    planSection: detail === "distances" || id === "glance" || id === "load" ? "distances" : "itinerary"
   };
 }
 
@@ -33,7 +34,7 @@ const position = (): Position => ({ x: window.scrollX, y: window.scrollY });
 const pageRoutes = new Set(["overview", "itinerary", "map", "flights", "guide", "plan", "glance", "load", ...topicIds]);
 
 export function keepScroll(from: Route, to: Route) {
-  return from.view === to.view && (to.view !== "guide" || from.topic === to.topic);
+  return from.view === to.view && (to.view !== "guide" || from.topic === to.topic) && (to.view !== "plan" || from.planSection === to.planSection);
 }
 
 function entryKey() {

@@ -312,10 +312,7 @@ footer a{font-size:.76rem;margin-left:auto;text-decoration:none;white-space:nowr
 
 /* One itinerary, with the map visible beside the notes or above them on a phone. */
 .itinerary-view .daily-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 24px; }
-.daily-map-column { min-width: 0; position: sticky; top: calc(var(--head) + 16px); }
-.map-scope { display: flex; gap: 4px; padding: 5px; background: var(--surface2); border-radius: 10px; margin-bottom: 10px; }
-.map-scope button { flex: 1; min-height: 44px; border: 0; border-radius: 7px; background: transparent; color: var(--muted); cursor: pointer; font-size: .84rem; }
-.map-scope button.active { background: var(--surface); color: var(--brand); font-weight: 600; }
+.daily-map-column { min-width: 0; }
 .embedded-map { margin-bottom: 8px; }
 .embedded-map .mapwrap, .daily-map-column .map-loading { height: clamp(340px, 53svh, 620px); min-height: 340px; max-height: none; }
 .embedded-map .map-options > summary > span { display: none; }
@@ -323,7 +320,7 @@ footer a{font-size:.76rem;margin-left:auto;text-decoration:none;white-space:nowr
 .map-reading-hint { margin: 6px 0 0; font-size: .73rem; }
 .itinerary-view .daily-content { padding: 26px; }
 .itinerary-view .daily-content > h2 { font-size: 2.1rem; }
-.mobile-nav { grid-template-columns: repeat(4, 1fr); }
+.mobile-nav { grid-template-columns: repeat(5, 1fr); }
 @media(max-width: 900px) {
   .itinerary-view .daily-layout { display: grid; grid-template-columns: minmax(0,1fr); gap: 18px; }
   .daily-map-column { position: static; }
@@ -340,4 +337,15 @@ footer a{font-size:.76rem;margin-left:auto;text-decoration:none;white-space:nowr
 @media(max-width:900px) {
   .itinerary-view .daily-card { display: flex; flex-direction: column; }
   .itinerary-view .daily-card > .photos { order: 2; }
+}
+
+/* The introduction owns the whole-route map; daily weather sits below the local map. */
+.overview-map { margin: 44px 0 64px; scroll-margin-top: calc(var(--head) + 18px); }
+.overview-map .mapwrap { height: clamp(380px, 62svh, 680px); }
+.daily-map-column > .weather-card { margin: 18px 0 0; }
+.trip-plan-view .topic-nav { display: flex; }
+.trip-plan-view .days { margin-top: 24px; }
+.trip-plan-view > .card { margin-top: 24px; }
+@media(max-width:900px) {
+  .overview-map .mapwrap { height: 52svh; min-height: 350px; max-height: 560px; }
 }

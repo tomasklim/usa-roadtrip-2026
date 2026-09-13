@@ -28,7 +28,6 @@ export default function App() {
   const [basemap, setBasemap] = useStored<Basemap>("basemap", "terrain", NORMALIZE_BASEMAP);
   const [layers, setLayers] = useStored<Layers>("layers2", DEFAULT_LAYERS, normalizeLayers);
   const [wheelZoom, setWheelZoom] = useStored<boolean>("wheelZoom", false, NORMALIZE_FALSE);
-  const [showList, setShowList] = useStored<boolean>("showList", false, NORMALIZE_FALSE);
   const [sleepStyle, setSleepStyle] = useStored<SleepStyle>("sleepStyle", "balanced", NORMALIZE_SLEEP);
   const [sleepOverrides, setSleepOverrides] = useStored<SleepOverrides>("sleepOverrides", {}, normalizeSleepOverrides);
   const [selected, setSelected] = useStored<string | null>("selectedDay", null, normalizeDay);
@@ -41,7 +40,6 @@ export default function App() {
   const routeDay = trip.days.find(d => d.id === route.day);
   const day = routeDay ?? trip.days.find(d => d.id === selected) ?? todayInTrip(trip) ?? trip.days[0];
 
-  const activeSelection = route.wholeTrip ? null : day.id;
   const [bringDayIntoView, setBringDayIntoView] = useState(false);
   useLayoutEffect(() => {
     if (!bringDayIntoView || view !== "itinerary") return;
@@ -87,7 +85,6 @@ export default function App() {
     openDaily(id);
     setBringDayIntoView(true);
   }, [openDaily]);
-  const clearMap = useCallback(() => navigate("itinerary", "all"), []);
 
   /** Keep keyboard navigation, saved selection and the shareable URL together. */
   const step = useCallback((delta: number) => {
@@ -107,11 +104,19 @@ export default function App() {
       )) return;
       if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
       else if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
-      else if (e.key === "Escape") clearMap();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [step, view, clearMap]);
+  }, [step, view]);
+
+  const renderMap = (selection: string | null) => <Suspense fallback={<div className="card mapcard embedded-map"><div className="mapwrap map-loading" role="status">Loading the route map…</div><div className="map-loading-tools">Map layers & tools</div></div>}>
+    <RouteMap embedded trip={trip} units={units} selected={selection} onSelect={openDaily}
+      layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
+      dark={dark} wheelZoom={wheelZoom} setWheelZoom={setWheelZoom}
+      panel={false} setPanel={NOOP} panelWidth={400} setPanelWidth={NOOP} tab={tab} setTab={setTab}
+      ghost={ghost} onClear={NOOP} mapHeight={null} setMapHeight={NOOP}
+      onStep={step} onScrollTo={selectOnMap} />
+  </Suspense>;
 
   return (
     <>
@@ -121,7 +126,12 @@ export default function App() {
           <TripBar trip={trip} units={units} onContinue={() => openDaily(day.id)} dayTitle={`Day ${day.num} · ${day.title}`} />
           <div className="wrap overview-body">
             <QuickLinks />
-            <div className="section-heading"><div><span className="eyebrow">THREE CHAPTERS, ONE GOOD TRIP</span><h2>From the mountains to the Pacific.</h2></div><a className="text-action" href="#itinerary">All {trip.days.length} days ↗</a></div>
+            <section id="trip-map" className="overview-map" aria-label="Whole trip map">
+              <div className="section-heading"><div><span className="eyebrow">SEATTLE → THE ROCKIES → SAN FRANCISCO</span><h2>The whole trip.</h2></div><a className="text-action" href="#plan">Itinerary & distances ↗</a></div>
+              {renderMap(null)}
+              <p className="hint map-reading-hint">Tap a numbered pin to open that day’s plan.</p>
+            </section>
+            <div className="section-heading"><div><span className="eyebrow">THREE CHAPTERS, ONE GOOD TRIP</span><h2>From the mountains to the Pacific.</h2></div><a className="text-action" href="#plan">All {trip.days.length} days ↗</a></div>
             <Chapters trip={trip} onPick={openDaily} />
             <div className="travel-note">
               <div><span className="eyebrow">KEEP IT WITH YOU</span><h2>A plan for the road.</h2>
@@ -137,23 +147,20 @@ export default function App() {
             <button className="action" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button></div>
           {trip.overrun > 0 && <p className="warn" role="alert">The selected route is {trip.overrun} days too long for the booked flights. <a href="#guide/options">Adjust route options</a>.</p>}
           <DailyPlan trip={trip} day={day} units={units} tab={tab} setTab={setTab} onSelect={openDaily}
-            wholeTrip={route.wholeTrip} onWholeTrip={clearMap}
-            map={<Suspense fallback={<div className="card mapcard embedded-map"><div className="mapwrap map-loading" role="status">Loading the route map…</div><div className="map-loading-tools">Map layers & tools</div></div>}>
-              <RouteMap embedded trip={trip} units={units} selected={activeSelection} onSelect={openDaily}
-                layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
-                dark={dark} wheelZoom={wheelZoom} setWheelZoom={setWheelZoom}
-                panel={false} setPanel={NOOP} panelWidth={400} setPanelWidth={NOOP} tab={tab} setTab={setTab}
-                ghost={ghost} onClear={clearMap} mapHeight={null} setMapHeight={NOOP}
-                onStep={step} onScrollTo={selectOnMap} />
-            </Suspense>} />
-          <details className="full-itinerary" open={showList} onToggle={e => setShowList(e.currentTarget.open)}>
-            <summary>Read the complete itinerary <span>{trip.days.length} days</span></summary>
-            <DayList trip={trip} units={units} selected={activeSelection} onSelect={selectOnMap} />
-          </details>
-          <details className="full-itinerary"><summary>Distances & driving overview</summary>
-            <Glance trip={trip} units={units} onSelect={selectOnMap} />
-            <LoadChart trip={trip} units={units} onSelect={selectOnMap} />
-          </details>
+            map={renderMap(day.id)} />
+        </div>}
+
+        {view === "plan" && <div className="wrap view-content trip-plan-view">
+          <div className="section-heading"><div><span className="eyebrow">ALL {trip.days.length} DAYS, TOGETHER</span><h1>The complete trip.</h1></div>
+            <button className="action" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button></div>
+          <nav className="topic-nav" aria-label="Trip plan sections">
+            <a href="#plan" className={route.planSection === "itinerary" ? "active" : ""} aria-current={route.planSection === "itinerary" ? "page" : undefined}>Complete itinerary</a>
+            <a href="#plan/distances" className={route.planSection === "distances" ? "active" : ""} aria-current={route.planSection === "distances" ? "page" : undefined}>Distances & driving</a>
+          </nav>
+          {trip.overrun > 0 && <p className="warn" role="alert">The selected route is {trip.overrun} days too long for the booked flights. <a href="#guide/options">Adjust route options</a>.</p>}
+          {route.planSection === "itinerary"
+            ? <DayList trip={trip} units={units} selected={day.id} onSelect={selectOnMap} />
+            : <><Glance trip={trip} units={units} onSelect={selectOnMap} /><LoadChart trip={trip} units={units} onSelect={selectOnMap} /></>}
         </div>}
 
         {view === "flights" && <div className="view-content flights-view"><Flights trip={trip} /></div>}

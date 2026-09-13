@@ -13,9 +13,9 @@ assert.equal(todayInTrip(trip, new Date("2026-10-15T12:00:00Z")), undefined);
 const win = { location: { hash: "" } };
 Object.defineProperty(globalThis, "window", { value: win, configurable: true });
 for (const [hash, view, topic] of [
-  ["#plan", "itinerary", "checklist"], ["#food", "guide", "food"],
+  ["#plan", "plan", "checklist"], ["#food", "guide", "food"],
   ["#guide/sleep", "guide", "sleep"], ["#guide/unknown", "guide", "checklist"],
-  ["#glance", "itinerary", "checklist"], ["#unknown", "overview", "checklist"]
+  ["#glance", "plan", "checklist"], ["#unknown", "overview", "checklist"]
 ]) {
   win.location.hash = hash;
   assert.equal(readRoute().view, view);
@@ -29,19 +29,24 @@ const routeFor = (hash: string) => { win.location.hash = hash; return readRoute(
 assert.ok(keepScroll(routeFor("#itinerary/sf3"), routeFor("#itinerary/sf2")));
 assert.ok(keepScroll(routeFor("#map/sf3"), routeFor("#map/sf2")));
 assert.ok(keepScroll(routeFor("#itinerary/sf3"), routeFor("#map/sf3")));
-assert.ok(keepScroll(routeFor("#itinerary/sf3"), routeFor("#itinerary/all")));
-for (const hash of ["#map", "#plan", "#itinerary/all"]) {
+assert.ok(!keepScroll(routeFor("#itinerary/sf3"), routeFor("#itinerary/all")));
+for (const hash of ["#map", "#map/all", "#itinerary/all"]) {
   const route = routeFor(hash);
-  assert.equal(route.view, "itinerary");
-  assert.equal(route.wholeTrip, true);
+  assert.equal(route.view, "overview");
   assert.equal(route.day, undefined);
 }
 for (const hash of ["#map/sf3", "#itinerary/sf3"]) {
   const route = routeFor(hash);
   assert.equal(route.view, "itinerary");
   assert.equal(route.day, "sf3");
-  assert.equal(route.wholeTrip, false);
 }
+for (const hash of ["#plan/distances", "#glance", "#load"]) {
+  assert.equal(routeFor(hash).view, "plan");
+  assert.equal(routeFor(hash).planSection, "distances");
+}
+assert.equal(routeFor("#plan").planSection, "itinerary");
+assert.ok(!keepScroll(routeFor("#plan"), routeFor("#plan/distances")));
+assert.ok(!keepScroll(routeFor("#plan/distances"), routeFor("#itinerary/sf3")));
 assert.ok(!keepScroll(routeFor("#guide/food"), routeFor("#guide/sleep")));
 assert.ok(keepScroll(routeFor("#guide/food"), routeFor("#guide/food")));
 

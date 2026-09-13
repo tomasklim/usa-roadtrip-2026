@@ -45,7 +45,7 @@ const source = ts.transpileModule(fs.readFileSync('src/lib/sharedTrip.ts','utf8'
 const defaults = {weather:'good',portland:true,rainier:'sun',flight:'mon-pm'};
 function client(storage = new Map()) {
   const document = new EventTarget(); document.visibilityState = 'visible';
-  const window = new EventTarget(); window.location = {origin:'https://trip.test',hash:''}; window.history = {replaceState(){}};
+  const window = new EventTarget(); window.location = {origin:'https://trip.test',hash:''}; window.history = {replaceState(_state,_title,hash){window.location.hash=hash;}};
   const control = {offline:false, delay:null};
   const module = {exports:{}};
   const context = vm.createContext({module,exports:module.exports,console,URL,EventTarget,AbortSignal,setInterval,clearInterval,document,window,
@@ -61,7 +61,7 @@ function client(storage = new Map()) {
     }
   });
   vm.runInContext(source,context);
-  return {api:module.exports,storage,control};
+  return {api:module.exports,storage,control,window};
 }
 const normalize = v => Array.isArray(v) ? v : [];
 const settle = async () => { for (let i=0;i<30;i++) await Promise.resolve(); };
@@ -98,3 +98,13 @@ assert.deepEqual([...a.api.useSharedStored('checks',[],normalize)[0]],['personal
 assert.equal(a.api.inviteFrom(`https://evil.test/#join/${invite}`),null);
 assert.ok(requests < 30,'Failures must not cause a request loop');
 console.log('✓ Private API auth, validation, atomic checklist writes, separate devices, offline queue, reload recovery, in-flight edits and personal-plan isolation');
+
+const linked = client();
+const stop = linked.api.startSharedSync();
+linked.window.location.hash = `#join/${invite}`;
+linked.window.dispatchEvent(new Event('hashchange'));
+await settle();
+assert.equal(linked.api.useSharedStatus().connected,true);
+assert.equal(linked.window.location.hash,'#guide/checklist');
+stop();
+console.log('✓ Invite links work in an already-open page and are removed from the address bar');

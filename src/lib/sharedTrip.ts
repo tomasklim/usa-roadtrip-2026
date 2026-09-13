@@ -151,15 +151,22 @@ export function importPersonalPlan() {
   persist(); emit('Saving changes…'); void sync();
 }
 export function startSharedSync() {
-  const invite = window.location.hash.match(/^#join\/([A-Za-z0-9_-]{43})$/)?.[1];
-  if (invite) {
+  const consumeInvite = () => {
+    const invite = window.location.hash.match(/^#join\/([A-Za-z0-9_-]{43})$/)?.[1];
+    if (!invite) return false;
     window.history.replaceState(window.history.state, '', '#guide/checklist');
     void joinSharedTrip(invite).catch(error => emit(error.message));
-  } else if (connected) void sync();
-  else if (token) void joinSharedTrip(token).catch(error => emit(error.message));
+    return true;
+  };
+  if (!consumeInvite()) {
+    if (connected) void sync();
+    else if (token) void joinSharedTrip(token).catch(error => emit(error.message));
+  }
   const wake = () => { void sync(); };
+  const onHash = () => { consumeInvite(); };
   const interval = setInterval(wake, 30000);
+  window.addEventListener('hashchange', onHash);
   window.addEventListener('online', wake);
   document.addEventListener('visibilitychange', wake);
-  return () => { clearInterval(interval); window.removeEventListener('online', wake); document.removeEventListener('visibilitychange', wake); };
+  return () => { clearInterval(interval); window.removeEventListener('hashchange', onHash); window.removeEventListener('online', wake); document.removeEventListener('visibilitychange', wake); };
 }

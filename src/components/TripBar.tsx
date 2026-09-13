@@ -7,7 +7,7 @@ import type { Units } from "../types";
 export function TripBar({ trip, units, onContinue, dayTitle }: {
   trip: Trip; units: Units; onContinue: () => void; dayTitle: string;
 }) {
-  const photo = PHOTOS.rainier;
+  const photo = trip.seattle.weather === "rain" ? (trip.seattle.portland ? PHOTOS.portlandriver : PHOTOS.seattle) : PHOTOS.rainier;
   const r = rentals(trip);
   return <div className="tripbar">
     <div className="wrap">
@@ -25,7 +25,7 @@ export function TripBar({ trip, units, onContinue, dayTitle }: {
         </div>
         <figure className="hero-photo">
           {photo && <img src={photo.url} alt={photo.alt} fetchPriority="high" />}
-          <div className="photo-stamp"><span>MOUNT RAINIER / WASHINGTON</span><b>Take the scenic way.</b></div>
+          <div className="photo-stamp"><span>{trip.seattle.weather === "rain" ? (trip.seattle.portland ? "PORTLAND / OREGON" : "SEATTLE / WASHINGTON") : "MOUNT RAINIER / WASHINGTON"}</span><b>Take the scenic way.</b></div>
           {photo && <figcaption><a href={photo.page} target="_blank" rel="noreferrer">{photo.credit} · {photo.license}</a></figcaption>}
         </figure>
       </div>
@@ -40,7 +40,7 @@ export function TripBar({ trip, units, onContinue, dayTitle }: {
 }
 
 const CHAPTERS = [
-  { id: "I", title: "Evergreens & oyster beds", place: "WASHINGTON", photo: "rainier", text: "Seattle, Mount Rainier & Hood Canal" },
+  { id: "I", title: "Evergreens & oyster beds", place: "PACIFIC NORTHWEST", photo: "rainier", text: "Seattle, Mount Rainier & Hood Canal" },
   { id: "II", title: "Salt flats to wild country", place: "THE ROCKIES", photo: "grandprismatic", text: "Bonneville, the Tetons & Yellowstone" },
   { id: "V", title: "One last turn to the coast", place: "CALIFORNIA", photo: "goldengate", text: "San Francisco, Palo Alto & Point Reyes" }
 ];
@@ -56,7 +56,7 @@ export function Chapters({ trip, onPick }: { trip: Trip; onPick: (id: string) =>
           <span className="chapter-index">0{i + 1}</span>
         </div>
         <div className="chapter-copy"><span className="eyebrow">{chapter.place} · {days.length ? `${fmtShort(days[0].date!)} – ${fmtShort(days.at(-1)!.date!)}` : "not in this plan"}</span>
-          <h3>{chapter.title}</h3><p>{chapter.text}</p>
+          <h3>{chapter.title}</h3><p>{chapter.id === "I" ? `Seattle, Hood Canal${trip.seattle.portland ? ", Portland" : ""}${trip.seattle.weather === "good" ? " & Rainier" : ""}` : chapter.text}</p>
           <button className="text-action" disabled={!days.length} onClick={() => onPick(days[0].id)}>Open this chapter <span aria-hidden="true">↗</span></button>
         </div>
       </article>;

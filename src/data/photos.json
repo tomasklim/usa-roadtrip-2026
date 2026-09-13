@@ -650,5 +650,37 @@
     "license": "CC BY-SA 4.0",
     "alt": "Yellowstone Lake and its shoreline at West Thumb",
     "label": "West Thumb"
+  },
+  "portlandriver": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/HawthorneBridge.jpg/960px-HawthorneBridge.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:HawthorneBridge.jpg",
+    "credit": "Cacophony",
+    "license": "CC BY-SA 2.5",
+    "alt": "Hawthorne Bridge and the Portland skyline across the Willamette River",
+    "label": "Portland & the Willamette"
+  },
+  "shakeshack": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Shake_Shack_burger_and_fries_%2814129412503%29.jpg/960px-Shake_Shack_burger_and_fries_%2814129412503%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Shake_Shack_burger_and_fries_%2814129412503%29.jpg",
+    "credit": "m01229",
+    "license": "CC BY 2.0",
+    "alt": "A Shake Shack burger and crinkle-cut fries, photographed in New Haven",
+    "label": "Shake Shack"
+  },
+  "innoutburger": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/In-N-Out_Burger_hamburger_and_animal_fries.jpg/960px-In-N-Out_Burger_hamburger_and_animal_fries.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:In-N-Out_Burger_hamburger_and_animal_fries.jpg",
+    "credit": "trumanlo",
+    "license": "CC BY-SA 2.0",
+    "alt": "An In-N-Out burger and animal-style fries on a red tray",
+    "label": "In-N-Out Burger"
+  },
+  "portlandwalk": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Eastbank_Esplanade%2C_Willamette_River%2C_Portland_-_DPLA_-_d228b1bf101fae200295f02e8d602cf7.jpg/960px-Eastbank_Esplanade%2C_Willamette_River%2C_Portland_-_DPLA_-_d228b1bf101fae200295f02e8d602cf7.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Eastbank_Esplanade%2C_Willamette_River%2C_Portland_-_DPLA_-_d228b1bf101fae200295f02e8d602cf7.jpg",
+    "credit": "Gary Halvorson, Oregon State Archives",
+    "license": "CC BY 4.0",
+    "alt": "The floating riverside walkway on Portland’s Eastbank Esplanade",
+    "label": "Eastbank Esplanade"
   }
 }

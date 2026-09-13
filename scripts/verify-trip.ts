@@ -27,7 +27,7 @@ for (const c of combos) {
   const ids = t.days.map((d) => d.id);
   if (!ids.includes("sf3") || !ids.includes("sf1")) problems.push("missing required NODE day or SFO arrival");
   if (new Set(ids).size !== ids.length) problems.push("duplicate ids: " + ids.filter((x, i) => ids.indexOf(x) !== i));
-  const staleHours = t.days.filter((d) => ROUTES[d.id]?.seconds && Math.abs(d.hours - ROUTES[d.id].seconds / 3600) > 0.11);
+  const staleHours = t.days.filter((d) => ROUTES[d.routeId ?? d.id]?.seconds && Math.abs(d.hours - ROUTES[d.routeId ?? d.id].seconds / 3600) > 0.11);
   if (staleHours.length) problems.push("stale wheel hours: " + staleHours.map((d) => d.id));
   if (t.days.length > CAP_DAYS && t.overrun === 0) problems.push("over cap but overrun=0");
   if (r.slc.days === 0) problems.push("no SLC rental block");
@@ -47,16 +47,16 @@ const base = buildTrip(new Set());
 const dateOf = (id: string) => new Date(base.days.find(d => d.id === id)!.date!).toISOString().slice(0, 10);
 for (const [id, date] of Object.entries({ seaB: "2026-09-25", seaA: "2026-09-27", seaReturn: "2026-09-28", s1: "2026-09-29", s6: "2026-10-05", sf1: "2026-10-10", sf3: "2026-10-11", depart: "2026-10-13" })) assert.equal(dateOf(id), date);
 assert.ok(!base.days.some(d => d.id === "s5b"));
-assert.equal(rentals(base).seattle.days, 4);
+assert.equal(rentals(base).seattle.days, 5);
 assert.equal(rentals(base).slc.days, 11);
 assert.equal(FLIGHTS.find(f => f.dir === "hop1")?.booked, false);
 assert.equal(pois.find(p => p.name === "Hama Hama Oyster Saloon")?.day, "seaB");
 assert.equal(pois.find(p => p.name === "Lamar Valley")?.day, "s6");
-for (const [id, name] of [["seaB", "Bremerton / Oyster Bay"], ["seaReturn", "SeaTac / Tukwila"]]) assert.equal(weatherForDay(base.days.find(d => d.id === id)!)?.night?.name, name);
+for (const [id, name] of [["seaB", "Bremerton / Oyster Bay"], ["seaReturn", "Salt Lake City"]]) assert.equal(weatherForDay(base.days.find(d => d.id === id)!)?.night?.name, name);
 // Adjacent driving days meet at the same overnight/airport, allowing road snapping.
 for (const [before, after] of [["seaB", "sea1"], ["sea1", "seaA"], ["seaA", "seaReturn"]]) {
-  const end = ROUTES[before].line.at(-1)!;
-  const start = ROUTES[after].line[0];
+  const end = ROUTES[base.days.find(d=>d.id===before)!.routeId ?? before].line.at(-1)!;
+  const start = ROUTES[base.days.find(d=>d.id===after)!.routeId ?? after].line[0];
   assert.ok(Math.hypot(end[0] - start[0], end[1] - start[1]) < 0.01, `${before} → ${after}: route gap`);
 }
 console.log(`\nbase: ${distLabel(base.meters, "mi")} / ${distLabel(base.meters, "km")}, ${base.driveDays} driving days`);

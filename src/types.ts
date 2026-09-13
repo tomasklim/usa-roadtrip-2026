@@ -14,6 +14,11 @@ export interface Day {
   /** Stable id. Doubles as the key into routes.json for driving days. */
   id: string;
   kind: DayKind;
+  routeId?: string;
+  poiDay?: string;
+  weather?: { day: string; bed?: string; car?: string };
+  rental?: string;
+  carEligible?: boolean;
   /** Keep this day when optional days are trimmed to fit the booked flights. */
   required?: boolean;
   title: string;

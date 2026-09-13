@@ -38,7 +38,7 @@ export function DayCard({ day, units, selected, onSelect }: {
 }) {
   const meters = day.meters ?? 0;
   const diff = difficulty(meters);
-  const hasRoute = (ROUTES[day.id]?.line?.length ?? 0) > 1;
+  const hasRoute = (ROUTES[day.routeId ?? day.id]?.line?.length ?? 0) > 1;
   return (
     <article className={`day${day.isMod ? " ismod" : ""}${selected ? " sel" : ""}`} id={`day-${day.id}`}>
       <div className="dh" onClick={onSelect} role="button" tabIndex={0}
@@ -69,7 +69,7 @@ export function DayCard({ day, units, selected, onSelect }: {
           <button className="mini" onClick={onSelect}>Show on map</button>
           <button className="mini"
                   onClick={() => downloadGpx(`day-${day.num}-${day.id}.gpx`,
-                    toGpx(`Day ${day.num} — ${day.title}`, [{ id: day.id, title: day.title }]))}>
+                    toGpx(`Day ${day.num} — ${day.title}`, [{ id: day.id, routeId: day.routeId, title: day.title }]))}>
             ↓ GPX for this day
           </button>
         </div>

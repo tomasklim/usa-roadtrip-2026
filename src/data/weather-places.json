@@ -7,7 +7,7 @@
       "timezone": "America/Los_Angeles"
     },
     "rainier": {
-      "name": "Mount Rainier · Paradise",
+      "name": "Mount Rainier \u00b7 Paradise",
       "latitude": 46.786,
       "longitude": -121.736,
       "timezone": "America/Los_Angeles"
@@ -61,7 +61,7 @@
       "timezone": "America/Denver"
     },
     "geysers": {
-      "name": "Yellowstone · Old Faithful",
+      "name": "Yellowstone \u00b7 Old Faithful",
       "latitude": 44.46,
       "longitude": -110.83,
       "timezone": "America/Denver"
@@ -208,6 +208,24 @@
       "name": "SeaTac / Tukwila",
       "latitude": 47.4502,
       "longitude": -122.3088,
+      "timezone": "America/Los_Angeles"
+    },
+    "portland": {
+      "name": "Portland",
+      "latitude": 45.52,
+      "longitude": -122.68,
+      "timezone": "America/Los_Angeles"
+    },
+    "kelso": {
+      "name": "Kelso / Longview",
+      "latitude": 46.146,
+      "longitude": -122.907,
+      "timezone": "America/Los_Angeles"
+    },
+    "olympia": {
+      "name": "Olympia / Lacey",
+      "latitude": 47.041,
+      "longitude": -122.85,
       "timezone": "America/Los_Angeles"
     }
   },

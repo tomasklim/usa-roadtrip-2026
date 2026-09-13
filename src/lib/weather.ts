@@ -16,7 +16,7 @@ const at = (id: string | undefined, date: number) => {
 };
 export function weatherForDay(day: Day) {
   if (day.date == null || !Number.isFinite(day.date)) return null;
-  const location = days[day.id];
+  const location = day.weather ?? days[day.id];
   if (!location) return null;
   const daytime = at(location.day, day.date);
   if (!daytime) return null;

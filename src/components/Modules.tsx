@@ -1,3 +1,4 @@
+import type { SeattleOptions } from "../data/seattle";
 import { useMemo } from "react";
 import { MODULES, SLEEP_STYLES } from "../data/itinerary";
 import { buildTrip, distLabel, fmtShort, metersOf, type Trip } from "../lib/trip";
@@ -9,7 +10,8 @@ import type { SleepStyle, Units } from "../types";
  * it rewrites, and a hover that ghosts its route onto the map. The point is that
  * the trade is visible before you make it rather than explained afterwards.
  */
-export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, onSelect, onHover }: {
+export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, onSelect, onHover, seattle }: {
+  seattle: SeattleOptions;
   on: Set<string>; toggle: (id: string) => void; trip: Trip; units: Units;
   sleepStyle: SleepStyle; setSleepStyle: (s: SleepStyle) => void;
   onSelect: (dayId: string) => void;
@@ -26,7 +28,7 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
           if (other.id !== m.id && conflicts(m.id, other.id)) next.delete(other.id);
         });
       }
-      const other = buildTrip(next, sleepStyle);
+      const other = buildTrip(next, sleepStyle, {}, seattle);
       const sign = on.has(m.id) ? -1 : 1;
       out[m.id] = {
         days: (other.driveDays - trip.driveDays) * sign,
@@ -35,7 +37,7 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
       };
     }
     return out;
-  }, [on, sleepStyle, trip]);
+  }, [on, sleepStyle, trip, seattle]);
 
   return (
     <div className="card panel">

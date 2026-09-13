@@ -1,5 +1,5 @@
 import { weatherSummary } from "./weather";
-import { FLIGHTS } from "../data/itinerary";
+import { flightsForTrip } from "./flights";
 import { fmtDate, distLabel, type Trip } from "./trip";
 import type { Units } from "../types";
 const esc = (value: string) => value.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]!));
@@ -14,9 +14,8 @@ export function offlinePlanHtml(trip: Trip, units: Units, savedAt = new Date()) 
     ${d.food?.length ? `<h3>Food</h3>${list(d.food.map(f => `${f.nm}: ${f.note}`))}` : ""}
     ${d.charge?.length ? `<h3>Charging</h3>${list(d.charge)}` : ""}
     ${d.ideas?.length ? `<details><summary>More ideas</summary>${list(d.ideas)}</details>` : ""}<a href="#top">Back to days ↑</a></article>`).join("");
-  const flights = FLIGHTS.map(f => {
-    const day = trip.days.find(d => d.id === (f.dir === "hop1" ? "s1" : f.dir === "hop2" ? "sf1" : ""));
-    return `<section><p><b>${esc(day ? fmtDate(day.date!) : f.date)} · ${esc(f.from)} → ${esc(f.to)}</b><br>${esc(f.dep)} → ${esc(f.arr)} · ${f.booked ? "Booked" : "To book"}<br>${esc(f.stops)}</p>${list(f.legs.map(l => l.filter(Boolean).join(" · ")))}${f.note ? `<p>${esc(f.note)}</p>` : ""}</section>`;
+  const flights = flightsForTrip(trip).map(f => {
+    return `<section><p><b>${esc(f.date)} · ${esc(f.from)} → ${esc(f.to)}</b><br>${esc(f.dep)} → ${esc(f.arr)} · ${f.booked ? "Booked" : "To book"}<br>${esc(f.stops)}</p>${list(f.legs.map(l => l.filter(Boolean).join(" · ")))}${f.note ? `<p>${esc(f.note)}</p>` : ""}</section>`;
   }).join("");
   return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Northwest Roadtrip — offline plan</title>
   <style>body{max-width:760px;margin:auto;padding:24px;background:#f7f5ee;color:#24362e;font:17px/1.65 system-ui}h1,h2{font-family:Georgia,serif;line-height:1.2}h1{font-size:40px}article{border-top:1px solid #ccc;padding:32px 0}li{margin:10px 0}a{color:#315d46}nav{display:grid;gap:8px}nav a,summary{padding:8px 0}small{letter-spacing:.08em}.alert{background:#f1dfcc;padding:16px}details{margin:24px 0} @media print{nav,details{display:none}article{break-inside:avoid}}</style>

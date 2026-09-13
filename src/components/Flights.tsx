@@ -1,16 +1,8 @@
-import { FLIGHTS } from "../data/itinerary";
+import { flightsForTrip } from "../lib/flights";
 import type { Trip } from "../lib/trip";
 
-const dateFor = (t: number) => new Intl.DateTimeFormat("en-GB", {
-  weekday: "short", day: "numeric", month: "short", year: "numeric", timeZone: "UTC"
-}).format(t).replace(",", "");
-
 export function Flights({ trip }: { trip: Trip }) {
-  const flights = FLIGHTS.map((f) => {
-    const dayId = f.dir === "hop1" ? "s1" : f.dir === "hop2" ? "sf1" : null;
-    const date = dayId ? trip.days.find((d) => d.id === dayId)?.date : null;
-    return date ? { ...f, date: dateFor(date) } : f;
-  });
+  const flights = flightsForTrip(trip);
   return (
     <section id="flights">
       <div className="wrap narrow">
@@ -18,7 +10,7 @@ export function Flights({ trip }: { trip: Trip }) {
         <p className="sub">
           Condor via Frankfurt both ways, and the return out of San Francisco rather than Seattle —
           which is what makes the whole loop work. Landing at 16:00 on September 24 means day one is a hotel,
-          a simple dinner and nothing more. All times are local; the return lands in Prague on October 14.
+          rental pickup, dinner and the drive south to an inn. All times are local; the return lands in Prague on October 14.
         </p>
         <div className="flights">
           {flights.map((f) => (

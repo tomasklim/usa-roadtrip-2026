@@ -181,12 +181,12 @@ function Framer({ trip, selected, padRight }: {
       const tooltip = layer.getTooltip();
       if (tooltip && !tooltip.options.permanent) layer.closeTooltip();
     });
-  }, [map, selected]);
+  }, [map, selected, trip.days]);
 
   const allBounds = useMemo(() => {
     const pts: [number, number][] = [];
     trip.days.forEach((d) => {
-      ROUTES[d.id]?.line?.forEach((p) => pts.push(p));
+      ROUTES[d.routeId ?? d.id]?.line?.forEach((p) => pts.push(p));
       if (d.at) pts.push(d.at);
     });
     return pts.length ? L.latLngBounds(pts) : null;
@@ -199,7 +199,7 @@ function Framer({ trip, selected, padRight }: {
 
   useLayoutEffect(() => {
     if (!selected) return;
-    const line = ROUTES[selected]?.line;
+    const line = ROUTES[trip.days.find(d => d.id === selected)?.routeId ?? selected]?.line;
     if (line && line.length > 1) {
       map.fitBounds(L.latLngBounds(line), {
         paddingTopLeft: [40, 40], paddingBottomRight: [padRight + 40, 40], animate: false
@@ -214,7 +214,7 @@ function Framer({ trip, selected, padRight }: {
       }
       const idx = trip.days.findIndex((d) => d.id === selected);
       for (let i = idx; i >= 0; i--) {
-        const prev = ROUTES[trip.days[i].id]?.line;
+        const prev = ROUTES[trip.days[i].routeId ?? trip.days[i].id]?.line;
         if (prev?.length) { map.setView(prev[prev.length - 1], 9, { animate: false }); return; }
       }
     }
@@ -260,7 +260,7 @@ function PoiLayer({ layers, pois, onOpenDay, dayLabel }: {
         const cat: Cat = p.kind === "sight" ? "sight" : foodCat(p.tags);
         if (cat === "sight" ? !layers.sights : !layers.food) return null;
         return (
-          <Marker key={p.id} position={[p.lat, p.lon]} icon={dropIcon(cat)}
+          <Marker key={`${p.day}-${p.id}`} position={[p.lat, p.lon]} icon={dropIcon(cat)}
                   title={p.name} alt={`${KIND_LABEL[cat]}: ${p.name}`}
                   eventHandlers={markerEvents(`${KIND_LABEL[cat]}: ${p.name}`)}>
             {showLabels
@@ -319,10 +319,9 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
     const d = trip.days.find((x) => x.id === dayId);
     return d ? `day ${d.num}` : "that day";
   };
-  const activeIds = new Set(trip.days.map((d) => d.id));
   const idx = selected ? trip.days.findIndex((d) => d.id === selected) : -1;
   const cur = idx >= 0 ? trip.days[idx] : null;
-  const visiblePois = POIS.filter((p) => activeIds.has(p.day));
+  const visiblePois = trip.days.flatMap(d => POIS.filter(p => p.day === (d.poiDay ?? d.id)).map(p => ({ ...p, day: d.id })));
   const bm = BASEMAPS[basemap];
 
   // Height is dragged locally and only committed to storage on release, so a
@@ -382,7 +381,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
   const dl = () =>
     downloadGpx(
       "northwest-roadtrip-2026.gpx",
-      toGpx("Northwest Roadtrip 2026", trip.days.map((d) => ({ id: d.id, title: `Day ${d.num} — ${d.title}` })))
+      toGpx("Northwest Roadtrip 2026", trip.days.map((d) => ({ id: d.id, routeId: d.routeId, title: `Day ${d.num} — ${d.title}` })))
     );
 
   return (
@@ -400,7 +399,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
           {!panel && !embedded && <PopupOpener selected={selected} refs={markerRefs} />}
 
           {trip.days.map((d) => {
-            const line = ROUTES[d.id]?.line;
+            const line = ROUTES[d.routeId ?? d.id]?.line;
             if (!line || line.length < 2) return null;
             const isSel = selected === d.id;
             return (
@@ -421,7 +420,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
           })}
 
           {trip.days.map((d) => {
-            const line = ROUTES[d.id]?.line;
+            const line = ROUTES[d.routeId ?? d.id]?.line;
             const at: [number, number] | undefined =
               line?.length ? line[line.length - 1] : d.at;
             if (!at) return null;

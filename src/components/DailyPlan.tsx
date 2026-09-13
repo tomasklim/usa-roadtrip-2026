@@ -28,7 +28,7 @@ export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map }: {
   trip: Trip; day: Day; units: Units; tab: Tab; setTab: (tab: Tab) => void; onSelect: (id: string) => void;
   map: ReactNode;
 }) {
-  const stops = POIS.filter(p => p.day === day.id).sort((a, b) => Number(b.id === "node-palo-alto") - Number(a.id === "node-palo-alto"));
+  const stops = POIS.filter(p => p.day === (day.poiDay ?? day.id)).sort((a, b) => Number(b.id === "node-palo-alto") - Number(a.id === "node-palo-alto"));
   return <>
     <DayPicker trip={trip} day={day} onSelect={onSelect} />
     <div className="daily-layout">
@@ -50,7 +50,7 @@ export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map }: {
             <div><span>TONIGHT</span><b>{day.sleep ? (day.sleep.t === "car" ? "A night in the car" : "A bed & a shower") : "Overnight flight"}</b></div>
           </div>
           <div className="daily-actions">
-            {!!day.meters && <button className="action" onClick={() => downloadGpx(`day-${day.num}.gpx`, toGpx(day.title, [{id:day.id,title:day.title}]))}>↓ Day GPX</button>}
+            {!!day.meters && <button className="action" onClick={() => downloadGpx(`day-${day.num}.gpx`, toGpx(day.title, [{id:day.id,routeId:day.routeId,title:day.title}]))}>↓ Day GPX</button>}
           </div>
           {day.alert && <AlertBox day={day} />}
           <div className="daily-tabs" role="group" aria-label="Day information">

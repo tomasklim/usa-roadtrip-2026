@@ -1,4 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { SeattleChoices } from "./components/SeattleChoices";
+import { DEFAULT_SEATTLE, normalizeSeattle, type SeattleOptions } from "./data/seattle";
 import { Header } from "./components/Header";
 import { Chapters, QuickLinks, TripBar } from "./components/TripBar";
 import { Flights } from "./components/Flights";
@@ -22,6 +24,7 @@ import type { Tab } from "./components/DayPanel";
 const RouteMap = lazy(() => import("./components/RouteMap").then(module => ({ default: module.RouteMap })));
 
 export default function App() {
+  const [seattle, setSeattle] = useStored<SeattleOptions>("seattlePlan", DEFAULT_SEATTLE, normalizeSeattle);
   const [mods, setMods] = useStored<string[]>("mods", [], normalizeMods);
   const [units, setUnits] = useStored<Units>("units", "mi", NORMALIZE_UNITS);
   const [theme, setTheme] = useStored<string | null>("theme", null, NORMALIZE_THEME);
@@ -37,7 +40,7 @@ export default function App() {
   const [ghost, setGhost] = useState<string | null>(null);
 
   const on = useMemo(() => new Set(Array.isArray(mods) ? mods : []), [mods]);
-  const trip = useMemo(() => buildTrip(on, sleepStyle, sleepOverrides), [on, sleepStyle, sleepOverrides]);
+  const trip = useMemo(() => buildTrip(on, sleepStyle, sleepOverrides, seattle), [on, sleepStyle, sleepOverrides, seattle]);
   const routeDay = trip.days.find(d => d.id === route.day);
   const day = routeDay ?? trip.days.find(d => d.id === selected) ?? todayInTrip(trip) ?? trip.days[0];
 
@@ -119,6 +122,8 @@ export default function App() {
       onStep={step} onScrollTo={selectOnMap} />
   </Suspense>;
 
+  const seattleChoices = <SeattleChoices trip={trip} onChange={setSeattle} extended={on.has("olympic")} />;
+
   return (
     <>
       <Header units={units} setUnits={setUnits} theme={theme} setTheme={setTheme} view={view} />
@@ -127,6 +132,7 @@ export default function App() {
           <TripBar trip={trip} units={units} onContinue={() => openDaily(day.id)} dayTitle={`Day ${day.num} · ${day.title}`} />
           <div className="wrap overview-body">
             <QuickLinks />
+            {seattleChoices}
             <section id="trip-map" className="overview-map" aria-label="Whole trip map">
               <div className="section-heading"><div><span className="eyebrow">SEATTLE → THE ROCKIES → SAN FRANCISCO</span><h2>The whole trip.</h2></div><a className="text-action" href="#plan">Itinerary & distances ↗</a></div>
               {renderMap(null)}
@@ -147,6 +153,7 @@ export default function App() {
           <div className="section-heading"><div><span className="eyebrow">THE ROUTE & YOUR DAILY PLAN</span><h1>Your daily field notes.</h1></div>
             <button className="action" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button></div>
           {trip.overrun > 0 && <p className="warn" role="alert">The selected route is {trip.overrun} days too long for the booked flights. <a href="#guide/options">Adjust route options</a>.</p>}
+          {day.num! <= 5 && seattleChoices}
           <DailyPlan trip={trip} day={day} units={units} tab={tab} setTab={setTab} onSelect={openDaily}
             map={renderMap(day.id)} />
         </div>}
@@ -154,6 +161,7 @@ export default function App() {
         {view === "plan" && <div className="wrap view-content trip-plan-view">
           <div className="section-heading"><div><span className="eyebrow">ALL {trip.days.length} DAYS, TOGETHER</span><h1>The complete trip.</h1></div>
             <button className="action" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button></div>
+          {seattleChoices}
           <nav className="topic-nav" aria-label="Trip plan sections">
             <a href="#plan" className={route.planSection === "itinerary" ? "active" : ""} aria-current={route.planSection === "itinerary" ? "page" : undefined}>Complete itinerary</a>
             <a href="#plan/distances" className={route.planSection === "distances" ? "active" : ""} aria-current={route.planSection === "distances" ? "page" : undefined}>Distances & driving</a>
@@ -176,7 +184,7 @@ export default function App() {
           {topic === "charging" && <Charging />}
           {topic === "risks" && <RiskSection />}
           {topic === "budget" && <Budget trip={trip} />}
-          {topic === "options" && <Modules on={on} toggle={toggle} trip={trip} units={units} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={selectOnMap} onHover={setGhost} />}
+          {topic === "options" && <>{seattleChoices}<Modules seattle={seattle} on={on} toggle={toggle} trip={trip} units={units} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={selectOnMap} onHover={setGhost} /></>}
         </div>}
         {view === "credits" && <PhotoCredits />}
       </main>

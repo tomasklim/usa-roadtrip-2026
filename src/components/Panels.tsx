@@ -67,7 +67,7 @@ export function LoadChart({ trip, units, onSelect }: {
   // bars are the Seattle rental and which are the Salt Lake one.
   const bands: { label: string; from: number; to: number; meters: number }[] = [];
   data.forEach((d, i) => {
-    const b = blockOf(d.id);
+    const b = blockOf(d);
     const last = bands[bands.length - 1];
     if (last && last.label === b) { last.to = i; last.meters += d.meters ?? 0; }
     else bands.push({ label: b, from: i, to: i, meters: d.meters ?? 0 });
@@ -237,7 +237,7 @@ export function SleepSection({ trip, sleepStyle, setSleepStyle, overrides, setOv
                   {d.sleep!.decision && <p className={`sleep-decision${d.sleep!.priceException ? " exception" : ""}`}>{d.sleep!.decision}</p>}
                   {w && <small>Historical low ~{degrees(w.stats.low)} · {w.name}{d.sleep!.t === "car" ? ` · colder lows ${degrees(w.stats.lowP10)} (10th percentile)` : ""}</small>}
                 </div>
-                {CAR_NIGHTS[d.id] ? <label className="night-choice">Night choice
+                {CAR_NIGHTS[d.id] && d.carEligible !== false ? <label className="night-choice">Night choice
                   <select aria-label={`Night choice for ${fmtShort(d.date!)}`} value={overrides[d.id] ?? "auto"} onChange={e => {
                     const next = { ...overrides };
                     if (e.target.value === "auto") delete next[d.id];

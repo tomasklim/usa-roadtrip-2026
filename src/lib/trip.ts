@@ -1,4 +1,5 @@
 import { BASE, CAR_NIGHTS, MODULES } from "../data/itinerary";
+import { DEFAULT_SEATTLE, normalizeSeattle, seattleDays, type SeattleOptions } from "../data/seattle";
 import routesRaw from "../data/routes.json";
 import type { Day, Leg, SleepOverrides, SleepStyle, Units } from "../types";
 
@@ -42,13 +43,13 @@ export function difficulty(meters: number): Difficulty {
   return "crux";
 }
 
-const SEATTLE_CAR = ["seaB", "sea1", "seaA", "seaReturn", "olyA", "olyB"];
+const SEATTLE_CAR = ["arrive", "seaB", "sea1", "seaA", "seaReturn", "olyA", "olyB"];
 const SLC_CAR = ["s1", "antelope", "s2", "dinoA", "dinoB", "s3", "s4", "s4b", "s5",
                  "s6", "s7", "cody", "s8", "s9", "craters2", "s10"];
 const SF_CAR = ["sf2", "sf3", "sf4"];
 
 function blockDays(t: Trip, ids: string[]) {
-  const idx = t.days.map((d, i) => (ids.includes(d.id) ? i : -1)).filter((i) => i >= 0);
+  const idx = t.days.map((d, i) => (ids.includes(d.id) && d.rental !== "No car" ? i : -1)).filter((i) => i >= 0);
   if (!idx.length) return { days: 0, meters: 0 };
   const first = Math.min(...idx), last = Math.max(...idx);
   return {
@@ -60,6 +61,7 @@ function blockDays(t: Trip, ids: string[]) {
 /* ---------- assembly ---------- */
 export interface Trip {
   days: Day[];
+  seattle: SeattleOptions;
   meters: number;
   driveDays: number;
   carNights: number;
@@ -73,8 +75,18 @@ export interface Trip {
   spare: number;
 }
 
-export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", overrides: SleepOverrides = {}): Trip {
-  let days: Day[] = BASE.map((d) => ({ ...d }));
+export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", overrides: SleepOverrides = {}, seattle: SeattleOptions = DEFAULT_SEATTLE): Trip {
+  const options = normalizeSeattle(on.has("olympic") ? { ...seattle, weather: "good", rainier: "sun", flight: "tue-am" } : seattle);
+  let days: Day[] = [...seattleDays(BASE, options), ...BASE.slice(5).map(d => ({ ...d }))];
+  const bonneville = days.find(d => d.id === "s1")!;
+  bonneville.hi = ["Morning flight to Salt Lake City; allow for the one-hour time-zone change before collecting the car.", ...bonneville.hi.slice(1)];
+  if (options.flight !== "tue-am") {
+    const salt = days.find(d => d.id === "s1")!;
+    salt.title = "A whole afternoon on salt";
+    salt.leg = "Salt Lake City → Bonneville Salt Flats → Salt Lake City";
+    salt.hi = ["Wake up in Salt Lake City. Collect the Utah car today; no flight to catch first.", ...salt.hi.slice(1)];
+    salt.why = "A rested start and a full afternoon for Bonneville, with the rest of the trip on its original dates.";
+  }
   const active = MODULES.filter((m) => on.has(m.id));
 
   // Branch swaps first, from the back, so earlier indices stay valid.
@@ -113,10 +125,11 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
   days.forEach((d, i) => {
     d.num = i + 1;
     d.date = START + i * DAY_MS;
-    d.meters = metersOf(d.id);
+    d.meters = metersOf(d.routeId ?? d.id);
+    if (d.routeId && ROUTES[d.routeId]) d.hours = Math.round(ROUTES[d.routeId].seconds / 360) / 10;
     // Sleeping style is applied here so every downstream count — the hero, the
     // budget's lodging line, the day cards — reads from one decision.
-    const car = CAR_NIGHTS[d.id];
+    const car = d.carEligible === false ? undefined : CAR_NIGHTS[d.id];
     if (d.sleep) d.sleep = { ...d.sleep };
     const choice = overrides[d.id];
     const priceException = !!car && choice === "price";
@@ -141,7 +154,7 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
   const firstSf = days.find((d) => d.kind === "sf");
 
   return {
-    days, meters, driveDays, carNights, droppedSf, overrun, sfNights,
+    days, seattle: options, meters, driveDays, carNights, droppedSf, overrun, sfNights,
     carReturn: lastCarDay?.date ?? START,
     flyDate: firstSf?.date ?? START,
     spare: Math.max(0, CAP_DAYS - days.length)
@@ -150,10 +163,12 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
 
 /**
  * Separate Seattle, Salt Lake and Bay Area rentals. Count the Seattle car from
- * pickup before Friday oysters through the return after Rainier, including the city day.
+ * arrival-night pickup through the selected return, including intervening city days.
  */
 /** Which rental a day belongs to — used to band the driving-load chart. */
-export function blockOf(id: string): string {
+export function blockOf(value: string | Day): string {
+  if (typeof value !== "string" && value.rental) return value.rental;
+  const id = typeof value === "string" ? value : value.id;
   if (SEATTLE_CAR.includes(id)) return "Seattle car";
   if (SLC_CAR.includes(id)) return "Salt Lake car";
   if (SF_CAR.includes(id)) return "San Francisco car";
@@ -170,11 +185,11 @@ export const rentals = (t: Trip) => ({
 export const turoDays = (t: Trip) => rentals(t).slc.days || t.driveDays;
 
 /* ---------- GPX export ---------- */
-export function toGpx(name: string, legs: { id: string; title: string }[]): string {
+export function toGpx(name: string, legs: { id: string; routeId?: string; title: string }[]): string {
   const trks = legs
-    .filter((l) => ROUTES[l.id]?.line?.length > 1)
+    .filter((l) => ROUTES[l.routeId ?? l.id]?.line?.length > 1)
     .map((l) => {
-      const pts = ROUTES[l.id].line
+      const pts = ROUTES[l.routeId ?? l.id].line
         .map(([lat, lon]) => `<trkpt lat="${lat}" lon="${lon}"/>`)
         .join("");
       return `<trk><name>${esc(l.title)}</name><trkseg>${pts}</trkseg></trk>`;

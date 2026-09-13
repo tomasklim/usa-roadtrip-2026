@@ -391,3 +391,26 @@ footer a{font-size:.76rem;margin-left:auto;text-decoration:none;white-space:nowr
   .footer-links { margin-left: 0; }
   .credits-list { grid-template-columns: minmax(0, 1fr); }
 }
+
+.seattle-choices { margin: 20px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.seattle-choices > summary { padding: 16px 20px; display: flex; justify-content: space-between; gap: 16px; align-items: center; cursor: pointer; list-style: none; }
+.seattle-choices > summary::-webkit-details-marker { display: none; }
+.seattle-choices summary b { display: block; font-size: .9rem; }
+.seattle-choices summary small { display: block; color: var(--muted); margin-top: 4px; font-size: .75rem; }
+.seattle-choice-body { padding: 0 20px 20px; }
+.seattle-choice-body > p { font-size: .83rem; max-width: 780px; }
+.weather-switch { display: flex; gap: 8px; margin: 16px 0; }
+.weather-switch button { flex: 1; min-height: 46px; padding: 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface2); color: var(--text); font: inherit; font-size: .85rem; cursor: pointer; }
+.weather-switch button[aria-pressed=true] { background: var(--pine); color: #fff; border-color: var(--pine); }
+.seattle-settings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: center; }
+.seattle-settings label { display: grid; gap: 7px; font-size: .76rem; color: var(--muted); }
+.seattle-settings select { width: 100%; min-height: 46px; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 8px; font-size: 16px; }
+.seattle-settings .portland-choice { display: flex; align-items: center; gap: 10px; min-height: 48px; font-size: .9rem; color: var(--text); }
+.portland-choice input { width: 20px; height: 20px; accent-color: var(--pine); flex-shrink: 0; }
+.portland-choice small { display: block; margin-top: 4px; font-size: .72rem; color: var(--muted); }
+.seattle-preview { padding: 0; list-style: none; margin: 18px 0; }
+.seattle-preview li { display: flex; gap: 14px; padding: 8px 0; border-top: 1px solid var(--line); font-size: .8rem; }
+.seattle-preview li > span { flex: 0 0 44px; color: var(--muted); }
+.seattle-sources { display: flex; flex-wrap: wrap; gap: 12px 20px; font-size: .75rem; }
+@media(max-width:900px) { .seattle-settings { grid-template-columns: minmax(0, 1fr); gap: 12px; } }
+@media print { .seattle-choices { display: none; } }

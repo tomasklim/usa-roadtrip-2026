@@ -36,7 +36,7 @@ assert.equal(overriddenBed.days.find(d => d.id === "s4")?.sleep?.streak, 1);
 const isolated = buildTrip(new Set(), "motel", { s4: "price" });
 assert.equal(isolated.carNights, 1);
 const balanced = buildTrip(new Set());
-assert.equal(balanced.carNights, 4);
+assert.equal(balanced.carNights, 3);
 for (const id of Object.keys(CAR_NIGHTS)) {
   const day = [...BASE, ...MODULES.flatMap(m => m.days)].find(d => d.id === id)!;
   assert.ok(day, id);

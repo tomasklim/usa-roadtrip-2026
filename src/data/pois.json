@@ -27,7 +27,7 @@
    "df"
   ],
   "city": "Seattle WA",
-  "desc": "Their own Puget Sound farms \u2014 order a mixed dozen and compare"
+  "desc": "Their own Puget Sound farms — order a mixed dozen and compare"
  },
  {
   "id": "elliotts-oyster-house",
@@ -54,7 +54,7 @@
    "gf"
   ],
   "city": "Seattle WA",
-  "desc": "Gluten-free bun, no cheese, and say \u201cclean prep\u201d \u2014 the regular buns are buttered on the same surface."
+  "desc": "Gluten-free bun, no cheese, and say “clean prep” — the regular buns are buttered on the same surface."
  },
  {
   "id": "munchen-haus",
@@ -67,7 +67,7 @@
    "meat"
   ],
   "city": "Leavenworth WA",
-  "desc": "Bratwurst \u2014 ask about milk powder in the sausage, it is often there"
+  "desc": "Bratwurst — ask about milk powder in the sausage, it is often there"
  },
  {
   "id": "chico-hot-springs",
@@ -125,7 +125,7 @@
    "df"
   ],
   "city": "Salt Lake City UT",
-  "desc": "Protein style, no cheese. The fries are safe \u2014 own fryer, potato and sunflower oil only"
+  "desc": "Protein style, no cheese. The fries are safe — own fryer, potato and sunflower oil only"
  },
  {
   "id": "crown-burgers",
@@ -138,7 +138,7 @@
    "meat"
   ],
   "city": "Salt Lake City UT",
-  "desc": "A real Utah invention \u2014 ask for a lettuce wrap"
+  "desc": "A real Utah invention — ask for a lettuce wrap"
  },
  {
   "id": "leku-ona",
@@ -195,7 +195,7 @@
    "df"
   ],
   "city": "Meridian ID",
-  "desc": "Protein style, no cheese. The fries are safe \u2014 own fryer, potato and sunflower oil only"
+  "desc": "Protein style, no cheese. The fries are safe — own fryer, potato and sunflower oil only"
  },
  {
   "id": "eem",
@@ -209,7 +209,7 @@
    "gf"
   ],
   "city": "Portland OR",
-  "desc": "Thai barbecue \u2014 brisket in curry, and they know their allergens"
+  "desc": "Thai barbecue — brisket in curry, and they know their allergens"
  },
  {
   "id": "nongs-khao-man-gai",
@@ -238,7 +238,7 @@
    "df"
   ],
   "city": "Ridgefield WA",
-  "desc": "Protein style, no cheese. The fries are safe \u2014 own fryer, potato and sunflower oil only"
+  "desc": "Protein style, no cheese. The fries are safe — own fryer, potato and sunflower oil only"
  },
  {
   "id": "swan-oyster-depot",
@@ -311,7 +311,7 @@
    "df"
   ],
   "city": "San Francisco CA",
-  "desc": "Protein style, no cheese. The fries are safe \u2014 own fryer, potato and sunflower oil only"
+  "desc": "Protein style, no cheese. The fries are safe — own fryer, potato and sunflower oil only"
  },
  {
   "id": "hama-hama-oyster-saloon",
@@ -326,7 +326,7 @@
    "df"
   ],
   "city": "Lilliwaup WA",
-  "desc": "Friday lunch at the oyster farm. Saloon Fri\u2013Sun 11:00\u201317:00; reserve ahead."
+  "desc": "Friday lunch at the oyster farm. Saloon Fri–Sun 11:00–17:00; reserve ahead."
  },
  {
   "id": "the-martin-hotel",
@@ -400,7 +400,7 @@
   "day": "d3",
   "tags": [],
   "city": "Glacier National Park MT",
-  "desc": "The most dramatic basin in Glacier. Flooded and evacuated in June 2026 \u2014 confirm it has reopened."
+  "desc": "The most dramatic basin in Glacier. Flooded and evacuated in June 2026 — confirm it has reopened."
  },
  {
   "id": "saint-mary-lake",
@@ -456,7 +456,7 @@
   "day": "s8",
   "tags": [],
   "city": "Bozeman MT",
-  "desc": "Jack Horner's collection \u2014 the largest set of T. rex fossils anywhere on Earth. Budget two hours.",
+  "desc": "Jack Horner's collection — the largest set of T. rex fossils anywhere on Earth. Budget two hours.",
   "photo": "trex"
  },
  {
@@ -516,7 +516,7 @@
   "day": "s4b",
   "tags": [],
   "city": "Yellowstone National Park WY",
-  "desc": "Erupts every 60\u2013110 minutes to about 130 ft. The prediction board in the visitor centre is accurate.",
+  "desc": "Erupts every 60–110 minutes to about 130 ft. The prediction board in the visitor centre is accurate.",
   "photo": "oldfaithful"
  },
  {
@@ -528,7 +528,7 @@
   "day": "s3",
   "tags": [],
   "city": "Grand Teton National Park WY",
-  "desc": "The Moulton barns against the Teton range \u2014 the most photographed farm buildings in America.",
+  "desc": "The Moulton barns against the Teton range — the most photographed farm buildings in America.",
   "photo": "mormonrow"
  },
  {
@@ -588,7 +588,7 @@
   "day": "d12",
   "tags": [],
   "city": "Twin Falls ID",
-  "desc": "212 ft \u2014 taller than Niagara \u2014 though by October the irrigation season has usually taken most of the water.",
+  "desc": "212 ft — taller than Niagara — though by October the irrigation season has usually taken most of the water.",
   "photo": "shoshonefalls"
  },
  {
@@ -741,7 +741,7 @@
   "day": "bigsur1",
   "tags": [],
   "city": "Big Sur CA",
-  "desc": "A 1932 concrete arch 260 ft above the creek \u2014 the most photographed bridge on the Pacific coast.",
+  "desc": "A 1932 concrete arch 260 ft above the creek — the most photographed bridge on the Pacific coast.",
   "photo": "bixby"
  },
  {
@@ -812,7 +812,7 @@
   "day": "s10",
   "tags": [],
   "city": "Lava Hot Springs ID",
-  "desc": "Five pools of mineral water at 43 \u00b0C, run by the state and startlingly cheap. Splits the run back to Salt Lake.",
+  "desc": "Five pools of mineral water at 43 °C, run by the state and startlingly cheap. Splits the run back to Salt Lake.",
   "photo": "lavahotsprings"
  },
  {
@@ -976,7 +976,7 @@
  },
  {
   "id": "hp-garage",
-  "name": "HP Garage \u2014 birthplace of Silicon Valley",
+  "name": "HP Garage — birthplace of Silicon Valley",
   "kind": "sight",
   "lat": 37.44294,
   "lon": -122.15459,
@@ -1023,7 +1023,7 @@
  },
  {
   "id": "meta-hq",
-  "name": "Meta HQ \u2014 1 Hacker Way",
+  "name": "Meta HQ — 1 Hacker Way",
   "kind": "sight",
   "lat": 37.48467,
   "lon": -122.14837,
@@ -1031,7 +1031,7 @@
   "tags": [],
   "city": "Menlo Park CA",
   "photo": "metahq",
-  "desc": "The thumbs-up sign at the entrance is the classic five-minute photo. The back of the sign still carries Sun Microsystems' logo \u2014 a deliberate memento mori."
+  "desc": "The thumbs-up sign at the entrance is the classic five-minute photo. The back of the sign still carries Sun Microsystems' logo — a deliberate memento mori."
  },
  {
   "id": "tesla-fremont",
@@ -1079,7 +1079,7 @@
   "tags": [],
   "city": "Marin County CA",
   "photo": "muirwoods",
-  "desc": "Thousand-year-old coast redwoods twenty minutes from the bridge. Parking is reservation-only \u2014 book before you go."
+  "desc": "Thousand-year-old coast redwoods twenty minutes from the bridge. Parking is reservation-only — book before you go."
  },
  {
   "id": "sausalito",
@@ -1106,25 +1106,25 @@
  },
  {
   "id": "atherton",
-  "name": "Atherton \u2014 the richest ZIP code in America",
+  "name": "Atherton — the richest ZIP code in America",
   "kind": "sight",
   "lat": 37.45377,
   "lon": -122.20583,
   "day": "sf3",
   "tags": [],
   "city": "Atherton CA",
-  "desc": "94027: repeatedly the most expensive ZIP in the US, average home about $8M. Eric Schmidt, Sheryl Sandberg and half the venture aristocracy live behind these hedges. You see gates and trees \u2014 that is the point."
+  "desc": "94027: repeatedly the most expensive ZIP in the US, average home about $8M. Eric Schmidt, Sheryl Sandberg and half the venture aristocracy live behind these hedges. You see gates and trees — that is the point."
  },
  {
   "id": "woodside",
-  "name": "Woodside \u2014 billionaire horse country",
+  "name": "Woodside — billionaire horse country",
   "kind": "sight",
   "lat": 37.42806,
   "lon": -122.25074,
   "day": "sf3",
   "tags": [],
   "city": "Woodside CA",
-  "desc": "Estates hidden in the redwood hills: Larry Ellison's 23-acre Japanese imperial villa, Neil Young's old ranch. The town centre is one general store \u2014 the money is deliberately invisible."
+  "desc": "Estates hidden in the redwood hills: Larry Ellison's 23-acre Japanese imperial villa, Neil Young's old ranch. The town centre is one general store — the money is deliberately invisible."
  },
  {
   "id": "bucks-woodside",
@@ -1137,18 +1137,18 @@
    "gf"
   ],
   "city": "Woodside CA",
-  "desc": "The diner where Netscape, Hotmail and PayPal were pitched over pancakes \u2014 VCs still take breakfast meetings under the toy collection. Eggs and bacon are safely GF/DF."
+  "desc": "The diner where Netscape, Hotmail and PayPal were pitched over pancakes — VCs still take breakfast meetings under the toy collection. Eggs and bacon are safely GF/DF."
  },
  {
   "id": "old-palo-alto",
-  "name": "Old Palo Alto \u2014 Steve Jobs' street",
+  "name": "Old Palo Alto — Steve Jobs' street",
   "kind": "sight",
   "lat": 37.43224,
   "lon": -122.14132,
   "day": "sf3",
   "tags": [],
   "city": "Palo Alto CA",
-  "desc": "Jobs lived at 2101 Waverley in a normal-looking Tudor house with an apple orchard \u2014 no gate, no guard. Zuckerberg's first house is a few blocks away. Understated on purpose."
+  "desc": "Jobs lived at 2101 Waverley in a normal-looking Tudor house with an apple orchard — no gate, no guard. Zuckerberg's first house is a few blocks away. Understated on purpose."
  },
  {
   "id": "flintstone-house",
@@ -1159,7 +1159,7 @@
   "day": "sf3",
   "tags": [],
   "city": "Hillsborough CA",
-  "desc": "A bulbous orange free-form house above I-280, in old-money Hillsborough. Visible from the freeway \u2014 which is itself billed as the world's most beautiful."
+  "desc": "A bulbous orange free-form house above I-280, in old-money Hillsborough. Visible from the freeway — which is itself billed as the world's most beautiful."
  },
  {
   "id": "billionaires-row",
@@ -1181,7 +1181,7 @@
   "day": "sf1",
   "tags": [],
   "city": "San Francisco CA",
-  "desc": "The only SF neighbourhood with private ocean frontage \u2014 mansions between Baker Beach and Lands End. Robin Williams lived here. Malibu energy, fog included."
+  "desc": "The only SF neighbourhood with private ocean frontage — mansions between Baker Beach and Lands End. Robin Williams lived here. Malibu energy, fog included."
  },
  {
   "id": "belvedere",
@@ -1192,7 +1192,7 @@
   "day": "sf4",
   "tags": [],
   "city": "Marin County CA",
-  "desc": "An island of mansions stacked above the water, every one facing the SF skyline. One of the wealthiest towns in California \u2014 drive the loop road, then walk Tiburon's Main Street next door."
+  "desc": "An island of mansions stacked above the water, every one facing the SF skyline. One of the wealthiest towns in California — drive the loop road, then walk Tiburon's Main Street next door."
  },
  {
   "id": "santa-cruz-boardwalk",
@@ -1203,7 +1203,7 @@
   "day": "sf4",
   "tags": [],
   "city": "Santa Cruz CA",
-  "desc": "California's oldest amusement park (1907) on a proper surf beach \u2014 the Giant Dipper is a wooden coaster older than the Golden Gate. Steamer Lane's surfers are ten minutes west."
+  "desc": "California's oldest amusement park (1907) on a proper surf beach — the Giant Dipper is a wooden coaster older than the Golden Gate. Steamer Lane's surfers are ten minutes west."
  },
  {
   "id": "upper-mesa-falls",
@@ -1214,7 +1214,7 @@
   "day": "s9",
   "tags": [],
   "city": "Caribou-Targhee National Forest ID",
-  "desc": "A 114-foot waterfall on the Henrys Fork, reached by a 29-mile scenic byway. Allow 1\u20131\u00bd hours for the detour and viewpoints; use it only if the October road is dry."
+  "desc": "A 114-foot waterfall on the Henrys Fork, reached by a 29-mile scenic byway. Allow 1–1½ hours for the detour and viewpoints; use it only if the October road is dry."
  },
  {
   "id": "idaho-potato-museum",
@@ -1225,7 +1225,7 @@
   "day": "s10",
   "tags": [],
   "city": "Blackfoot ID",
-  "desc": "A 1913 railroad depot with potato history, the largest potato crisp and a free tater for out-of-state visitors. Open Mon\u2013Sat 10\u20134 from October through April."
+  "desc": "A 1913 railroad depot with potato history, the largest potato crisp and a free tater for out-of-state visitors. Open Mon–Sat 10–4 from October through April."
  },
  {
   "id": "hill-aerospace-museum",
@@ -1236,7 +1236,7 @@
   "day": "s10",
   "tags": [],
   "city": "Hill Air Force Base UT",
-  "desc": "Free and just off I-15, with more than 70 aircraft including an SR-71 and F-117. Open Tue\u2013Sat 9\u20134; choose this or the potato museum on the rental-return day."
+  "desc": "Free and just off I-15, with more than 70 aircraft including an SR-71 and F-117. Open Tue–Sat 9–4; choose this or the potato museum on the rental-return day."
  },
  {
   "id": "filoli",
@@ -1247,7 +1247,7 @@
   "day": "sf3",
   "tags": [],
   "city": "Woodside CA",
-  "desc": "A 1917 country estate, formal gardens and natural lands: the Woodside wealth stop you can actually enter. Open daily 10\u20135; book a timed arrival window for Sunday."
+  "desc": "A 1917 country estate, formal gardens and natural lands: the Woodside wealth stop you can actually enter. Open daily 10–5; book a timed arrival window for Sunday."
  },
  {
   "id": "marine-mammal-center",
@@ -1258,17 +1258,187 @@
   "day": "sf4",
   "tags": [],
   "city": "Marin Headlands CA",
-  "desc": "A working rescue hospital where visitors can see recovering seals and sea lions. Open Friday\u2013Monday 10\u20134; reserve a free ticket for the baseline Monday."
+  "desc": "A working rescue hospital where visitors can see recovering seals and sea lions. Open Friday–Monday 10–4; reserve a free ticket for the baseline Monday."
  },
  {
   "id": "node-palo-alto",
-  "name": "NODE \u2014 digital art in Palo Alto",
+  "name": "NODE — digital art in Palo Alto",
   "kind": "sight",
   "lat": 37.4442649,
   "lon": -122.1624976,
   "day": "sf3",
   "tags": [],
   "city": "Palo Alto CA",
-  "desc": "Must visit: digital-art foundation at 180 University Ave. Plan 90 minutes. Thu\u2013Fri 18:00\u201322:00, Sat 12:00\u201322:00, Sun 12:00\u201320:00. Confirm the October exhibition and admission details at nodefoundation.com."
+  "desc": "Must visit: digital-art foundation at 180 University Ave. Plan 90 minutes. Thu–Fri 18:00–22:00, Sat 12:00–22:00, Sun 12:00–20:00. Confirm the October exhibition and admission details at nodefoundation.com."
+ },
+ {
+  "id": "wa-hama-hama-oyster-saloon",
+  "name": "Hama Hama Oyster Saloon",
+  "kind": "food",
+  "lat": 47.54257,
+  "lon": -123.04067,
+  "day": "waFriday",
+  "tags": [
+   "oy",
+   "gf",
+   "df"
+  ],
+  "city": "Lilliwaup WA",
+  "desc": "Friday lunch at the oyster farm. Saloon Fri–Sun 11:00–17:00; reserve ahead."
+ },
+ {
+  "id": "wa-olympia-capitol",
+  "name": "Washington State Capitol",
+  "kind": "sight",
+  "lat": 47.03577,
+  "lon": -122.90485,
+  "day": "waFriday",
+  "tags": [],
+  "city": "Olympia WA",
+  "desc": "The tallest self-supporting masonry dome in the US, five minutes off the route, and free to walk into.",
+  "photo": "olympiacapitol"
+ },
+ {
+  "id": "wa-lake-cushman",
+  "name": "Lake Cushman",
+  "kind": "sight",
+  "lat": 47.46231,
+  "lon": -123.2309,
+  "day": "waHood",
+  "tags": [],
+  "city": "Mason County WA",
+  "desc": "A glacial lake under the Olympics with startlingly clear water, on the way up to Staircase.",
+  "photo": "lakecushman"
+ },
+ {
+  "id": "wa-staircase-rapids",
+  "name": "Staircase, Olympic NP",
+  "kind": "sight",
+  "lat": 47.5162,
+  "lon": -123.33099,
+  "day": "waHood",
+  "tags": [],
+  "city": "Hoodsport WA",
+  "desc": "Olympic National Park's east entrance: old-growth rainforest and the Skokomish rapids, 40 min up from Hoodsport. The real park without the drive to Hoh.",
+  "photo": "staircase"
+ },
+ {
+  "id": "wa-shake",
+  "name": "Shake Shack · Tacoma Mall",
+  "lat": 47.2171169,
+  "lon": -122.4646027,
+  "day": "waArrival",
+  "kind": "food",
+  "city": "Tacoma",
+  "desc": "Dinner after rental pickup.",
+  "tags": [],
+  "photo": "shakeshack"
+ },
+ {
+  "id": "wa-wholefoods",
+  "name": "Whole Foods · Chambers Bay",
+  "lat": 47.228,
+  "lon": -122.537,
+  "day": "waArrival",
+  "kind": "food",
+  "city": "University Place",
+  "desc": "Supplies, open 08:00–21:00.",
+  "tags": []
+ },
+ {
+  "id": "wa-oysterbay",
+  "name": "Oyster Bay Inn & Suites",
+  "lat": 47.56884,
+  "lon": -122.67434,
+  "day": "waFriday",
+  "kind": "sight",
+  "city": "Bremerton",
+  "desc": "Preferred hotel candidate, not booked.",
+  "tags": []
+ },
+ {
+  "id": "wa-innout",
+  "name": "In-N-Out · Ridgefield",
+  "lat": 45.81844,
+  "lon": -122.68858,
+  "day": "waPortland",
+  "kind": "food",
+  "city": "Ridgefield",
+  "desc": "On the way to Portland. Opens at 10:30.",
+  "tags": [
+   "ino"
+  ],
+  "photo": "innoutburger"
+ },
+ {
+  "id": "wa-waterfront",
+  "name": "Waterfront Park",
+  "lat": 45.516,
+  "lon": -122.673,
+  "day": "waPortland",
+  "kind": "sight",
+  "city": "Portland",
+  "desc": "Start a riverside walk; cross Steel and Hawthorne bridges.",
+  "tags": [],
+  "photo": "portlandriver"
+ },
+ {
+  "id": "wa-esplanade",
+  "name": "Eastbank Esplanade",
+  "lat": 45.52,
+  "lon": -122.666,
+  "day": "waPortland",
+  "kind": "sight",
+  "city": "Portland",
+  "desc": "Floating walkway on the Willamette River.",
+  "tags": [],
+  "photo": "portlandwalk"
+ },
+ {
+  "id": "wa-paradise",
+  "name": "Paradise",
+  "lat": 46.786,
+  "lon": -121.736,
+  "day": "waRainier",
+  "kind": "sight",
+  "city": "Mount Rainier",
+  "desc": "Choose the clearest day; check current park conditions.",
+  "tags": [],
+  "photo": "rainierfall"
+ },
+ {
+  "id": "wa-narada",
+  "name": "Narada Falls",
+  "lat": 46.775,
+  "lon": -121.744,
+  "day": "waRainier",
+  "kind": "sight",
+  "city": "Mount Rainier",
+  "desc": "Waterfall stop on the road to Paradise.",
+  "tags": [],
+  "photo": "narada"
+ },
+ {
+  "id": "wa-longmire",
+  "name": "Longmire",
+  "lat": 46.75,
+  "lon": -121.814,
+  "day": "waRainier",
+  "kind": "sight",
+  "city": "Mount Rainier",
+  "desc": "Lower-elevation alternative for a short walk.",
+  "tags": []
+ },
+ {
+  "id": "wa-slcdowntown",
+  "name": "Downtown Salt Lake City",
+  "lat": 40.76,
+  "lon": -111.89,
+  "day": "waSlcChill",
+  "kind": "sight",
+  "city": "Salt Lake City",
+  "desc": "A relaxed walk and lunch after the flight.",
+  "tags": [],
+  "photo": "saltlakecity"
  }
 ]

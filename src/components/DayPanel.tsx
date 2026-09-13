@@ -104,7 +104,7 @@ export function DayPanel({ day, units, count, width, tab, setTab, sheet, onClose
           <div className="dfoot" style={{ borderTop: "1px dashed var(--line)", background: "transparent" }}>
             <button className="mini"
                     onClick={() => downloadGpx(`day-${day.num}-${day.id}.gpx`,
-                      toGpx(`Day ${day.num} — ${day.title}`, [{ id: day.id, title: day.title }]))}>
+                      toGpx(`Day ${day.num} — ${day.title}`, [{ id: day.id, routeId: day.routeId, title: day.title }]))}>
               ↓ GPX for this day
             </button>
           </div>
@@ -155,10 +155,9 @@ export function OverviewPanel({ trip, units, width, sheet, onStart, onClose }: {
         </div>
         <h4>The shape of it</h4>
         <ol className="ovsteps">
-          <li><b>Seattle</b> — an arrival afternoon, then a {r.seattle.days}-day rental for Friday oysters,
-            the Seattle city transfer and Mount Rainier for the trip's best oysters ({distLabel(r.seattle.meters, units)}).</li>
-          <li><b>Fly to Salt Lake City</b> — collect the Tesla and drive onto the Bonneville Salt Flats
-            the same afternoon.</li>
+          <li><b>Seattle</b> — a {r.seattle.days}-day rental from arrival, with Friday oysters
+            and the selected Portland / Rainier / Seattle plan ({distLabel(r.seattle.meters, units)}).</li>
+          <li><b>Fly to Salt Lake City</b> — follow the selected flight date, then collect the Tesla on the Bonneville day.</li>
           <li><b>North through the parks</b> — Bear Lake, Grand Teton, Yellowstone, the Beartooth
             Highway and Bozeman's dinosaurs: {r.slc.days} days, {distLabel(r.slc.meters, units)}.</li>
           <li><b>Back to Salt Lake</b> via Idaho Falls and Lava Hot Springs, car back {fmtShort(trip.carReturn)}.</li>

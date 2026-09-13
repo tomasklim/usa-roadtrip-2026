@@ -95,12 +95,15 @@ export default function App() {
     else openDaily(next.id);
   }, [trip.days, day.id, view, selectOnMap, openDaily]);
 
-  // Left and right arrows walk the itinerary, unless you are typing in a control.
+  // Links and buttons keep focus after a click; they must not disable day shortcuts.
+  // Leave arrow keys to text fields and widgets that use them for their own value.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.metaKey || e.ctrlKey || e.altKey || !["itinerary", "map"].includes(view)) return;
-      const t = e.target as HTMLElement | null;
-      if (t && /^(INPUT|TEXTAREA|SELECT|BUTTON|A)$/.test(t.tagName)) return;
+      if (e.defaultPrevented || e.isComposing || e.metaKey || e.ctrlKey || e.altKey || e.shiftKey || !["itinerary", "map"].includes(view)) return;
+      const t = e.target instanceof Element ? e.target : null;
+      if ((t instanceof HTMLElement && t.isContentEditable) || t?.closest(
+        'input, textarea, select, [role="textbox"], [role="combobox"], [role="listbox"], [role="slider"], [role="spinbutton"], [role="menu"], [role="menubar"], [role="tree"], [role="grid"], [role="radiogroup"], [role="tablist"], .leaflet-container'
+      )) return;
       if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
       else if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
       else if (e.key === "Escape" && view === "map") clearMap();

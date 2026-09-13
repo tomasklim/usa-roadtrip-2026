@@ -13,13 +13,13 @@ export function DayPicker({ trip, day, onSelect }: { trip: Trip; day: Day; onSel
   const index = trip.days.findIndex(d => d.id === day.id);
   const today = todayInTrip(trip);
   return <div className="day-picker">
-    <button className="icon-button" aria-label="Previous day" disabled={index <= 0} onClick={() => onSelect(trip.days[index - 1].id)}>←</button>
+    <button className="icon-button" aria-label="Previous day" aria-keyshortcuts="ArrowLeft" title="Previous day (←)" disabled={index <= 0} onClick={() => onSelect(trip.days[index - 1].id)}>←</button>
     <label className="day-select"><span>CHOOSE A DAY</span>
       <select aria-label="Choose itinerary day" value={day.id} onChange={e => onSelect(e.target.value)}>
         {trip.days.map(d => <option key={d.id} value={d.id}>Day {d.num} · {fmtShort(d.date!)} — {d.title}</option>)}
       </select>
     </label>
-    <button className="icon-button" aria-label="Next day" disabled={index === trip.days.length - 1} onClick={() => onSelect(trip.days[index + 1].id)}>→</button>
+    <button className="icon-button" aria-label="Next day" aria-keyshortcuts="ArrowRight" title="Next day (→)" disabled={index === trip.days.length - 1} onClick={() => onSelect(trip.days[index + 1].id)}>→</button>
     {today && <button className="action today-button" onClick={() => onSelect(today.id)}>Today</button>}
   </div>;
 }

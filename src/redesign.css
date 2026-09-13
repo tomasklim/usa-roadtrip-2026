@@ -310,7 +310,7 @@ footer a{font-size:.76rem;margin-left:auto;text-decoration:none;white-space:nowr
   .weather-values strong { font-size: 1.4rem; }
 }
 
-/* One itinerary, with the map visible beside the notes or above them on a phone. */
+/* One itinerary, with the map beside the notes on desktop and below them on a phone. */
 .itinerary-view .daily-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 24px; }
 .daily-map-column { min-width: 0; }
 .embedded-map { margin-bottom: 8px; }
@@ -323,6 +323,7 @@ footer a{font-size:.76rem;margin-left:auto;text-decoration:none;white-space:nowr
 .mobile-nav { grid-template-columns: repeat(5, 1fr); }
 @media(max-width: 900px) {
   .itinerary-view .daily-layout { display: grid; grid-template-columns: minmax(0,1fr); gap: 18px; }
+  .itinerary-view .daily-card { order: -1; }
   .daily-map-column { position: static; }
   .embedded-map .mapwrap, .daily-map-column .map-loading { height: 32svh; min-height: 250px; max-height: 380px; }
   .itinerary-view .daily-card > .photos .photo { height: 160px; }

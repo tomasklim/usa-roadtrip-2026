@@ -17,8 +17,8 @@ export function Flights({ trip }: { trip: Trip }) {
         <div className="shead"><span className="num">01</span><h2>Flights — two booked, two to book</h2></div>
         <p className="sub">
           Condor via Frankfurt both ways, and the return out of San Francisco rather than Seattle —
-          which is what makes the whole loop work. Landing at 15:40 means day one is a hotel, a simple
-          dinner and nothing more.
+          which is what makes the whole loop work. Landing at 16:00 on September 24 means day one is a hotel,
+          a simple dinner and nothing more. All times are local; the return lands in Prague on October 14.
         </p>
         <div className="flights">
           {flights.map((f) => (
@@ -46,10 +46,14 @@ export function Flights({ trip }: { trip: Trip }) {
                 </div>
               </div>
               <div className="flegs">
-                {f.legs.map(([no, cls]) => (
-                  <div className="fleg" key={no}><span>✈ {no}</span><span>{cls}</span></div>
+                {f.legs.map(([no, cls, schedule]) => (
+                  <div key={no}>
+                    <div className="fleg"><span>✈ {no}</span><span>{cls}</span></div>
+                    {schedule && <div className="fschedule">{schedule}</div>}
+                  </div>
                 ))}
               </div>
+              {f.note && <div className="fco2">{f.note}</div>}
               <div className="fco2">{f.co2}</div>
             </div>
           ))}

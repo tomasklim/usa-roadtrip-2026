@@ -148,6 +148,7 @@ section{padding:44px 0;border-bottom:1px solid var(--line);scroll-margin-top:cal
 .fleg{display:flex;justify-content:space-between;gap:10px;font-size:.85rem;padding:3px 0}
 .fleg span:first-child{font-family:var(--mono);font-size:.8rem}
 .fleg span:last-child{color:var(--muted)}
+.fschedule{font-size:.8rem;color:var(--muted);margin:1px 0 8px}
 .fco2{color:var(--muted);font-size:.78rem;margin-top:10px}
 
 /* ---------- planner: sticky map beside the day list ---------- */

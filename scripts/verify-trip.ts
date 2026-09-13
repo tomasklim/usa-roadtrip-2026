@@ -1,4 +1,4 @@
-import { buildTrip, CAP_DAYS, distLabel, fmtShort, rentals, ROUTES, turoDays } from "../src/lib/trip";
+import { buildTrip, CAP_DAYS, DEPART, START, distLabel, fmtShort, rentals, ROUTES, turoDays } from "../src/lib/trip";
 import { MODULES } from "../src/data/itinerary";
 
 // Every possible module ordering/state, so splice arithmetic and dates are not
@@ -7,7 +7,7 @@ const combos: string[][] = Array.from({ length: 2 ** MODULES.length }, (_, mask)
   MODULES.filter((_, i) => (mask & (1 << i)) !== 0).map((m) => m.id)
 );
 
-console.log(`window ${CAP_DAYS} days (Sept 23 – Oct 13)\n`);
+console.log(`window ${CAP_DAYS} days (Sept 24 – Oct 13)\n`);
 console.log("modules".padEnd(44), "days".padStart(5), "total".padStart(9), "SLC car".padStart(9),
             "SEA car".padStart(9), "SF".padStart(3), "cut".padStart(4), "over".padStart(5));
 let fails = 0;
@@ -16,6 +16,8 @@ for (const c of combos) {
   const r = rentals(t);
   const problems: string[] = [];
   const dates = t.days.map((d) => d.date!);
+  if (dates[0] !== START) problems.push("wrong arrival date");
+  if (t.overrun === 0 && dates.at(-1) !== DEPART) problems.push("departure moved outside booked date");
   if (dates.some((d) => d === undefined)) problems.push("undated day");
   if (new Set(dates).size !== dates.length) problems.push("duplicate dates");
   for (let i = 1; i < dates.length; i++) if (dates[i] - dates[i - 1] !== 864e5) problems.push("date gap");

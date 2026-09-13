@@ -1,5 +1,5 @@
 import { ACTS } from "../data/itinerary";
-import { distLabel, fmtShort, rentals, type Trip } from "../lib/trip";
+import { CAP_DAYS, DEPART, START, distLabel, fmtShort, rentals, type Trip } from "../lib/trip";
 import type { Day, Units } from "../types";
 
 /**
@@ -14,7 +14,7 @@ export function TripBar({ trip, units }: { trip: Trip; units: Units }) {
     <div className="tripbar">
       <div className="wrap">
         <div className="kicker">
-          21 days · Sept 23 – Oct 13, 2026 · two people · gluten-free and dairy-free
+          {CAP_DAYS} days · {fmtShort(START)} – {fmtShort(DEPART)}, 2026 · home Oct 14 · two people · gluten-free and dairy-free
         </div>
         <h1>Yellowstone, the Tetons and Bonneville — a fly-drive route with focused rental blocks</h1>
         <div className="routeline">
@@ -36,7 +36,7 @@ export function TripBar({ trip, units }: { trip: Trip; units: Units }) {
 }
 
 /**
- * Where you are in twenty-one days. Segments are proportional to each act's
+ * Where you are during the trip. Segments are proportional to each act's
  * length, so the bar is also a rough sense of pace.
  */
 export function ActBar({ trip, selected, onPick }: {

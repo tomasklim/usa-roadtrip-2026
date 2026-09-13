@@ -5,7 +5,7 @@ import type { Day, Leg, SleepStyle, Units } from "../types";
 export const ROUTES = routesRaw as unknown as Record<string, Leg>;
 
 export const DAY_MS = 864e5;
-export const START = Date.UTC(2026, 8, 23);   // Sept 23, landing in Seattle
+export const START = Date.UTC(2026, 8, 24);   // Sept 24, landing in Seattle
 export const DEPART = Date.UTC(2026, 9, 13);  // Oct 13, SFO 16:30 to Prague
 /** The booked window is fixed, so the itinerary has a hard length. */
 export const CAP_DAYS = Math.round((DEPART - START) / DAY_MS) + 1;

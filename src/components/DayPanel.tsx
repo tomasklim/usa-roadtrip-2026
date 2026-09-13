@@ -125,7 +125,7 @@ export function OverviewPanel({ trip, units, width, sheet, onStart, onClose }: {
   const r = rentals(trip);
   const stats: [string, string][] = [
     [distLabel(trip.meters, units), "driving, measured on real roads"],
-    [`${trip.days.length} days`, "Sept 23 – Oct 13, 2026"],
+    [`${trip.days.length} days`, "Sept 24 – Oct 13, 2026"],
     [`${trip.driveDays}`, "days behind the wheel"],
     [distLabel(trip.meters / Math.max(1, trip.driveDays), units), "per driving day"],
     [`${trip.carNights}`, "nights in the car"],
@@ -165,8 +165,8 @@ export function OverviewPanel({ trip, units, width, sheet, onStart, onClose }: {
           <li><b>Back to Salt Lake</b> via Idaho Falls and Lava Hot Springs, car back {fmtShort(trip.carReturn)}.</li>
           <li><b>Fly to San Francisco</b> — {trip.sfNights} night{trip.sfNights === 1 ? "" : "s"}
             {r.sf.days > 0
-              ? `, then a ${r.sf.days}-day Bay Area car for Point Reyes, Silicon Valley and Marin`
-              : "; the active modules leave no Bay Area driving days"}. Home Oct 13.</li>
+              ? `, then a ${r.sf.days}-day Bay Area car for the selected Bay Area outings`
+              : "; the active modules leave no Bay Area driving days"}. Fly home Oct 13; Prague Oct 14.</li>
         </ol>
         <h4>Driving the map</h4>
         <ul className="ovhelp">

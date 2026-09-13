@@ -9,7 +9,6 @@ import { Charging, Glance, LoadChart, RiskSection, SleepSection } from "./compon
 import { FoodGuide } from "./components/FoodGuide";
 import { Budget } from "./components/Budget";
 import { Checklist } from "./components/Checklist";
-import { RoadsideStops } from "./components/RoadsideStops";
 import { MODULES } from "./data/itinerary";
 import { buildTrip } from "./lib/trip";
 import { useStored } from "./lib/useStored";
@@ -119,8 +118,11 @@ export default function App() {
             <QuickLinks />
             <div className="section-heading"><div><span className="eyebrow">THREE CHAPTERS, ONE GOOD TRIP</span><h2>From the mountains to the Pacific.</h2></div><a className="text-action" href="#itinerary">All {trip.days.length} days ↗</a></div>
             <Chapters trip={trip} onPick={openDaily} />
-            <div className="overview-bottom"><RoadsideStops trip={trip} onSelect={openDaily} />
-              <div className="travel-note"><span className="eyebrow">KEEP IT WITH YOU</span><h2>A plan for the road.</h2><p>Your day selection and checklist are saved on this device. Download a readable copy of the itinerary before heading out of signal.</p><button className="action primary" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button><p className="hint">Includes daily plans and flights. Maps, photos and live conditions still need a connection.</p></div>
+            <div className="travel-note">
+              <div><span className="eyebrow">KEEP IT WITH YOU</span><h2>A plan for the road.</h2>
+                <p>Download the daily itinerary and flights before heading out of signal.</p>
+                <p className="hint">Maps, photos and live conditions still need a connection.</p></div>
+              <button className="action primary" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button>
             </div>
           </div>
         </>}

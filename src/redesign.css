@@ -95,11 +95,11 @@ header.top{background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filt
 .chapter h3{font:400 1.65rem/1.15 var(--serif);margin:12px 0}
 .chapter p{font-size:.8rem;color:var(--muted);margin:0}
 .chapter .text-action{margin-top:12px}
-.overview-bottom{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:start}
-.travel-note{padding:36px;border-radius:16px;background:var(--brand-soft)}
-.travel-note h2{font-size:2.4rem;margin:16px 0}
-.travel-note p{font-size:.9rem;color:var(--muted)}
-.travel-note .hint{font-size:.75rem;margin-top:18px}
+.travel-note{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:28px 32px;border-radius:16px;background:var(--brand-soft)}
+.travel-note h2{font-size:1.8rem;margin:10px 0}
+.travel-note p{font-size:.9rem;color:var(--muted);margin:6px 0}
+.travel-note .action{flex:none}
+.travel-note .hint{font-size:.75rem}
 .view-content{padding-top:38px;padding-bottom:48px}
 section{padding:30px 0;border-bottom:0}
 section .wrap{max-width:none;padding:0}
@@ -221,7 +221,7 @@ footer a{font-size:.76rem;margin-left:auto;text-decoration:none;white-space:nowr
   .trip-facts{grid-template-columns:1fr 1fr;gap:22px}.trip-facts>div{padding:0 22px}.trip-facts>div:nth-child(3){padding-left:0}.trip-facts>div:nth-child(2){border:0}
   .quick-links{gap:10px}.quick-links button{padding:14px;gap:10px}.quick-links button>span:first-child{display:none}.quick-links small{font-size:.66rem}
   .chapters{gap:14px}.chapter-image{height:150px}.chapter-copy{padding:18px}.chapter h3{font-size:1.4rem}
-  .overview-bottom{grid-template-columns:1fr}.travel-note{padding:28px}
+  .travel-note{padding:24px;flex-direction:column;align-items:flex-start;gap:16px}
   .day-rail{display:none}.daily-layout{display:block}
   .mapwrap{height:55svh;min-height:320px;max-height:600px}
   .mapcard{margin:0 0 20px;width:100%;border-radius:14px}

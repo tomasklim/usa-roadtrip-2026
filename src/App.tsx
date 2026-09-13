@@ -8,7 +8,7 @@ import { Flights } from "./components/Flights";
 import { Modules } from "./components/Modules";
 import type { Basemap, Layers } from "./components/RouteMap";
 import { DayList } from "./components/DayList";
-import { Charging, Glance, LoadChart, RiskSection, SleepSection } from "./components/Panels";
+import { Charging, Glance, LoadChart } from "./components/Panels";
 import { FoodGuide } from "./components/FoodGuide";
 import { Budget } from "./components/Budget";
 import { Checklist } from "./components/Checklist";
@@ -20,8 +20,12 @@ import { PhotoCredits } from "./components/PhotoCredits";
 import { DailyPlan } from "./components/DailyPlan";
 import { navigate, TOPICS, todayInTrip, useNavigation } from "./lib/navigation";
 import { downloadOfflinePlan } from "./lib/offline";
-import type { SleepOverrides, SleepStyle, Units } from "./types";
+import type { SleepOverrides, Units } from "./types";
 import type { Tab } from "./components/DayPanel";
+
+import { SleepSection } from "./components/SleepPlanner";
+import { RiskSection } from "./components/RoadConditions";
+import { normalizeStays, type Stays } from "./lib/planning";
 
 const RouteMap = lazy(() => import("./components/RouteMap").then(module => ({ default: module.RouteMap })));
 
@@ -35,15 +39,16 @@ export default function App() {
   const [basemap, setBasemap] = useStored<Basemap>("basemap", "terrain", NORMALIZE_BASEMAP);
   const [layers, setLayers] = useStored<Layers>("layers2", DEFAULT_LAYERS, normalizeLayers);
   const [wheelZoom, setWheelZoom] = useStored<boolean>("wheelZoom", false, NORMALIZE_FALSE);
-  const [sleepStyle, setSleepStyle] = useSharedStored<SleepStyle>("sleepStyle", "balanced", NORMALIZE_SLEEP);
-  const [sleepOverrides, setSleepOverrides] = useSharedStored<SleepOverrides>("sleepOverrides", {}, normalizeSleepOverrides);
+  const [stays, setStays] = useSharedStored<Stays>("stays", {}, normalizeStays);
+  const sleepStyle = "motel";
+  const [sleepOverrides] = useSharedStored<SleepOverrides>("sleepOverrides", {}, normalizeSleepOverrides);
   const [selected, setSelected] = useStored<string | null>("selectedDay", null, normalizeDay);
   const route = useNavigation();
   const { view, topic } = route;
   const [ghost, setGhost] = useState<string | null>(null);
 
   const on = useMemo(() => new Set(Array.isArray(mods) ? mods : []), [mods]);
-  const trip = useMemo(() => buildTrip(on, sleepStyle, sleepOverrides, seattle), [on, sleepStyle, sleepOverrides, seattle]);
+  const trip = useMemo(() => buildTrip(on, sleepStyle, sleepOverrides, seattle, stays), [on, sleepStyle, sleepOverrides, seattle, stays]);
   const routeDay = trip.days.find(d => d.id === route.day);
   const day = routeDay ?? trip.days.find(d => d.id === selected) ?? todayInTrip(trip) ?? trip.days[0];
 
@@ -195,15 +200,15 @@ export default function App() {
           <label className="topic-select">Open section<select value={topic} onChange={e => navigate("guide", e.target.value)}>{TOPICS.map(([id,label]) => <option key={id} value={id}>{label}</option>)}</select></label>
           {topic === "checklist" && <Checklist trip={trip} />}
           {topic === "food" && <FoodGuide trip={trip} />}
-          {topic === "sleep" && <SleepSection trip={trip} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} overrides={sleepOverrides} setOverrides={setSleepOverrides} />}
+          {topic === "sleep" && <SleepSection trip={trip} stays={stays} setStays={setStays} />}
           {topic === "charging" && <Charging />}
-          {topic === "risks" && <RiskSection />}
+          {topic === "risks" && <RiskSection trip={trip} />}
           {topic === "budget" && <Budget trip={trip} />}
-          {topic === "options" && <>{seattleChoices}{montanaChoices}<Modules seattle={seattle} on={on} toggle={toggle} trip={trip} units={units} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={selectOnMap} onHover={setGhost} /></>}
+          {topic === "options" && <>{seattleChoices}{montanaChoices}<Modules seattle={seattle} on={on} toggle={toggle} trip={trip} units={units} sleepStyle={sleepStyle} onSelect={selectOnMap} onHover={setGhost} /></>}
         </div>}
         {view === "credits" && <PhotoCredits />}
       </main>
-      <footer><div className="wrap"><span className="footer-brand">NW / 2026</span><p>Seattle → the Rockies → San Francisco<br /><span>Road distances from OSRM · Conditions checked August 2026</span></p><nav className="footer-links" aria-label="Site information"><a href="#credits">Photo credits</a><a href="#guide/risks">Check road conditions ↗</a></nav></div></footer>
+      <footer><div className="wrap"><span className="footer-brand">NW / 2026</span><p>Seattle → the Rockies → San Francisco<br /><span>Road distances from OSRM · Check current road conditions before driving</span></p><nav className="footer-links" aria-label="Site information"><a href="#credits">Photo credits</a><a href="#guide/risks">Check road conditions ↗</a></nav></div></footer>
     </>
   );
 }
@@ -246,7 +251,6 @@ const NORMALIZE_UNITS = oneOf<Units>(["mi", "km"], "mi");
 const NORMALIZE_THEME = oneOf<string | null>(["light", "dark", null], null);
 const NORMALIZE_TAB = oneOf<Tab>(["plan", "food", "sleep", "charge"], "plan");
 const NORMALIZE_BASEMAP = oneOf<Basemap>(["terrain", "streets", "satellite"], "terrain");
-const NORMALIZE_SLEEP = oneOf<SleepStyle>(["motel", "balanced", "car"], "balanced");
 const NORMALIZE_FALSE = bool(false);
 const NOOP = () => {};
 

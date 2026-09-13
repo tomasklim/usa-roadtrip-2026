@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import ts from 'typescript';
 import handler from '../api/trip.js';
+import { sessionCookie } from '../shared/access.mjs';
 import { validPatch, validField } from '../shared/trip-schema.mjs';
 
 const invite = 'a'.repeat(43);
@@ -14,6 +15,7 @@ let writes = 0;
 const originalFetch = globalThis.fetch;
 globalThis.fetch = async (_url, options) => {
   const [command, _key, ...args] = JSON.parse(options.body);
+  if (command === 'HSETNX' && !(args[0] in database)) database[args[0]] = args[1];
   if (command === 'HSET') { writes++; for (let i = 0; i < args.length; i += 2) database[args[i]] = args[i + 1]; }
   return {ok:true, json:async () => ({result:command === 'HGETALL' ? Object.entries(database).flat() : 1})};
 };
@@ -36,6 +38,16 @@ assert.equal(both.result.fields['check:slc'], true);
 assert.equal(both.headers['Cache-Control'], 'private, no-store');
 await call('PATCH', {'check:sea':false});
 assert.equal((await call('GET')).result.fields['check:sea'], false);
+const airfare = {amount:1400,currency:'EUR',status:'paid',note:'Correction'};
+await call('PATCH', {'expense:flights':airfare, 'stay:sf3':{place:'Inn',note:'Arrival late',type:'bed'}});
+assert.deepEqual((await call('GET')).result.fields['expense:flights'], airfare, 'A saved amount must remain unchanged on read');
+const cookie = sessionCookie().split(';')[0];
+let cookieStatus;
+const response = {setHeader(){},status(v){cookieStatus=v;return this;},json(){}};
+await handler({method:'GET',headers:{cookie}},response);
+assert.equal(cookieStatus,200);
+await handler({method:'PATCH',headers:{cookie,host:'trip.test',origin:'https://other.test','content-type':'application/json'},body:{'check:csrf':true}},response);
+assert.equal(cookieStatus,403);
 globalThis.fetch = originalFetch;
 
 // Separate browser-like runtimes and local storage, sharing only a fake remote API.
@@ -48,7 +60,7 @@ function client(storage = new Map()) {
   const window = new EventTarget(); window.location = {origin:'https://trip.test',hash:''}; window.history = {replaceState(_state,_title,hash){window.location.hash=hash;}};
   const control = {offline:false, delay:null};
   const module = {exports:{}};
-  const context = vm.createContext({module,exports:module.exports,console,URL,EventTarget,AbortSignal,setInterval,clearInterval,document,window,
+  const context = vm.createContext({module,exports:module.exports,console,URL,EventTarget,AbortSignal,setInterval,clearInterval,setTimeout,clearTimeout,document,window,
     localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v)},
     require: name => name === 'react' ? {useCallback:fn=>fn,useMemo:fn=>fn(),useSyncExternalStore:(_s,get)=>get()} : name.includes('trip-schema') ? {validField} : {DEFAULT_SEATTLE:defaults},
     fetch:async (_url, options) => {
@@ -64,7 +76,7 @@ function client(storage = new Map()) {
   return {api:module.exports,storage,control,window};
 }
 const normalize = v => Array.isArray(v) ? v : [];
-const settle = async () => { for (let i=0;i<30;i++) await Promise.resolve(); };
+const settle = async () => { await new Promise(r=>setTimeout(r,700)); for (let i=0;i<30;i++) await Promise.resolve(); };
 const a = client(), b = client();
 a.api.useSharedStored('checks',[],normalize)[1](['personal-only']);
 await a.api.joinSharedTrip(invite); await b.api.joinSharedTrip(invite); await settle();
@@ -108,3 +120,17 @@ assert.equal(linked.api.useSharedStatus().connected,true);
 assert.equal(linked.window.location.hash,'#guide/checklist');
 stop();
 console.log('✓ Invite links work in an already-open page and are removed from the address bar');
+
+const c = client(), d = client();
+await c.api.joinSharedTrip(invite); await d.api.joinSharedTrip(invite);
+const object = value => value ?? {};
+c.api.useSharedStored('stays',{},object)[1]({sf3:{place:'Santa Cruz inn',note:'Late arrival',type:'bed'}});
+d.api.useSharedStored('stays',{},object)[1]({sf2:{place:'Airport hotel',note:'Early checkout',type:'bed'}});
+c.api.useSharedStored('expenses',{},object)[1]({hotels:{amount:250,currency:'USD',status:'paid',note:'First booking'}});
+d.api.useSharedStored('expenses',{},object)[1]({food:{amount:50,currency:'USD',status:'estimate',note:''}});
+await settle(); await c.api.sync(); await d.api.sync();
+assert.equal(c.api.useSharedStored('stays',{},object)[0].sf2.place,'Airport hotel');
+assert.equal(d.api.useSharedStored('stays',{},object)[0].sf3.note,'Late arrival');
+assert.equal(c.api.useSharedStored('expenses',{},object)[0].food.amount,50);
+assert.equal(d.api.useSharedStored('expenses',{},object)[0].hotels.amount,250);
+console.log('✓ Shared stays, independent budget categories, cookie authentication, CSRF and saved airfare');

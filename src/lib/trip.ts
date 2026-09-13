@@ -1,4 +1,5 @@
-import { BASE, CAR_NIGHTS, MODULES } from "../data/itinerary";
+import type { Stays } from "./planning";
+import { BASE, CAR_NIGHTS, MODULES, VALLEY_LOOP } from "../data/itinerary";
 import { DEFAULT_SEATTLE, normalizeSeattle, seattleDays, type SeattleOptions } from "../data/seattle";
 import routesRaw from "../data/routes.json";
 import type { Day, Leg, SleepOverrides, SleepStyle, Units } from "../types";
@@ -45,7 +46,7 @@ export function difficulty(meters: number): Difficulty {
 
 const SEATTLE_CAR = ["arrive", "seaB", "sea1", "seaA", "seaReturn", "olyA", "olyB"];
 const SLC_CAR = ["s1", "antelope", "s2", "dinoA", "dinoB", "s3", "s4", "s4b", "s5",
-                 "s6", "s7", "rainLamar", "rainTransfer", "rainRest", "s8", "s9", "craters2", "s10"];
+                 "s5b", "s6", "s7", "rainLamar", "rainTransfer", "rainRest", "s8", "s9", "craters2", "s10"];
 const SF_CAR = ["sf2", "sf3", "sf4"];
 
 function blockDays(t: Trip, ids: string[]) {
@@ -75,7 +76,7 @@ export interface Trip {
   spare: number;
 }
 
-export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", overrides: SleepOverrides = {}, seattle: SeattleOptions = DEFAULT_SEATTLE): Trip {
+export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", overrides: SleepOverrides = {}, seattle: SeattleOptions = DEFAULT_SEATTLE, stays: Stays = {}): Trip {
   const options = normalizeSeattle(on.has("olympic") ? { ...seattle, weather: "good", rainier: "sun", flight: "tue-am" } : seattle);
   let days: Day[] = [...seattleDays(BASE, options), ...BASE.slice(5).map(d => ({ ...d }))];
   const bonneville = days.find(d => d.id === "s1")!;
@@ -119,6 +120,11 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
     days.splice(idx, 1);
     droppedSf++;
   }
+  // Never strand the itinerary in Santa Cruz when extra modules consume Monterey's day.
+  if (!days.some(d => d.id === 'sf2')) {
+    const valley = days.findIndex(d => d.id === 'sf3');
+    if (valley >= 0) days[valley] = {...VALLEY_LOOP};
+  }
   const overrun = Math.max(0, days.length - CAP_DAYS);
 
   let carStreak = 0;
@@ -143,6 +149,22 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
       else if (d.sleep && choice === "bed") d.sleep.decision = "Your choice: a bed tonight.";
       carStreak = 0;
     }
+  });
+
+  // Per-night decisions override recommendations without silently rewriting the user's choice.
+  let chosenCarStreak = 0;
+  days.forEach(d => {
+    if (!d.sleep) return;
+    const saved = stays[d.id];
+    d.sleep.suggestedWhere = d.sleep.where;
+    if (saved) {
+      if (saved.place.trim()) { d.sleep.where = saved.place.trim(); d.sleep.chosen = true; }
+      if (saved.type !== 'undecided') d.sleep.t = saved.type === 'car' ? 'car' : 'motel';
+      if (saved.note) d.sleep.note = saved.note;
+      if (saved.type !== 'undecided') d.sleep.decision = 'Your overnight choice';
+    }
+    chosenCarStreak = d.sleep.t === 'car' ? chosenCarStreak + 1 : 0;
+    d.sleep.streak = chosenCarStreak || undefined;
   });
 
   const meters = days.reduce((s, d) => s + (d.meters ?? 0), 0);

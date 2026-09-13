@@ -1,6 +1,6 @@
 import type { SeattleOptions } from "../data/seattle";
 import { useMemo } from "react";
-import { MODULES, SLEEP_STYLES } from "../data/itinerary";
+import { MODULES } from "../data/itinerary";
 import { buildTrip, distLabel, fmtShort, metersOf, type Trip } from "../lib/trip";
 import { PHOTOS } from "./DayParts";
 import type { SleepStyle, Units } from "../types";
@@ -10,10 +10,10 @@ import type { SleepStyle, Units } from "../types";
  * it rewrites, and a hover that ghosts its route onto the map. The point is that
  * the trade is visible before you make it rather than explained afterwards.
  */
-export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, onSelect, onHover, seattle }: {
+export function Modules({ on, toggle, trip, units, sleepStyle, onSelect, onHover, seattle }: {
   seattle: SeattleOptions;
   on: Set<string>; toggle: (id: string) => void; trip: Trip; units: Units;
-  sleepStyle: SleepStyle; setSleepStyle: (s: SleepStyle) => void;
+  sleepStyle: SleepStyle;
   onSelect: (dayId: string) => void;
   onHover: (moduleId: string | null) => void;
 }) {
@@ -53,9 +53,10 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
           const d = deltas[m.id] ?? { days: 0, meters: 0, sf: 0 };
           const photo = m.days.map((x) => x.photos?.[0]).find(Boolean);
           const ph = photo ? PHOTOS[photo] : undefined;
-          const before = m.replaces
-            ? trip.days.filter((x) => !x.isMod && x.id >= m.replaces![0] && x.id <= m.replaces![1])
-            : [];
+          const baseline = m.replaces ? buildTrip(new Set([...on].filter(id => id !== m.id)), sleepStyle, {}, seattle).days : [];
+          const start = baseline.findIndex(x => x.id === m.replaces?.[0]);
+          const end = baseline.findIndex(x => x.id === m.replaces?.[1]);
+          const before = start >= 0 && end >= start ? baseline.slice(start, end + 1) : [];
           const after = m.days;
           const maxM = Math.max(1, ...before.map((x) => x.meters ?? 0), ...after.map((x) => metersOf(x.routeId ?? x.id)));
           return (
@@ -136,21 +137,7 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
 
       <Verdict trip={trip} />
 
-      <h3 style={{ marginTop: 18 }}>Where you sleep</h3>
-      <p className="hint">
-        {trip.carNights} night{trip.carNights === 1 ? "" : "s"} in the car,{" "}
-        {Math.max(0, trip.days.length - 1 - trip.carNights)} in a bed.
-      </p>
-      <div className="mapbar" style={{ padding: 0, border: 0 }}>
-        {SLEEP_STYLES.map((st) => (
-          <button key={st.id} className={`pill${sleepStyle === st.id ? " on" : ""}`}
-                  title={st.desc} aria-pressed={sleepStyle === st.id}
-                  onClick={() => setSleepStyle(st.id)}>{st.label}</button>
-        ))}
-      </div>
-      <p className="hint" style={{ margin: "9px 0 0" }}>
-        {SLEEP_STYLES.find((s) => s.id === sleepStyle)?.desc} <a href="#guide/sleep">Review nights & price exceptions ↗</a>
-      </p>
+      <p className="hint"><a href="#guide/sleep">Choose accommodation & add overnight notes ↗</a></p>
     </div>
   );
 }

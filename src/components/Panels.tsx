@@ -1,9 +1,7 @@
-import { weatherForDay, degrees } from "../lib/weather";
-import { CHARGE_ROWS, FOOD_RULES, RISKS, SLEEP_CARDS } from "../data/reference";
-import { CAR_NIGHTS, SLEEP_STYLES } from "../data/itinerary";
+import { CHARGE_ROWS, FOOD_RULES } from "../data/reference";
 import { blockOf, difficulty, distLabel, fmtShort } from "../lib/trip";
 import type { Trip } from "../lib/trip";
-import type { SleepOverrides, SleepStyle, Units } from "../types";
+import type { Units } from "../types";
 
 export function Glance({ trip, units, onSelect }: {
   trip: Trip; units: Units; onSelect: (id: string) => void;
@@ -140,10 +138,10 @@ export function Charging() {
       <div className="wrap narrow">
         <div className="shead"><span className="num">05</span><h2>Charging</h2></div>
         <p className="sub">
-          A Model Y Long Range realistically does 250–280 miles at highway speed, less in the mountains
-          and in the cold. Highlighted rows need managing — and one is genuinely critical. Switch on the
-          charger layer on the map to see every Supercharger along the route.
+          Salt Lake City rental: <b>Tesla Model S, 2021</b>. Your reported range after degradation is <b>320 miles (about 515 km) at a full charge</b>.
+          Seattle and California cars are still undecided; their fuel or charging plans will depend on the cars you book.
         </p>
+        <div className="card panel" style={{marginBottom:16}}><h3>Use the car’s arrival estimate</h3><p>320 miles is a reference, not a guaranteed mountain range. Driving from 90% down to a 20% reserve gives 224 rated miles before allowing for cold, climbs, wind or overnight heating. Enter the next confirmed charger in the Tesla navigation and watch the predicted arrival percentage.</p><p>For remote legs, aim to arrive with at least 20% as a planning buffer, and keep extra energy for the night. Navigate to Superchargers so the car can prepare the battery. Confirm charging billing and app access with the host.</p><a href="https://www.tesla.com/support/range" target="_blank" rel="noreferrer">Tesla range guidance ↗</a></div>
         <div className="card" style={{ padding: "2px 0" }}>
           <div className="tscroll">
             <table>
@@ -159,7 +157,7 @@ export function Charging() {
           </div>
         </div>
         <div className="card rules" style={{ marginTop: 14, borderLeftColor: "var(--rust)" }}>
-          <h3 style={{ fontSize: ".98rem" }}>Northern Yellowstone — the one real risk</h3>
+          <h3 style={{ fontSize: ".98rem" }}>Northern Yellowstone · plan through to the next reliable charger</h3>
           <p style={{ margin: "6px 0 0", fontSize: ".89rem", color: "var(--muted)" }}>
             The US Tesla connects directly at Laurel and Bozeman Superchargers. No charging adapter is
             carried, so CCS and J1772 chargers are not counted as backups. Gardiner still needs an energy
@@ -198,77 +196,6 @@ export function Cards({ id, num, title, sub, cards }: {
     </section>
   );
 }
-
-export function SleepSection({ trip, sleepStyle, setSleepStyle, overrides, setOverrides }: {
-  trip: Trip; sleepStyle: SleepStyle; setSleepStyle: (s: SleepStyle) => void;
-  overrides: SleepOverrides; setOverrides: (value: SleepOverrides) => void;
-}) {
-  const carNights = trip.days.filter((d) => d.sleep?.t === "car");
-  const nights = Math.max(0, trip.days.length - 1);
-  return (
-    <section id="sleep">
-      <div className="wrap narrow">
-        <div className="shead"><span className="num">07</span><h2>Two car nights, then a bed</h2></div>
-        <p className="sub">At most <b>two nights in the car in a row</b>, then a bed and a shower.
-          If a room is exceptionally expensive, choose a price exception for that night below.</p>
-        <div className="card panel" style={{ marginBottom: 14 }}>
-          <h3>Your overnight plan</h3>
-          <p className="hint"><b>{carNights.length} car nights · {nights - carNights.length} bed nights</b> across the trip.
-            The two-night limit is consecutive, not a total allowance.</p>
-          <div className="mapbar" style={{ padding: 0, border: 0 }}>
-            {SLEEP_STYLES.map(st => <button key={st.id} className={`pill${sleepStyle === st.id ? " on" : ""}`}
-              aria-pressed={sleepStyle === st.id} onClick={() => setSleepStyle(st.id)}>{st.label}</button>)}
-          </div>
-          <p className="hint">{SLEEP_STYLES.find(st => st.id === sleepStyle)?.desc} Per-night choices stay applied when changing style.</p>
-          <details className="sleep-help"><summary>How price exceptions work</summary>
-            <p>Compare a room for two, including taxes, with campsite fees and the value of a shower and charging.
-              If the room feels too expensive, select “Car · price exception”. This can extend a car streak beyond two nights and is always labelled.</p>
-            <p>Room prices have not been checked. Camps are candidate areas: confirm permission, seasonal access and availability.
-              Gardiner and Red Lodge retain beds for rest; the bad-weather plan keeps two Bozeman hotel nights. Flight and rental-return nights also retain beds.</p>
-            <p>Your choices are saved on this device and reflected in the itinerary, automatic lodging counts and offline copy. Download a new copy after changing the plan.</p>
-          </details>
-          <button className="action" disabled={Object.keys(overrides).length === 0} onClick={() => setOverrides({})}>Reset per-night choices</button>
-          <div className="night-list">
-            {trip.days.filter(d => d.sleep).map(d => {
-              const w = weatherForDay(d)?.night;
-              return <div className="night-item" key={d.id}>
-                <div className="night-date"><a href={`#itinerary/${d.id}`}>{fmtShort(d.date!)}</a><span className={`sleep-${d.sleep!.t}`}>{d.sleep!.t === "car" ? `Car · night ${d.sleep!.streak}` : "A bed"}</span></div>
-                <div className="night-place"><b>{d.sleep!.where}</b>
-                  {d.sleep!.decision && <p className={`sleep-decision${d.sleep!.priceException ? " exception" : ""}`}>{d.sleep!.decision}</p>}
-                  {w && <small>Historical low ~{degrees(w.stats.low)} · {w.name}{d.sleep!.t === "car" ? ` · colder lows ${degrees(w.stats.lowP10)} (10th percentile)` : ""}</small>}
-                </div>
-                {CAR_NIGHTS[d.id] && d.carEligible !== false ? <label className="night-choice">Night choice
-                  <select aria-label={`Night choice for ${fmtShort(d.date!)}`} value={overrides[d.id] ?? "auto"} onChange={e => {
-                    const next = { ...overrides };
-                    if (e.target.value === "auto") delete next[d.id];
-                    else next[d.id] = e.target.value as "bed" | "price";
-                    setOverrides(next);
-                  }}><option value="auto">Follow sleep style</option><option value="bed">A bed tonight</option><option value="price">Car · price exception</option></select>
-                </label> : <span className="hint night-fixed">Bed retained</span>}
-              </div>;
-            })}
-          </div>
-          <p className="hint">Weather: recent historical averages for 2015–2025, not a forecast. Full method and sources are in each daily plan.</p>
-        </div>
-
-        <div className="grid2">
-          {SLEEP_CARDS.map((c) => (
-            <div className="card rcard" key={c.h}>
-              <h3>{c.h}</h3>
-              <p dangerouslySetInnerHTML={{ __html: c.body }} />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export const RiskSection = () => (
-  <Cards id="risks" num="10" title="Risks and plan B"
-         sub="Late September and early October is the edge of the season in the Rockies. These are the dates the roads close on, and what to do when the weather turns."
-         cards={RISKS} />
-);
 
 export function FoodRules() {
   return (

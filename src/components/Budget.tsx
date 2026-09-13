@@ -1,125 +1,36 @@
-import { BUDGET_CFG } from "../data/reference";
-import { rentals, turoDays, type Trip } from "../lib/trip";
-import { useStored } from "../lib/useStored";
-
-type Slide = Record<string, number>;
-const DEFAULTS: Slide = Object.fromEntries(BUDGET_CFG.map((c) => [c.id, c.val]));
-const usd = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
-const num = (n: number) => Math.round(n).toLocaleString("en-US");
-
-const normalizeSlide = (value: unknown): Slide => {
-  const raw = value && typeof value === "object" ? value as Record<string, unknown> : {};
-  return Object.fromEntries(BUDGET_CFG.map((c) => {
-    const n = raw[c.id];
-    return [c.id, typeof n === "number" && Number.isFinite(n)
-      ? Math.max(c.min, Math.min(c.max, n))
-      : c.val];
-  }));
-};
-
-const normalizeTouched = (value: unknown): Record<string, boolean> => {
-  const raw = value && typeof value === "object" ? value as Record<string, unknown> : {};
-  return Object.fromEntries(BUDGET_CFG.map((c) => [c.id, raw[c.id] === true]));
-};
-
+import { useSharedStored, useSharedStatus } from '../lib/sharedTrip';
+import { EMPTY_EXPENSE, normalizeExpenses, type Expenses } from '../lib/planning';
+import type { Trip } from '../lib/trip';
+const CATEGORIES = [
+  ['flights', 'USA return flights'], ['domestic', 'Flights · Seattle → SLC → SFO'],
+  ['seattle-car', 'Car · Seattle'], ['slc-car', 'Tesla Model S · Salt Lake City'], ['california-car', 'Car · California'],
+  ['hotels', 'Hotels & inns'], ['camping', 'Campgrounds'], ['food', 'Food & groceries'],
+  ['charging', 'Tesla charging'], ['fuel', 'Other cars · fuel / charging'], ['activities', 'Parks, tickets & activities'],
+  ['parking', 'Parking & tolls'], ['insurance', 'Insurance'], ['equipment', 'Equipment & supplies'], ['other', 'Other spending']
+];
+const money = (n: number, currency: string) => new Intl.NumberFormat('en', {style: 'currency', currency, maximumFractionDigits: 2}).format(n);
 export function Budget({ trip }: { trip: Trip }) {
-  const [raw, setRaw] = useStored<Slide>("slide", DEFAULTS, normalizeSlide);
-  const [touched, setTouched] = useStored<Record<string, boolean>>("touched", {}, normalizeTouched);
-  const s: Slide = { ...DEFAULTS, ...raw };
-
-  // Lodging follows the itinerary until it is dragged by hand.
-  const sfCarNights = trip.days.filter((d) => d.kind === "sf" && d.sleep?.t === "car").length;
-  const lodgingNights = Math.max(0, trip.days.length - 1 - (trip.carNights - sfCarNights) - trip.sfNights);
-  if (!touched.motelNights) s.motelNights = lodgingNights;
-
-  const td = turoDays(trip);
-  const r = rentals(trip);
-  const slcMiles = r.slc.meters / 1609.344;
-  const gasMiles = (r.seattle.meters + r.sf.meters) / 1609.344;
-  const included = s.cap >= 400 ? Infinity : s.cap * td;
-  const over = Math.max(0, slcMiles - included);
-  const kwh = slcMiles / 4;
-  const gallons = gasMiles / 29;
-
-  const flightUsd = s.flightEur * s.eurusd;
-  const lines: [string, number][] = [
-    [`Transatlantic flights, 2 × €${num(s.flightEur)} at ${s.eurusd.toFixed(3)}`, 2 * flightUsd],
-    [`Salt Lake Turo, ${td} days × ${usd(s.turoDay)}`, td * s.turoDay],
-    [`Seattle car, ${r.seattle.days} days × ${usd(s.seaDay)}`, r.seattle.days * s.seaDay],
-    [Number.isFinite(included)
-      ? (over > 0
-          ? `Extra miles (${num(over)} over ${num(included as number)})`
-          : `Extra miles — none: ${num(slcMiles)} mi driven, ${num(included as number)} included`)
-      : "Extra miles (unlimited distance)", over * s.overMi],
-    [`Tesla charging (~${num(kwh)} kWh at 4 mi/kWh)`, kwh * s.kwh],
-    [`Fuel for Seattle + Bay Area (~${num(gallons)} gal at 29 mpg)`, gallons * s.gas],
-    [`Motels and hotels, ${s.motelNights} nights × ${usd(s.motel)}`, s.motelNights * s.motel],
-    [`Campsite allowance, ${trip.carNights} car nights × ${usd(s.campNight)}`, trip.carNights * s.campNight],
-    [`Food, 2 people × ${trip.days.length} days × ${usd(s.foodDay)}`, 2 * trip.days.length * s.foodDay],
-    ["Non-resident annual park pass", 250],
-    ["Bear spray, mattress, bedding", 170],
-    ["Domestic flights SEA → SLC and SLC → SFO, 2 people", 520],
-    ...(() => {
-      const sfCar = trip.days.filter((d) => d.kind === "sf" && d.sleep?.t === "car").length;
-      const rows: [string, number][] = [
-        [`San Francisco hotel, ${trip.sfNights - sfCar} nights × ${usd(s.sfNight)}`, (trip.sfNights - sfCar) * s.sfNight]
-      ];
-      if (sfCar) rows.push([`Marin campgrounds, ${sfCar} night${sfCar === 1 ? "" : "s"} × $35`, sfCar * 35]);
-      return rows;
-    })(),
-    ["San Francisco activities and local transport", 200 * Math.max(1, trip.sfNights)]
-  ];
-  const bayCarDays = ["sf2", "sf3", "sf4"].filter((id) => trip.days.some((d) => d.id === id)).length;
-  if (bayCarDays) lines.push([`Bay Area car, ${bayCarDays} days`, bayCarDays * s.bayDay]);
-
-  const total = lines.reduce((a, [, v]) => a + v, 0);
-  // Defaults come from the real quote on listing 3758006: US$566.50 for 9 days,
-  // 1,350 miles included, $0.27 a mile over.
-  const capNote = s.cap >= 400
-    ? "The slider is on unlimited distance."
-    : over > 0
-      ? `${num(slcMiles)} mi driven against ${num(included as number)} included, so ${num(over)} mi over at ${usd(s.overMi * 100)}/100 mi — ${usd(over * s.overMi)}. Booking more days is the cheap fix: each extra day adds about $62 of rental but ${s.cap} more included miles.`
-      : `${num(slcMiles)} mi driven against ${num(included as number)} included — inside the cap. The estimate uses ${td} rental days.`;
-
-  return (
-    <section id="budget">
-      <div className="wrap narrow">
-        <div className="shead"><span className="num">08</span><h2>Budget</h2></div>
-        <p className="sub">
-          Everything for two people, transatlantic flights included. It reads from whichever modules are
-          switched on, so the total moves when the plan does. The car defaults come from the real quote on
-          listing 3758006 — <b>US$566.50 all-in for 9 days</b>, 1,350 miles included, $0.27 a mile over —
-          scaled to the {td} days in the selected Salt Lake route.
-        </p>
-        <p className="hint">Room rates and the $30 campsite allowance are editable planning assumptions, not checked offers. Car nights are not assumed to be free.</p>
-        <p className="hint">{touched.motelNights ? <>Hotel-night count is manually set. <button className="mini" onClick={() => setTouched({ ...touched, motelNights: false })}>Use itinerary nights ({lodgingNights})</button></> : <>Hotel-night count follows your sleep plan: {lodgingNights} outside San Francisco, plus {trip.sfNights - sfCarNights} in the city.</>}</p>
-        <div className="budget">
-          <div className="card sliders">
-            {BUDGET_CFG.map((c) => (
-              <div className="sl" key={c.id}>
-                <label htmlFor={`s-${c.id}`}>{c.label}<b>{c.fmt(s[c.id])}</b></label>
-                <input id={`s-${c.id}`} type="range" min={c.min} max={c.max} step={c.step}
-                       value={s[c.id]}
-                       onChange={(e) => {
-                         setRaw({ ...s, [c.id]: parseFloat(e.target.value) });
-                         if (!touched[c.id]) setTouched({ ...touched, [c.id]: true });
-                       }} />
-              </div>
-            ))}
-          </div>
-          <div className="card bill">
-            {lines.map(([label, v]) => (
-              <div className="bline" key={label}><span>{label}</span><span>{usd(v)}</span></div>
-            ))}
-            <div className="bline sum"><span>Total for two</span><span>{usd(total)}</span></div>
-            <p className="bnote">
-              ≈ {num(total * s.fx / 1000)}k Kč at {s.fx.toFixed(1)} Kč/$ — both exchange rates are live
-              as of 18 Aug 2026 (€1 = ${s.eurusd.toFixed(3)}, $1 = {s.fx.toFixed(1)} Kč) and are sliders,
-              so move them if they drift. {capNote}
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  const [saved, setSaved] = useSharedStored<Expenses>('expenses', {}, normalizeExpenses);
+  const shared = useSharedStatus();
+  const entries: Expenses = saved;
+  const totals = ['EUR', 'USD', 'CZK'].map(currency => {
+    const rows = Object.values(entries).filter(x => x.currency === currency && x.amount !== null);
+    return {currency, paid: rows.filter(x => x.status === 'paid').reduce((n,x) => n + x.amount!, 0), estimate: rows.filter(x => x.status === 'estimate').reduce((n,x) => n + x.amount!, 0)};
+  });
+  return <section id="budget" className="personal-planning">
+    <div className="shead"><h2>Your trip budget</h2></div>
+    <p className="sub">Amounts for both of you, for the full {trip.days.length}-day trip. Enter a total for each category and mark it as paid or estimated. Empty fields mean not entered yet.</p>
+    <p className="hint" role="status">{shared.status}{shared.pending ? ` · ${shared.pending} changes waiting to sync` : ''}</p>
+    <div className="budget-totals">{totals.filter(t => t.paid || t.estimate).map(t => <div className="card panel" key={t.currency}><b>{money(t.paid, t.currency)} paid</b><p>{money(t.estimate, t.currency)} estimated</p></div>)}</div>
+    <p className="hint">Currencies stay separate; no hidden exchange-rate conversion. Totals include only the amounts entered below.</p>
+    <fieldset className="planning-fields expense-list" disabled={!shared.connected && !import.meta.env.DEV}>{CATEGORIES.map(([id, label]) => {
+      const entry = entries[id] ?? EMPTY_EXPENSE;
+      const update = (patch: Partial<typeof entry>) => setSaved(previous => ({...previous, [id]: {...(previous[id] ?? EMPTY_EXPENSE), ...patch}}));
+      return <div className="card panel expense-card" key={id}><h3>{label}</h3><div className="expense-fields">
+        <label>Amount<input aria-label={`${label} amount`} type="number" inputMode="decimal" min="0" max="1000000" step="0.01" value={entry.amount ?? ''} onChange={e => update({amount: e.target.value === '' ? null : Math.min(1000000, Math.max(0, Number(e.target.value)))})} /></label>
+        <label>Currency<select aria-label={`${label} currency`} value={entry.currency} onChange={e => update({currency: e.target.value as typeof entry.currency})}>{['USD','EUR','CZK'].map(c => <option key={c}>{c}</option>)}</select></label>
+        <label>Status<select aria-label={`${label} status`} value={entry.status} onChange={e => update({status: e.target.value as typeof entry.status})}><option value="estimate">Estimate</option><option value="paid">Paid</option></select></label>
+      </div><label className="planning-note">Notes<textarea aria-label={`${label} notes`} maxLength={2000} rows={2} value={entry.note} onChange={e => update({note: e.target.value})} placeholder="What this includes, booking reference, remaining payment…" /></label></div>;
+    })}</fieldset>
+  </section>;
 }

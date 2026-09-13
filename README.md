@@ -67,15 +67,20 @@ Car dates are derived from the active route. Original checklist IDs and personal
 integration with `KV_REST_API_URL` and `KV_REST_API_TOKEN` (the corresponding `UPSTASH_REDIS_REST_*`
 names also work). Set `TRIP_SHARE_TOKEN` to 32 cryptographically random bytes encoded as base64url
 (43 characters), as a production-only secret. Never put it in a Vite variable or commit it.
-The invite is `https://<site>/#join/<token>`; the fragment is removed on opening and requests use an
-Authorization header. Rotating the secret and redeploying revokes old invites without deleting trip data.
+Vercel routing middleware protects the app and assets with a server-signed, HttpOnly session cookie.
+The shared access code is derived server-side from the secret and can be revealed in Trip kit after
+signing in. Existing invite links still authenticate and upgrade automatically on the same device.
+Rotating the secret and redeploying revokes sessions and old invites without deleting trip data.
 
-Only checklist state, Seattle/Montana/route choices and sleeping choices sync. Each checkbox and
-per-night override is a separate field, so independent edits merge. For the same field, the last
-write received by the server wins. The client checks every 30 seconds while visible and when
-reconnecting. Pending edits persist locally and overlay remote reads until acknowledged. Personal
-plans remain separate; joining never silently uploads them. The empty shared trip offers an explicit
-import of the current device's personal plan. Display preferences and the selected day remain local.
+Checklist state, route choices, per-night accommodation/notes and budget entries sync. Each checklist
+item, stay and expense category is stored separately; independent edits merge, while the last server
+write wins for the same item. Amounts and user notes belong only in the authenticated database, never
+in source code. Pending edits persist on the device and retry after reconnecting. Display preferences
+and the selected day remain local. Signing out clears the site's local cache on that device.
+
+The site sends noindex headers and metadata. A public repository or GitHub Pages copy can still expose
+the base itinerary, but cannot access private database fields without authorization. Downloaded offline
+copies and data cached on a signed-in device are not encrypted by the access code.
 The website must already be loaded to use it without a connection; this is not a service-worker
 app install. Download the standalone offline itinerary for a cold start without internet.
 

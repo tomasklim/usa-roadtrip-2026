@@ -7,12 +7,13 @@ type Pending = Record<string, { value: unknown; revision: number }>;
 const cleanFields = (value: unknown): Fields => Object.fromEntries(Object.entries(value && typeof value === 'object' && !Array.isArray(value) ? value : {}).filter(([k,v]) => validField(k,v)));
 const cleanPending = (value: unknown): Pending => Object.fromEntries(Object.entries(value && typeof value === 'object' && !Array.isArray(value) ? value : {}).filter(([k,v]) => v && typeof v === 'object' && Number.isSafeInteger(v.revision) && v.revision >= 0 && validField(k,v.value)));
 
-const defaults: Record<string, unknown> = { checks: [], mods: [], seattlePlan: DEFAULT_SEATTLE, sleepStyle: 'balanced', sleepOverrides: {} };
+const defaults: Record<string, unknown> = { checks: [], mods: [], seattlePlan: DEFAULT_SEATTLE, sleepStyle: 'balanced', sleepOverrides: {}, stays: {}, expenses: {} };
 const read = (key: string): unknown => { try { return JSON.parse(localStorage.getItem(key) ?? 'null'); } catch { return null; } };
 let storageOK = true;
 const save = (key: string, value: unknown) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch { storageOK = false; } };
 const validToken = (v: unknown): v is string => typeof v === 'string' && /^[A-Za-z0-9_-]{43}$/.test(v);
 export function fieldsFor(key: string, value: unknown): Fields {
+  if (key === 'stays' || key === 'expenses') return Object.fromEntries(Object.entries(value && typeof value === 'object' ? value : {}).map(([id, v]) => [`${key === 'stays' ? 'stay' : 'expense'}:${id}`, v]));
   if (key === 'checks') return Object.fromEntries((Array.isArray(value) ? value : []).filter(v => typeof v === 'string').map(id => [`check:${id}`, true]));
   if (key === 'sleepOverrides') return Object.fromEntries(Object.entries(value && typeof value === 'object' ? value : {}).map(([id, v]) => [`sleep:${id}`, v]));
   return { [`plan:${key}`]: value };
@@ -22,7 +23,7 @@ function personalFields() {
 }
 const cacheKey = (token: string) => `nwrt26.shared.cache.${token}`;
 const savedToken = read('nwrt26.shared.token');
-let token: string | null = validToken(savedToken) ? savedToken : null;
+let token: string | null = validToken(savedToken) || savedToken === 'session' ? savedToken : null;
 const saved = token ? read(cacheKey(token)) as {fields?: Fields; pending?: Pending} | null : null;
 let fields: Fields = saved?.fields ? cleanFields(saved.fields) : personalFields();
 let pending: Pending = cleanPending(saved?.pending);
@@ -40,6 +41,10 @@ const emit = (status = state.status, lastSync = state.lastSync) => {
 };
 const persist = () => { if (token && connected) save(cacheKey(token), {fields, pending}); };
 function valueFor(key: string, source: Fields): unknown {
+  if (key === 'stays' || key === 'expenses') {
+    const prefix = key === 'stays' ? 'stay:' : 'expense:';
+    return Object.fromEntries(Object.entries(source).filter(([k,v]) => k.startsWith(prefix) && v !== null).map(([k,v]) => [k.slice(prefix.length), v]));
+  }
   if (key === 'checks') return Object.entries(source).filter(([k, v]) => k.startsWith('check:') && v === true).map(([k]) => k.slice(6));
   if (key === 'sleepOverrides') return Object.fromEntries(Object.entries(source).filter(([k, v]) => k.startsWith('sleep:') && (v === 'bed' || v === 'price')).map(([k, v]) => [k.slice(6), v]));
   return source[`plan:${key}`] ?? defaults[key];
@@ -57,7 +62,7 @@ function update(key: string, value: unknown) {
     for (const [k, v] of Object.entries(patch)) pending[k] = {value: v, revision: ++revision};
     persist();
     emit('Saving changes…');
-    void sync();
+    scheduleSync();
   } else {
     save(`nwrt26.${key}`, value);
     emit(storageOK ? 'Saved on this device' : 'Changes are only in this open tab');
@@ -76,17 +81,19 @@ export function useSharedStored<T>(key: string, initial: T, normalize: (value: u
 export const useSharedStatus = () => useSyncExternalStore(subscribe, () => state);
 async function request(invite: string, patch?: Fields) {
   const response = await fetch('/api/trip', {
-    method: patch ? 'PATCH' : 'GET', cache: 'no-store', credentials: 'omit',
-    headers: { Authorization: `Bearer ${invite}`, ...(patch ? {'Content-Type':'application/json'} : {}) },
+    method: patch ? 'PATCH' : 'GET', cache: 'no-store', credentials: 'same-origin',
+    headers: { ...(invite !== 'session' ? {Authorization: `Bearer ${invite}`} : {}), ...(patch ? {'Content-Type':'application/json'} : {}) },
     body: patch ? JSON.stringify(patch) : undefined, signal: AbortSignal.timeout(12000)
   });
-  if (response.status === 401) throw Error('This invite link is not valid. Ask for the current link.');
+  if (response.status === 401) throw Error('Session expired. Reload the page and enter the access code; unsent changes stay on this device.');
   if (response.status === 503) throw Error('Shared storage has not been connected yet.');
   if (!response.ok) throw Error('Could not sync. Changes remain on this device and will retry.');
   const result = await response.json();
   if (!result.fields || typeof result.fields !== 'object' || Array.isArray(result.fields)) throw Error('Invalid sync response. Please retry.');
   return cleanFields(result.fields);
 }
+let syncTimer: ReturnType<typeof setTimeout> | undefined;
+function scheduleSync() { clearTimeout(syncTimer); syncTimer = setTimeout(() => void sync(), 650); }
 export async function sync() {
   if (!token || !connected || busy || document.visibilityState === 'hidden') return;
   busy = true;
@@ -119,7 +126,7 @@ export function inviteFrom(value: string): string | null {
   } catch { return null; }
 }
 export async function joinSharedTrip(value: string) {
-  const invite = inviteFrom(value);
+  const invite = value === 'session' ? 'session' : inviteFrom(value);
   if (!invite) throw Error('Paste the full invite link from this website.');
   const remote = await request(invite);
   generation++;
@@ -141,7 +148,7 @@ export function leaveSharedTrip() {
   save('nwrt26.shared.token', null);
   emit('Saved on this device', null);
 }
-export function sharedLink() { return token && connected ? `${window.location.origin}/#join/${token}` : ''; }
+export function sharedLink() { return token && connected && token !== 'session' ? `${window.location.origin}/#join/${token}` : window.location.origin; }
 export function importPersonalPlan() {
   if (!connected) return;
   const local = personalFields();
@@ -161,6 +168,7 @@ export function startSharedSync() {
   if (!consumeInvite()) {
     if (connected) void sync();
     else if (token) void joinSharedTrip(token).catch(error => emit(error.message));
+    else void joinSharedTrip('session').catch(() => emit('Not connected · reload and enter the access code to sync.'));
   }
   const wake = () => { void sync(); };
   const onHash = () => { consumeInvite(); };

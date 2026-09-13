@@ -29,7 +29,7 @@ export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map, choice
   map: ReactNode;
   choices: ReactNode;
 }) {
-  const stops = POIS.filter(p => p.day === (day.poiDay ?? day.id)).sort((a, b) => Number(b.id === "node-palo-alto") - Number(a.id === "node-palo-alto"));
+  const stops = POIS.filter(p => p.day === (day.poiDay ?? day.id)).sort((a, b) => Number(b.id.startsWith("node-palo-alto")) - Number(a.id.startsWith("node-palo-alto")));
   return <>
     <DayPicker trip={trip} day={day} onSelect={onSelect} />
     {choices}
@@ -70,7 +70,7 @@ export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map, choice
           {!!stops.length && <details className="day-places"><summary>Places & directions <span>{stops.length}</span></summary>
             <p className="hint">Saved places for this day. Open a place in Google Maps for directions.</p>
             {stops.map(p => <a key={p.id} className="place-link" href={`https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lon}`} target="_blank" rel="noreferrer noopener">
-              <span><b>{p.name}</b><small>{p.address ? `${p.address} · ` : ""}{p.city}{p.id === "node-palo-alto" ? " · MUST VISIT" : ""}</small></span><span aria-hidden="true">↗</span>
+              <span><b>{p.name}</b><small>{p.address ? `${p.address} · ` : ""}{p.city}{p.id.startsWith("node-palo-alto") ? " · MUST VISIT" : ""}</small></span><span aria-hidden="true">↗</span>
             </a>)}
           </details>}
         </div>

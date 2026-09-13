@@ -29,7 +29,7 @@ export interface Day {
   photos?: string[];
   hi: string[];
   ideas?: string[];
-  sleep?: { t: "car" | "motel"; where: string; note?: string; streak?: number; decision?: string; priceException?: boolean };
+  sleep?: { suggestedWhere?: string; chosen?: boolean; t: "car" | "motel"; where: string; note?: string; streak?: number; decision?: string; priceException?: boolean };
   food?: FoodPick[];
   charge?: string[];
   alert?: string;

@@ -1,3 +1,5 @@
+import poisRaw from "../data/pois.json";
+import type { Poi } from "../types";
 import { ACTS } from "../data/itinerary";
 import type { Trip } from "../lib/trip";
 import { FoodRules } from "./Panels";
@@ -25,12 +27,20 @@ export function FoodGuide({ trip }: { trip: Trip }) {
       <div className="wrap narrow">
         <div className="shead"><span className="num">06</span><h2>Eating gluten-free and dairy-free</h2></div>
         <p className="sub">
-          Two allergies and a love of meat fit this route better than you would expect — oysters, steak
-          and Basque cooking are naturally gluten-free. Across the current plan that is{" "}
-          <b>{counts.oy ?? 0} oyster stops</b>, <b>{counts.ino ?? 0} In-N-Out visits</b> and{" "}
-          <b>{counts.meat ?? 0} unusual-meat meals</b>.
+          Food stops for the current route, plus saved alternatives from the map. Gluten-free and dairy-free ordering ideas always need confirmation with the restaurant.
+          The plan includes <b>{counts.oy ?? 0} oyster stops</b> and <b>{counts.ino ?? 0} In-N-Out options</b>.
         </p>
         <FoodRules />
+        <details className="card panel food-alternatives"><summary>More saved restaurants & grocery stops</summary>
+          <p className="hint">Alternatives, not extra meals to fit into the day. Choose the branch closest to where you actually are.</p>
+          {ACTS.map(act => {
+            const dayIds = new Set(trip.days.filter(d => d.act === act.id).map(d => d.poiDay ?? d.id));
+            const picks = (poisRaw as Poi[]).filter(p => p.kind === 'food' && dayIds.has(p.day));
+            if (!picks.length) return null;
+            return <div key={act.id}><h3>{act.name}</h3>{picks.map(p => <a className="place-link" key={p.id} href={`https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lon}`} target="_blank" rel="noreferrer"><span><b>{p.name}</b><small>{p.city}{p.address ? ` · ${p.address}` : ''}</small></span><span>↗</span></a>)}</div>;
+          })}
+        </details>
+
         <div className="food">
           {byAct.map(({ act, picks }) => (
             <div className="card fcard" key={act.id}>

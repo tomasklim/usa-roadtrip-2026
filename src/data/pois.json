@@ -277,7 +277,7 @@
   "kind": "food",
   "lat": 38.16216,
   "lon": -122.89352,
-  "day": "sf2",
+  "day": "sfOysters",
   "tags": [
    "oy",
    "gf",
@@ -292,7 +292,7 @@
   "kind": "food",
   "lat": 38.15163,
   "lon": -122.88806,
-  "day": "sf2",
+  "day": "sfOysters",
   "tags": [
    "oy"
   ],
@@ -305,7 +305,7 @@
   "kind": "food",
   "lat": 37.80777,
   "lon": -122.41847,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [
    "ino",
    "gf",
@@ -763,7 +763,7 @@
   "kind": "sight",
   "lat": 37.99562,
   "lon": -123.02315,
-  "day": "sf2",
+  "day": "sfOysters",
   "tags": [],
   "city": "Point Reyes CA",
   "desc": "Three hundred steps down a cliff to the foggiest, windiest point on the Pacific coast.",
@@ -981,7 +981,7 @@
   "kind": "sight",
   "lat": 37.44294,
   "lon": -122.15459,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [],
   "city": "Palo Alto CA",
   "desc": "367 Addison Avenue: the garage where Hewlett and Packard started with $538 in 1938. Every trillion-dollar campus you will see today descends from this shed."
@@ -992,7 +992,7 @@
   "kind": "sight",
   "lat": 37.33284,
   "lon": -122.00537,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [],
   "city": "Cupertino CA",
   "photo": "applepark",
@@ -1004,7 +1004,7 @@
   "kind": "sight",
   "lat": 37.419,
   "lon": -122.08238,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [],
   "city": "Mountain View CA",
   "photo": "googleplex",
@@ -1016,7 +1016,7 @@
   "kind": "sight",
   "lat": 37.41429,
   "lon": -122.07745,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [],
   "city": "Mountain View CA",
   "photo": "computerhistory",
@@ -1028,7 +1028,7 @@
   "kind": "sight",
   "lat": 37.48467,
   "lon": -122.14837,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [],
   "city": "Menlo Park CA",
   "photo": "metahq",
@@ -1040,11 +1040,11 @@
   "kind": "sight",
   "lat": 37.49354,
   "lon": -121.94356,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [],
   "city": "Fremont CA",
   "photo": "teslafremont",
-  "desc": "The plant GM and Toyota walked away from, now building the Model Y you just drove 3,000 km. Visible from Fremont Blvd; tours are rare but the scale reads from outside."
+  "desc": "The plant GM and Toyota walked away from, now building the Tesla you just drove 3,000 km. Visible from Fremont Blvd; tours are rare but the scale reads from outside."
  },
  {
   "id": "stanford",
@@ -1052,7 +1052,7 @@
   "kind": "sight",
   "lat": 37.4271,
   "lon": -122.1699,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [],
   "city": "Palo Alto CA",
   "photo": "stanford",
@@ -1111,7 +1111,7 @@
   "kind": "sight",
   "lat": 37.45377,
   "lon": -122.20583,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [],
   "city": "Atherton CA",
   "desc": "94027: repeatedly the most expensive ZIP in the US, average home about $8M. Eric Schmidt, Sheryl Sandberg and half the venture aristocracy live behind these hedges. You see gates and trees — that is the point."
@@ -1122,7 +1122,7 @@
   "kind": "sight",
   "lat": 37.42806,
   "lon": -122.25074,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [],
   "city": "Woodside CA",
   "desc": "Estates hidden in the redwood hills: Larry Ellison's 23-acre Japanese imperial villa, Neil Young's old ranch. The town centre is one general store — the money is deliberately invisible."
@@ -1133,7 +1133,7 @@
   "kind": "food",
   "lat": 37.42979,
   "lon": -122.25519,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [
    "gf"
   ],
@@ -1146,7 +1146,7 @@
   "kind": "sight",
   "lat": 37.43224,
   "lon": -122.14132,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [],
   "city": "Palo Alto CA",
   "desc": "Jobs lived at 2101 Waverley in a normal-looking Tudor house with an apple orchard — no gate, no guard. Zuckerberg's first house is a few blocks away. Understated on purpose."
@@ -1157,7 +1157,7 @@
   "kind": "sight",
   "lat": 37.53132,
   "lon": -122.35904,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [],
   "city": "Hillsborough CA",
   "desc": "A bulbous orange free-form house above I-280, in old-money Hillsborough. Visible from the freeway — which is itself billed as the world's most beautiful."
@@ -1245,7 +1245,7 @@
   "kind": "sight",
   "lat": 37.47188,
   "lon": -122.3108,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [],
   "city": "Woodside CA",
   "desc": "A 1917 country estate, formal gardens and natural lands: the Woodside wealth stop you can actually enter. Open daily 10–5; book a timed arrival window for Sunday."
@@ -1267,7 +1267,7 @@
   "kind": "sight",
   "lat": 37.4442649,
   "lon": -122.1624976,
-  "day": "sf3",
+  "day": "sfValleyLoop",
   "tags": [],
   "city": "Palo Alto CA",
   "desc": "Must visit: digital-art foundation at 180 University Ave. Plan 90 minutes. Thu–Fri 18:00–22:00, Sat 12:00–22:00, Sun 12:00–20:00. Confirm the October exhibition and admission details at nodefoundation.com."
@@ -1724,5 +1724,87 @@
   "website": "https://www.longhornsteakhouse.com/locations",
   "verified": "2026-09-13",
   "desc": "Optional sit-down steak dinner. Confirm gluten- and dairy-free preparation with staff, including seasoning, butter and sides."
+ },
+ {
+  "id": "santa-cruz-coast",
+  "name": "Santa Cruz · coastal walk",
+  "kind": "sight",
+  "lat": 36.961,
+  "lon": -122.024,
+  "day": "sfCoastValley",
+  "tags": [],
+  "city": "Santa Cruz"
+ },
+ {
+  "id": "monterey-canning",
+  "name": "Monterey Canning Company / Cannery Row",
+  "kind": "sight",
+  "lat": 36.6158,
+  "lon": -121.9007,
+  "day": "sfMonterey",
+  "tags": [],
+  "city": "Monterey",
+  "website": "https://canneryrow.com/properties/700-cannery-row/"
+ },
+ {
+  "id": "monterey-aquarium",
+  "name": "Monterey Bay Aquarium · optional",
+  "kind": "sight",
+  "lat": 36.6182,
+  "lon": -121.9018,
+  "day": "sfMonterey",
+  "tags": [],
+  "city": "Monterey",
+  "website": "https://www.montereybayaquarium.org/"
+ },
+ {
+  "id": "in-n-out-burger-fishermans-wharf-coast",
+  "name": "In-N-Out Burger Fisherman's Wharf",
+  "kind": "food",
+  "lat": 37.80777,
+  "lon": -122.41847,
+  "day": "sfCoastValley",
+  "tags": [
+   "ino",
+   "gf",
+   "df"
+  ],
+  "city": "San Francisco CA",
+  "desc": "Protein style, no cheese. The fries are safe — own fryer, potato and sunflower oil only"
+ },
+ {
+  "id": "computer-history-museum-coast",
+  "name": "Computer History Museum",
+  "kind": "sight",
+  "lat": 37.41429,
+  "lon": -122.07745,
+  "day": "sfCoastValley",
+  "tags": [],
+  "city": "Mountain View CA",
+  "photo": "computerhistory",
+  "desc": "Abacus to transistor to web in two hours. The single best stop of the day for reframing what a garage-sized idea can become."
+ },
+ {
+  "id": "stanford-coast",
+  "name": "Stanford University",
+  "kind": "sight",
+  "lat": 37.4271,
+  "lon": -122.1699,
+  "day": "sfCoastValley",
+  "tags": [],
+  "city": "Palo Alto CA",
+  "photo": "stanford",
+  "desc": "Walk the Main Quad and Memorial Church. Google, HP, Nvidia, Netflix and Instagram all trace back to people who walked these arcades."
+ },
+ {
+  "id": "node-palo-alto-coast",
+  "name": "NODE — digital art in Palo Alto",
+  "kind": "sight",
+  "lat": 37.4442649,
+  "lon": -122.1624976,
+  "day": "sfCoastValley",
+  "tags": [],
+  "city": "Palo Alto CA",
+  "desc": "Must visit: digital-art foundation at 180 University Ave. Plan 90 minutes. Thu–Fri 18:00–22:00, Sat 12:00–22:00, Sun 12:00–20:00. Confirm the October exhibition and admission details at nodefoundation.com."
  }
 ]

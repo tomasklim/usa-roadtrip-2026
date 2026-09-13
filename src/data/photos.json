@@ -682,5 +682,21 @@
     "license": "CC BY 4.0",
     "alt": "The floating riverside walkway on Portland’s Eastbank Esplanade",
     "label": "Eastbank Esplanade"
+  },
+  "santacruz": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Santa_Cruz%2C_California_-_Boardwalk.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Santa_Cruz,_California_-_Boardwalk.jpg",
+    "credit": "Matt314",
+    "license": "CC BY 2.5",
+    "alt": "Beach and amusement rides at the Santa Cruz Beach Boardwalk",
+    "label": "Santa Cruz Boardwalk"
+  },
+  "montereycanning": {
+    "url": "https://cdn.loc.gov/service/pnp/highsm/21000/21099v.jpg",
+    "page": "https://www.loc.gov/pictures/item/2013630527/",
+    "credit": "Carol M. Highsmith / Library of Congress",
+    "license": "No known restrictions on publication",
+    "alt": "Monterey Canning Company building on Cannery Row in Monterey",
+    "label": "Monterey Canning Company"
   }
 }

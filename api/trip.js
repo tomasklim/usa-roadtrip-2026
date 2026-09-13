@@ -1,10 +1,10 @@
-import { createHash, timingSafeEqual } from 'node:crypto';
+import { validSession, validBearer, sameOrigin } from '../shared/access.mjs';
 import { validField, validPatch } from '../shared/trip-schema.mjs';
 
-const hash = value => createHash('sha256').update(value).digest();
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'private, no-store');
-  res.setHeader('Vary', 'Authorization');
+  res.setHeader('Vary', 'Authorization, Cookie');
+  res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
   const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
   const secret = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
   const invitation = process.env.TRIP_SHARE_TOKEN;
@@ -15,9 +15,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
   if (!configured) return res.status(503).json({ error: 'Shared trip is not configured yet' });
-  const authorization = req.headers.authorization ?? '';
-  const token = authorization.startsWith('Bearer ') ? authorization.slice(7) : '';
-  if (!/^[A-Za-z0-9_-]{43}$/.test(token) || !timingSafeEqual(hash(token), hash(invitation))) return res.status(401).json({ error: 'Invalid invite link' });
+  const bearer = validBearer(req.headers);
+  if (!bearer && !validSession(req.headers.cookie)) return res.status(401).json({ error: 'Open the website and enter the access code.' });
+  if (req.method === 'PATCH' && !bearer && !sameOrigin(req)) return res.status(403).json({error:'Invalid origin'});
   // A private, single-trip workspace. Different checklist fields update independently.
   const redisKey = 'roadtrip:2026:shared:v1';
   const command = async body => {

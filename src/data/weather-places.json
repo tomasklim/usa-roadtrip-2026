@@ -227,6 +227,18 @@
       "latitude": 47.041,
       "longitude": -122.85,
       "timezone": "America/Los_Angeles"
+    },
+    "santacruz": {
+      "name": "Santa Cruz",
+      "latitude": 36.9741,
+      "longitude": -122.0308,
+      "timezone": "America/Los_Angeles"
+    },
+    "monterey": {
+      "name": "Monterey / Cannery Row",
+      "latitude": 36.6158,
+      "longitude": -121.9007,
+      "timezone": "America/Los_Angeles"
     }
   },
   "days": {
@@ -352,6 +364,10 @@
     "seaReturn": {
       "day": "ashford",
       "bed": "seatac"
+    },
+    "s5b": {
+      "day": "lamar",
+      "bed": "gardiner"
     }
   }
 }

@@ -1,9 +1,9 @@
 export const CHARGE_ROWS: [string, string, string, string, "" | "gap" | "crit"][] = [
-  ["Seattle → Rainier traverse → Ashford", "WA-410 / WA-123 / WA-706", "Nothing useful inside the park; Enumclaw and Ashford have L2", "Start with enough fuel or charge for the full mountain traverse.", "gap"],
+  ["Seattle region → Rainier / Paradise", "Selected open park access", "Nothing useful inside the park; Enumclaw and Ashford have L2", "Start with enough fuel or charge for the full outing and return.", "gap"],
   ["SeaTac → Hama Hama → Bremerton", "I-5 / US-101 / WA-3", "Olympia and Bremerton charging if needed", "Seattle rental starts after arrival on Sept 24. Return Sunday evening for a Monday morning flight, otherwise Monday; exact billing depends on pickup/return times.", ""],
-  ["SLC → Bonneville → SLC", "I-80", "SLC everywhere, West Wendover SC", "Easy. Wendover has car washes for the salt.", ""],
-  ["SLC → Logan Canyon → Bear Lake → Jackson", "US-89", "Logan, Montpelier, Jackson", "Comfortable, even at 485 km.", ""],
-  ["Grand Teton day", "Teton Park Road", "Jackson SC", "Non-issue — 160 km on one charge.", ""],
+  ["SLC → Bonneville → SLC", "I-80", "SLC everywhere, West Wendover SC", "Check the round-trip energy; West Wendover can break the journey. Follow rental restrictions on salt-flat driving.", ""],
+  ["SLC → Logan Canyon → Bear Lake → Jackson", "US-89", "Logan, Montpelier, Jackson", "Split the long drive with confirmed Supercharging; do not treat the full 485 km as one charge.", ""],
+  ["Grand Teton day", "Teton Park Road", "Jackson SC", "Charge in Jackson; include sightseeing and any overnight heating in the arrival estimate.", ""],
   ["Jackson → Old Faithful → West Yellowstone", "US-89 / park roads", "Jackson SC, West Yellowstone SC", "Nothing in between, but only 220 km.", ""],
   ["West Yellowstone → Canyon → Gardiner", "park roads", "West Yellowstone SC; Gardiner connectors must be checked", "Charge before entering the park. No adapter carried: unconfirmed L2, J1772 and CCS are not planned charging stops.", "crit"],
   ["Gardiner → Beartooth → Red Lodge → Laurel", "US-212", "Optional Red Lodge Tesla destination charging; Laurel SC: 8 stalls, up to 250 kW, 24/7", "Plan energy through to Laurel even if Red Lodge charging fails. Cross the pass once; return via I-90 and Livingston.", "gap"],
@@ -11,17 +11,16 @@ export const CHARGE_ROWS: [string, string, string, string, "" | "gap" | "crit"][
   ["Bad-weather alternative", "Gardiner / Lamar / US-89", "Confirmed native Tesla charging only; Bozeman SC", "Check the Lamar round trip plus the onward drive to Bozeman. If energy or weather is poor, skip Lamar and head to Bozeman early.", "gap"],
   ["Gardiner → Chico → Bozeman", "US-89", "Bozeman SC, Belgrade SC (8 stalls)", "Short and easy — 143 km.", ""],
   ["Bozeman → West Yellowstone → Idaho Falls", "US-191 / US-20", "West Yellowstone SC, Idaho Falls SC", "Comfortable.", ""],
-  ["Craters of the Moon module", "US-20 / US-26", "Arco has L2 only", "Plan West Yellowstone to Idaho Falls as one charge — the lava field detour is 610 km total.", "gap"],
+  ["Craters of the Moon module", "US-20 / US-26", "Confirm a compatible fast-charge stop before the detour; unverified Arco L2 is not a backup", "Do not plan the whole detour as one charge on a 320-mile Model S. Split the drive around confirmed Tesla charging, or skip the module.", "crit"],
   ["Idaho Falls → Lava Hot Springs → SLC", "I-15", "Pocatello, Brigham City, Ogden, SLC", "Dense the whole way.", ""],
   ["Dinosaur NM module", "US-40 / US-191", "Heber City SC, Vernal SC (8 stalls), Rock Springs SC", "Fine — Vernal turned out to have a Supercharger after all.", ""]
 ];
 
 export const FOOD_RULES = [
-  "<b>In-N-Out:</b> order it <b>protein style</b> — lettuce instead of the bun. The spread is egg-based, so it is dairy-free; skip the cheese. Fries are nothing but potato and sunflower oil in their own dedicated fryer, so they are safe.",
-  "<b>Shake Shack:</b> they carry a <b>gluten-free bun</b>, but the regular buns are buttered on the same surface — say &ldquo;gluten-free bun, no cheese, clean prep&rdquo;. Shakes and custard are out.",
-  "<b>Oysters</b> are naturally gluten-free and dairy-free. Raw with mignonette, yes. Rockefeller (butter) and anything fried, no.",
-  "<b>Steak, game and Basque cooking</b> are the safest great meals on this route. Say <b>&ldquo;no butter&rdquo; explicitly</b> — American kitchens finish steaks with it by default and will not think to mention it.",
-  "<b>Landmines:</b> beer (all of Oregon), Idaho &ldquo;finger steaks&rdquo; (breaded), Butte pasties (pastry), Rocky Mountain oysters (breaded), and anything a diner describes as &ldquo;creamy&rdquo;."
+  "<b>GF / DF tags are ordering ideas, not allergy guarantees.</b> Tell staff what you need and confirm ingredients, sauces and shared preparation at each restaurant.",
+  "<b>In-N-Out:</b> ask for protein style without cheese; confirm the current allergen information for spread and fries. <b>Shake Shack:</b> ask about a gluten-free bun or lettuce wrap and separate preparation.",
+  "<b>Steaks and seafood:</b> request no butter and check marinades, seasoning, dressing and sauces. Breading and shared fryers can change an otherwise suitable dish.",
+  "<b>On park days:</b> bring groceries, breakfast and a packed lunch. Seasonal restaurants may close before roads do. Keep a backup meal in the car."
 ];
 
 export const SLEEP_CARDS = [

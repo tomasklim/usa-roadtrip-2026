@@ -13,6 +13,8 @@ export interface Day {
   /** Stable id. Doubles as the key into routes.json for driving days. */
   id: string;
   kind: DayKind;
+  /** Keep this day when optional days are trimmed to fit the booked flights. */
+  required?: boolean;
   title: string;
   leg: string;
   /** Hand-estimated wheel time. OSRM's demo profile is far too pessimistic to show. */

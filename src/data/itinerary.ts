@@ -320,7 +320,7 @@ export const BASE: Day[] = [
   charge: ["Charge to whatever level the host requires before dropping it"],
   why: "One more soak, an easy drive, and the long Rockies rental ends on a good note." },
 
-{ id: "sf1", kind: "sf", act: "V",
+{ id: "sf1", kind: "sf", required: true, act: "V",
   title: "Fly to San Francisco", leg: "Salt Lake City → SFO, then the city on foot",
   hours: 0, at: [37.7749, -122.4194], atZoom: 11, photos: ["goldengate"],
   hi: ["One hour forty-five in the air and the long Rockies rental is over",
@@ -338,10 +338,11 @@ export const BASE: Day[] = [
          { nm: "Chinatown, ox tongue and tripe", note: "Z&Y or Old Mandarin — ask about soy sauce for the gluten", tags: ["meat"] }],
   why: "Land, drop the bags, walk. The trip changes gear here." },
 
-{ id: "sf3", kind: "sf", act: "V", at: [37.41900, -122.08238], atZoom: 10,
-  title: "The pilgrimage: Silicon Valley", leg: "SF → Meta → Stanford → HP Garage → Apple Park → Googleplex → Tesla Fremont → back",
+{ id: "sf3", kind: "sf", required: true, act: "V", at: [37.41900, -122.08238], atZoom: 10,
+  title: "Silicon Valley & NODE in Palo Alto", leg: "SF → Meta → Stanford → NODE → HP Garage → Apple Park → Googleplex → Tesla Fremont → back",
   hours: 3.1, photos: ["applepark", "googleplex"],
-  hi: ["Every company on this loop started with two people and no money — the HP Garage is literally a garage on a residential street, and it is where the whole valley began in 1938",
+  hi: ["Must visit: NODE, the digital-art foundation at 180 University Ave, Palo Alto. Plan 12:00–13:30 after Stanford; Sunday hours are 12:00–20:00. Keep this stop and shorten corporate drive-bys if needed",
+       "Every company on this loop started with two people and no money — the HP Garage is literally a garage on a residential street, and it is where the whole valley began in 1938",
        "Apple Park: the $5B ring from the Visitor Center roof terrace, with an AR model of the whole campus",
        "The Googleplex and the Android statue garden in Mountain View, plus the best museum of the day next door",
        "Computer History Museum (Wednesday–Sunday, 10–5; closed Monday and Tuesday): from the abacus to the transistor to the web — two hours that reframe what one garage-sized idea can turn into",
@@ -360,7 +361,7 @@ export const BASE: Day[] = [
   sleep: { t: "motel", where: "Hotel in San Francisco" },
   food: [{ nm: "In-N-Out, Mountain View", note: "Protein style, no cheese — eaten in the middle of the world you came to see", tags: ["ino", "gf", "df"] }],
   charge: ["Use the Bay Area rental car — Superchargers everywhere down here, fittingly"],
-  why: "A day of origin stories: garages, dorm rooms and rented offices that became the companies running the world. The best possible argument that where you work now is not where you have to end up." },
+  why: "NODE is the priority: digital art in downtown Palo Alto, with 90 minutes set aside. Stanford, the HP Garage and the wider Silicon Valley loop fill out the day. Confirm the October exhibition and admission details before visiting." },
 
 { id: "sf2", kind: "sf", act: "V",
   title: "Point Reyes and oysters on the bay", leg: "San Francisco → Tomales Bay → Point Reyes → back",

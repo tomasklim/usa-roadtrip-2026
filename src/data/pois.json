@@ -1259,5 +1259,16 @@
   "tags": [],
   "city": "Marin Headlands CA",
   "desc": "A working rescue hospital where visitors can see recovering seals and sea lions. Open Friday\u2013Monday 10\u20134; reserve a free ticket for the baseline Monday."
- }
+ },
+{
+ "id": "node-palo-alto",
+ "name": "NODE \u2014 digital art in Palo Alto",
+ "kind": "sight",
+ "lat": 37.4442649,
+ "lon": -122.1624976,
+ "day": "sf3",
+ "tags": [],
+ "city": "Palo Alto CA",
+ "desc": "Must visit: digital-art foundation at 180 University Ave. Plan 90 minutes. Thu\u2013Fri 18:00\u201322:00, Sat 12:00\u201322:00, Sun 12:00\u201320:00. Confirm the October exhibition and admission details at nodefoundation.com."
+}
 ]

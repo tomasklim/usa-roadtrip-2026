@@ -166,7 +166,8 @@ function Verdict({ trip }: { trip: Trip }) {
     return (
       <div className="warn">
         This is <b>{trip.overrun} day{trip.overrun === 1 ? "" : "s"} too long</b> for the booked window
-        even with San Francisco cut to nothing. Remove something, or move the flight home.
+        after removing optional San Francisco days. The flight to SFO and the NODE visit stay in the plan.
+        Remove a module to fit the booked flight home.
       </div>
     );
   }

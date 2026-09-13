@@ -12,6 +12,15 @@ interface RoadsideStop {
 
 const STOPS: readonly RoadsideStop[] = [
   {
+    day: "sf3",
+    name: "NODE — Palo Alto",
+    time: "plan 90 min",
+    fit: "must visit",
+    body: "Digital art at 180 University Ave. Set aside 12:00–13:30 after Stanford on the base Sunday. Published hours: Thu–Fri 18:00–22:00, Sat 12:00–22:00, Sun 12:00–20:00. Confirm the October exhibition and admission details; shorten corporate drive-bys to keep this stop.",
+    url: "https://nodefoundation.com/",
+    openDays: [0, 4, 5, 6]
+  },
+  {
     day: "s9",
     name: "Upper Mesa Falls",
     time: "+1–1½ h",
@@ -69,7 +78,7 @@ export function RoadsideStops({ trip, onSelect }: {
   return (
     <div className="panel card stop-panel" aria-labelledby="stop-panel-title">
       <h3 id="stop-panel-title">Worth the stop</h3>
-      <p className="hint">Five additions that fit the baseline route. They are choices, not five more promises.</p>
+      <p className="hint">NODE is a must-visit stop in Palo Alto. The other stops are optional and depend on the time available.</p>
       <div className="stoplist">
         {visible.map(({ stop, day }) => {
           const date = day.date == null ? null : new Date(day.date);

@@ -22,6 +22,7 @@ for (const c of combos) {
   if (new Set(dates).size !== dates.length) problems.push("duplicate dates");
   for (let i = 1; i < dates.length; i++) if (dates[i] - dates[i - 1] !== 864e5) problems.push("date gap");
   const ids = t.days.map((d) => d.id);
+  if (!ids.includes("sf3") || !ids.includes("sf1")) problems.push("missing required NODE day or SFO arrival");
   if (new Set(ids).size !== ids.length) problems.push("duplicate ids: " + ids.filter((x, i) => ids.indexOf(x) !== i));
   const staleHours = t.days.filter((d) => ROUTES[d.id]?.seconds && Math.abs(d.hours - ROUTES[d.id].seconds / 3600) > 0.11);
   if (staleHours.length) problems.push("stale wheel hours: " + staleHours.map((d) => d.id));

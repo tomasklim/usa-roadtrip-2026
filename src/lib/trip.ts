@@ -102,7 +102,7 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced"):
   let droppedSf = 0;
   while (days.length > CAP_DAYS) {
     let idx = -1;
-    for (let i = days.length - 1; i >= 0; i--) if (days[i].kind === "sf") { idx = i; break; }
+    for (let i = days.length - 1; i >= 0; i--) if (days[i].kind === "sf" && !days[i].required) { idx = i; break; }
     if (idx < 0) break;
     days.splice(idx, 1);
     droppedSf++;

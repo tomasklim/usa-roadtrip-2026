@@ -5,12 +5,12 @@ Sept 24 – Oct 13, 2026 (arriving home in Prague on Oct 14), built around one d
 three focused rental blocks instead of one long loop.**
 
 Seattle to Yellowstone is 1,300 km each way and the car has to come back, so a Seattle-based loop
-costs about 5,000 km of driving. Flying over the transit brings the base plan down to **4,105 km** — and, more
+costs about 5,000 km of driving. Flying over the transit brings the base plan down to **about 4,110 km** — and, more
 importantly, turns half the driving days into short park days.
 
 **Seattle + Mount Rainier + Hood Canal oysters** → fly to Salt Lake City →
 **Bonneville Salt Flats → Bear Lake → Grand Teton → Yellowstone → Beartooth Highway → Bozeman →
-Lava Hot Springs → Salt Lake City** → fly to **San Francisco → Silicon Valley → Point Reyes**.
+Lava Hot Springs → Salt Lake City** → fly to **San Francisco → Silicon Valley + NODE in Palo Alto → Point Reyes**.
 
 ## What the page does
 

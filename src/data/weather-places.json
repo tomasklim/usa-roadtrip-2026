@@ -7,7 +7,7 @@
       "timezone": "America/Los_Angeles"
     },
     "rainier": {
-      "name": "Mount Rainier \u00b7 Paradise",
+      "name": "Mount Rainier · Paradise",
       "latitude": 46.786,
       "longitude": -121.736,
       "timezone": "America/Los_Angeles"
@@ -61,7 +61,7 @@
       "timezone": "America/Denver"
     },
     "geysers": {
-      "name": "Yellowstone \u00b7 Old Faithful",
+      "name": "Yellowstone · Old Faithful",
       "latitude": 44.46,
       "longitude": -110.83,
       "timezone": "America/Denver"
@@ -238,6 +238,12 @@
       "name": "Monterey / Cannery Row",
       "latitude": 36.6158,
       "longitude": -121.9007,
+      "timezone": "America/Los_Angeles"
+    },
+    "halfmoonbay": {
+      "name": "Half Moon Bay",
+      "latitude": 37.4602,
+      "longitude": -122.4292,
       "timezone": "America/Los_Angeles"
     }
   },

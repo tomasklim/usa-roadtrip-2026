@@ -27,7 +27,8 @@ for(const year of years){
     // Multi-location requests count separately against the provider's rate limit.
     await new Promise(r=>setTimeout(r,9000));
   }
-  const data=JSON.parse(raw);
+  const parsed=JSON.parse(raw);
+  const data=Array.isArray(parsed) ? parsed : [parsed];
   if(!Array.isArray(data)||data.length!==entries.length) throw Error('Unexpected location count');
   entries.forEach(([id],n)=>{
     const result=data[n], d=result.daily;

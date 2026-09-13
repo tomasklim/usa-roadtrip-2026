@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict';
 import { buildTrip } from '../src/lib/trip';
+import { ROUTES } from '../src/lib/trip';
+import pois from '../src/data/pois.json';
 import { DEFAULT_SEATTLE } from '../src/data/seattle';
 const base = buildTrip(new Set());
-assert.match(base.days.find(d=>d.id==='sf3')!.sleep!.where,/Santa Cruz/);
-assert.match(base.days.find(d=>d.id==='sf2')!.title,/Monterey/);
+assert.match(base.days.find(d=>d.id==='sf3')!.sleep!.where,/Monterey/);
+assert.match(base.days.find(d=>d.id==='sf2')!.title,/pumpkin/);
 const oysters=buildTrip(new Set(['oysters']));
 assert.match(oysters.days.find(d=>d.id==='sf3')!.sleep!.where,/San Francisco/);
 assert.match(oysters.days.find(d=>d.id==='sf2')!.title,/oysters/);
@@ -16,8 +18,16 @@ const stay={place:'Our chosen inn',note:'Check in after 4pm',type:'bed' as const
 const chosen=buildTrip(new Set(),'balanced',{},DEFAULT_SEATTLE,{sf3:stay});
 assert.equal(chosen.days.find(d=>d.id==='sf3')!.sleep!.where,stay.place);
 assert.equal(chosen.days.find(d=>d.id==='sf3')!.sleep!.note,stay.note);
-assert.match(chosen.days.find(d=>d.id==='sf3')!.sleep!.suggestedWhere!,/Santa Cruz/);
+assert.match(chosen.days.find(d=>d.id==='sf3')!.sleep!.suggestedWhere!,/Monterey/);
 const car={place:'Chosen campsite',note:'',type:'car' as const};
 const consecutive=buildTrip(new Set(),'balanced',{},DEFAULT_SEATTLE,{s4:car,s4b:car,s5:car});
 assert.ok(consecutive.days.find(d=>d.id==='s5')!.sleep!.streak!>=3,'Chosen car nights remain explicit, with a streak warning');
 console.log('✓ Coast / oyster alternatives, wolf-day tradeoff, flight window, saved stays and consecutive car choices');
+
+assert.equal(new Date(base.days.find(d=>d.id==='sf2')!.date!).toISOString().slice(0,10),'2026-10-12');
+const coastEnd=ROUTES.sf3.line.at(-1)!, pumpkinStart=ROUTES.sf2.line[0];
+assert.ok(Math.hypot(coastEnd[0]-pumpkinStart[0],coastEnd[1]-pumpkinStart[1])<0.01,'Monterey overnight connects both routes');
+assert.ok(!pois.some(p=>p.id.startsWith('computer-history-museum')));
+assert.ok(base.days.find(d=>d.id==='s10')!.hi.some(h=>h.includes('Red Butte Garden')));
+assert.ok(pois.some(p=>p.id==='topaz-farm'&&p.day==='waPortland'));
+console.log('✓ Fixed pumpkin date, Monterey route continuity, Red Butte slot and updated map stops');

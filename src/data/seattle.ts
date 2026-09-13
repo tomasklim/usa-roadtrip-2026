@@ -22,7 +22,7 @@ function portland(id: string, origin: 'Bremerton' | 'Ashford'): Day {
       'In-N-Out in Ridgefield opens at 10:30. Stop on the way south, or on the return if you arrive too early.',
       'Shop in central Portland, then walk beside the Willamette: Waterfront Park → Steel Bridge → Eastbank Esplanade → Hawthorne Bridge. Allow 1½–2 hours with pauses, or shorten the loop.',
       'Sleep in Kelso on the way north; do not drive all the way back to Oyster Bay. Allow extra time for traffic and burger queues.'],
-    ideas: ['Hillsboro has another In-N-Out if your chosen shops take you west. That detour is not included in this route.', 'Spend longer by the river when it is sunny; shorten the walk if it rains.'],
+    ideas: ['Topaz Farm on Sauvie Island: allow 60–90 minutes for a farm visit if the calendar for your Portland date confirms opening. It is not Wednesday-only: the current schedule includes weekends, with Monday/Tuesday closed. Picking depends on the crop. Replace some shopping or shorten the river walk; this detour is not included in the main driving route.', 'Hillsboro has another In-N-Out if your chosen shops take you west. That detour is not included in this route.', 'Spend longer by the river when it is sunny; shorten the walk if it rains.'],
     food: [{ nm: 'In-N-Out · Ridgefield', tags: ['ino'], note: '5801 N. Pioneer Canyon Dr. · opens 10:30. Confirm dietary preparation when ordering.' }],
     sleep: bed('Kelso / Longview inn — northbound after Portland'),
     why: 'A proper city day with a burger and a walk, as well as the shopping.' });
@@ -74,6 +74,7 @@ export function seattleDays(base: Day[], options: SeattleOptions): Day[] {
     hi: ['Land at 16:00. Collect bags, clear immigration and take the rental-car shuttle. Aim to leave around 17:30–18:30; 17:00 is optimistic.',
       'Shake Shack at Tacoma Mall, then Whole Foods Chambers Bay for breakfast, water and simple road supplies. Whole Foods closes at 21:00.',
       'Head south to an inn around Olympia / Lacey and sleep. If you are too tired or delayed, stop in Tacoma and drive to Olympia in the morning.'],
+    ideas: ['Only if arrival is smooth and you still feel fresh: a short evening look at the Washington State Fair in Puyallup. On Thursday Sept 24 it closes at 21:30; buildings close at 20:30. Allow 60–90 minutes inside plus parking and the detour. Skip it if tired; a Tacoma inn is the simpler overnight if you go. The fair ends Sept 27 and this optional detour is not in the driving total.'],
     sleep: bed('Olympia / Lacey inn — Tacoma is the tired-arrival fallback'),
     food: [{ nm: 'Shake Shack · Tacoma Mall', tags: [], note: '4502 S Steele St. Confirm dietary preparation when ordering.' }, { nm: 'Whole Foods · Chambers Bay', tags: [], note: '3515 Bridgeport Way W, University Place · 08:00–21:00. A short detour for supplies.' }],
     why: 'Getting the car tonight makes Friday morning about Olympia and oysters.' });
@@ -102,7 +103,7 @@ export function seattleDays(base: Day[], options: SeattleOptions): Day[] {
     sunday.hi = [...sunday.hi, 'Return the Seattle rental this evening; tomorrow’s early departure starts from the airport hotel.'];
     monday = makeDay('seaReturn', { kind: 'city', act: 'II', title: 'Fly south, take a breath', leg: 'SeaTac → Salt Lake City (morning flight)', routeId: 'waSlcChill', rental: 'No car', hours: 0,
       at: [40.76, -111.89], atZoom: 12, photos: ['saltlakecity', 'greatsaltlake', 'antelopeSunset'], poiDay: 'waSlcChill', weather: { day: 'saltlake', bed: 'saltlake' },
-      hi: ['Fly to Salt Lake City in the morning; the exact flight is not booked.', 'Drop the bags, have lunch, take a short downtown walk and rest. No long drive today.', 'Keep the Utah car pickup for tomorrow. Bonneville, the Tetons and Yellowstone retain their planned dates.'],
+      hi: ['Fly to Salt Lake City in the morning; the exact flight is not booked.', 'Drop the bags, have lunch, then visit Red Butte Garden for 1½–2 hours if the flight arrives early enough. Take a rideshare; the Tesla pickup stays tomorrow. September hours are 09:00–19:30, or 17:00 on concert dates. If you do the garden today, free up the final Salt Lake afternoon.', 'Keep the Utah car pickup for tomorrow. Bonneville, the Tetons and Yellowstone retain their planned dates.'],
       ideas: ['Liberty Park if you want a longer walk. The lake photographs preview the region; no lake excursion is scheduled today.'],
       sleep: bed('Salt Lake City hotel'), alert: 'This is a weather alternative, not a forecast. Confirm the flight, extra hotel night and Seattle rental return terms before booking.',
       why: 'A recovery day in Utah instead of another wet day waiting for the mountain.' } as Omit<Day, 'id' | 'act'>);

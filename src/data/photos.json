@@ -698,5 +698,13 @@
     "license": "No known restrictions on publication",
     "alt": "Monterey Canning Company building on Cannery Row in Monterey",
     "label": "Monterey Canning Company"
+  },
+  "halfmoonbay": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Half_Moon_Bay_California_Main_Street.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Half_Moon_Bay_California_Main_Street.jpg",
+    "credit": "Tomwsulcer",
+    "license": "CC0",
+    "alt": "Historic Main Street in Half Moon Bay, California",
+    "label": "Half Moon Bay · Main Street"
   }
 }

@@ -806,14 +806,14 @@
  },
  {
   "id": "lava-hot-springs",
-  "name": "Lava Hot Springs",
+  "name": "Lava Hot Springs · optional",
   "kind": "sight",
   "lat": 42.61936,
   "lon": -112.01107,
   "day": "s10",
   "tags": [],
   "city": "Lava Hot Springs ID",
-  "desc": "Five pools of mineral water at 43 °C, run by the state and startlingly cheap. Splits the run back to Salt Lake.",
+  "desc": "Only if Red Butte Garden was already visited on the earlier Salt Lake day. Optional detour, not included in the main route.",
   "photo": "lavahotsprings"
  },
  {
@@ -1009,18 +1009,6 @@
   "city": "Mountain View CA",
   "photo": "googleplex",
   "desc": "The campus that grew out of a Stanford dorm project. The Android lawn statues are the photo stop; the Gradient Canopy building is the architecture stop."
- },
- {
-  "id": "computer-history-museum",
-  "name": "Computer History Museum",
-  "kind": "sight",
-  "lat": 37.41429,
-  "lon": -122.07745,
-  "day": "sfValleyLoop",
-  "tags": [],
-  "city": "Mountain View CA",
-  "photo": "computerhistory",
-  "desc": "Abacus to transistor to web in two hours. The single best stop of the day for reframing what a garage-sized idea can become."
  },
  {
   "id": "meta-hq",
@@ -1741,7 +1729,7 @@
   "kind": "sight",
   "lat": 36.6158,
   "lon": -121.9007,
-  "day": "sfMonterey",
+  "day": "sfCoastValley",
   "tags": [],
   "city": "Monterey",
   "website": "https://canneryrow.com/properties/700-cannery-row/"
@@ -1752,10 +1740,11 @@
   "kind": "sight",
   "lat": 36.6182,
   "lon": -121.9018,
-  "day": "sfMonterey",
+  "day": "sfCoastValley",
   "tags": [],
   "city": "Monterey",
-  "website": "https://www.montereybayaquarium.org/"
+  "website": "https://www.montereybayaquarium.org/",
+  "desc": "Not scheduled in this version: a 3–4-hour visit would displace NODE, Monterey evening time or the fixed pumpkin morning."
  },
  {
   "id": "in-n-out-burger-fishermans-wharf-coast",
@@ -1771,18 +1760,6 @@
   ],
   "city": "San Francisco CA",
   "desc": "Protein style, no cheese. The fries are safe — own fryer, potato and sunflower oil only"
- },
- {
-  "id": "computer-history-museum-coast",
-  "name": "Computer History Museum",
-  "kind": "sight",
-  "lat": 37.41429,
-  "lon": -122.07745,
-  "day": "sfCoastValley",
-  "tags": [],
-  "city": "Mountain View CA",
-  "photo": "computerhistory",
-  "desc": "Abacus to transistor to web in two hours. The single best stop of the day for reframing what a garage-sized idea can become."
  },
  {
   "id": "stanford-coast",
@@ -1806,5 +1783,75 @@
   "tags": [],
   "city": "Palo Alto CA",
   "desc": "Must visit: digital-art foundation at 180 University Ave. Plan 90 minutes. Thu–Fri 18:00–22:00, Sat 12:00–22:00, Sun 12:00–20:00. Confirm the October exhibition and admission details at nodefoundation.com."
+ },
+ {
+  "id": "red-butte-s10",
+  "name": "Red Butte Garden",
+  "kind": "sight",
+  "lat": 40.76511,
+  "lon": -111.82444,
+  "day": "s10",
+  "tags": [],
+  "city": "Salt Lake City UT",
+  "address": "300 Wakara Way",
+  "website": "https://redbuttegarden.org/plan-your-garden-visit/general-info/",
+  "verified": "2026-09-13",
+  "desc": "Allow 1½–2 hours. October 09:00–17:00; September until 19:30, with 17:00 closure on concert dates. Visit once: on the early SLC arrival alternative or before the final car return."
+ },
+ {
+  "id": "red-butte-waSlcChill",
+  "name": "Red Butte Garden",
+  "kind": "sight",
+  "lat": 40.76511,
+  "lon": -111.82444,
+  "day": "waSlcChill",
+  "tags": [],
+  "city": "Salt Lake City UT",
+  "address": "300 Wakara Way",
+  "website": "https://redbuttegarden.org/plan-your-garden-visit/general-info/",
+  "verified": "2026-09-13",
+  "desc": "Allow 1½–2 hours. October 09:00–17:00; September until 19:30, with 17:00 closure on concert dates. Visit once: on the early SLC arrival alternative or before the final car return."
+ },
+ {
+  "id": "topaz-farm",
+  "name": "Topaz Farm · optional",
+  "kind": "sight",
+  "lat": 45.64784,
+  "lon": -122.82361,
+  "day": "waPortland",
+  "tags": [],
+  "city": "Sauvie Island OR",
+  "address": "17100 NW Sauvie Island Rd",
+  "website": "https://topazfarm.com/",
+  "verified": "2026-09-13",
+  "desc": "Optional 60–90-minute farm stop replacing some shopping or the longer river walk. Current programme includes weekends; not Wednesday-only. Confirm Sept 26/27 opening and available crops. Detour excluded from main route."
+ },
+ {
+  "id": "puyallup-fair",
+  "name": "Washington State Fair · only if there is energy",
+  "kind": "sight",
+  "lat": 47.181,
+  "lon": -122.293,
+  "day": "waArrival",
+  "tags": [],
+  "city": "Puyallup WA",
+  "address": "110 9th Ave SW",
+  "website": "https://www.thefair.com/washington-state-fair/fair-event-details/",
+  "verified": "2026-09-13",
+  "desc": "Optional evening peek after arrival, not a planned fair day. Sept 24: closes 21:30, buildings 20:30. Parking, admission and a detour still needed. Fair ends Sept 27; skip if delayed or tired."
+ },
+ {
+  "id": "halfmoon-weighoff",
+  "name": "Half Moon Bay · pumpkin weigh-off (Oct 12)",
+  "kind": "sight",
+  "lat": 37.460211,
+  "lon": -122.429231,
+  "day": "sfHalfMoon",
+  "tags": [],
+  "city": "Half Moon Bay CA",
+  "address": "IDES Grounds, 735 Main Street",
+  "website": "https://hmbweighoff.com/quick-facts.html",
+  "verified": "2026-09-13",
+  "desc": "Fixed date: Monday October 12, 2026. Weighing roughly 07:00–11:00; awards afterwards. Spectators welcome. Aim to arrive by 08:30–09:00; allow parking time. The later Pumpkin Festival is Oct 17–18."
  }
 ]

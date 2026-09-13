@@ -77,6 +77,7 @@ export const BUDGET_CFG = [
   { id: "cap", label: "Miles included per day", min: 75, max: 400, step: 25, val: 150, fmt: (v: number) => (v >= 400 ? "unlimited" : v + " mi") },
   { id: "overMi", label: "Cost per extra mile", min: 0, max: 1, step: 0.01, val: 0.27, fmt: (v: number) => "$" + v.toFixed(2) },
   { id: "motelNights", label: "Motel and hotel nights", min: 0, max: 22, step: 1, val: 16, fmt: (v: number) => v + " nights" },
+  { id: "campNight", label: "Campsite allowance per car night", min: 0, max: 100, step: 5, val: 30, fmt: (v: number) => "$" + v },
   { id: "motel", label: "Motel, per night", min: 70, max: 300, step: 10, val: 130, fmt: (v: number) => "$" + v },
   { id: "kwh", label: "Charging, per kWh", min: 0.2, max: 0.6, step: 0.02, val: 0.4, fmt: (v: number) => "$" + v.toFixed(2) },
   { id: "gas", label: "Gas, per gallon", min: 2, max: 7, step: 0.1, val: 4.5, fmt: (v: number) => "$" + v.toFixed(1) },

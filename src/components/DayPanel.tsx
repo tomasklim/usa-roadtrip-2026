@@ -1,3 +1,4 @@
+import { WeatherCard } from "./WeatherCard";
 import { difficulty, distLabel, downloadGpx, fmtDate, fmtShort, rentals, toGpx, type Trip } from "../lib/trip";
 import type { Day, Units } from "../types";
 import { AlertBox, ChargeRow, FoodRow, HiRow, IdeasRow, PhotoStrip, SleepRow, WhyRow } from "./DayParts";
@@ -86,7 +87,7 @@ export function DayPanel({ day, units, count, width, tab, setTab, sheet, onClose
       </div>
 
       <div className="detail-body tabbed">
-        {tab === "plan" && <><WhyRow day={day} /><HiRow day={day} /><IdeasRow day={day} /></>}
+        {tab === "plan" && <><WeatherCard day={day} /><WhyRow day={day} /><HiRow day={day} /><IdeasRow day={day} /></>}
         {tab === "food" && (day.food?.length
           ? <FoodRow day={day} />
           : <p className="empty">Nothing planned to eat on this day — it is a travel or rest day.</p>)}

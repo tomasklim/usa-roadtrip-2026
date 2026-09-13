@@ -1,6 +1,6 @@
 import { BASE, CAR_NIGHTS, MODULES } from "../data/itinerary";
 import routesRaw from "../data/routes.json";
-import type { Day, Leg, SleepStyle, Units } from "../types";
+import type { Day, Leg, SleepOverrides, SleepStyle, Units } from "../types";
 
 export const ROUTES = routesRaw as unknown as Record<string, Leg>;
 
@@ -73,7 +73,7 @@ export interface Trip {
   spare: number;
 }
 
-export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced"): Trip {
+export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", overrides: SleepOverrides = {}): Trip {
   let days: Day[] = BASE.map((d) => ({ ...d }));
   const active = MODULES.filter((m) => on.has(m.id));
 
@@ -109,6 +109,7 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced"):
   }
   const overrun = Math.max(0, days.length - CAP_DAYS);
 
+  let carStreak = 0;
   days.forEach((d, i) => {
     d.num = i + 1;
     d.date = START + i * DAY_MS;
@@ -116,8 +117,19 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced"):
     // Sleeping style is applied here so every downstream count — the hero, the
     // budget's lodging line, the day cards — reads from one decision.
     const car = CAR_NIGHTS[d.id];
-    const wantCar = car && (sleepStyle === "car" || (sleepStyle === "balanced" && car.tier === 1));
-    if (wantCar) d.sleep = { t: "car", where: car.where, note: car.note };
+    if (d.sleep) d.sleep = { ...d.sleep };
+    const choice = overrides[d.id];
+    const priceException = !!car && choice === "price";
+    const wantCar = !!car && choice !== "bed" && (priceException || sleepStyle === "car" || (sleepStyle === "balanced" && car.tier === 1));
+    if (wantCar && (carStreak < 2 || priceException)) {
+      carStreak++;
+      d.sleep = { t: "car", where: car.where, note: car.note, streak: carStreak, priceException,
+        decision: `${carStreak > 2 ? "Beyond the two-night limit · " : ""}${priceException ? "Your price exception · " : ""}car night ${carStreak} in a row.` };
+    } else {
+      if (d.sleep && wantCar && carStreak >= 2) d.sleep.decision = `A bed after ${carStreak} car nights — shower, rest and reset.`;
+      else if (d.sleep && choice === "bed") d.sleep.decision = "Your choice: a bed tonight.";
+      carStreak = 0;
+    }
   });
 
   const meters = days.reduce((s, d) => s + (d.meters ?? 0), 0);

@@ -2,6 +2,7 @@ export type Tag = "gf" | "df" | "meat" | "oy" | "ino";
 export type Units = "mi" | "km";
 export type DayKind = "arrive" | "city" | "drive" | "sf" | "depart";
 export type SleepStyle = "motel" | "balanced" | "car";
+export type SleepOverrides = Record<string, "bed" | "price">;
 
 export interface FoodPick {
   nm: string;
@@ -23,7 +24,7 @@ export interface Day {
   photos?: string[];
   hi: string[];
   ideas?: string[];
-  sleep?: { t: "car" | "motel"; where: string; note?: string };
+  sleep?: { t: "car" | "motel"; where: string; note?: string; streak?: number; decision?: string; priceException?: boolean };
   food?: FoodPick[];
   charge?: string[];
   alert?: string;

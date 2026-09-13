@@ -1,3 +1,4 @@
+import { WeatherCard } from "./WeatherCard";
 import { useLayoutEffect, useRef } from "react";
 import { AlertBox, ChargeRow, FoodRow, HiRow, IdeasRow, PhotoStrip, SleepRow, WhyRow } from "./DayParts";
 import { distLabel, downloadGpx, fmtDate, fmtShort, toGpx, type Trip } from "../lib/trip";
@@ -58,6 +59,7 @@ export function DailyPlan({ trip, day, units, tab, setTab, onSelect, onMap }: {
             <button className="action primary" onClick={() => onMap(day.id)}>⌖ Show on map</button>
             {!!day.meters && <button className="action" onClick={() => downloadGpx(`day-${day.num}.gpx`, toGpx(day.title, [{id:day.id,title:day.title}]))}>↓ Day GPX</button>}
           </div>
+          <WeatherCard day={day} />
           {day.alert && <AlertBox day={day} />}
           <div className="daily-tabs" role="group" aria-label="Day information">
             {([["plan", "The plan"], ["food", "Food"], ["sleep", "Sleep"], ["charge", "Charging"]] as const).map(([id, label]) =>

@@ -198,7 +198,7 @@ export const BASE: Day[] = [
           "Firehole Canyon Drive and the Firehole Lake Drive loop",
           "Fountain Paint Pot and the Midway basin boardwalk at dusk, when the steam catches the light",
           "The Old Faithful Inn lobby is worth ten minutes even if you are not staying"],
-  sleep: { t: "motel", where: "West Yellowstone again — Supercharger in town" },
+  sleep: { t: "motel", where: "West Yellowstone — Supercharger in town" },
   food: [{ nm: "West Yellowstone", note: "Bison burger, lettuce wrap. Slim choice but the town has a Whole-Foods-ish market", tags: ["meat"] }],
   charge: ["West Yellowstone SC — second night in town means a second easy charge"],
   why: "Yesterday you drove through the geysers. Today you actually see them, and the walking is the point." },
@@ -536,26 +536,24 @@ export const MODULES: Module[] = [
 ];
 
 /**
- * Where a night in the car actually works.
- * tier 1 — mild elevation, easy access, no real downside.
+ * Candidate areas for car nights; permission, seasonal access and availability need checking.
+ * tier 1 — preferred scenic or convenient car nights; still check overnight temperatures.
  * tier 2 — works, but cold (mostly 1,800–2,100 m in October) or a town where a bed is nicer.
  * Days absent must be a bed: Gardiner and Red Lodge because the overnight charge IS the plan,
  * Seattle and San Francisco because they are cities and flight days.
  */
 export const CAR_NIGHTS: Record<string, { where: string; tier: 1 | 2; note?: string }> = {
-  seaA: { tier: 1, where: "Gifford Pinchot NF dispersed near Ashford, or Cougar Rock Campground in the park", note: "600 m and mild — the easiest car night of the trip, and it is at the mountain's foot" },
+  seaA: { tier: 1, where: "Ashford area — confirm an open campground or permitted forest site", note: "Near the mountain’s foot. The weather estimate is for Ashford, not higher camps inside the park." },
   olyA: { tier: 2, where: "Bogachiel State Park or dispersed off the Hoh road", note: "Rainforest means wet, not just cold — condensation will be serious" },
   s2:  { tier: 1, where: "Shadow Mountain, Bridger-Teton NF", note: "The Tetons from the tailgate. The best car night on the route" },
-  s3:  { tier: 1, where: "Shadow Mountain again", note: "No reason to move if you got a good spot" },
+  s3:  { tier: 1, where: "Shadow Mountain, Bridger-Teton NF", note: "If camping both nights, keep the same permitted spot." },
   s4:  { tier: 2, where: "Gallatin NF dispersed outside West Yellowstone", note: "2,000 m and often below freezing — but the Supercharger is 10 min away in the morning" },
-  s4b: { tier: 2, where: "Gallatin NF dispersed outside West Yellowstone, same spot as last night", note: "No reason to move — and the Supercharger in town is 10 min away" },
-  s5b: { tier: 2, where: "Mammoth Campground inside Yellowstone", note: "Open year-round and reservable. Puts you 45 min from Lamar at dawn, which is the whole point of this day" },
+  s4b: { tier: 2, where: "Gallatin NF dispersed outside West Yellowstone", note: "Use a confirmed overnight site; recharge in West Yellowstone." },
   s8:  { tier: 2, where: "Hyalite Canyon, Gallatin NF south of Bozeman", note: "2,000 m. Spectacular, and you will use the whole sleeping bag" },
-  s9:  { tier: 1, where: "Caribou-Targhee NF near Ashton, or the Snake River near Idaho Falls", note: "1,500 m and mild, with the Tetons on the skyline behind you" },
-  s10: { tier: 2, where: "Big Cottonwood Canyon above Salt Lake", note: "Fine, but this is the last night before a flight — a bed and a shower earn their money" },
+  s9:  { tier: 1, where: "Snake River area near Idaho Falls — confirm an overnight site", note: "Use a confirmed campground; the estimate is for the Idaho Falls valley." },
   // module days
   craters2: { tier: 1, where: "BLM dispersed near Arco, beside the lava", note: "Dark-sky country; Craters is an official International Dark Sky Park" },
-  dinoA:    { tier: 2, where: "BLM near Flaming Gorge or Split Mountain", note: "Red rock and total silence" },
+  dinoA:    { tier: 2, where: "Flaming Gorge area — confirm an open campground or permitted BLM site", note: "Red rock and total silence" },
   dinoB:    { tier: 1, where: "Shadow Mountain, Bridger-Teton NF", note: "After 356 mi you will not care where you are" },
   antelope: { tier: 1, where: "Antelope Island Campground", note: "Bison, salt and a very strange smell" },
   // Bay Area days return to San Francisco in the mapped itinerary. Marin camping
@@ -563,7 +561,7 @@ export const CAR_NIGHTS: Record<string, { where: string; tier: 1 | 2; note?: str
 };
 
 export const SLEEP_STYLES = [
-  { id: "motel" as const, label: "Beds", desc: "A bed every night. Simplest, and the most expensive." },
-  { id: "balanced" as const, label: "Balanced", desc: "Car on the mild, easy nights; a bed where altitude, charging or a good dinner argues for one." },
-  { id: "car" as const, label: "Car first", desc: "Every night the car works, including the cold ones at 2,000 m. Cheapest by a long way." }
+  { id: "motel" as const, label: "Beds", desc: "A bed every night unless you select a price exception." },
+  { id: "balanced" as const, label: "Balanced", desc: "Selected scenic car nights, with a bed after at most two in a row." },
+  { id: "car" as const, label: "Car first", desc: "More car nights, including colder areas, but a bed after at most two in a row. Price exceptions are your choice." }
 ];

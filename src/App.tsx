@@ -9,13 +9,13 @@ import { Charging, Glance, LoadChart, RiskSection, SleepSection } from "./compon
 import { FoodGuide } from "./components/FoodGuide";
 import { Budget } from "./components/Budget";
 import { Checklist } from "./components/Checklist";
-import { MODULES } from "./data/itinerary";
+import { CAR_NIGHTS, MODULES } from "./data/itinerary";
 import { buildTrip } from "./lib/trip";
 import { useStored } from "./lib/useStored";
 import { DailyPlan, DayPicker } from "./components/DailyPlan";
 import { navigate, TOPICS, todayInTrip, useNavigation } from "./lib/navigation";
 import { downloadOfflinePlan } from "./lib/offline";
-import type { SleepStyle, Units } from "./types";
+import type { SleepOverrides, SleepStyle, Units } from "./types";
 import type { Tab } from "./components/DayPanel";
 
 const RouteMap = lazy(() => import("./components/RouteMap").then(module => ({ default: module.RouteMap })));
@@ -33,13 +33,14 @@ export default function App() {
   const [panelWidth, setPanelWidth] = useStored<number>("panelWidth", 400, NORMALIZE_PANEL_WIDTH);
   const [showList, setShowList] = useStored<boolean>("showList", false, NORMALIZE_FALSE);
   const [sleepStyle, setSleepStyle] = useStored<SleepStyle>("sleepStyle", "balanced", NORMALIZE_SLEEP);
+  const [sleepOverrides, setSleepOverrides] = useStored<SleepOverrides>("sleepOverrides", {}, normalizeSleepOverrides);
   const [selected, setSelected] = useStored<string | null>("selectedDay", null, normalizeDay);
   const route = useNavigation();
   const { view, topic } = route;
   const [ghost, setGhost] = useState<string | null>(null);
 
   const on = useMemo(() => new Set(Array.isArray(mods) ? mods : []), [mods]);
-  const trip = useMemo(() => buildTrip(on, sleepStyle), [on, sleepStyle]);
+  const trip = useMemo(() => buildTrip(on, sleepStyle, sleepOverrides), [on, sleepStyle, sleepOverrides]);
   const routeDay = trip.days.find(d => d.id === route.day);
   const activeSelection = routeDay?.id ?? (view === "map" ? null : selected);
   const day = routeDay ?? trip.days.find(d => d.id === selected) ?? todayInTrip(trip) ?? trip.days[0];
@@ -166,7 +167,7 @@ export default function App() {
           <label className="topic-select">Open section<select value={topic} onChange={e => navigate("guide", e.target.value)}>{TOPICS.map(([id,label]) => <option key={id} value={id}>{label}</option>)}</select></label>
           {topic === "checklist" && <Checklist />}
           {topic === "food" && <FoodGuide trip={trip} />}
-          {topic === "sleep" && <SleepSection trip={trip} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} />}
+          {topic === "sleep" && <SleepSection trip={trip} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} overrides={sleepOverrides} setOverrides={setSleepOverrides} />}
           {topic === "charging" && <Charging />}
           {topic === "risks" && <RiskSection />}
           {topic === "budget" && <Budget trip={trip} />}
@@ -231,3 +232,9 @@ const NORMALIZE_MAP_HEIGHT = finiteOrNull(260, 1800);
 const NORMALIZE_PANEL_WIDTH = finite(280, 1200, 400);
 
 const normalizeDay = (value: unknown) => typeof value === "string" ? value : null;
+
+function normalizeSleepOverrides(value: unknown): SleepOverrides {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  return Object.fromEntries(Object.entries(value).filter(([id, choice]) =>
+    Object.hasOwn(CAR_NIGHTS, id) && (choice === "bed" || choice === "price")));
+}

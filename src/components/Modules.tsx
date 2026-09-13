@@ -147,7 +147,7 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
         ))}
       </div>
       <p className="hint" style={{ margin: "9px 0 0" }}>
-        {SLEEP_STYLES.find((s) => s.id === sleepStyle)?.desc}
+        {SLEEP_STYLES.find((s) => s.id === sleepStyle)?.desc} <a href="#guide/sleep">Review nights & price exceptions ↗</a>
       </p>
     </div>
   );

@@ -18,6 +18,7 @@ const lines: [string, number][] = [
   ["charging", (slcMiles / 4) * S.kwh],
   ["fuel", (gasMiles / 29) * S.gas],
   [`lodging ${lodging}n`, lodging * S.motel],
+  [`campsites ${t.carNights}n`, t.carNights * S.campNight],
   [`food ${t.days.length}d ×2`, 2 * t.days.length * S.foodDay],
   ["park pass", 250], ["gear", 170], ["domestic flights", 520],
   [`SF hotel ${t.sfNights}n`, t.sfNights * S.sfNight],

@@ -275,3 +275,37 @@ footer a{font-size:.76rem;margin-left:auto;text-decoration:none;white-space:nowr
 .map-loading{min-height:55svh;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;color:var(--muted)}
 
 .view-content section .wrap{padding-inline:0}
+
+/* Bundled historical estimates keep the day layout stable, even offline. */
+.weather-card { margin: 20px 0; padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--pine-soft); }
+.weather-heading { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+.weather-heading b { font-size: .95rem; }
+.weather-heading > span { font-size: .75rem; color: var(--muted); }
+.weather-values { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin: 16px 0; }
+.weather-values > div { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.weather-values div > span { font-size: .63rem; font-weight: 700; letter-spacing: .06em; }
+.weather-values strong { font-size: 1.6rem; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.weather-values small { font-size: .75rem; line-height: 1.4; color: var(--muted); }
+.weather-card details { border-top: 1px solid var(--line); padding-top: 8px; }
+.weather-card summary, .sleep-help summary { cursor: pointer; padding: 7px 0; font-size: .82rem; }
+.weather-card details p, .sleep-help p { font-size: .8rem; line-height: 1.6; color: var(--muted); margin: 10px 0; }
+.weather-cold { border-left: 3px solid var(--rust); padding-left: 10px; font-size: .8rem; line-height: 1.5; }
+.night-list { margin-top: 20px; }
+.night-item { display: grid; grid-template-columns: 110px minmax(0,1fr) 210px; gap: 16px; border-top: 1px solid var(--line); padding: 18px 0; align-items: start; }
+.night-date { display: grid; gap: 5px; font-size: .83rem; }
+.night-date a { font-weight: 700; }
+.night-place b { display: block; font-size: .88rem; font-weight: 600; }
+.night-place small { display: block; font-size: .76rem; color: var(--muted); line-height: 1.6; margin-top: 5px; }
+.night-choice { display: grid; gap: 5px; font-size: .73rem; color: var(--muted); }
+.night-choice select { width: 100%; min-height: 44px; font: inherit; font-size: 16px; border: 1px solid var(--line); border-radius: 8px; padding: 8px; background: var(--surface); color: var(--text); }
+.sleep-decision { font-size: .8rem; color: var(--pine); margin: 6px 0; line-height: 1.5; }
+.sleep-decision.exception { color: var(--rust); }
+.sleep-help { margin: 12px 0; }
+@media(max-width: 700px) {
+  .night-item { grid-template-columns: 1fr; gap: 8px; }
+  .night-date { display: flex; justify-content: space-between; }
+  .night-fixed { margin: 0; }
+  .weather-card { padding: 14px; }
+  .weather-values { gap: 8px; }
+  .weather-values strong { font-size: 1.4rem; }
+}

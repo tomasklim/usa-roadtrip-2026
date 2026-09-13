@@ -1,3 +1,4 @@
+import { WeatherCard } from "./WeatherCard";
 import { ACTS } from "../data/itinerary";
 import { difficulty, distLabel, downloadGpx, fmtDate, fmtShort, toGpx, ROUTES } from "../lib/trip";
 import type { Trip } from "../lib/trip";
@@ -57,6 +58,7 @@ export function DayCard({ day, units, selected, onSelect }: {
         <WhyRow day={day} />
         <HiRow day={day} />
         <IdeasRow day={day} />
+        <WeatherCard day={day} />
         <SleepRow day={day} />
         <FoodRow day={day} />
         <ChargeRow day={day} />

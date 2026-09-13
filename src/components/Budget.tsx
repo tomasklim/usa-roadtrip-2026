@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { BUDGET_CFG } from "../data/reference";
 import { rentals, turoDays, type Trip } from "../lib/trip";
 import { useStored } from "../lib/useStored";
@@ -31,11 +30,7 @@ export function Budget({ trip }: { trip: Trip }) {
   // Lodging follows the itinerary until it is dragged by hand.
   const sfCarNights = trip.days.filter((d) => d.kind === "sf" && d.sleep?.t === "car").length;
   const lodgingNights = Math.max(0, trip.days.length - 1 - (trip.carNights - sfCarNights) - trip.sfNights);
-  useEffect(() => {
-    if (!touched.motelNights && s.motelNights !== lodgingNights) {
-      setRaw({ ...s, motelNights: lodgingNights });
-    }
-  }, [lodgingNights, touched.motelNights, s.motelNights]);
+  if (!touched.motelNights) s.motelNights = lodgingNights;
 
   const td = turoDays(trip);
   const r = rentals(trip);
@@ -59,6 +54,7 @@ export function Budget({ trip }: { trip: Trip }) {
     [`Tesla charging (~${num(kwh)} kWh at 4 mi/kWh)`, kwh * s.kwh],
     [`Fuel for Seattle + Bay Area (~${num(gallons)} gal at 29 mpg)`, gallons * s.gas],
     [`Motels and hotels, ${s.motelNights} nights × ${usd(s.motel)}`, s.motelNights * s.motel],
+    [`Campsite allowance, ${trip.carNights} car nights × ${usd(s.campNight)}`, trip.carNights * s.campNight],
     [`Food, 2 people × ${trip.days.length} days × ${usd(s.foodDay)}`, 2 * trip.days.length * s.foodDay],
     ["Non-resident annual park pass", 250],
     ["Bear spray, mattress, bedding", 170],
@@ -95,6 +91,8 @@ export function Budget({ trip }: { trip: Trip }) {
           listing 3758006 — <b>US$566.50 all-in for 9 days</b>, 1,350 miles included, $0.27 a mile over —
           scaled to the twelve days the route actually needs.
         </p>
+        <p className="hint">Room rates and the $30 campsite allowance are editable planning assumptions, not checked offers. Car nights are not assumed to be free.</p>
+        <p className="hint">{touched.motelNights ? <>Hotel-night count is manually set. <button className="mini" onClick={() => setTouched({ ...touched, motelNights: false })}>Use itinerary nights ({lodgingNights})</button></> : <>Hotel-night count follows your sleep plan: {lodgingNights} outside San Francisco, plus {trip.sfNights - sfCarNights} in the city.</>}</p>
         <div className="budget">
           <div className="card sliders">
             {BUDGET_CFG.map((c) => (

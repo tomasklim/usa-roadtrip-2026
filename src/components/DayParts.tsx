@@ -64,9 +64,11 @@ export const SleepRow = ({ day }: { day: Day }) =>
         <div className="rl">Sleeping</div>
         <span className={`sleep-${day.sleep.t}`}>{day.sleep.t === "car" ? "In the car" : "A bed"}</span>
         {" — "}{day.sleep.where}
+        {day.sleep.decision && <p className={`sleep-decision${day.sleep.priceException ? " exception" : ""}`}>{day.sleep.decision}</p>}
         {day.sleep.note && (
           <><br /><span style={{ color: "var(--muted)", fontSize: ".85rem" }}>{day.sleep.note}</span></>
         )}
+        <p className="hint"><a href="#guide/sleep">Adjust this night ↗</a></p>
       </div>
     </div>
   ) : null;

@@ -1,0 +1,328 @@
+{
+  "places": {
+    "seattle": {
+      "name": "Seattle",
+      "latitude": 47.61,
+      "longitude": -122.33,
+      "timezone": "America/Los_Angeles"
+    },
+    "rainier": {
+      "name": "Mount Rainier \u00b7 Paradise",
+      "latitude": 46.786,
+      "longitude": -121.736,
+      "timezone": "America/Los_Angeles"
+    },
+    "ashford": {
+      "name": "Ashford / park entrance",
+      "latitude": 46.75,
+      "longitude": -122.02,
+      "timezone": "America/Los_Angeles"
+    },
+    "hood": {
+      "name": "Hood Canal",
+      "latitude": 47.55,
+      "longitude": -123.03,
+      "timezone": "America/Los_Angeles"
+    },
+    "saltlake": {
+      "name": "Salt Lake City",
+      "latitude": 40.76,
+      "longitude": -111.89,
+      "timezone": "America/Denver"
+    },
+    "bonneville": {
+      "name": "Bonneville Salt Flats",
+      "latitude": 40.75,
+      "longitude": -113.85,
+      "timezone": "America/Denver"
+    },
+    "bearlake": {
+      "name": "Bear Lake",
+      "latitude": 41.95,
+      "longitude": -111.4,
+      "timezone": "America/Denver"
+    },
+    "jackson": {
+      "name": "Jackson",
+      "latitude": 43.48,
+      "longitude": -110.76,
+      "timezone": "America/Denver"
+    },
+    "teton": {
+      "name": "Grand Teton valley",
+      "latitude": 43.75,
+      "longitude": -110.73,
+      "timezone": "America/Denver"
+    },
+    "shadow": {
+      "name": "Shadow Mountain area",
+      "latitude": 43.72,
+      "longitude": -110.56,
+      "timezone": "America/Denver"
+    },
+    "geysers": {
+      "name": "Yellowstone \u00b7 Old Faithful",
+      "latitude": 44.46,
+      "longitude": -110.83,
+      "timezone": "America/Denver"
+    },
+    "westyellowstone": {
+      "name": "West Yellowstone",
+      "latitude": 44.66,
+      "longitude": -111.1,
+      "timezone": "America/Denver"
+    },
+    "canyon": {
+      "name": "Yellowstone Canyon",
+      "latitude": 44.72,
+      "longitude": -110.48,
+      "timezone": "America/Denver"
+    },
+    "lamar": {
+      "name": "Lamar Valley",
+      "latitude": 44.9,
+      "longitude": -110.22,
+      "timezone": "America/Denver"
+    },
+    "gardiner": {
+      "name": "Gardiner",
+      "latitude": 45.03,
+      "longitude": -110.7,
+      "timezone": "America/Denver"
+    },
+    "beartooth": {
+      "name": "Beartooth Pass",
+      "latitude": 44.97,
+      "longitude": -109.47,
+      "timezone": "America/Denver"
+    },
+    "redlodge": {
+      "name": "Red Lodge",
+      "latitude": 45.19,
+      "longitude": -109.25,
+      "timezone": "America/Denver"
+    },
+    "bozeman": {
+      "name": "Bozeman",
+      "latitude": 45.68,
+      "longitude": -111.04,
+      "timezone": "America/Denver"
+    },
+    "hyalite": {
+      "name": "Hyalite Canyon",
+      "latitude": 45.49,
+      "longitude": -110.98,
+      "timezone": "America/Denver"
+    },
+    "idahofalls": {
+      "name": "Idaho Falls",
+      "latitude": 43.49,
+      "longitude": -112.03,
+      "timezone": "America/Denver"
+    },
+    "lava": {
+      "name": "Lava Hot Springs",
+      "latitude": 42.62,
+      "longitude": -112.01,
+      "timezone": "America/Denver"
+    },
+    "sf": {
+      "name": "San Francisco",
+      "latitude": 37.7749,
+      "longitude": -122.4194,
+      "timezone": "America/Los_Angeles"
+    },
+    "paloalto": {
+      "name": "Palo Alto / NODE",
+      "latitude": 37.4442649,
+      "longitude": -122.1624976,
+      "timezone": "America/Los_Angeles"
+    },
+    "pointreyes": {
+      "name": "Point Reyes coast",
+      "latitude": 37.99562,
+      "longitude": -123.02315,
+      "timezone": "America/Los_Angeles"
+    },
+    "muirwoods": {
+      "name": "Muir Woods",
+      "latitude": 37.89639,
+      "longitude": -122.58022,
+      "timezone": "America/Los_Angeles"
+    },
+    "cody": {
+      "name": "Cody",
+      "latitude": 44.53,
+      "longitude": -109.06,
+      "timezone": "America/Denver"
+    },
+    "craters": {
+      "name": "Craters of the Moon",
+      "latitude": 43.42,
+      "longitude": -113.52,
+      "timezone": "America/Denver"
+    },
+    "arco": {
+      "name": "Arco",
+      "latitude": 43.64,
+      "longitude": -113.3,
+      "timezone": "America/Denver"
+    },
+    "vernal": {
+      "name": "Vernal / Dinosaur NM",
+      "latitude": 40.46,
+      "longitude": -109.53,
+      "timezone": "America/Denver"
+    },
+    "flaming": {
+      "name": "Flaming Gorge",
+      "latitude": 40.91,
+      "longitude": -109.55,
+      "timezone": "America/Denver"
+    },
+    "hoh": {
+      "name": "Hoh rainforest",
+      "latitude": 47.86,
+      "longitude": -123.93,
+      "timezone": "America/Los_Angeles"
+    },
+    "forks": {
+      "name": "Forks / Bogachiel area",
+      "latitude": 47.95,
+      "longitude": -124.39,
+      "timezone": "America/Los_Angeles"
+    },
+    "antelope": {
+      "name": "Antelope Island",
+      "latitude": 41.03,
+      "longitude": -112.22,
+      "timezone": "America/Denver"
+    }
+  },
+  "days": {
+    "arrive": {
+      "day": "seattle",
+      "bed": "seattle"
+    },
+    "sea1": {
+      "day": "seattle",
+      "bed": "seattle"
+    },
+    "seaA": {
+      "day": "rainier",
+      "bed": "ashford",
+      "car": "ashford"
+    },
+    "seaB": {
+      "day": "hood",
+      "bed": "seattle"
+    },
+    "s1": {
+      "day": "bonneville",
+      "bed": "saltlake"
+    },
+    "s2": {
+      "day": "bearlake",
+      "bed": "jackson",
+      "car": "shadow"
+    },
+    "s3": {
+      "day": "teton",
+      "bed": "jackson",
+      "car": "shadow"
+    },
+    "s4": {
+      "day": "geysers",
+      "bed": "westyellowstone",
+      "car": "westyellowstone"
+    },
+    "s4b": {
+      "day": "geysers",
+      "bed": "westyellowstone",
+      "car": "westyellowstone"
+    },
+    "s5": {
+      "day": "canyon",
+      "bed": "gardiner"
+    },
+    "s5b": {
+      "day": "lamar",
+      "bed": "gardiner",
+      "car": "gardiner"
+    },
+    "s6": {
+      "day": "beartooth",
+      "bed": "redlodge"
+    },
+    "s7": {
+      "day": "beartooth",
+      "bed": "gardiner"
+    },
+    "s8": {
+      "day": "bozeman",
+      "bed": "bozeman",
+      "car": "hyalite"
+    },
+    "s9": {
+      "day": "idahofalls",
+      "bed": "idahofalls",
+      "car": "idahofalls"
+    },
+    "s10": {
+      "day": "lava",
+      "bed": "saltlake"
+    },
+    "sf1": {
+      "day": "sf",
+      "bed": "sf"
+    },
+    "sf3": {
+      "day": "paloalto",
+      "bed": "sf"
+    },
+    "sf2": {
+      "day": "pointreyes",
+      "bed": "sf"
+    },
+    "sf4": {
+      "day": "muirwoods",
+      "bed": "sf"
+    },
+    "depart": {
+      "day": "sf"
+    },
+    "cody": {
+      "day": "cody",
+      "bed": "gardiner"
+    },
+    "craters2": {
+      "day": "craters",
+      "bed": "idahofalls",
+      "car": "arco"
+    },
+    "dinoA": {
+      "day": "vernal",
+      "bed": "vernal",
+      "car": "flaming"
+    },
+    "dinoB": {
+      "day": "flaming",
+      "bed": "jackson",
+      "car": "shadow"
+    },
+    "olyA": {
+      "day": "hoh",
+      "bed": "forks",
+      "car": "forks"
+    },
+    "olyB": {
+      "day": "hood",
+      "bed": "seattle"
+    },
+    "antelope": {
+      "day": "antelope",
+      "bed": "saltlake",
+      "car": "antelope"
+    }
+  }
+}

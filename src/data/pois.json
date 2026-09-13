@@ -1482,14 +1482,16 @@
  },
  {
   "id": "laurel-charge-break",
-  "name": "Laurel Supercharger · coffee break",
+  "name": "Laurel Supercharger",
   "kind": "sight",
   "lat": 45.666243,
   "lon": -108.761451,
   "day": "s7",
   "tags": [],
   "city": "Laurel MT",
-  "desc": "8 Tesla Superchargers up to 250 kW, available 24/7 at Fairfield by Marriott, 301 S Washington Ave. No adapter needed for the US Tesla."
+  "desc": "8 Tesla Superchargers up to 250 kW, available 24/7 at Fairfield by Marriott, 301 S Washington Ave. No adapter needed for the US Tesla.",
+  "address": "301 S Washington Ave",
+  "website": "https://www.tesla.com/findus/location/supercharger/19030"
  },
  {
   "id": "ino-south-salt-lake-ut",

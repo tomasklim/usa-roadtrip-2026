@@ -75,7 +75,7 @@ function PopCard({ cat, title, sub, body, photoKey, onJump, jumpLabel, direction
         {sub && <div className="pm">{sub}</div>}
         {body && <div className="pop-why">{body}</div>}
         {directions && <a className="pop-btn pop-link" href={directions} target="_blank" rel="noreferrer noopener">Directions ↗</a>}
-        {website && <a className="pop-source" href={website} target="_blank" rel="noreferrer noopener">Restaurant website ↗</a>}
+        {website && <a className="pop-source" href={website} target="_blank" rel="noreferrer noopener">Website ↗</a>}
         {onJump && (
           <button className="pop-btn" onClick={onJump}>{jumpLabel ?? "Read this day ↗"}</button>
         )}
@@ -325,7 +325,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
   };
   const idx = selected ? trip.days.findIndex((d) => d.id === selected) : -1;
   const cur = idx >= 0 ? trip.days[idx] : null;
-  const visiblePois = trip.days.flatMap(d => POIS.filter(p => p.day === (d.poiDay ?? d.id)).map(p => ({ ...p, day: d.id })));
+  const visiblePois = trip.days.flatMap(d => POIS.filter(p => p.day === (d.poiDay ?? d.id) && !CHARGERS.some(c => c.poiId === p.id)).map(p => ({ ...p, day: d.id })));
   const bm = BASEMAPS[basemap];
 
   // Height is dragged locally and only committed to storage on release, so a
@@ -468,22 +468,28 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
 
           <PoiLayer layers={layers} pois={visiblePois} onOpenDay={openDay} dayLabel={dayLabel} />
 
-          {layers.chargers && CHARGERS.map((c) => (
+          {CHARGERS.filter(c => layers.chargers || (c.day && trip.days.some(d => d.id === c.day))).map((c) => {
+            const planned = !!c.day && trip.days.some(d => d.id === c.day);
+            const place = c.poiId ? POIS.find(p => p.id === c.poiId) : undefined;
+            return (
             <Marker key={c.id} position={[c.lat, c.lon]}
-                    icon={dropIcon("charge", true, c.fast ? "" : "slow")}
+                    icon={dropIcon("charge", !planned, c.fast ? "" : "slow")}
+                    zIndexOffset={planned ? 600 : 0}
                     title={c.name} alt={`charger: ${c.name}`}
                     eventHandlers={markerEvents(`charger: ${c.name}`)}>
-              <Tooltip direction="top" offset={[0, -18]} className="hovlbl">
-                {c.name}{c.stalls ? ` · ${c.stalls} stalls` : ""}
+              <Tooltip permanent={planned} direction="top" offset={[0, planned ? -26 : -18]} className={planned ? "maplbl" : "hovlbl"}>
+                {place?.name ?? c.name}{c.stalls ? ` · ${c.stalls} stalls` : ""}
               </Tooltip>
               <Popup maxWidth={280} minWidth={270}>
                 <PopCard cat="charge" title={c.name}
                          sub={`${c.city || "Supercharger"}${c.stalls ? ` · ${c.stalls} stalls` : ""}`}
-                         body={c.fast ? "Tesla Supercharger — a full stop of 20-30 minutes gets you most of a battery."
-                                      : "Destination or slow charger. Useful overnight, not for a top-up on the move."} />
+                         body={place?.desc ?? (c.fast ? "Tesla Supercharger — check live availability and the recommended charging time in the car."
+                                      : "Destination or slow charger. Useful overnight, not for a top-up on the move.")}
+                         directions={`https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lon}`}
+                         website={place?.website} />
               </Popup>
             </Marker>
-          ))}
+          ); })}
 
           {layers.stores && STORES.map((st) => (
             <Marker key={st.id} position={[st.lat, st.lon]} icon={dropIcon("store", !st.key)}

@@ -81,6 +81,9 @@ export interface Poi {
 }
 
 export interface Charger {
+  /** Planned charge stops stay visible even when the general charger layer is off. */
+  day?: string;
+  poiId?: string;
   id: string;
   name: string;
   lat: number;

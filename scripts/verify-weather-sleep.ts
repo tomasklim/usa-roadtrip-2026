@@ -20,7 +20,7 @@ for (let mask = 0; mask < 1 << MODULES.length; mask++) {
       assert.ok(weather, `Missing weather: ${day.id}/${day.date}`);
       assert.equal(weather.daytime.stats.n, 165);
       assert.equal(!!weather.night, !!day.sleep, `Missing overnight weather: ${day.id}`);
-      if (["s5", "s5b", "s6", "s7", "cody", "s10"].includes(day.id)) assert.equal(day.sleep?.t, "motel");
+      if (["s5", "s6", "s7", "cody", "s10"].includes(day.id)) assert.equal(day.sleep?.t, "motel");
     }
   }
 }
@@ -46,7 +46,7 @@ for (const id of Object.keys(CAR_NIGHTS)) {
 // A night's estimate follows its overnight area and the following calendar date.
 const teton = balanced.days.find(d => d.id === "s3")!;
 assert.equal(weatherForDay(teton)?.night?.name, locations.places.shadow.name);
-assert.deepEqual(weatherForDay(teton)?.night?.stats, history.places.shadow.dates["10-01"]);
+assert.deepEqual(weatherForDay(teton)?.night?.stats, history.places.shadow.dates["10-02"]);
 const bedTeton = buildTrip(new Set(), "motel").days.find(d => d.id === "s3")!;
 assert.equal(weatherForDay(bedTeton)?.night?.name, locations.places.jackson.name);
 assert.equal(weatherForDay({ ...teton, id: "unknown" }), null);

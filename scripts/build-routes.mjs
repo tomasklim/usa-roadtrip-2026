@@ -24,7 +24,8 @@ const allWaypoints = JSON.parse(readFileSync(wpPath, "utf8"));
  */
 const itinerary = readFileSync(resolve(here, "../src/data/itinerary.ts"), "utf8");
 const live = new Set([...itinerary.matchAll(/id: "([a-zA-Z0-9]+)", kind:/g)].map((m) => m[1]));
-const waypoints = Object.fromEntries(Object.entries(allWaypoints).filter(([id]) => live.has(id)));
+const requested = new Set(process.argv.slice(2));
+const waypoints = Object.fromEntries(Object.entries(allWaypoints).filter(([id]) => live.has(id) && (!requested.size || requested.has(id))));
 const skipped = Object.keys(allWaypoints).filter((id) => !live.has(id));
 if (skipped.length) console.log(`skipping ${skipped.length} retired legs: ${skipped.join(", ")}\n`);
 
@@ -81,7 +82,7 @@ async function fetchLeg(id, pts) {
   }
 }
 
-const out = {};
+const out = requested.size ? Object.fromEntries(Object.entries(JSON.parse(readFileSync(outPath, "utf8"))).filter(([id]) => live.has(id))) : {};
 for (const [id, pts] of Object.entries(waypoints)) {
   if (pts.length < 2) {
     out[id] = { line: pts.map(([lon, lat]) => [round5(lat), round5(lon)]), meters: 0, seconds: 0 };

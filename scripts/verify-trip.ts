@@ -1,5 +1,8 @@
 import { buildTrip, CAP_DAYS, DEPART, START, distLabel, fmtShort, rentals, ROUTES, turoDays } from "../src/lib/trip";
-import { MODULES } from "../src/data/itinerary";
+import { MODULES, FLIGHTS } from "../src/data/itinerary";
+import assert from "node:assert/strict";
+import pois from "../src/data/pois.json";
+import { weatherForDay } from "../src/lib/weather";
 
 // Every possible module ordering/state, so splice arithmetic and dates are not
 // only exercised in a few hand-picked combinations.
@@ -40,6 +43,22 @@ for (const c of combos) {
   if (problems.length) fails++;
 }
 const base = buildTrip(new Set());
+// Extending Washington replaces the wolf day; the booked ending must stay put.
+const dateOf = (id: string) => new Date(base.days.find(d => d.id === id)!.date!).toISOString().slice(0, 10);
+for (const [id, date] of Object.entries({ seaB: "2026-09-25", seaA: "2026-09-27", seaReturn: "2026-09-28", s1: "2026-09-29", s6: "2026-10-05", sf1: "2026-10-10", sf3: "2026-10-11", depart: "2026-10-13" })) assert.equal(dateOf(id), date);
+assert.ok(!base.days.some(d => d.id === "s5b"));
+assert.equal(rentals(base).seattle.days, 4);
+assert.equal(rentals(base).slc.days, 11);
+assert.equal(FLIGHTS.find(f => f.dir === "hop1")?.booked, false);
+assert.equal(pois.find(p => p.name === "Hama Hama Oyster Saloon")?.day, "seaB");
+assert.equal(pois.find(p => p.name === "Lamar Valley")?.day, "s6");
+for (const [id, name] of [["seaB", "Bremerton / Oyster Bay"], ["seaReturn", "SeaTac / Tukwila"]]) assert.equal(weatherForDay(base.days.find(d => d.id === id)!)?.night?.name, name);
+// Adjacent driving days meet at the same overnight/airport, allowing road snapping.
+for (const [before, after] of [["seaB", "sea1"], ["sea1", "seaA"], ["seaA", "seaReturn"]]) {
+  const end = ROUTES[before].line.at(-1)!;
+  const start = ROUTES[after].line[0];
+  assert.ok(Math.hypot(end[0] - start[0], end[1] - start[1]) < 0.01, `${before} → ${after}: route gap`);
+}
 console.log(`\nbase: ${distLabel(base.meters, "mi")} / ${distLabel(base.meters, "km")}, ${base.driveDays} driving days`);
 console.log(`longest day: ${distLabel(Math.max(...base.days.map((d) => d.meters ?? 0)), "km")}`);
 console.log(`days over 400 km: ${base.days.filter((d) => (d.meters ?? 0) > 400000).length}`);

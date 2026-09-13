@@ -155,8 +155,8 @@ export function OverviewPanel({ trip, units, width, sheet, onStart, onClose }: {
         </div>
         <h4>The shape of it</h4>
         <ol className="ovsteps">
-          <li><b>Seattle</b> — an arrival afternoon and a full day on foot, then a {r.seattle.days}-day car across Mount Rainier
-            and up Hood Canal for the trip's best oysters ({distLabel(r.seattle.meters, units)}).</li>
+          <li><b>Seattle</b> — an arrival afternoon, then a {r.seattle.days}-day rental for Friday oysters,
+            the Seattle city transfer and Mount Rainier for the trip's best oysters ({distLabel(r.seattle.meters, units)}).</li>
           <li><b>Fly to Salt Lake City</b> — collect the Tesla and drive onto the Bonneville Salt Flats
             the same afternoon.</li>
           <li><b>North through the parks</b> — Bear Lake, Grand Teton, Yellowstone, the Beartooth

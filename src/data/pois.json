@@ -35,7 +35,7 @@
   "kind": "food",
   "lat": 47.60383,
   "lon": -122.33006,
-  "day": "arrive",
+  "day": "sea1",
   "tags": [
    "oy"
   ],
@@ -319,14 +319,14 @@
   "kind": "food",
   "lat": 47.54257,
   "lon": -123.04067,
-  "day": "hoodcanal",
+  "day": "seaB",
   "tags": [
    "oy",
    "gf",
    "df"
   ],
   "city": "Lilliwaup WA",
-  "desc": "The best oysters of the entire trip, and that includes San Francisco"
+  "desc": "Friday lunch at the oyster farm. Saloon Fri\u2013Sun 11:00\u201317:00; reserve ahead."
  },
  {
   "id": "the-martin-hotel",
@@ -477,10 +477,10 @@
   "kind": "sight",
   "lat": 44.85902,
   "lon": -110.18797,
-  "day": "s5b",
+  "day": "s6",
   "tags": [],
   "city": "Yellowstone National Park WY",
-  "desc": "The best wolf watching in the lower 48. Be there before sunrise, not at it.",
+  "desc": "Wildlife stop on the drive toward Beartooth. Sightings are not guaranteed; there is no separate wolf-watching day.",
   "photo": "lamarvalley"
  },
  {
@@ -833,7 +833,7 @@
   "kind": "food",
   "lat": 47.60443,
   "lon": -122.33419,
-  "day": "arrive",
+  "day": "sea1",
   "tags": [
    "meat",
    "gf",
@@ -932,7 +932,7 @@
   "kind": "sight",
   "lat": 46.91752,
   "lon": -122.2698,
-  "day": "seaB",
+  "day": "seaReturn",
   "tags": [],
   "city": "Eatonville WA",
   "desc": "A tram tour through 435 free-range acres of bison, elk, moose, caribou and bighorn sheep. A useful warm-up for Yellowstone, and it is directly on the road from Ashford.",
@@ -1260,15 +1260,15 @@
   "city": "Marin Headlands CA",
   "desc": "A working rescue hospital where visitors can see recovering seals and sea lions. Open Friday\u2013Monday 10\u20134; reserve a free ticket for the baseline Monday."
  },
-{
- "id": "node-palo-alto",
- "name": "NODE \u2014 digital art in Palo Alto",
- "kind": "sight",
- "lat": 37.4442649,
- "lon": -122.1624976,
- "day": "sf3",
- "tags": [],
- "city": "Palo Alto CA",
- "desc": "Must visit: digital-art foundation at 180 University Ave. Plan 90 minutes. Thu\u2013Fri 18:00\u201322:00, Sat 12:00\u201322:00, Sun 12:00\u201320:00. Confirm the October exhibition and admission details at nodefoundation.com."
-}
+ {
+  "id": "node-palo-alto",
+  "name": "NODE \u2014 digital art in Palo Alto",
+  "kind": "sight",
+  "lat": 37.4442649,
+  "lon": -122.1624976,
+  "day": "sf3",
+  "tags": [],
+  "city": "Palo Alto CA",
+  "desc": "Must visit: digital-art foundation at 180 University Ave. Plan 90 minutes. Thu\u2013Fri 18:00\u201322:00, Sat 12:00\u201322:00, Sun 12:00\u201320:00. Confirm the October exhibition and admission details at nodefoundation.com."
+ }
 ]

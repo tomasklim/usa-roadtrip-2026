@@ -79,7 +79,7 @@ export function Budget({ trip }: { trip: Trip }) {
     ? "The slider is on unlimited distance."
     : over > 0
       ? `${num(slcMiles)} mi driven against ${num(included as number)} included, so ${num(over)} mi over at ${usd(s.overMi * 100)}/100 mi — ${usd(over * s.overMi)}. Booking more days is the cheap fix: each extra day adds about $62 of rental but ${s.cap} more included miles.`
-      : `${num(slcMiles)} mi driven against ${num(included as number)} included — inside the cap. At 12 days the quoted 150 mi/day allotment covers the whole Salt Lake block.`;
+      : `${num(slcMiles)} mi driven against ${num(included as number)} included — inside the cap. The estimate uses ${td} rental days.`;
 
   return (
     <section id="budget">
@@ -89,7 +89,7 @@ export function Budget({ trip }: { trip: Trip }) {
           Everything for two people, transatlantic flights included. It reads from whichever modules are
           switched on, so the total moves when the plan does. The car defaults come from the real quote on
           listing 3758006 — <b>US$566.50 all-in for 9 days</b>, 1,350 miles included, $0.27 a mile over —
-          scaled to the twelve days the route actually needs.
+          scaled to the {td} days in the selected Salt Lake route.
         </p>
         <p className="hint">Room rates and the $30 campsite allowance are editable planning assumptions, not checked offers. Car nights are not assumed to be free.</p>
         <p className="hint">{touched.motelNights ? <>Hotel-night count is manually set. <button className="mini" onClick={() => setTouched({ ...touched, motelNights: false })}>Use itinerary nights ({lodgingNights})</button></> : <>Hotel-night count follows your sleep plan: {lodgingNights} outside San Francisco, plus {trip.sfNights - sfCarNights} in the city.</>}</p>

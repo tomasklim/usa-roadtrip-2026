@@ -3,14 +3,17 @@ import path from 'node:path';
 import os from 'node:os';
 import { createHash } from 'node:crypto';
 const config = JSON.parse(await fs.readFile(new URL('../src/data/weather-places.json', import.meta.url)));
-const entries = Object.entries(config.places);
+const requested = new Set(process.argv.slice(2));
+const entries = Object.entries(config.places).filter(([id]) => !requested.size || requested.has(id));
+if (!entries.length) throw Error("No matching weather locations");
+const previous = requested.size ? JSON.parse(await fs.readFile(new URL("../src/data/weather-history.json", import.meta.url))) : null;
 const years = Array.from({length:11}, (_,i) => 2015+i);
 const variables = ['temperature_2m_max','temperature_2m_min','precipitation_sum','snowfall_sum'];
 const cache = path.join(os.tmpdir(), 'nw-roadtrip-weather-v1');
 await fs.mkdir(cache,{recursive:true});
 const samples = Object.fromEntries(entries.map(([id])=>[id,[]]));
 const grids = {};
-const requests = [];
+const requests = previous?.meta.requests ?? [];
 for(const year of years){
   const query = new URLSearchParams({latitude:entries.map(([,p])=>p.latitude).join(','),longitude:entries.map(([,p])=>p.longitude).join(','),timezone:entries.map(([,p])=>p.timezone).join(','),start_date:`${year}-09-15`,end_date:`${year}-10-25`,daily:variables.join(','),models:'era5_seamless',temperature_unit:'celsius',precipitation_unit:'mm'});
   const url = `https://archive-api.open-meteo.com/v1/archive?${query}`;
@@ -36,14 +39,14 @@ for(const year of years){
       samples[id].push([date,...values]);
     });
   });
-  requests.push({year,url,sha256:createHash('sha256').update(raw).digest('hex')});
+  requests.push({year,places:entries.map(([id])=>id),url,sha256:createHash('sha256').update(raw).digest('hex')});
   console.log(`Loaded ${year}: ${data.length} locations × 41 days`);
 }
 const quantile=(values,q)=>{const a=[...values].sort((a,b)=>a-b),i=(a.length-1)*q,f=Math.floor(i);return a[f]+(a[Math.ceil(i)]-a[f])*(i-f)};
 const mean=a=>a.reduce((a,b)=>a+b,0)/a.length;
 const round=n=>Math.round(n*10)/10;
 const dayNumber=md=>Date.parse(`2000-${md}T00:00:00Z`)/86400000;
-const places={};
+const places=previous?.places ?? {};
 for(const [id,p] of entries){
   const dates={};
   for(let d=Date.UTC(2000,8,22);d<=Date.UTC(2000,9,18);d+=86400000){

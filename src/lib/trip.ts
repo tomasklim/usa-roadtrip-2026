@@ -42,8 +42,8 @@ export function difficulty(meters: number): Difficulty {
   return "crux";
 }
 
-const SEATTLE_CAR = ["seaA", "seaB", "olyA", "olyB"];
-const SLC_CAR = ["s1", "antelope", "s2", "dinoA", "dinoB", "s3", "s4", "s4b", "s5", "s5b",
+const SEATTLE_CAR = ["seaB", "sea1", "seaA", "seaReturn", "olyA", "olyB"];
+const SLC_CAR = ["s1", "antelope", "s2", "dinoA", "dinoB", "s3", "s4", "s4b", "s5",
                  "s6", "s7", "cody", "s8", "s9", "craters2", "s10"];
 const SF_CAR = ["sf2", "sf3", "sf4"];
 
@@ -149,9 +149,8 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
 }
 
 /**
- * The trip now has two separate rentals — two days in Seattle for Rainier and
- * Hood Canal, and the Salt Lake block for the parks. The budget and the mileage
- * cap both need them counted apart.
+ * Separate Seattle, Salt Lake and Bay Area rentals. Count the Seattle car from
+ * pickup before Friday oysters through the return after Rainier, including the city day.
  */
 /** Which rental a day belongs to — used to band the driving-load chart. */
 export function blockOf(id: string): string {

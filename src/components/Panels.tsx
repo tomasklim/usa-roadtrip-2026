@@ -162,7 +162,7 @@ export function Charging() {
           <h3 style={{ fontSize: ".98rem" }}>Northern Yellowstone — the one real risk</h3>
           <p style={{ margin: "6px 0 0", fontSize: ".89rem", color: "var(--muted)" }}>
             Gardiner has no Supercharger — only an L2 at Yellowstone Forever (2 ports) and a CCS L3 at
-            the Sinclair. The route arrives from West Yellowstone, then spends four days between Gardiner,
+            the Sinclair. The route arrives from West Yellowstone, then crosses between Gardiner,
             Lamar and Red Lodge before reaching Bozeman. That only works with overnight charging in
             Gardiner and Red Lodge. Two safeguards matter:
           </p>

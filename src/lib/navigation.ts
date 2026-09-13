@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Day } from "../types";
 import type { Trip } from "./trip";
 
@@ -25,11 +25,14 @@ export function readRoute() {
 
 export function useNavigation() {
   const [route, setRoute] = useState(readRoute);
+  const previousView = useRef(route.view);
   useEffect(() => {
     const update = () => {
       if (window.location.hash === "#main") return;
-      setRoute(readRoute());
-      window.scrollTo({ top: 0, behavior: "instant" });
+      const next = readRoute();
+      if (next.view !== "map" || previousView.current !== "map") window.scrollTo({ top: 0, behavior: "instant" });
+      previousView.current = next.view;
+      setRoute(next);
     };
     window.addEventListener("hashchange", update);
     return () => window.removeEventListener("hashchange", update);

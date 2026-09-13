@@ -173,7 +173,6 @@ function Framer({ trip, selected, padRight }: {
   trip: Trip; selected: string | null; padRight: number;
 }) {
   const map = useMap();
-  const didInit = useRef(false);
 
   const allBounds = useMemo(() => {
     const pts: [number, number][] = [];
@@ -185,10 +184,9 @@ function Framer({ trip, selected, padRight }: {
   }, [trip.days]);
 
   useEffect(() => {
-    if (didInit.current || !allBounds) return;
-    didInit.current = true;
+    if (selected || !allBounds) return;
     map.fitBounds(allBounds, { paddingTopLeft: [24, 24], paddingBottomRight: [padRight + 24, 24] });
-  }, [map, allBounds, padRight]);
+  }, [map, allBounds, padRight, selected]);
 
   useEffect(() => {
     if (!selected) return;
@@ -211,7 +209,7 @@ function Framer({ trip, selected, padRight }: {
         if (prev?.length) { map.flyTo(prev[prev.length - 1], 9, { duration: 0.7 }); return; }
       }
     }
-  }, [map, selected, trip.days]);
+  }, [map, selected, trip.days, padRight]);
 
   return null;
 }

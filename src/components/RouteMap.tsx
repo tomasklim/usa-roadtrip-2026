@@ -174,6 +174,15 @@ function Framer({ trip, selected, padRight }: {
 }) {
   const map = useMap();
 
+  // Dismiss the previous day's overlays before framing the new route.
+  useLayoutEffect(() => {
+    map.eachLayer(layer => {
+      layer.closePopup();
+      const tooltip = layer.getTooltip();
+      if (tooltip && !tooltip.options.permanent) layer.closeTooltip();
+    });
+  }, [map, selected]);
+
   const allBounds = useMemo(() => {
     const pts: [number, number][] = [];
     trip.days.forEach((d) => {

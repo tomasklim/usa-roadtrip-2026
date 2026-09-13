@@ -12,6 +12,7 @@ import { Checklist } from "./components/Checklist";
 import { CAR_NIGHTS, MODULES } from "./data/itinerary";
 import { buildTrip } from "./lib/trip";
 import { useStored } from "./lib/useStored";
+import { PhotoCredits } from "./components/PhotoCredits";
 import { DailyPlan } from "./components/DailyPlan";
 import { navigate, TOPICS, todayInTrip, useNavigation } from "./lib/navigation";
 import { downloadOfflinePlan } from "./lib/offline";
@@ -177,8 +178,9 @@ export default function App() {
           {topic === "budget" && <Budget trip={trip} />}
           {topic === "options" && <Modules on={on} toggle={toggle} trip={trip} units={units} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={selectOnMap} onHover={setGhost} />}
         </div>}
+        {view === "credits" && <PhotoCredits />}
       </main>
-      <footer><div className="wrap"><span className="footer-brand">NW / 2026</span><p>Seattle → the Rockies → San Francisco<br /><span>Road distances from OSRM · Photos credited to their authors · Conditions checked August 2026</span></p><a href="#guide/risks">Check road conditions ↗</a></div></footer>
+      <footer><div className="wrap"><span className="footer-brand">NW / 2026</span><p>Seattle → the Rockies → San Francisco<br /><span>Road distances from OSRM · Conditions checked August 2026</span></p><nav className="footer-links" aria-label="Site information"><a href="#credits">Photo credits</a><a href="#guide/risks">Check road conditions ↗</a></nav></div></footer>
     </>
   );
 }

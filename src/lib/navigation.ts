@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { Day } from "../types";
 import type { Trip } from "./trip";
 
-export type View = "overview" | "itinerary" | "plan" | "flights" | "guide";
+export type View = "overview" | "itinerary" | "plan" | "flights" | "guide" | "credits";
 export const TOPICS = [
   ["checklist", "Before you go"], ["food", "Food"], ["sleep", "Sleep"],
   ["charging", "Charging"], ["risks", "Road conditions"], ["budget", "Budget"], ["options", "Route options"]
@@ -14,7 +14,7 @@ export function readRoute() {
   const [id, detail] = window.location.hash.slice(1).split("/");
   let view: View = "overview";
   let topic: Topic = "checklist";
-  if (["overview", "itinerary", "plan", "flights", "guide"].includes(id)) view = id as View;
+  if (["overview", "itinerary", "plan", "flights", "guide", "credits"].includes(id)) view = id as View;
   // Old whole-map links now open the introduction; day links still open that day.
   if (id === "map") view = detail && detail !== "all" ? "itinerary" : "overview";
   if (id === "itinerary" && detail === "all") view = "overview";
@@ -31,7 +31,7 @@ type Route = ReturnType<typeof readRoute>;
 type Position = { x: number; y: number };
 const ROUTE_EVENT = "nwrt26:navigate";
 const position = (): Position => ({ x: window.scrollX, y: window.scrollY });
-const pageRoutes = new Set(["overview", "itinerary", "map", "flights", "guide", "plan", "glance", "load", ...topicIds]);
+const pageRoutes = new Set(["overview", "itinerary", "map", "flights", "guide", "plan", "glance", "load", "credits", ...topicIds]);
 
 export function keepScroll(from: Route, to: Route) {
   return from.view === to.view && (to.view !== "guide" || from.topic === to.topic) && (to.view !== "plan" || from.planSection === to.planSection);

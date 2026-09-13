@@ -36,7 +36,7 @@ export const FLIGHTS = [
 export const BASE: Day[] = [
 { id: "arrive", kind: "arrive", act: "I",
   title: "Land in Seattle", leg: "Prague 12:00 → Frankfurt → Seattle 16:00 · Condor",
-  hours: 0, at: [47.4502, -122.3088], atZoom: 12, photos: ["seattle"],
+  hours: 0, at: [47.4502, -122.3088], atZoom: 12, photos: ["seattle", "rainier", "pikeplace"],
   hi: ["Nine hours back, so you will be awake at 4am for three days — which is a gift on this trip",
        "No car today. Stay near the airport, eat something simple and sleep; collect the rental tomorrow",
        "Save the oysters for the Hood Canal day"],
@@ -48,7 +48,7 @@ export const BASE: Day[] = [
 
 { id: "seaB", kind: "drive", act: "I",
   title: "Friday oysters on Hood Canal", leg: "SeaTac → Olympia → Hama Hama → Oyster Bay Inn, Bremerton",
-  hours: 3.9, photos: ["oysters"],
+  hours: 3.9, photos: ["oysters", "mountwalker", "olympiacapitol"],
   hi: ["Collect the Seattle rental this morning, then head to Hood Canal",
        "Hama Hama Oyster Saloon for a late lunch: Friday opening is 11:00–17:00; allow time for pickup and the drive",
        "Finish in Bremerton, with a bed at Oyster Bay Inn & Suites as the preferred hotel candidate"],
@@ -64,7 +64,7 @@ export const BASE: Day[] = [
 
 { id: "sea1", kind: "city", act: "I",
   title: "Seattle on foot, after Bremerton", leg: "Bremerton → Tacoma → SeaTac hotel; transit into central Seattle",
-  hours: 1.4, at: [47.6097, -122.3422], atZoom: 12, photos: ["pikeplace"],
+  hours: 1.4, at: [47.6097, -122.3422], atZoom: 12, photos: ["pikeplace", "kerrypark", "ballardlocks"],
   hi: ["After the hotel transfer, start at Pike Place Market — buy Dungeness crab and eat it on the waterfront",
        "Move the car from Bremerton to the airport-area hotel via Tacoma, then use transit for the city day",
        "Keep the rest of the day for Seattle on foot; there is no need to drive between sights"],
@@ -84,7 +84,7 @@ export const BASE: Day[] = [
 
 { id: "seaA", kind: "drive", act: "I",
   title: "Across Mount Rainier", leg: "SeaTac → Enumclaw → Sunrise → Stevens Canyon → Paradise → Ashford",
-  hours: 5.3, photos: ["rainier"],
+  hours: 5.3, photos: ["rainierfall", "rainier", "narada"],
   hi: ["A traverse rather than an out-and-back: in at the northeast corner, out at the southwest",
        "Sunrise at 6,400 ft is the highest road in the park and the better of the two viewpoints — it closes earlier than Paradise, so do it first",
        "Stevens Canyon and Reflection Lakes on the way through to Paradise",
@@ -107,7 +107,7 @@ export const BASE: Day[] = [
 
 { id: "seaReturn", kind: "drive", act: "I",
   title: "An unhurried morning below Rainier", leg: "Ashford → Elbe → SeaTac",
-  hours: 1.9, photos: ["rainier"],
+  hours: 1.9, photos: ["rainier", "northwesttrek", "narada"],
   hi: ["A slow breakfast below Mount Rainier, with time to spare after yesterday’s traverse",
        "Return to SeaTac during the afternoon; refuel and hand back the Seattle rental",
        "Sleep near the airport for the next morning’s flight to Salt Lake City"],
@@ -120,7 +120,7 @@ export const BASE: Day[] = [
 
 { id: "s1", kind: "drive", act: "II",
   title: "Fly south, then full throttle on salt", leg: "Seattle → SLC (fly) → Bonneville Salt Flats → SLC",
-  hours: 5.2, photos: ["bonneville"],
+  hours: 5.2, photos: ["saltsunset", "bonneville", "saltlakecity"],
   hi: ["Morning flight: 1 h 50 m, and the temperature goes up ten degrees",
        "Collect the Tesla and go straight west — Bonneville is 190 km of dead-straight interstate away",
        "Thirty thousand acres of dead-flat salt where land-speed records get set. Check BLM event closures for the date you visit",
@@ -138,7 +138,7 @@ export const BASE: Day[] = [
 
 { id: "s2", kind: "drive", act: "II",
   title: "Turquoise lake, golden canyon", leg: "SLC → Logan Canyon → Bear Lake → Star Valley → Jackson",
-  hours: 6.9, photos: ["bearlake"],
+  hours: 6.9, photos: ["bearlake", "logancanyon", "jacksonarch"],
   hi: ["Logan Canyon in full autumn colour — maples and aspens, and almost no traffic",
        "Bear Lake, an improbable Caribbean turquoise at 5,900 ft from limestone suspended in the water",
        "Star Valley and the Snake River canyon on the run into Jackson",
@@ -154,7 +154,7 @@ export const BASE: Day[] = [
 
 { id: "s3", kind: "drive", act: "II",
   title: "A day off, in the Tetons", leg: "Grand Teton NP: Schwabacher, Mormon Row, Jenny Lake, Signal Mountain",
-  hours: 3.4, photos: ["mormonrow", "schwabacher"],
+  hours: 3.4, photos: ["schwabacher", "mormonrow", "jennylake"],
   hi: ["Schwabacher Landing at sunrise — the reflection shot only works in the first ten minutes of light",
        "Mormon Row barns, the most photographed farm buildings in America",
        "Cottonwoods and aspens peak right now, and there are moose in the willows near Jenny Lake",
@@ -172,7 +172,7 @@ export const BASE: Day[] = [
 
 { id: "s4", kind: "drive", act: "III",
   title: "Geysers, north through the park", leg: "Jackson → South Entrance → Old Faithful → Grand Prismatic → West Yellowstone",
-  hours: 4.3, photos: ["grandprismatic", "oldfaithful"],
+  hours: 4.3, photos: ["grandprismatic", "oldfaithful", "firehole"],
   hi: ["Up the Rockefeller Parkway with the Tetons in the mirror the whole way",
        "Old Faithful and the Upper Geyser Basin, which holds more geysers than the rest of the planet combined",
        "Grand Prismatic from the Fairy Falls overlook — the boardwalk gives you steam, the overlook gives you the colour",
@@ -188,7 +188,7 @@ export const BASE: Day[] = [
 
 { id: "s4b", kind: "drive", act: "III",
   title: "A whole day in the geyser basins", leg: "West Yellowstone → Firehole → Grand Prismatic → Old Faithful → back",
-  hours: 2.1, photos: ["grandprismatic"],
+  hours: 2.1, photos: ["firehole", "grandprismatic", "oldfaithful"],
   hi: ["Half the planet's geysers are inside a few square miles here, and one day is the minimum to walk them",
        "Grand Prismatic from the Fairy Falls overlook — the 20-minute climb is the difference between steam and colour",
        "Old Faithful is the famous one, but Grand, Riverside and Castle are better if you catch them",
@@ -205,7 +205,7 @@ export const BASE: Day[] = [
 
 { id: "s5", kind: "drive", act: "III",
   title: "The canyon, then the north gate", leg: "West Yellowstone → Norris → Artist Point → Hayden Valley → Gardiner",
-  hours: 3.5, photos: ["artistpoint"],
+  hours: 3.5, photos: ["artistpoint", "porcelain", "mammothterraces"],
   hi: ["Artist Point over the Lower Falls: the postcard that is genuinely better in person",
        "Hayden Valley in the late afternoon — bison herds, and bears feeding hard before hibernation",
        "Norris Geyser Basin, the hottest and most volatile ground in the park",
@@ -222,7 +222,7 @@ export const BASE: Day[] = [
 
 { id: "s6", kind: "drive", act: "III",
   title: "Over the Beartooth", leg: "Gardiner → Lamar → Cooke City → Beartooth Pass → Red Lodge",
-  hours: 3.8, photos: ["beartooth"],
+  hours: 3.8, photos: ["beartooth", "lamarvalley", "beartooth2"],
   hi: ["A short wildlife stop in Lamar Valley on the way to Cooke City — no separate wolf-watching day",
        "Beartooth Pass at 10,947 ft — switchbacks above the treeline with snowbanks standing in October",
        "Charles Kuralt called it the most beautiful drive in America and he was not exaggerating",
@@ -241,7 +241,7 @@ export const BASE: Day[] = [
 
 { id: "s7", kind: "drive", act: "III",
   title: "Back over the top", leg: "Red Lodge → Beartooth Pass → Cooke City → Lamar → Gardiner",
-  hours: 3.8, photos: ["beartooth2"],
+  hours: 3.8, photos: ["beartooth2", "lamarvalley", "mammothterraces"],
   hi: ["The same pass in the opposite light, which is genuinely a different road",
        "Another pass through Lamar Valley on the way back — a second chance to stop for wildlife",
        "Short day, so there is time to stop at everything you drove past yesterday"],
@@ -257,7 +257,7 @@ export const BASE: Day[] = [
 { id: "s8", kind: "drive", act: "IV",
   title: "Hot springs and the biggest T. rex collection on Earth",
   leg: "Gardiner → Chico Hot Springs → Livingston → Bozeman",
-  hours: 2, photos: ["chicohotsprings", "trex"],
+  hours: 2, photos: ["trex", "chicohotsprings", "chicolodge"],
   hi: ["Chico Hot Springs: an 1900s plunge pool in Paradise Valley, and a soak you have earned",
        "Museum of the Rockies in Bozeman — Jack Horner's collection, the largest set of T. rex fossils anywhere",
        "Only 143 km all day, most of it down the prettiest valley in Montana",
@@ -275,7 +275,7 @@ export const BASE: Day[] = [
 
 { id: "s9", kind: "drive", act: "IV",
   title: "South through the Gallatin canyon", leg: "Bozeman → Big Sky → West Yellowstone → Idaho Falls",
-  hours: 4.1, photos: ["gallatincanyon"],
+  hours: 4.1, photos: ["gallatincanyon", "mesafalls", "idahofalls"],
   hi: ["US-191 down the Gallatin canyon, where they filmed A River Runs Through It",
        "Back past West Yellowstone and out into the Idaho potato plains — a total change of landscape",
        "Idaho Falls splits what would otherwise be a 690 km slog back to Salt Lake"],
@@ -290,7 +290,7 @@ export const BASE: Day[] = [
 
 { id: "s10", kind: "drive", act: "IV",
   title: "Hot springs, then hand back the keys", leg: "Idaho Falls → Lava Hot Springs → Salt Lake City",
-  hours: 4.9, photos: ["lavahotsprings", "saltlakecity"],
+  hours: 4.9, photos: ["saltlakecity", "lavahotsprings", "greatsaltlake"],
   hi: ["Lava Hot Springs: five pools of mineral water at 43 °C, run by the state, and dirt cheap",
        "Down through the Portneuf gap and into Utah past the Great Salt Lake",
        "Return the car in Salt Lake with roughly 3,000 km behind you before any optional modules"],
@@ -306,7 +306,7 @@ export const BASE: Day[] = [
 
 { id: "sf1", kind: "sf", required: true, act: "V",
   title: "Fly to San Francisco", leg: "Salt Lake City → SFO, then the city on foot",
-  hours: 0, at: [37.7749, -122.4194], atZoom: 11, photos: ["goldengate"],
+  hours: 0, at: [37.7749, -122.4194], atZoom: 11, photos: ["goldengate", "sanfrancisco", "salesforcetower"],
   hi: ["One hour forty-five in the air and the long Rockies rental is over",
        "Golden Gate at golden hour — cliché, and worth it anyway",
        "No car needed in the city, and parking here is genuinely expensive and annoying"],
@@ -324,7 +324,7 @@ export const BASE: Day[] = [
 
 { id: "sf3", kind: "sf", required: true, act: "V", at: [37.41900, -122.08238], atZoom: 10,
   title: "Silicon Valley & NODE in Palo Alto", leg: "SF → Meta → Stanford → NODE → HP Garage → Apple Park → Googleplex → Tesla Fremont → back",
-  hours: 3.1, photos: ["applepark", "googleplex"],
+  hours: 3.1, photos: ["stanford", "applepark", "googleplex"],
   hi: ["Must visit: NODE, the digital-art foundation at 180 University Ave, Palo Alto. Plan 12:00–13:30 after Stanford; Sunday hours are 12:00–20:00. Keep this stop and shorten corporate drive-bys if needed",
        "Every company on this loop started with two people and no money — the HP Garage is literally a garage on a residential street, and it is where the whole valley began in 1938",
        "Apple Park: the $5B ring from the Visitor Center roof terrace, with an AR model of the whole campus",
@@ -349,7 +349,7 @@ export const BASE: Day[] = [
 
 { id: "sf2", kind: "sf", act: "V",
   title: "Point Reyes and oysters on the bay", leg: "San Francisco → Tomales Bay → Point Reyes → back",
-  hours: 4.1, at: [38.1150, -122.8800], atZoom: 10, photos: ["pointreyes"],
+  hours: 4.1, at: [38.1150, -122.8800], atZoom: 10, photos: ["pointreyes", "oysters", "tomales"],
   hi: ["Hog Island's Boat Oyster Bar at Tomales Bay: a full-service farm lunch on the water",
        "Oyster stop number two of two, and the only other one that earns the trip",
        "Point Reyes — cliffs, the lighthouse, tule elk and the Cypress Tree Tunnel",
@@ -365,7 +365,7 @@ export const BASE: Day[] = [
 
 { id: "sf4", kind: "sf", act: "V", at: [37.85903, -122.48547], atZoom: 11,
   title: "North across the bridge — or nothing at all", leg: "SF → Golden Gate → Sausalito → Muir Woods → Mount Tamalpais → back",
-  hours: 2, photos: ["muirwoods", "sausalito"],
+  hours: 2, photos: ["muirwoods", "sausalito", "goldengate"],
   hi: ["Across the Golden Gate and suddenly it is headlands, redwoods and fog — a different world ten minutes from downtown",
        "Muir Woods: thousand-year-old redwoods in a valley John Muir called the best tree-lovers monument on Earth",
        "Mount Tamalpais East Peak: the whole Bay Area at your feet, and on a clear day the Farallones",
@@ -384,7 +384,7 @@ export const BASE: Day[] = [
 
 { id: "depart", kind: "depart", act: "V",
   title: "Fly home", leg: "San Francisco Oct 13, 16:30 → Frankfurt → Prague Oct 14, 16:00 · Condor",
-  hours: 0, at: [37.6213, -122.3790], atZoom: 11, photos: ["goldengate"],
+  hours: 0, at: [37.6213, -122.3790], atZoom: 11, photos: ["sanfrancisco", "goldengate", "salesforcetower"],
   hi: ["Morning free — the flight is not until half past four",
        "SFO is 30 minutes out on BART, which beats a taxi in traffic",
        "14 h 30 m, one stop, landing in Prague late afternoon the next day"],
@@ -403,7 +403,7 @@ export const MODULES: Module[] = [
   days: [
   { id: "cody", kind: "drive", act: "III",
     title: "Chief Joseph and Dead Indian Pass", leg: "Red Lodge → Belfry → Cody → Chief Joseph Byway → Cooke City → Gardiner",
-    hours: 5.2, photos: ["chiefjoseph", "cody"],
+    hours: 5.2, photos: ["chiefjoseph", "cody", "lamarvalley"],
     hi: ["The Chief Joseph Scenic Byway, WY-296, which almost nobody drives",
          "Dead Indian Pass, named for the route the Nez Perce took in 1877",
          "Cody: the Buffalo Bill Center of the West is five museums in one and genuinely excellent",
@@ -422,7 +422,7 @@ export const MODULES: Module[] = [
   days: [
   { id: "craters2", kind: "drive", act: "IV",
     title: "The lava field where Apollo trained", leg: "Bozeman → West Yellowstone → Arco → Craters of the Moon → Idaho Falls",
-    hours: 7.9, photos: ["craters"],
+    hours: 7.9, photos: ["craters", "gallatincanyon", "idahofalls"],
     hi: ["Craters of the Moon: cinder cones, lava tubes and spatter cones, all of it jet black",
          "Apollo astronauts trained here because it is the closest thing to the Moon in the lower 48",
          "Arco was the first town in the world lit by nuclear power, and says so on a hill"],
@@ -439,7 +439,7 @@ export const MODULES: Module[] = [
   days: [
   { id: "dinoA", kind: "drive", act: "II",
     title: "East to the bones", leg: "SLC → Heber City → Uinta Basin → Vernal",
-    hours: 4.4, photos: ["vernal"],
+    hours: 4.4, photos: ["vernal", "saltlakecity"],
     hi: ["Over the Wasatch and down into the Uinta Basin, which looks like nowhere else in Utah",
          "Vernal, a town with a pink dinosaur on the main street",
          "Utah Field House of Natural History as the warm-up act"],
@@ -453,7 +453,7 @@ export const MODULES: Module[] = [
   { id: "dinoB", kind: "drive", act: "II",
     title: "Fifteen hundred bones, then north to the Tetons",
     leg: "Dinosaur NM → Flaming Gorge → Rock Springs → Pinedale → Jackson",
-    hours: 10.1, photos: ["dinosaurquarry"],
+    hours: 10.1, photos: ["dinosaurquarry", "flaminggorge", "schwabacher"],
     hi: ["Quarry Exhibit Hall: 1,500 dinosaur bones left exactly where they were found, in a wall you can touch",
          "Flaming Gorge: red rock canyon and improbably blue water, empty in October",
          "The Wind River front north of Pinedale, the range nobody photographs"],
@@ -471,7 +471,7 @@ export const MODULES: Module[] = [
   days: [
   { id: "olyA", kind: "drive", act: "I",
     title: "Into the rainforest", leg: "Ashford → Olympia → Aberdeen → Lake Quinault → Kalaloch → Forks → Hoh",
-    hours: 7.6, photos: ["hoh"],
+    hours: 7.6, photos: ["hoh", "quinault", "kalaloch"],
     hi: ["Lake Quinault and the rainforest loop, which most people drive straight past",
          "Kalaloch and Ruby Beach: sea stacks, driftwood the size of buses, Pacific fog",
          "Hoh Rain Forest: 140 inches of rain a year and moss hanging off everything"],
@@ -485,7 +485,7 @@ export const MODULES: Module[] = [
   { id: "olyB", kind: "drive", act: "I",
     title: "Hurricane Ridge and the ferry home",
     leg: "Hoh → Hurricane Ridge → Port Angeles → Quilcene → Hama Hama → Port Gamble → Kingston ferry → Seattle",
-    hours: 8.6, photos: ["oysters"],
+    hours: 8.6, photos: ["hurricane", "portgamble", "hoodcanalbridge"],
     hi: ["Hurricane Ridge at 5,200 ft: the Olympic range one side, Canada across the strait on the other",
          "Lake Crescent, 600 ft deep and an unreal blue",
          "Hood Canal on the way home; Hama Hama was already the Friday lunch",
@@ -506,7 +506,7 @@ export const MODULES: Module[] = [
   days: [
   { id: "antelope", kind: "drive", act: "II",
     title: "Bison on the Great Salt Lake", leg: "SLC → Antelope Island → SLC",
-    hours: 2, photos: ["antelopeisland"],
+    hours: 2, photos: ["antelopeisland", "antelopeSunset", "greatsaltlake"],
     hi: ["A free-roaming herd of about 700 bison on an island in a salt lake",
          "The lake is so saline you float in it, and the smell is genuinely part of the experience",
          "Frary Peak and the causeway at sunset, which is one of Utah's best"],

@@ -10,22 +10,20 @@ export const TAG_LABEL: Record<Tag, string> = {
  * The pieces of a day, so the list card and the tabbed map panel render the
  * same content from the same code rather than drifting apart.
  */
-export function PhotoStrip({ day, single }: { day: Day; single?: boolean }) {
-  const pics = (day.photos ?? []).map((k) => PHOTOS[k]).filter(Boolean) as Photo[];
+export function PhotoStrip({ day, single, priority = false }: { day: Day; single?: boolean; priority?: boolean }) {
+  const pics = [...new Set(day.photos ?? [])].map(k => PHOTOS[k]).filter(Boolean).slice(0, single ? 1 : 3);
   if (!pics.length) return null;
-  const shown = single ? pics.slice(0, 1) : pics;
-  return (
-    <div className={`photos${shown.length > 1 ? " two" : ""}`}>
-      {shown.map(p => (
-        <figure className="photo" key={p.url} style={{ margin: 0 }}>
-          <img src={p.url} alt={p.alt} loading="lazy" decoding="async" />
-          <figcaption className="cr">
-            <a href={p.page} target="_blank" rel="noreferrer noopener">{p.credit} · {p.license}</a>
-          </figcaption>
-        </figure>
-      ))}
+  return <figure className={`day-collage collage-${pics.length}`} aria-label={`Photos for ${day.title}`}>
+    <div className="collage-images">
+      {pics.map((p, i) => <div className={`collage-piece piece-${i + 1}`} key={p.url}>
+        <img src={p.url} alt={p.alt} loading={priority ? "eager" : "lazy"} decoding="async"
+          srcSet={/\/960px-/.test(p.url) ? `${p.url.replace(/\/960px-/, "/330px-")} 330w, ${p.url} 960w` : undefined}
+          sizes={i === 0 ? "(max-width: 900px) 60vw, 40vw" : "(max-width: 900px) 44vw, 24vw"}
+          style={{ objectPosition: p.position ?? "50% 50%" }} />
+        <span className="collage-label"><i>{String(i + 1).padStart(2, "0")}</i>{p.label}</span>
+      </div>)}
     </div>
-  );
+  </figure>;
 }
 
 export const WhyRow = ({ day }: { day: Day }) => (

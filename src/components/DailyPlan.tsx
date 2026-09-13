@@ -38,11 +38,13 @@ export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map }: {
         <WeatherCard day={day} />
       </div>
       <article className="daily-card" aria-label={`Day ${day.num} plan`}>
-        <PhotoStrip day={day} single />
-        <div className="daily-content">
+        <div className="daily-intro">
           <div className="eyebrow">DAY {String(day.num).padStart(2, "0")} / {trip.days.length} <span>· {fmtDate(day.date!)}</span></div>
           <h2>{day.title}</h2>
           <p className="daily-route">{day.leg}</p>
+        </div>
+        <PhotoStrip day={day} priority />
+        <div className="daily-content">
           <div className="day-facts">
             <div><span>ON THE ROAD</span><b>{day.hours ? `${day.hours} h · ${distLabel(day.meters ?? 0, units)}` : "No driving today"}</b></div>
             <div><span>TONIGHT</span><b>{day.sleep ? (day.sleep.t === "car" ? "A night in the car" : "A bed & a shower") : "Overnight flight"}</b></div>

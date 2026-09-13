@@ -4,14 +4,18 @@
     "page": "https://commons.wikimedia.org/wiki/File:Seattle_Close_Mt._Rainier_Victor_Grigas.jpg",
     "credit": "Victorgrigas",
     "license": "CC BY-SA 3.0",
-    "alt": "Seattle's downtown skyline with snow-capped Mount Rainier rising behind it"
+    "alt": "Seattle's downtown skyline with snow-capped Mount Rainier rising behind it",
+    "label": "Seattle skyline",
+    "position": "60% 50%"
   },
   "pikeplace": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Pike_Place_Market_Seattle.jpg/960px-Pike_Place_Market_Seattle.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Pike_Place_Market_Seattle.jpg",
     "credit": "Daniel Schwen",
     "license": "CC BY-SA 4.0",
-    "alt": "Shoppers under the neon Public Market and Farmers Market signs in Seattle"
+    "alt": "Shoppers under the neon Public Market and Farmers Market signs in Seattle",
+    "label": "Pike Place Market",
+    "position": "50% 38%"
   },
   "leavenworth": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Main_street_in_Leavenworth%2C_Washington_%282023-06-18%29_%28cropped%29.jpg/960px-Main_street_in_Leavenworth%2C_Washington_%282023-06-18%29_%28cropped%29.jpg",
@@ -42,81 +46,94 @@
     "alt": "A herd of American bison grazing on open Montana grassland"
   },
   "trex": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Tyrannosaurus_rex_skeleton_%28cast_of_specimen_MOR_555%29_at_Cleveland_Museum_of_Natural_History.jpg/960px-Tyrannosaurus_rex_skeleton_%28cast_of_specimen_MOR_555%29_at_Cleveland_Museum_of_Natural_History.jpg",
-    "page": "https://commons.wikimedia.org/wiki/File:Tyrannosaurus_rex_skeleton_(cast_of_specimen_MOR_555)_at_Cleveland_Museum_of_Natural_History.jpg",
-    "credit": "Robosorne",
-    "license": "CC BY-SA 3.0",
-    "alt": "A mounted Tyrannosaurus rex skeleton looming over a museum hall"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Montana%27s_T_Rex_-_Museum_of_the_Rockies.jpg/960px-Montana%27s_T_Rex_-_Museum_of_the_Rockies.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Montana%27s_T_Rex_-_Museum_of_the_Rockies.jpg",
+    "credit": "Tim Evanson",
+    "license": "CC BY-SA 2.0",
+    "alt": "Montana’s T. rex skeleton towering over the dinosaur hall at the Museum of the Rockies",
+    "label": "Museum of the Rockies",
+    "position": "55% 42%"
   },
   "chicohotsprings": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Granite_Hot_Springs_pool_%2815008293208%29.jpg/960px-Granite_Hot_Springs_pool_%2815008293208%29.jpg",
-    "page": "https://commons.wikimedia.org/wiki/File:Granite_Hot_Springs_pool_(15008293208).jpg",
-    "credit": "pychap",
-    "license": "CC BY 2.0",
-    "alt": "Bathers in a steaming natural hot spring pool ringed by pine forest"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Chico_Hot_Springs%2C_Pray%2C_Montana_03.jpg/960px-Chico_Hot_Springs%2C_Pray%2C_Montana_03.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Chico_Hot_Springs%2C_Pray%2C_Montana_03.jpg",
+    "credit": "Mamalodon",
+    "license": "CC0",
+    "alt": "The outdoor thermal pool and sun shades at Chico Hot Springs in Montana",
+    "label": "Chico Hot Springs",
+    "position": "50% 60%"
   },
   "mammothterraces": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Mammoth_Terraces.jpg/960px-Mammoth_Terraces.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Mammoth_Terraces.jpg",
     "credit": "Frank Schulenburg",
     "license": "CC BY-SA 4.0",
-    "alt": "White travertine terraces of Mammoth Hot Springs in Yellowstone"
+    "alt": "White travertine terraces of Mammoth Hot Springs in Yellowstone",
+    "label": "Mammoth terraces"
   },
   "lamarvalley": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Bison_grazing_in_Lamar_Valley_at_sunrise_%2842023761225%29.jpg/960px-Bison_grazing_in_Lamar_Valley_at_sunrise_%2842023761225%29.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Bison_grazing_in_Lamar_Valley_at_sunrise_(42023761225).jpg",
     "credit": "Jacob W. Frank for Yellowstone National Park",
     "license": "Public domain",
-    "alt": "Bison grazing across the wide Lamar Valley at sunrise"
+    "alt": "Bison grazing across the wide Lamar Valley at sunrise",
+    "label": "Lamar Valley"
   },
   "artistpoint": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Lower_Falls_from_Artist_Point_%2819087799399%29.jpg/960px-Lower_Falls_from_Artist_Point_%2819087799399%29.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Lower_Falls_from_Artist_Point_(19087799399).jpg",
     "credit": "Yellowstone National Park from Yellowstone NP, USA",
     "license": "Public domain",
-    "alt": "The Lower Falls of the Yellowstone seen from Artist Point"
+    "alt": "The Lower Falls of the Yellowstone seen from Artist Point",
+    "label": "Artist Point"
   },
   "grandprismatic": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Aerial_image_of_Grand_Prismatic_Spring_%28view_from_the_south%29.jpg/960px-Aerial_image_of_Grand_Prismatic_Spring_%28view_from_the_south%29.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Aerial_image_of_Grand_Prismatic_Spring_(view_from_the_south).jpg",
     "credit": "Carsten Steger",
     "license": "CC BY-SA 4.0",
-    "alt": "Aerial view of the rainbow-coloured Grand Prismatic Spring"
+    "alt": "Aerial view of the rainbow-coloured Grand Prismatic Spring",
+    "label": "Grand Prismatic"
   },
   "oldfaithful": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Spring_Old_Faithful_eruption_from_Observation_Point.jpg/960px-Spring_Old_Faithful_eruption_from_Observation_Point.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Spring_Old_Faithful_eruption_from_Observation_Point.jpg",
     "credit": "Yellowstone National Park",
     "license": "Public domain",
-    "alt": "Old Faithful geyser shooting a tall column of steam and water"
+    "alt": "Old Faithful geyser shooting a tall column of steam and water",
+    "label": "Old Faithful"
   },
   "mormonrow": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Moulton_Barn-Mormon_Row-Grand_Teton.jpg/960px-Moulton_Barn-Mormon_Row-Grand_Teton.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Moulton_Barn-Mormon_Row-Grand_Teton.jpg",
     "credit": "Viplav Valluri",
     "license": "CC BY-SA 4.0",
-    "alt": "The weathered Moulton Barn on Mormon Row below the Teton range"
+    "alt": "The weathered Moulton Barn on Mormon Row below the Teton range",
+    "label": "Mormon Row"
   },
   "schwabacher": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Schwabacher_Landing_Sunrise_-_Grand_Teton_National_Park_-_Flickr_-_aparlette.jpg/960px-Schwabacher_Landing_Sunrise_-_Grand_Teton_National_Park_-_Flickr_-_aparlette.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Schwabacher_Landing_Sunrise_-_Grand_Teton_National_Park_-_Flickr_-_aparlette.jpg",
     "credit": "Andrew Parlette",
     "license": "CC BY 2.0",
-    "alt": "The Teton peaks mirrored in still water at sunrise"
+    "alt": "The Teton peaks mirrored in still water at sunrise",
+    "label": "Schwabacher Landing"
   },
   "bearlake": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Bear_Lake%2C_USA.jpg/960px-Bear_Lake%2C_USA.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Bear_Lake,_USA.jpg",
     "credit": "Diogeninja",
     "license": "CC BY-SA 3.0",
-    "alt": "Turquoise water of Bear Lake seen from a hillside overlook"
+    "alt": "Turquoise water of Bear Lake seen from a hillside overlook",
+    "label": "Bear Lake"
   },
   "bonneville": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/2014-07-05_13_01_24_View_west-northwest_across_the_Bonneville_Salt_Flats%2C_Utah_from_the_Bonneville_Salt_Flats_Rest_Area_on_Interstate_80.JPG/960px-2014-07-05_13_01_24_View_west-northwest_across_the_Bonneville_Salt_Flats%2C_Utah_from_the_Bonneville_Salt_Flats_Rest_Area_on_Interstate_80.JPG",
     "page": "https://commons.wikimedia.org/wiki/File:2014-07-05_13_01_24_View_west-northwest_across_the_Bonneville_Salt_Flats,_Utah_from_the_Bonneville_Salt_Flats_Rest_Area_on_Interstate_80.JPG",
     "credit": "Famartin",
     "license": "CC BY-SA 4.0",
-    "alt": "Flat white salt crust of the Bonneville Salt Flats below distant mountains"
+    "alt": "Flat white salt crust of the Bonneville Salt Flats below distant mountains",
+    "label": "Bonneville Salt Flats"
   },
   "shoshonefalls": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Shoshone_Falls%2C_Idaho.jpg/960px-Shoshone_Falls%2C_Idaho.jpg",
@@ -151,42 +168,49 @@
     "page": "https://commons.wikimedia.org/wiki/File:Wicked_Pissah_Oysters.jpg",
     "credit": "FordsFishShack",
     "license": "CC BY-SA 4.0",
-    "alt": "Raw oysters on the half shell on ice with lemon and sauce"
+    "alt": "Raw oysters on the half shell on ice with lemon and sauce",
+    "label": "Fresh oysters"
   },
   "goldengate": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Golden_Gate_Bridge_as_seen_from_Marshall%E2%80%99s_Beach%2C_March_2018.jpg/960px-Golden_Gate_Bridge_as_seen_from_Marshall%E2%80%99s_Beach%2C_March_2018.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Golden_Gate_Bridge_as_seen_from_Marshall%E2%80%99s_Beach,_March_2018.jpg",
     "credit": "Frank Schulenburg",
     "license": "CC BY-SA 4.0",
-    "alt": "The Golden Gate Bridge seen from the rocky shore of Marshall's Beach"
+    "alt": "The Golden Gate Bridge seen from the rocky shore of Marshall's Beach",
+    "label": "Golden Gate Bridge",
+    "position": "48% 50%"
   },
   "pointreyes": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Coastline_as_seen_from_Chimney_Rock%2C_Point_Reyes_National_Seashore.jpg/960px-Coastline_as_seen_from_Chimney_Rock%2C_Point_Reyes_National_Seashore.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Coastline_as_seen_from_Chimney_Rock,_Point_Reyes_National_Seashore.jpg",
     "credit": "Frank Schulenburg",
     "license": "CC BY-SA 4.0",
-    "alt": "Green headlands and cliffs meeting the ocean at Point Reyes"
+    "alt": "Green headlands and cliffs meeting the ocean at Point Reyes",
+    "label": "Point Reyes"
   },
   "beartooth": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Beartooth_Highway_Showing_Switchbacks.jpg/960px-Beartooth_Highway_Showing_Switchbacks.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Beartooth_Highway_Showing_Switchbacks.jpg",
     "credit": "WizardFusion",
     "license": "Public domain",
-    "alt": "The Beartooth Highway curving across a high alpine plateau"
+    "alt": "The Beartooth Highway curving across a high alpine plateau",
+    "label": "Beartooth switchbacks"
   },
   "dinosaurquarry": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Wall_of_Bones_in_the_Quarry_Building_at_Dinosaur_National_Monument_2012.JPG/960px-Wall_of_Bones_in_the_Quarry_Building_at_Dinosaur_National_Monument_2012.JPG",
     "page": "https://commons.wikimedia.org/wiki/File:Wall_of_Bones_in_the_Quarry_Building_at_Dinosaur_National_Monument_2012.JPG",
     "credit": "Drake411",
     "license": "CC BY-SA 3.0",
-    "alt": "Hundreds of dinosaur bones exposed in the tilted quarry rock wall"
+    "alt": "Hundreds of dinosaur bones exposed in the tilted quarry rock wall",
+    "label": "Dinosaur quarry"
   },
   "craters": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Craters_of_the_Moon_National_Monument_-_66.jpg/960px-Craters_of_the_Moon_National_Monument_-_66.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Craters_of_the_Moon_National_Monument_-_66.jpg",
     "credit": "dwhartwig",
     "license": "CC BY 2.0",
-    "alt": "Black lava cinder field with scattered pines and distant mountains"
+    "alt": "Black lava cinder field with scattered pines and distant mountains",
+    "label": "Craters of the Moon"
   },
   "smithrock": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Scenic_view_of_Smith_Rock.jpg/960px-Scenic_view_of_Smith_Rock.jpg",
@@ -214,49 +238,56 @@
     "page": "https://commons.wikimedia.org/wiki/File:Mt_Rainier_%26_Reflection_Lakes_(8082913563).jpg",
     "credit": "Navin75",
     "license": "CC BY-SA 2.0",
-    "alt": "Mount Rainier and evergreen forest reflected in Reflection Lakes"
+    "alt": "Mount Rainier and evergreen forest reflected in Reflection Lakes",
+    "label": "Reflection Lakes"
   },
   "hoh": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Hoh_Rain_Forest_Olympic_June_2018_001.jpg/960px-Hoh_Rain_Forest_Olympic_June_2018_001.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Hoh_Rain_Forest_Olympic_June_2018_001.jpg",
     "credit": "King of Hearts",
     "license": "CC BY-SA 4.0",
-    "alt": "Moss-draped trees and ferns in the Hoh Rainforest of Olympic National Park"
+    "alt": "Moss-draped trees and ferns in the Hoh Rainforest of Olympic National Park",
+    "label": "Hoh Rain Forest"
   },
   "jennylake": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Jenny_Lake%2C_Tetons.jpg/960px-Jenny_Lake%2C_Tetons.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Jenny_Lake,_Tetons.jpg",
     "credit": "Grand Teton National Park",
     "license": "Public domain",
-    "alt": "Snow-dusted Teton peaks rising directly above the still water of Jenny Lake"
+    "alt": "Snow-dusted Teton peaks rising directly above the still water of Jenny Lake",
+    "label": "Jenny Lake"
   },
   "chiefjoseph": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/View-from-dead-indian-pass-summit-along-chief-jospeh-scenic-byway-WY-October-2010-joni-packard-40620016_%286097550158%29.jpg/960px-View-from-dead-indian-pass-summit-along-chief-jospeh-scenic-byway-WY-October-2010-joni-packard-40620016_%286097550158%29.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:View-from-dead-indian-pass-summit-along-chief-jospeh-scenic-byway-WY-October-2010-joni-packard-40620016_(6097550158).jpg",
     "credit": "Forest Service - Northern Region",
     "license": "Public domain",
-    "alt": "Wide valley and mountain slopes seen from Dead Indian Pass on the Chief Joseph Scenic Byway"
+    "alt": "Wide valley and mountain slopes seen from Dead Indian Pass on the Chief Joseph Scenic Byway",
+    "label": "Chief Joseph Byway"
   },
   "flaminggorge": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Evening_view_of_Flaming_Gorge_from_Sheep_Creek_Overlook%2C_2009.jpg/960px-Evening_view_of_Flaming_Gorge_from_Sheep_Creek_Overlook%2C_2009.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Evening_view_of_Flaming_Gorge_from_Sheep_Creek_Overlook,_2009.jpg",
     "credit": "DimiTalen",
     "license": "CC0",
-    "alt": "Red rock cliffs above the deep blue water of Flaming Gorge Reservoir"
+    "alt": "Red rock cliffs above the deep blue water of Flaming Gorge Reservoir",
+    "label": "Flaming Gorge"
   },
   "lavahotsprings": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Kirkham_Hot_Springs_%2816036174416%29.jpg/960px-Kirkham_Hot_Springs_%2816036174416%29.jpg",
-    "page": "https://commons.wikimedia.org/wiki/File:Kirkham_Hot_Springs_(16036174416).jpg",
-    "credit": "j.a.woodhouse from United States",
-    "license": "CC BY 2.0",
-    "alt": "Steaming turquoise hot spring pools beside a river in the Idaho mountains"
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/A_Cold_Night_at_Lava_Hot_Spring_-_panoramio.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:A_Cold_Night_at_Lava_Hot_Spring_-_panoramio.jpg",
+    "credit": "epicanis",
+    "license": "CC BY-SA 3.0",
+    "alt": "Steam rising over an outdoor pool in Lava Hot Springs at night",
+    "label": "Lava Hot Springs"
   },
   "antelopeisland": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/American_Bison_-_Antelope_Island%2C_UT.jpg/960px-American_Bison_-_Antelope_Island%2C_UT.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:American_Bison_-_Antelope_Island,_UT.jpg",
     "credit": "Stumuluri",
     "license": "CC BY-SA 4.0",
-    "alt": "A lone bison standing in dry grassland on Antelope Island above the Great Salt Lake"
+    "alt": "A lone bison standing in dry grassland on Antelope Island above the Great Salt Lake",
+    "label": "Antelope Island bison"
   },
   "staircase": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/North_Fork_Skokomish_River_%2814343815017%29.jpg/960px-North_Fork_Skokomish_River_%2814343815017%29.jpg",
@@ -270,21 +301,24 @@
     "page": "https://commons.wikimedia.org/wiki/File:Olympic_Mountains_seen_from_Union_on_Hood_Canal.jpg",
     "credit": "Nomadic Lana",
     "license": "CC BY 2.5",
-    "alt": "The snow-covered Olympic Mountains rising beyond the water of Hood Canal"
+    "alt": "The snow-covered Olympic Mountains rising beyond the water of Hood Canal",
+    "label": "Hood Canal"
   },
   "portgamble": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Port_Gamble_Historic_District_general_store.jpg/960px-Port_Gamble_Historic_District_general_store.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Port_Gamble_Historic_District_general_store.jpg",
     "credit": "Washington Our Home",
     "license": "CC BY-SA 4.0",
-    "alt": "The clapboard general store of the historic mill town of Port Gamble, Washington"
+    "alt": "The clapboard general store of the historic mill town of Port Gamble, Washington",
+    "label": "Port Gamble"
   },
   "hoodcanalbridge": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Hood_Canal_Bridge_from_west_shore%2C_2021.jpg/960px-Hood_Canal_Bridge_from_west_shore%2C_2021.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Hood_Canal_Bridge_from_west_shore,_2021.jpg",
     "credit": "SounderBruce",
     "license": "CC BY-SA 4.0",
-    "alt": "Traffic crossing the Hood Canal floating bridge between forested shores"
+    "alt": "Traffic crossing the Hood Canal floating bridge between forested shores",
+    "label": "Hood Canal Bridge"
   },
   "lakecushman": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Mount_Ellinor_Trail_-_Lake_Cushman_View3.jpg/960px-Mount_Ellinor_Trail_-_Lake_Cushman_View3.jpg",
@@ -298,49 +332,56 @@
     "page": "https://commons.wikimedia.org/wiki/File:MK03170_Washington_State_Capitol_(Olympia).jpg",
     "credit": "Martin Kraft",
     "license": "CC BY-SA 4.0",
-    "alt": "The columned portico and dome of the Washington State Capitol in Olympia"
+    "alt": "The columned portico and dome of the Washington State Capitol in Olympia",
+    "label": "Olympia Capitol"
   },
   "gallatincanyon": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Gallatin_River_at_Elkhorn_%2852395286894%29.jpg/960px-Gallatin_River_at_Elkhorn_%2852395286894%29.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Gallatin_River_at_Elkhorn_(52395286894).jpg",
     "credit": "Forest Service - Northern Region",
     "license": "Public domain",
-    "alt": "The Gallatin River running clear over rocks below the forested walls of Gallatin Canyon"
+    "alt": "The Gallatin River running clear over rocks below the forested walls of Gallatin Canyon",
+    "label": "Gallatin Canyon"
   },
   "cody": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Shops_and_restaurants_along_Sheridan_Avenue%2C_Cody%2C_2009.jpg/960px-Shops_and_restaurants_along_Sheridan_Avenue%2C_Cody%2C_2009.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Shops_and_restaurants_along_Sheridan_Avenue,_Cody,_2009.jpg",
     "credit": "DimiTalen",
     "license": "CC0",
-    "alt": "Historic brick storefronts and antique shops along Sheridan Avenue in Cody, Wyoming"
+    "alt": "Historic brick storefronts and antique shops along Sheridan Avenue in Cody, Wyoming",
+    "label": "Cody"
   },
   "saltlakecity": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Salt_Lake_City_skyline_%282020%29_from_Ensign_Peak.jpg/960px-Salt_Lake_City_skyline_%282020%29_from_Ensign_Peak.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Salt_Lake_City_skyline_(2020)_from_Ensign_Peak.jpg",
     "credit": "Iansmh98",
     "license": "CC BY-SA 4.0",
-    "alt": "Salt Lake City spread out below the Wasatch Range, with the Utah State Capitol in front"
+    "alt": "Salt Lake City spread out below the Wasatch Range, with the Utah State Capitol in front",
+    "label": "Salt Lake City"
   },
   "sanfrancisco": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Painted_Ladies_San_Francisco_January_2013_panorama_2.jpg/960px-Painted_Ladies_San_Francisco_January_2013_panorama_2.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Painted_Ladies_San_Francisco_January_2013_panorama_2.jpg",
     "credit": "King of Hearts",
     "license": "CC BY-SA 3.0",
-    "alt": "The Painted Ladies Victorian houses on Alamo Square with the San Francisco skyline behind"
+    "alt": "The Painted Ladies Victorian houses on Alamo Square with the San Francisco skyline behind",
+    "label": "Painted Ladies"
   },
   "vernal": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Utah_Field_House_of_Natural_History_State_Park_Museum%2C_Sep_17.jpg/960px-Utah_Field_House_of_Natural_History_State_Park_Museum%2C_Sep_17.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Utah_Field_House_of_Natural_History_State_Park_Museum,_Sep_17.jpg",
     "credit": "An Errant Knight",
     "license": "CC BY-SA 4.0",
-    "alt": "The Utah Field House of Natural History dinosaur museum in Vernal under a clear sky"
+    "alt": "The Utah Field House of Natural History dinosaur museum in Vernal under a clear sky",
+    "label": "Vernal dinosaur museum"
   },
   "beartooth2": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Beartooth_Highway_MT-WY1.jpg/960px-Beartooth_Highway_MT-WY1.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Beartooth_Highway_MT-WY1.jpg",
     "credit": "Acroterion",
     "license": "CC BY-SA 4.0",
-    "alt": "The Beartooth Highway curving across the treeless alpine plateau below snowy peaks"
+    "alt": "The Beartooth Highway curving across the treeless alpine plateau below snowy peaks",
+    "label": "Beartooth Highway"
   },
   "snoqualmiefalls": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Snoqualmie_Falls%2C_Snoqualmie%2C_WA.jpeg/960px-Snoqualmie_Falls%2C_Snoqualmie%2C_WA.jpeg",
@@ -361,21 +402,24 @@
     "page": "https://commons.wikimedia.org/wiki/File:Herd_2510.jpg",
     "credit": "Chris Light",
     "license": "CC BY-SA 4.0",
-    "alt": "Bison grazing beside the tram road in the forest of Northwest Trek Wildlife Park"
+    "alt": "Bison grazing beside the tram road in the forest of Northwest Trek Wildlife Park",
+    "label": "Northwest Trek"
   },
   "ballardlocks": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Hiram_M._Chittenden_Locks_Seattle.jpg/960px-Hiram_M._Chittenden_Locks_Seattle.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Hiram_M._Chittenden_Locks_Seattle.jpg",
     "credit": "Ron Clausen",
     "license": "CC BY-SA 4.0",
-    "alt": "A small boat waiting inside the chamber of the Hiram M. Chittenden (Ballard) Locks in Seattle"
+    "alt": "A small boat waiting inside the chamber of the Hiram M. Chittenden (Ballard) Locks in Seattle",
+    "label": "Ballard Locks"
   },
   "kerrypark": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Seattle_Skyline_Kerry_Park.jpg/960px-Seattle_Skyline_Kerry_Park.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Seattle_Skyline_Kerry_Park.jpg",
     "credit": "Sajad Mohamad",
     "license": "CC BY-SA 4.0",
-    "alt": "The Space Needle and Seattle skyline from Kerry Park with Mount Rainier on the horizon"
+    "alt": "The Space Needle and Seattle skyline from Kerry Park with Mount Rainier on the horizon",
+    "label": "Kerry Park"
   },
   "museumofflight": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Aircraft_in_the_great_gallery_of_the_Museum_of_Flight_%286194334038%29.jpg/960px-Aircraft_in_the_great_gallery_of_the_Museum_of_Flight_%286194334038%29.jpg",
@@ -389,14 +433,16 @@
     "page": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Apple_Park_dllu.jpg",
     "credit": "Daniel L. Lu (user:dllu)",
     "license": "CC BY-SA 4.0",
-    "alt": "Aerial view of Apple Park's circular ring building surrounded by trees in Cupertino"
+    "alt": "Aerial view of Apple Park's circular ring building surrounded by trees in Cupertino",
+    "label": "Apple Park"
   },
   "googleplex": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Googleplex_Welcome_Sign.jpg/960px-Googleplex_Welcome_Sign.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Googleplex_Welcome_Sign.jpg",
     "credit": "Ardo191 at English Wikipedia",
     "license": "Public domain",
-    "alt": "The coloured Google logo on a welcome sign under the trees of the Googleplex in Mountain View"
+    "alt": "The coloured Google logo on a welcome sign under the trees of the Googleplex in Mountain View",
+    "label": "Googleplex"
   },
   "metahq": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Facebook_Headquarters_1_Hacker_Way_Menlo_Park.jpg/960px-Facebook_Headquarters_1_Hacker_Way_Menlo_Park.jpg",
@@ -417,7 +463,8 @@
     "page": "https://commons.wikimedia.org/wiki/File:Stanford_University_campus_in_2016.jpg",
     "credit": "Frank Schulenburg",
     "license": "CC BY-SA 4.0",
-    "alt": "Sandstone arches of Stanford's Main Quad with Hoover Tower rising behind"
+    "alt": "Sandstone arches of Stanford's Main Quad with Hoover Tower rising behind",
+    "label": "Stanford"
   },
   "computerhistory": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Computer_History_Museum%2C_Mountain_View%2C_California_April_2025_05.jpg/960px-Computer_History_Museum%2C_Mountain_View%2C_California_April_2025_05.jpg",
@@ -431,20 +478,153 @@
     "page": "https://commons.wikimedia.org/wiki/File:San_Francisco,_California_April_2022_Salesforce_Tower.jpg",
     "credit": "Sharon Hahn Darlin",
     "license": "CC BY 2.0",
-    "alt": "Salesforce Tower rising above the surrounding high-rises of downtown San Francisco"
+    "alt": "Salesforce Tower rising above the surrounding high-rises of downtown San Francisco",
+    "label": "San Francisco skyline"
   },
   "muirwoods": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Muir_Woods_Path_Through_Trees_June_2022.jpg/960px-Muir_Woods_Path_Through_Trees_June_2022.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Muir_Woods_Path_Through_Trees_June_2022.jpg",
     "credit": "Marty Aligata",
     "license": "CC BY-SA 4.0",
-    "alt": "A fenced trail winding between towering redwood trunks in Muir Woods"
+    "alt": "A fenced trail winding between towering redwood trunks in Muir Woods",
+    "label": "Muir Woods"
   },
   "sausalito": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Sausalito_California.jpg/960px-Sausalito_California.jpg",
     "page": "https://commons.wikimedia.org/wiki/File:Sausalito_California.jpg",
     "credit": "Brocken Inaglory",
     "license": "CC BY-SA 4.0",
-    "alt": "Sausalito's boardwalk and waterfront houses climbing the hillside above the bay"
+    "alt": "Sausalito's boardwalk and waterfront houses climbing the hillside above the bay",
+    "label": "Sausalito"
+  },
+  "chicolodge": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Chico_Hot_Springs.jpg/960px-Chico_Hot_Springs.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Chico_Hot_Springs.jpg",
+    "credit": "David Coats",
+    "license": "CC BY-SA 3.0",
+    "alt": "The historic white lodge surrounded by gardens at Chico Hot Springs",
+    "label": "Chico’s historic lodge"
+  },
+  "saltsunset": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Sunset_at_Salt_Flats.jpg/960px-Sunset_at_Salt_Flats.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sunset_at_Salt_Flats.jpg",
+    "credit": "Asibasm",
+    "license": "CC BY-SA 4.0",
+    "alt": "Polygonal salt crust catching sunset light on the Bonneville Salt Flats",
+    "label": "Bonneville salt patterns",
+    "position": "50% 66%"
+  },
+  "logancanyon": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Logan_Canyon_Scenic_Byway_-_Logan_River_in_Autumn_-_NARA_-_7720193.jpg/960px-Logan_Canyon_Scenic_Byway_-_Logan_River_in_Autumn_-_NARA_-_7720193.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Logan_Canyon_Scenic_Byway_-_Logan_River_in_Autumn_-_NARA_-_7720193.jpg",
+    "credit": "A. E. Crane / U.S. Department of Transportation",
+    "license": "Public domain",
+    "alt": "Red and orange autumn maples along the Logan River below limestone canyon walls",
+    "label": "Logan Canyon"
+  },
+  "narada": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Narada_Falls_%28004aee1018224e829dfcc429d6d34383%29.JPG/960px-Narada_Falls_%28004aee1018224e829dfcc429d6d34383%29.JPG",
+    "page": "https://commons.wikimedia.org/wiki/File:Narada_Falls_%28004aee1018224e829dfcc429d6d34383%29.JPG",
+    "credit": "Steve Redman / NPS",
+    "license": "Public domain",
+    "alt": "Narada Falls cascading over dark rock at Mount Rainier National Park",
+    "label": "Narada Falls"
+  },
+  "porcelain": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Porcelain_Basin_Norris_YNP2.jpg/960px-Porcelain_Basin_Norris_YNP2.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Porcelain_Basin_Norris_YNP2.jpg",
+    "credit": "Acroterion",
+    "license": "CC BY-SA 4.0",
+    "alt": "Steam and pale mineral ground at Porcelain Basin in Yellowstone",
+    "label": "Norris Geyser Basin"
+  },
+  "tomales": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Beach_in_Tomales_Bay.jpg/960px-Beach_in_Tomales_Bay.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Beach_in_Tomales_Bay.jpg",
+    "credit": "Ana Vila-Concejo",
+    "license": "CC BY-SA 4.0",
+    "alt": "A quiet sandy shoreline and calm blue water in Tomales Bay",
+    "label": "Tomales Bay"
+  },
+  "hurricane": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Hurricane_Ridge_Panorama.jpg/960px-Hurricane_Ridge_Panorama.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Hurricane_Ridge_Panorama.jpg",
+    "credit": "Iamsridhar",
+    "license": "CC BY-SA 3.0",
+    "alt": "Layers of blue Olympic mountain ridges beyond the meadows at Hurricane Ridge",
+    "label": "Hurricane Ridge"
+  },
+  "firehole": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Morning_fog_on_the_Firehole_River_%2853118828058%29.jpg/960px-Morning_fog_on_the_Firehole_River_%2853118828058%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Morning_fog_on_the_Firehole_River_%2853118828058%29.jpg",
+    "credit": "Jacob W. Frank / NPS",
+    "license": "Public domain",
+    "alt": "A bison by the Firehole River with pine trees disappearing into morning mist",
+    "label": "Firehole River"
+  },
+  "mesafalls": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Mesa_Falls_4.JPG/960px-Mesa_Falls_4.JPG",
+    "page": "https://commons.wikimedia.org/wiki/File:Mesa_Falls_4.JPG",
+    "credit": "Zechariah Judy",
+    "license": "CC BY 3.0",
+    "alt": "A broad curtain of white water spilling over Upper Mesa Falls in Idaho",
+    "label": "Upper Mesa Falls"
+  },
+  "quinault": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Sunset_at_Lake_Quinault%2C_Olympic_National_Forest%2C_%2835681710293%29.jpg/960px-Sunset_at_Lake_Quinault%2C_Olympic_National_Forest%2C_%2835681710293%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sunset_at_Lake_Quinault%2C_Olympic_National_Forest%2C_%2835681710293%29.jpg",
+    "credit": "U.S. Forest Service, Pacific Northwest Region",
+    "license": "Public domain",
+    "alt": "Sunset colours reflected across Lake Quinault beneath a dark forested ridge",
+    "label": "Lake Quinault"
+  },
+  "kalaloch": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Kalaloch_Beach_Olympic_June_2018_009.jpg/960px-Kalaloch_Beach_Olympic_June_2018_009.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Kalaloch_Beach_Olympic_June_2018_009.jpg",
+    "credit": "King of Hearts",
+    "license": "CC BY-SA 4.0",
+    "alt": "Pacific surf, sand and driftwood on Kalaloch Beach in Olympic National Park",
+    "label": "Kalaloch Beach"
+  },
+  "antelopeSunset": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Antelope_island_sunset.jpg/960px-Antelope_island_sunset.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Antelope_island_sunset.jpg",
+    "credit": "Ccmdav",
+    "license": "Public domain",
+    "alt": "The sunset reflected in the Great Salt Lake from Antelope Island",
+    "label": "Antelope Island"
+  },
+  "greatsaltlake": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Great_Salt_Lake_from_Sunset_Beach.jpg/960px-Great_Salt_Lake_from_Sunset_Beach.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Great_Salt_Lake_from_Sunset_Beach.jpg",
+    "credit": "Drax Felton",
+    "license": "Public domain",
+    "alt": "The open waters of the Great Salt Lake with Antelope Island on the horizon",
+    "label": "Great Salt Lake"
+  },
+  "rainierfall": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Mount_Rainier_fall_color_%2852450468747%29.jpg/960px-Mount_Rainier_fall_color_%2852450468747%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Mount_Rainier_fall_color_%2852450468747%29.jpg",
+    "credit": "Brent Lawrence / USFWS",
+    "license": "Public domain",
+    "alt": "Autumn foliage on the Alta Vista Trail at Mount Rainier, with forested ridges fading into haze",
+    "label": "Autumn at Paradise",
+    "position": "50% 45%"
+  },
+  "jacksonarch": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Elk_antler_arch_at_Jackson_Square%2C_Jackson%2C_WY_2022-07-11.jpg/960px-Elk_antler_arch_at_Jackson_Square%2C_Jackson%2C_WY_2022-07-11.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Elk_antler_arch_at_Jackson_Square%2C_Jackson%2C_WY_2022-07-11.jpg",
+    "credit": "Schwerdf",
+    "license": "CC BY 4.0",
+    "alt": "An arch of interwoven elk antlers at the entrance to Jackson’s town square",
+    "label": "Jackson town square"
+  },
+  "idahofalls": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Falls_on_the_Snake_River_in_Idaho_Falls.jpg/960px-Falls_on_the_Snake_River_in_Idaho_Falls.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Falls_on_the_Snake_River_in_Idaho_Falls.jpg",
+    "credit": "Natecation",
+    "license": "CC BY-SA 4.0",
+    "alt": "Water flowing over the wide falls in the Snake River at Idaho Falls",
+    "label": "Idaho Falls"
   }
 }

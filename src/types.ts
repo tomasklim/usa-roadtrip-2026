@@ -83,6 +83,8 @@ export interface Charger {
 }
 
 export interface Photo {
+  label?: string;
+  position?: string;
   url: string;
   page: string;
   credit: string;

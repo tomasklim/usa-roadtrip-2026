@@ -14,6 +14,7 @@ import { Budget } from "./components/Budget";
 import { Checklist } from "./components/Checklist";
 import { CAR_NIGHTS, MODULES } from "./data/itinerary";
 import { buildTrip } from "./lib/trip";
+import { useSharedStored, useSharedStatus } from "./lib/sharedTrip";
 import { useStored } from "./lib/useStored";
 import { PhotoCredits } from "./components/PhotoCredits";
 import { DailyPlan } from "./components/DailyPlan";
@@ -25,16 +26,17 @@ import type { Tab } from "./components/DayPanel";
 const RouteMap = lazy(() => import("./components/RouteMap").then(module => ({ default: module.RouteMap })));
 
 export default function App() {
-  const [seattle, setSeattle] = useStored<SeattleOptions>("seattlePlan", DEFAULT_SEATTLE, normalizeSeattle);
-  const [mods, setMods] = useStored<string[]>("mods", [], normalizeMods);
+  const shared = useSharedStatus();
+  const [seattle, setSeattle] = useSharedStored<SeattleOptions>("seattlePlan", DEFAULT_SEATTLE, normalizeSeattle);
+  const [mods, setMods] = useSharedStored<string[]>("mods", [], normalizeMods);
   const [units, setUnits] = useStored<Units>("units", "mi", NORMALIZE_UNITS);
   const [theme, setTheme] = useStored<string | null>("theme", null, NORMALIZE_THEME);
   const [tab, setTab] = useStored<Tab>("tab", "plan", NORMALIZE_TAB);
   const [basemap, setBasemap] = useStored<Basemap>("basemap", "terrain", NORMALIZE_BASEMAP);
   const [layers, setLayers] = useStored<Layers>("layers2", DEFAULT_LAYERS, normalizeLayers);
   const [wheelZoom, setWheelZoom] = useStored<boolean>("wheelZoom", false, NORMALIZE_FALSE);
-  const [sleepStyle, setSleepStyle] = useStored<SleepStyle>("sleepStyle", "balanced", NORMALIZE_SLEEP);
-  const [sleepOverrides, setSleepOverrides] = useStored<SleepOverrides>("sleepOverrides", {}, normalizeSleepOverrides);
+  const [sleepStyle, setSleepStyle] = useSharedStored<SleepStyle>("sleepStyle", "balanced", NORMALIZE_SLEEP);
+  const [sleepOverrides, setSleepOverrides] = useSharedStored<SleepOverrides>("sleepOverrides", {}, normalizeSleepOverrides);
   const [selected, setSelected] = useStored<string | null>("selectedDay", null, normalizeDay);
   const route = useNavigation();
   const { view, topic } = route;
@@ -137,6 +139,7 @@ export default function App() {
     <>
       <Header units={units} setUnits={setUnits} theme={theme} setTheme={setTheme} view={view} />
       <main id="main" tabIndex={-1}>
+        {shared.connected && <div className="wrap shared-indicator"><a href="#guide/checklist">Shared trip · {shared.pending ? `${shared.pending} changes waiting to sync` : shared.status}</a></div>}
         {view === "overview" && <>
           <TripBar trip={trip} units={units} onContinue={() => openDaily(day.id)} dayTitle={`Day ${day.num} · ${day.title}`} />
           <div className="wrap overview-body">
@@ -187,7 +190,7 @@ export default function App() {
           <div className="section-heading"><div><span className="eyebrow">THE PRACTICAL SIDE</span><h1>The trip kit.</h1></div><button className="action" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button></div>
           <nav className="topic-nav" aria-label="Trip kit sections">{TOPICS.map(([id,label]) => <a key={id} href={`#guide/${id}`} className={topic === id ? "active" : ""} aria-current={topic === id ? "page" : undefined}>{label}</a>)}</nav>
           <label className="topic-select">Open section<select value={topic} onChange={e => navigate("guide", e.target.value)}>{TOPICS.map(([id,label]) => <option key={id} value={id}>{label}</option>)}</select></label>
-          {topic === "checklist" && <Checklist />}
+          {topic === "checklist" && <Checklist trip={trip} />}
           {topic === "food" && <FoodGuide trip={trip} />}
           {topic === "sleep" && <SleepSection trip={trip} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} overrides={sleepOverrides} setOverrides={setSleepOverrides} />}
           {topic === "charging" && <Charging />}

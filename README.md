@@ -40,7 +40,7 @@ Lava Hot Springs → Salt Lake City** → fly to **San Francisco → Silicon Val
 
 ## Stack
 
-Vite + React + TypeScript + react-leaflet. No backend. `npm run routes` regenerates the road
+Vite + React + TypeScript + react-leaflet. A Vercel Function and a private Upstash Redis hash sync the shared trip. `npm run routes` regenerates the road
 geometry from `src/data/waypoints.json` via OSRM; the result is committed.
 
 ```sh
@@ -56,3 +56,38 @@ The primary site is hosted on **Vercel** at https://usa-roadtrip-2026-ten.vercel
 Pushing to `main` triggers the connected Vercel production deployment. Verify the Vercel
 commit status and the live site after publishing. `vercel.json` carries the security headers.
 The existing GitHub Pages workflow also runs, but Vercel is the user-facing site.
+
+
+## Shared trip and checklist
+
+Trip kit groups tasks into cars, flights/documents, stays, experiences, parks/charging and packing/offline.
+Car dates are derived from the active route. Original checklist IDs and personal browser data are preserved.
+
+`api/trip.js` reads/writes one private trip in Upstash Redis. Production uses the Vercel marketplace
+integration with `KV_REST_API_URL` and `KV_REST_API_TOKEN` (the corresponding `UPSTASH_REDIS_REST_*`
+names also work). Set `TRIP_SHARE_TOKEN` to 32 cryptographically random bytes encoded as base64url
+(43 characters), as a production-only secret. Never put it in a Vite variable or commit it.
+The invite is `https://<site>/#join/<token>`; the fragment is removed on opening and requests use an
+Authorization header. Rotating the secret and redeploying revokes old invites without deleting trip data.
+
+Only checklist state, Seattle/Montana/route choices and sleeping choices sync. Each checkbox and
+per-night override is a separate field, so independent edits merge. For the same field, the last
+write received by the server wins. The client checks every 30 seconds while visible and when
+reconnecting. Pending edits persist locally and overlay remote reads until acknowledged. Personal
+plans remain separate; joining never silently uploads them. The empty shared trip offers an explicit
+import of the current device's personal plan. Display preferences and the selected day remain local.
+The website must already be loaded to use it without a connection; this is not a service-worker
+app install. Download the standalone offline itinerary for a cold start without internet.
+
+The database integration is connected to Production only. Preview deployments deliberately have no
+shared storage unless separately configured. Do not connect a test environment to production data.
+
+Checks:
+
+```sh
+node scripts/verify-shared-trip.mjs
+npm run build
+```
+
+The shared-trip checks cover authorization, payload validation, independent concurrent edits,
+offline/reload recovery, edits during an in-flight request, and separation from the personal plan.

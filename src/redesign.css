@@ -417,3 +417,24 @@ footer a{font-size:.76rem;margin-left:auto;text-decoration:none;white-space:nowr
 
 .forecast-status{font-size:.75rem;line-height:1.5;color:var(--muted);margin:10px 0}
 .forecast-condition{font-size:.84rem;line-height:1.6;margin:12px 0 0}
+
+/* Practical checklist, grouped for quick use on the road. */
+.kit-progress,.kit-group-heading{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.kit-progress{font-size:.85rem;margin-top:26px}.kit-progress span{color:var(--muted);text-align:right}
+.kit-filters{display:flex;gap:20px;align-items:end;margin:22px 0 8px;flex-wrap:wrap}
+.kit-filters label,.shared-join label,.shared-link{display:grid;gap:7px;font-size:.8rem;font-weight:600}
+.kit-filters select,.shared-panel input{min-height:44px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--text);padding:10px 12px;font:inherit;max-width:100%;min-width:0}
+.kit-filters .kit-pending{display:flex;align-items:center;min-height:44px;gap:10px}.kit-pending input{width:20px;height:20px;accent-color:var(--brand)}
+.guide-view .kit-group{padding:24px 0 8px}.kit-group-heading{margin-bottom:16px}.kit-group-heading h3{font:400 1.7rem var(--serif);margin:0}.kit-group-heading p{font-size:.82rem;color:var(--muted);margin:6px 0 0}.kit-group-heading>span{flex:none;font-size:.8rem;color:var(--muted)}
+.kit-item{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);display:flex;flex-direction:column}
+.kit-item .chk{border:0;border-radius:0;background:transparent;flex:1}.kit-item .chk.block{border-left:3px solid var(--rust)}.kit-item.is-done{background:var(--brand-soft)}
+.kit-priority{display:inline-block;margin:0 0 0 8px;font-size:.62rem;font-weight:600;letter-spacing:.03em;color:var(--rust)}
+.kit-dates{display:block;color:var(--brand);font-size:.76rem;font-weight:600;margin-top:8px}
+.kit-source{font-size:.76rem;padding:0 20px 16px 56px;align-self:start}
+.shared-panel{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:0 20px;margin:0 0 20px}
+.shared-panel>summary{padding:16px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}.shared-panel>summary::after{content:'+'}.shared-panel[open]>summary::after{content:'−'}.shared-panel summary b{font-size:.9rem}.shared-panel summary small{display:block;color:var(--muted);font-size:.75rem;margin-top:5px;line-height:1.5}
+.shared-content{border-top:1px solid var(--line);padding:12px 0 18px}.shared-content p{font-size:.84rem;line-height:1.6}.shared-content .hint{font-size:.75rem;color:var(--muted)}
+.shared-join,.shared-actions{display:flex;gap:12px;align-items:end;flex-wrap:wrap}.shared-join label{flex:1;min-width:180px}.shared-link{margin-top:16px}.shared-link input{width:100%;font-size:.8rem}.shared-content .text-action{margin-top:8px}
+@media(max-width:600px){.kit-filters>label:first-child{width:100%}.kit-filters select{width:100%}.kit-group-heading{align-items:start}.kit-progress{align-items:start}.shared-panel{padding-inline:16px}.shared-actions .action,.shared-join .action{width:100%}.kit-source{padding-left:53px}}
+.kit-item .cd{display:block}.kit-item .rc{min-width:0}
+.shared-indicator{padding-top:12px;font-size:.75rem;color:var(--muted)}.shared-indicator a{color:inherit}

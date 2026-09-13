@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import { CHECKS, CHECK_CATEGORIES, checksForTrip, normalizeChecks } from '../src/data/checklist';
+import { buildTrip } from '../src/lib/trip';
+import { DEFAULT_SEATTLE } from '../src/data/seattle';
+const base = buildTrip(new Set());
+assert.equal(new Set(CHECKS.map(c=>c.id)).size,CHECKS.length);
+assert.ok(CHECKS.every(c=>CHECK_CATEGORIES.some(g=>g.id===c.category)));
+assert.deepEqual(normalizeChecks(['driver','driver','bad','turo']),['driver','turo']);
+const cars = checksForTrip(base).filter(c=>c.when);
+assert.equal(cars.length,3);
+assert.ok(cars[0].when!.includes('Sep 24 – Sep 28'));
+assert.ok(cars[1].when!.includes('Sep 29 – Oct 9'));
+assert.ok(cars[2].when!.includes('Oct 11 – Oct 12'));
+const early = checksForTrip(buildTrip(new Set(),'balanced',{}, {...DEFAULT_SEATTLE,weather:'rain',flight:'mon-am'}));
+assert.ok(early.find(c=>c.id==='sea-car-20260924')?.when?.includes('Sep 27'));
+console.log('✓ Checklist categories, unique stable IDs, preserved completion and rental dates that follow weather variants');

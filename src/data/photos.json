@@ -626,5 +626,29 @@
     "license": "CC BY-SA 4.0",
     "alt": "Water flowing over the wide falls in the Snake River at Idaho Falls",
     "label": "Idaho Falls"
+  },
+  "grandgeyser": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Grand_geyser_and_vent_geyser_in_Yellowstone_National_park.jpg/960px-Grand_geyser_and_vent_geyser_in_Yellowstone_National_park.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Grand_geyser_and_vent_geyser_in_Yellowstone_National_park.jpg",
+    "credit": "Brocken Inaglory",
+    "license": "CC BY-SA 3.0",
+    "alt": "Grand and Vent Geysers erupting together in Yellowstone’s Upper Geyser Basin",
+    "label": "Grand & Vent Geysers"
+  },
+  "emeraldpool": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Emerald_Pool_reflections_in_Black_Sand_Basin_%2854660434242%29.jpg/960px-Emerald_Pool_reflections_in_Black_Sand_Basin_%2854660434242%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Emerald_Pool_reflections_in_Black_Sand_Basin_%2854660434242%29.jpg",
+    "credit": "Jacob W. Frank / NPS",
+    "license": "Public domain",
+    "alt": "Trees reflected in Emerald Pool at Black Sand Basin in Yellowstone",
+    "label": "Emerald Pool"
+  },
+  "westthumb": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Yellowstone_Lake_West_Thumb_YNP1.jpg/960px-Yellowstone_Lake_West_Thumb_YNP1.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Yellowstone_Lake_West_Thumb_YNP1.jpg",
+    "credit": "Acroterion",
+    "license": "CC BY-SA 4.0",
+    "alt": "Yellowstone Lake and its shoreline at West Thumb",
+    "label": "West Thumb"
   }
 }

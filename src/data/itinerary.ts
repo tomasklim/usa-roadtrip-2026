@@ -172,7 +172,7 @@ export const BASE: Day[] = [
 
 { id: "s4", kind: "drive", act: "III",
   title: "Geysers, north through the park", leg: "Jackson → South Entrance → Old Faithful → Grand Prismatic → West Yellowstone",
-  hours: 4.3, photos: ["grandprismatic", "oldfaithful", "firehole"],
+  hours: 4.3, photos: ["grandprismatic", "oldfaithful", "westthumb"],
   hi: ["Up the Rockefeller Parkway with the Tetons in the mirror the whole way",
        "Old Faithful and the Upper Geyser Basin, which holds more geysers than the rest of the planet combined",
        "Grand Prismatic from the Fairy Falls overlook — the boardwalk gives you steam, the overlook gives you the colour",
@@ -188,7 +188,7 @@ export const BASE: Day[] = [
 
 { id: "s4b", kind: "drive", act: "III",
   title: "A whole day in the geyser basins", leg: "West Yellowstone → Firehole → Grand Prismatic → Old Faithful → back",
-  hours: 2.1, photos: ["firehole", "grandprismatic", "oldfaithful"],
+  hours: 2.1, photos: ["grandgeyser", "emeraldpool", "firehole"],
   hi: ["Half the planet's geysers are inside a few square miles here, and one day is the minimum to walk them",
        "Grand Prismatic from the Fairy Falls overlook — the 20-minute climb is the difference between steam and colour",
        "Old Faithful is the famous one, but Grand, Riverside and Castle are better if you catch them",

@@ -57,7 +57,7 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
             ? trip.days.filter((x) => !x.isMod && x.id >= m.replaces![0] && x.id <= m.replaces![1])
             : [];
           const after = m.days;
-          const maxM = Math.max(1, ...before.map((x) => x.meters ?? 0), ...after.map((x) => metersOf(x.id)));
+          const maxM = Math.max(1, ...before.map((x) => x.meters ?? 0), ...after.map((x) => metersOf(x.routeId ?? x.id)));
           return (
             <div key={m.id} className={`modcard${active ? " on" : ""}`}
                  onMouseEnter={() => onHover(m.id)} onMouseLeave={() => onHover(null)}>
@@ -98,8 +98,8 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
                         <span className="balbl">replaced by</span>
                         <div className="bars alt">
                           {after.map((x) => (
-                            <i key={x.id} style={{ height: `${(metersOf(x.id) / maxM) * 100}%` }}
-                               title={`${x.title} — ${distLabel(metersOf(x.id), units)}`} />
+                            <i key={x.id} style={{ height: `${(metersOf(x.routeId ?? x.id) / maxM) * 100}%` }}
+                               title={`${x.title} — ${distLabel(metersOf(x.routeId ?? x.id), units)}`} />
                           ))}
                         </div>
                       </div>
@@ -111,8 +111,8 @@ export function Modules({ on, toggle, trip, units, sleepStyle, setSleepStyle, on
                       <span className="balbl">adds {after.length === 1 ? "a day" : `${after.length} days`}</span>
                       <div className="bars alt">
                         {after.map((x) => (
-                          <i key={x.id} style={{ height: `${(metersOf(x.id) / maxM) * 100}%` }}
-                             title={`${x.title} — ${distLabel(metersOf(x.id), units)}`} />
+                          <i key={x.id} style={{ height: `${(metersOf(x.routeId ?? x.id) / maxM) * 100}%` }}
+                             title={`${x.title} — ${distLabel(metersOf(x.routeId ?? x.id), units)}`} />
                         ))}
                       </div>
                     </div>

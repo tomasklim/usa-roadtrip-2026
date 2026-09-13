@@ -1440,5 +1440,54 @@
   "desc": "A relaxed walk and lunch after the flight.",
   "tags": [],
   "photo": "saltlakecity"
+ },
+ {
+  "id": "lamar-valley-rain",
+  "name": "Lamar Valley",
+  "kind": "sight",
+  "lat": 44.85902,
+  "lon": -110.18797,
+  "day": "rainLamar",
+  "tags": [],
+  "city": "Yellowstone National Park WY",
+  "desc": "A wildlife outing from Gardiner without crossing Beartooth. Check roads and battery before setting out.",
+  "photo": "lamarvalley"
+ },
+ {
+  "id": "chico-hot-springs-rain",
+  "name": "Chico Hot Springs",
+  "kind": "food",
+  "lat": 45.33771,
+  "lon": -110.69216,
+  "day": "rainTransfer",
+  "tags": [
+   "meat",
+   "gf"
+  ],
+  "city": "Pray MT",
+  "desc": "Game meats, done properly. Mention the allergies when booking"
+ },
+ {
+  "id": "museum-of-the-rockies-rain",
+  "name": "Museum of the Rockies",
+  "kind": "sight",
+  "lat": 45.65875,
+  "lon": -111.04564,
+  "day": "rainRest",
+  "tags": [],
+  "city": "Bozeman MT",
+  "desc": "Jack Horner's collection — the largest set of T. rex fossils anywhere on Earth. Budget two hours.",
+  "photo": "trex"
+ },
+ {
+  "id": "laurel-charge-break",
+  "name": "Laurel Supercharger · coffee break",
+  "kind": "sight",
+  "lat": 45.666243,
+  "lon": -108.761451,
+  "day": "s7",
+  "tags": [],
+  "city": "Laurel MT",
+  "desc": "8 Tesla Superchargers up to 250 kW, available 24/7 at Fairfield by Marriott, 301 S Washington Ave. No adapter needed for the US Tesla."
  }
 ]

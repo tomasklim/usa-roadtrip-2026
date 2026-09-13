@@ -1,4 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { MontanaChoices } from "./components/MontanaChoices";
 import { SeattleChoices } from "./components/SeattleChoices";
 import { DEFAULT_SEATTLE, normalizeSeattle, type SeattleOptions } from "./data/seattle";
 import { Header } from "./components/Header";
@@ -123,6 +124,14 @@ export default function App() {
   </Suspense>;
 
   const seattleChoices = <SeattleChoices trip={trip} onChange={setSeattle} extended={on.has("olympic")} />;
+  const changeMontana = (rainy: boolean) => {
+    if (rainy === on.has("montanaRain")) return;
+    toggle("montanaRain");
+    const pairs = [["s6", "rainLamar"], ["s7", "rainTransfer"], ["s8", "rainRest"]];
+    const pair = pairs.find(p => p.includes(day.id));
+    if (pair && view === "itinerary") openDaily(pair[rainy ? 1 : 0]);
+  };
+  const montanaChoices = <MontanaChoices trip={trip} rainy={on.has("montanaRain")} onChange={changeMontana} />;
 
   return (
     <>
@@ -132,7 +141,7 @@ export default function App() {
           <TripBar trip={trip} units={units} onContinue={() => openDaily(day.id)} dayTitle={`Day ${day.num} · ${day.title}`} />
           <div className="wrap overview-body">
             <QuickLinks />
-            {seattleChoices}
+            {seattleChoices}{montanaChoices}
             <section id="trip-map" className="overview-map" aria-label="Whole trip map">
               <div className="section-heading"><div><span className="eyebrow">SEATTLE → THE ROCKIES → SAN FRANCISCO</span><h2>The whole trip.</h2></div><a className="text-action" href="#plan">Itinerary & distances ↗</a></div>
               {renderMap(null)}
@@ -153,7 +162,7 @@ export default function App() {
           <div className="section-heading"><div><span className="eyebrow">THE ROUTE & YOUR DAILY PLAN</span><h1>Your daily field notes.</h1></div>
             <button className="action" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button></div>
           {trip.overrun > 0 && <p className="warn" role="alert">The selected route is {trip.overrun} days too long for the booked flights. <a href="#guide/options">Adjust route options</a>.</p>}
-          {seattleChoices}
+          {seattleChoices}{montanaChoices}
           <DailyPlan trip={trip} day={day} units={units} tab={tab} setTab={setTab} onSelect={openDaily}
             map={renderMap(day.id)} />
         </div>}
@@ -161,7 +170,7 @@ export default function App() {
         {view === "plan" && <div className="wrap view-content trip-plan-view">
           <div className="section-heading"><div><span className="eyebrow">ALL {trip.days.length} DAYS, TOGETHER</span><h1>The complete trip.</h1></div>
             <button className="action" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button></div>
-          {seattleChoices}
+          {seattleChoices}{montanaChoices}
           <nav className="topic-nav" aria-label="Trip plan sections">
             <a href="#plan" className={route.planSection === "itinerary" ? "active" : ""} aria-current={route.planSection === "itinerary" ? "page" : undefined}>Complete itinerary</a>
             <a href="#plan/distances" className={route.planSection === "distances" ? "active" : ""} aria-current={route.planSection === "distances" ? "page" : undefined}>Distances & driving</a>
@@ -184,7 +193,7 @@ export default function App() {
           {topic === "charging" && <Charging />}
           {topic === "risks" && <RiskSection />}
           {topic === "budget" && <Budget trip={trip} />}
-          {topic === "options" && <>{seattleChoices}<Modules seattle={seattle} on={on} toggle={toggle} trip={trip} units={units} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={selectOnMap} onHover={setGhost} /></>}
+          {topic === "options" && <>{seattleChoices}{montanaChoices}<Modules seattle={seattle} on={on} toggle={toggle} trip={trip} units={units} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={selectOnMap} onHover={setGhost} /></>}
         </div>}
         {view === "credits" && <PhotoCredits />}
       </main>

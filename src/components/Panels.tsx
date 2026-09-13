@@ -161,14 +161,14 @@ export function Charging() {
         <div className="card rules" style={{ marginTop: 14, borderLeftColor: "var(--rust)" }}>
           <h3 style={{ fontSize: ".98rem" }}>Northern Yellowstone — the one real risk</h3>
           <p style={{ margin: "6px 0 0", fontSize: ".89rem", color: "var(--muted)" }}>
-            Gardiner has no Supercharger — only an L2 at Yellowstone Forever (2 ports) and a CCS L3 at
-            the Sinclair. The route arrives from West Yellowstone, then crosses between Gardiner,
-            Lamar and Red Lodge before reaching Bozeman. That only works with overnight charging in
-            Gardiner and Red Lodge. Two safeguards matter:
+            The US Tesla connects directly at Laurel and Bozeman Superchargers. No charging adapter is
+            carried, so CCS and J1772 chargers are not counted as backups. Gardiner still needs an energy
+            plan before you arrive; a hotel advertising “L2” does not confirm a compatible plug.
           </p>
           <ul style={{ fontSize: ".89rem" }}>
-            <li>book a Gardiner motel <b>with an L2 charger</b> — eight hours overnight adds roughly 240 miles;</li>
-            <li>ask the Turo host for the <b>CCS Combo 1 adapter</b>, which also unlocks Cody on the Beartooth module.</li>
+            <li>Confirm a native <b>Tesla/NACS connector</b>, access and availability before relying on a Gardiner hotel charger.</li>
+            <li>Before Beartooth, plan all the way to <b>Laurel Supercharger</b>, about 71 km beyond Red Lodge, including overnight use. Red Lodge destination charging is an optional top-up.</li>
+            <li>Charge in Laurel for the onward Gardiner night and next day’s drive to Bozeman. The bad-weather plan skips Beartooth and adds a Bozeman day; the Lamar outing still needs enough reserve to reach Bozeman afterwards.</li>
           </ul>
         </div>
       </div>
@@ -224,7 +224,7 @@ export function SleepSection({ trip, sleepStyle, setSleepStyle, overrides, setOv
             <p>Compare a room for two, including taxes, with campsite fees and the value of a shower and charging.
               If the room feels too expensive, select “Car · price exception”. This can extend a car streak beyond two nights and is always labelled.</p>
             <p>Room prices have not been checked. Camps are candidate areas: confirm permission, seasonal access and availability.
-              Gardiner and Red Lodge retain beds for overnight charging; flight and rental-return nights also retain beds.</p>
+              Gardiner and Red Lodge retain beds for rest; the bad-weather plan keeps two Bozeman hotel nights. Flight and rental-return nights also retain beds.</p>
             <p>Your choices are saved on this device and reflected in the itinerary, automatic lodging counts and offline copy. Download a new copy after changing the plan.</p>
           </details>
           <button className="action" disabled={Object.keys(overrides).length === 0} onClick={() => setOverrides({})}>Reset per-night choices</button>

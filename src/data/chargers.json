@@ -286,5 +286,14 @@
   "city": "West Wendover",
   "fast": true,
   "stalls": 14
+ },
+ {
+  "id": "tesla-laurel-19030",
+  "name": "Laurel Supercharger · Fairfield by Marriott",
+  "lat": 45.666243,
+  "lon": -108.761451,
+  "city": "Laurel MT · 301 S Washington Ave · up to 250 kW · 24/7",
+  "fast": true,
+  "stalls": 8
  }
 ]

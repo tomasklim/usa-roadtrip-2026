@@ -305,7 +305,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
   const wide = useIsWide();
   const ghostLegs = ghost
     ? (MODULES.find((m) => m.id === ghost)?.days ?? [])
-        .map((d) => d.id).filter((id) => ROUTES[id]?.line?.length > 1)
+        .map((d) => d.routeId ?? d.id).filter((id) => ROUTES[id]?.line?.length > 1)
     : [];
   // The panel covers the right edge, so framing has to account for it.
   const panelPad = panel && wide ? panelWidth : 0;

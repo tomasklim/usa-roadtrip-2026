@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { Header } from "./components/Header";
-import { ActBar, TripBar } from "./components/TripBar";
+import { ActBar, Chapters, QuickLinks, TripBar } from "./components/TripBar";
 import { Flights } from "./components/Flights";
 import { Modules } from "./components/Modules";
-import { RouteMap, type Basemap, type Layers } from "./components/RouteMap";
+import type { Basemap, Layers } from "./components/RouteMap";
 import { DayList } from "./components/DayList";
 import { Charging, Glance, LoadChart, RiskSection, SleepSection } from "./components/Panels";
 import { FoodGuide } from "./components/FoodGuide";
@@ -13,8 +13,13 @@ import { RoadsideStops } from "./components/RoadsideStops";
 import { MODULES } from "./data/itinerary";
 import { buildTrip } from "./lib/trip";
 import { useStored } from "./lib/useStored";
+import { DailyPlan, DayPicker } from "./components/DailyPlan";
+import { navigate, TOPICS, todayInTrip, useNavigation } from "./lib/navigation";
+import { downloadOfflinePlan } from "./lib/offline";
 import type { SleepStyle, Units } from "./types";
 import type { Tab } from "./components/DayPanel";
+
+const RouteMap = lazy(() => import("./components/RouteMap").then(module => ({ default: module.RouteMap })));
 
 export default function App() {
   const [mods, setMods] = useStored<string[]>("mods", [], normalizeMods);
@@ -29,11 +34,18 @@ export default function App() {
   const [panelWidth, setPanelWidth] = useStored<number>("panelWidth", 400, NORMALIZE_PANEL_WIDTH);
   const [showList, setShowList] = useStored<boolean>("showList", false, NORMALIZE_FALSE);
   const [sleepStyle, setSleepStyle] = useStored<SleepStyle>("sleepStyle", "balanced", NORMALIZE_SLEEP);
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useStored<string | null>("selectedDay", null, normalizeDay);
+  const route = useNavigation();
+  const { view, topic } = route;
   const [ghost, setGhost] = useState<string | null>(null);
 
   const on = useMemo(() => new Set(Array.isArray(mods) ? mods : []), [mods]);
   const trip = useMemo(() => buildTrip(on, sleepStyle), [on, sleepStyle]);
+  const day = trip.days.find(d => d.id === selected) ?? todayInTrip(trip) ?? trip.days[0];
+
+  useEffect(() => {
+    if (route.day && trip.days.some(d => d.id === route.day)) setSelected(route.day);
+  }, [route.day, trip.days, setSelected]);
 
   useEffect(() => {
     if (selected && !trip.days.some((d) => d.id === selected)) setSelected(null);
@@ -61,119 +73,104 @@ export default function App() {
     });
   }, [setMods]);
 
-  // Selecting never scrolls the page — the map is the point, and being yanked
-  // down to a card you did not ask for is worse than useless. The popups carry
-  // an explicit button instead.
-  const select = useCallback((id: string) => setSelected(id), []);
-
+  const openDaily = useCallback((id: string) => {
+    setSelected(id);
+    navigate("itinerary", id);
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [setSelected]);
   const selectOnMap = useCallback((id: string) => {
     setSelected(id);
-    requestAnimationFrame(() => {
-      document.querySelector<HTMLElement>(".mapcard")
-        ?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  }, []);
+    navigate("map", id);
+  }, [setSelected]);
+  const select = selectOnMap;
+  const clearMap = useCallback(() => { setSelected(null); navigate("map"); }, [setSelected]);
+  const scrollToDay = openDaily;
 
-  const scrollToDay = useCallback((id: string) => {
-    // Deferred a frame: a day added by switching a module on is not in the DOM yet.
-    requestAnimationFrame(() => {
-      const el = document.getElementById(`day-${id}`);
-      if (!el) return;
-      const wide = window.matchMedia("(min-width: 1080px)").matches;
-      el.scrollIntoView({ behavior: "smooth", block: wide ? "center" : "start" });
-    });
-  }, []);
-
-  const selectAndScroll = useCallback((id: string) => {
-    setSelected(id);
-    scrollToDay(id);
-  }, [scrollToDay]);
-
-  /** Move the selection along the itinerary; used by the arrow keys and the map buttons. */
+  /** Keep keyboard navigation, saved selection and the shareable URL together. */
   const step = useCallback((delta: number) => {
-    setSelected((cur) => {
-      const list = trip.days.map((d) => d.id);
-      if (!list.length) return cur;
-      if (!cur) return delta > 0 ? list[0] : list[list.length - 1];
-      const i = list.indexOf(cur);
-      if (i < 0) return list[0];
-      return list[(i + delta + list.length) % list.length];
-    });
-  }, [trip.days]);
+    const index = trip.days.findIndex(d => d.id === day.id);
+    const next = trip.days[Math.max(0, Math.min(trip.days.length - 1, index + delta))];
+    if (view === "map") selectOnMap(next.id);
+    else openDaily(next.id);
+  }, [trip.days, day.id, view, selectOnMap, openDaily]);
 
   // Left and right arrows walk the itinerary, unless you are typing in a control.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.metaKey || e.ctrlKey || e.altKey || !["itinerary", "map"].includes(view)) return;
       const t = e.target as HTMLElement | null;
-      if (t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+      if (t && /^(INPUT|TEXTAREA|SELECT|BUTTON|A)$/.test(t.tagName)) return;
       if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
       else if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
-      else if (e.key === "Escape") setSelected(null);
+      else if (e.key === "Escape" && view === "map") clearMap();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [step]);
+  }, [step, view, clearMap]);
 
   return (
     <>
-      <Header units={units} setUnits={setUnits} theme={theme} setTheme={setTheme} />
-      <TripBar trip={trip} units={units} />
+      <Header units={units} setUnits={setUnits} theme={theme} setTheme={setTheme} view={view} />
+      <main id="main" tabIndex={-1}>
+        {view === "overview" && <>
+          <TripBar trip={trip} units={units} onContinue={() => openDaily(day.id)} dayTitle={`Day ${day.num} · ${day.title}`} />
+          <div className="wrap overview-body">
+            <QuickLinks />
+            <div className="section-heading"><div><span className="eyebrow">THREE CHAPTERS, ONE GOOD TRIP</span><h2>From the mountains to the Pacific.</h2></div><a className="text-action" href="#itinerary">All {trip.days.length} days ↗</a></div>
+            <Chapters trip={trip} onPick={openDaily} />
+            <div className="overview-bottom"><RoadsideStops trip={trip} onSelect={openDaily} />
+              <div className="travel-note"><span className="eyebrow">KEEP IT WITH YOU</span><h2>A plan for the road.</h2><p>Your day selection and checklist are saved on this device. Download a readable copy of the itinerary before heading out of signal.</p><button className="action primary" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button><p className="hint">Includes daily plans and flights. Maps, photos and live conditions still need a connection.</p></div>
+            </div>
+          </div>
+        </>}
 
-      <section id="plan" style={{ paddingTop: 18 }}>
-        <div className="wrap">
+        {view === "itinerary" && <div className="wrap view-content">
+          <div className="section-heading"><div><span className="eyebrow">ONE DAY AT A TIME</span><h1>Your daily field notes.</h1></div>
+            <button className="action" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button></div>
+          {trip.overrun > 0 && <p className="warn" role="alert">The selected route is {trip.overrun} days too long for the booked flights. <a href="#guide/options">Adjust route options</a>.</p>}
+          <DailyPlan trip={trip} day={day} units={units} onSelect={openDaily} onMap={selectOnMap} />
+          <details className="full-itinerary" open={showList} onToggle={e => setShowList(e.currentTarget.open)}>
+            <summary>Read the complete itinerary <span>{trip.days.length} days</span></summary>
+            <DayList trip={trip} units={units} selected={selected} onSelect={openDaily} />
+          </details>
+          <details className="full-itinerary"><summary>Distances & driving overview</summary>
+            <Glance trip={trip} units={units} onSelect={openDaily} />
+            <LoadChart trip={trip} units={units} onSelect={openDaily} />
+          </details>
+        </div>}
+
+        {view === "map" && <div className="wrap view-content map-view">
+          <div className="section-heading"><div><span className="eyebrow">FOLLOW THE ROAD</span><h1>The route, in context.</h1></div><button className="action" onClick={clearMap}>Show whole trip</button></div>
+          <DayPicker trip={trip} day={day} onSelect={select} />
           <ActBar trip={trip} selected={selected} onPick={select} />
-          <RouteMap trip={trip} units={units} selected={selected} onSelect={select}
+          <Suspense fallback={<div className="map-loading" role="status">Loading the route map…</div>}><RouteMap trip={trip} units={units} selected={selected} onSelect={select}
                     layers={layers} setLayers={setLayers} basemap={basemap} setBasemap={setBasemap}
                     dark={dark} wheelZoom={wheelZoom} setWheelZoom={setWheelZoom}
                     panel={panel} setPanel={setPanel}
                     panelWidth={panelWidth} setPanelWidth={setPanelWidth} tab={tab} setTab={setTab}
-                    ghost={ghost}
-                    onClear={() => setSelected(null)}
+                    ghost={ghost} onClear={clearMap}
                     mapHeight={mapHeight} setMapHeight={setMapHeight}
-                    onStep={step} onScrollTo={scrollToDay} />
+                    onStep={step} onScrollTo={scrollToDay} /></Suspense>
+          {selected && <div className="map-day-link"><div><span className="eyebrow">DAY {day.num} · {day.date ? new Date(day.date).toLocaleDateString("en-GB", {day:"numeric",month:"short",timeZone:"UTC"}) : ""}</span><h2>{day.title}</h2><p>{day.sleep?.where ?? "Flight home"}</p></div><button className="action primary" onClick={() => openDaily(day.id)}>Read this day ↗</button></div>}
+          <p className="hint">Tap a numbered pin to select a day. Pinch to zoom. Open a place pin for details.</p>
+        </div>}
 
-          <div className="controls">
-            <Modules on={on} toggle={toggle} trip={trip} units={units}
-                     sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={select}
-                     onHover={setGhost} />
-            <RoadsideStops trip={trip} onSelect={selectOnMap} />
-          </div>
+        {view === "flights" && <div className="view-content flights-view"><Flights trip={trip} /></div>}
 
-          <button className="listtoggle" onClick={() => setShowList(!showList)} aria-expanded={showList}>
-            {showList
-              ? "▴  Hide the written itinerary"
-              : `▾  Read the whole itinerary as text — all ${trip.days.length} days`}
-          </button>
-          {showList && (
-            <DayList trip={trip} units={units} selected={selected} onSelect={select} />
-          )}
-        </div>
-      </section>
-
-      <Flights trip={trip} />
-      <Glance trip={trip} units={units} onSelect={selectAndScroll} />
-      <LoadChart trip={trip} units={units} onSelect={selectAndScroll} />
-      <Charging />
-      <FoodGuide trip={trip} />
-      <SleepSection trip={trip} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} />
-      <Budget trip={trip} />
-      <Checklist />
-      <RiskSection />
-
-      <footer>
-        <div className="wrap narrow">
-          <p>
-            <b>Northwest Roadtrip 2026</b> — distances measured on OSRM road geometry, closure dates and
-            entrance fees verified August 2026. Photos from Wikimedia Commons under their stated licences;
-            map data © OpenStreetMap contributors.
-          </p>
-          <p>
-            Check conditions the morning of, not the night before: <span style={{ fontFamily: "var(--mono)" }}>nps.gov/yell</span>,{" "}
-            <span style={{ fontFamily: "var(--mono)" }}>nps.gov/mora</span>, and the relevant state 511 service.
-          </p>
-        </div>
-      </footer>
+        {view === "guide" && <div className="wrap view-content guide-view">
+          <div className="section-heading"><div><span className="eyebrow">THE PRACTICAL SIDE</span><h1>The trip kit.</h1></div><button className="action" onClick={() => downloadOfflinePlan(trip, units)}>↓ Save offline copy</button></div>
+          <nav className="topic-nav" aria-label="Trip kit sections">{TOPICS.map(([id,label]) => <a key={id} href={`#guide/${id}`} className={topic === id ? "active" : ""} aria-current={topic === id ? "page" : undefined}>{label}</a>)}</nav>
+          <label className="topic-select">Open section<select value={topic} onChange={e => navigate("guide", e.target.value)}>{TOPICS.map(([id,label]) => <option key={id} value={id}>{label}</option>)}</select></label>
+          {topic === "checklist" && <Checklist />}
+          {topic === "food" && <FoodGuide trip={trip} />}
+          {topic === "sleep" && <SleepSection trip={trip} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} />}
+          {topic === "charging" && <Charging />}
+          {topic === "risks" && <RiskSection />}
+          {topic === "budget" && <Budget trip={trip} />}
+          {topic === "options" && <Modules on={on} toggle={toggle} trip={trip} units={units} sleepStyle={sleepStyle} setSleepStyle={setSleepStyle} onSelect={selectOnMap} onHover={setGhost} />}
+        </div>}
+      </main>
+      <footer><div className="wrap"><span className="footer-brand">NW / 2026</span><p>Seattle → the Rockies → San Francisco<br /><span>Road distances from OSRM · Photos credited to their authors · Conditions checked August 2026</span></p><a href="#guide/risks">Check road conditions ↗</a></div></footer>
     </>
   );
 }
@@ -229,3 +226,5 @@ const NORMALIZE_FALSE = bool(false);
 const NORMALIZE_TRUE = bool(true);
 const NORMALIZE_MAP_HEIGHT = finiteOrNull(260, 1800);
 const NORMALIZE_PANEL_WIDTH = finite(280, 1200, 400);
+
+const normalizeDay = (value: unknown) => typeof value === "string" ? value : null;

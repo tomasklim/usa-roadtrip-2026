@@ -54,7 +54,7 @@ export function DayPanel({ day, units, count, width, tab, setTab, sheet, onClose
         <span className="detail-count tnum">{day.num ?? 1} / {count}</span>
         <button className="mini" onClick={() => onStep(1)} title="Next day (→)">→</button>
         <span style={{ flex: 1 }} />
-        <button className="mini" onClick={() => onScrollTo(day.id)} title="Show this day in the list below">list ↓</button>
+        <button className="mini" onClick={() => onScrollTo(day.id)} title="Open the daily plan">Read day ↗</button>
         <button className="mini" onClick={onClose} title="Close (Esc)">✕</button>
       </div>
 
@@ -142,12 +142,10 @@ export function OverviewPanel({ trip, units, width, sheet, onStart, onClose }: {
         <button className="mini" onClick={onClose} title="Hide this panel">✕</button>
       </div>
       <div className="detail-body ov">
-        <h3>Focused rental blocks, with flights over the dead miles</h3>
+        <h3>Three regions, one route.</h3>
         <p>
-          Seattle to Yellowstone is 1,300 km each way and the car has to come back, so a single loop
-          out of Seattle costs about 5,000 km of driving. Flying over the transit instead brings it
-          down to <b>{distLabel(trip.meters, units)}</b> — and keeps the long-distance transfers out
-          of the holiday.
+          Select a numbered day to see its plan alongside the map. Fly between Seattle,
+          Salt Lake City and San Francisco, with a separate rental car in each region.
         </p>
         <div className="ovstats">
           {stats.map(([big, small], i) => (
@@ -168,17 +166,17 @@ export function OverviewPanel({ trip, units, width, sheet, onStart, onClose }: {
               ? `, then a ${r.sf.days}-day Bay Area car for the selected Bay Area outings`
               : "; the active modules leave no Bay Area driving days"}. Fly home Oct 13; Prague Oct 14.</li>
         </ol>
-        <h4>Driving the map</h4>
+        <details className="extra-ideas"><summary>Using the map</summary>
         <ul className="ovhelp">
-          <li><b>← and →</b> walk the trip day by day; this panel becomes that day. <b>Esc</b> closes it.</li>
-          <li>Click any pin or route line to open it. Nothing scrolls unless you press <b>list ↓</b>.</li>
+          <li><b>← and →</b> walk the trip day by day; this panel becomes that day. <b>Esc</b> returns to the whole trip.</li>
+          <li>Click any pin or route line to open it. Choose <b>Read day ↗</b> to open the full daily plan.</li>
           <li>Pins are colour-coded: <span className="k sight">sights</span>{" "}
             <span className="k food">food</span> <span className="k oyster">oysters</span>{" "}
             <span className="k ino">In-N-Out</span> <span className="k charge">Superchargers</span>{" "}
             <span className="k store">Whole Foods</span>. Hover for a name; zoom in and the names stay on.</li>
           <li><b>Pinch</b> to zoom. A plain two-finger scroll still scrolls the page.</li>
           <li>The bar above the map is the five acts — click one to jump to it.</li>
-        </ul>
+        </ul></details>
         <button className="ovgo" onClick={onStart}>Start at day 1 →</button>
       </div>
     </aside>

@@ -12,8 +12,15 @@ importantly, turns half the driving days into short park days.
 **Bonneville Salt Flats → Bear Lake → Grand Teton → Yellowstone → Beartooth Highway → Bozeman →
 Lava Hot Springs → Salt Lake City** → fly to **San Francisco → Silicon Valley + NODE in Palo Alto → Point Reyes**.
 
+**Live site: https://usa-roadtrip-2026-ten.vercel.app/**
+
 ## What the page does
 
+- **Five focused views** — overview, daily plan, map, flights and trip kit. A fixed bottom
+  navigation on phones keeps the essentials within reach. Day links are shareable; the last
+  selected day and checklist stay saved on the device.
+- **Offline text copy** — download a self-contained HTML itinerary with daily plans, food, sleep,
+  charging and flights. It opens without a connection; the live website and map tiles require one.
 - **Real interactive map** — Leaflet with terrain, street and satellite basemaps. Every route line
   is genuine road geometry from OSRM, baked into the repo, so distances are measured rather than
   estimated and there is no runtime dependency on a routing service.
@@ -45,5 +52,7 @@ npm run routes     # only when waypoints change
 
 ## Deployment
 
-GitHub Actions builds and publishes to GitHub Pages on every push to `main`.
-`vercel.json` carries the security headers for a parallel Vercel deployment.
+The primary site is hosted on **Vercel** at https://usa-roadtrip-2026-ten.vercel.app/.
+Pushing to `main` triggers the connected Vercel production deployment. Verify the Vercel
+commit status and the live site after publishing. `vercel.json` carries the security headers.
+The existing GitHub Pages workflow also runs, but Vercel is the user-facing site.

@@ -90,7 +90,7 @@ export function RoadsideStops({ trip, onSelect }: {
                 <span className={isOpen ? "" : "shut"}>{isOpen ? stop.time : "closed that day"}</span>
               </div>
               <button className="stopname" onClick={() => onSelect(day.id)}
-                      aria-label={`Open day ${day.num} on the map for ${stop.name}`}>
+                      aria-label={`Open day ${day.num} for ${stop.name}`}>
                 {stop.name}<span aria-hidden="true"> ↑</span>
               </button>
               <p>{stop.body}</p>

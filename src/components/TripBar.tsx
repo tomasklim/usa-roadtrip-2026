@@ -1,95 +1,90 @@
 import { ACTS } from "../data/itinerary";
 import { CAP_DAYS, DEPART, START, distLabel, fmtShort, rentals, type Trip } from "../lib/trip";
-import type { Day, Units } from "../types";
+import { navigate } from "../lib/navigation";
+import { PHOTOS } from "./DayParts";
+import type { Units } from "../types";
 
-/**
- * One line instead of six stat tiles: what this trip is, and its single most
- * useful number. Everything else lives in the map panel or the glance table.
- */
-export function TripBar({ trip, units }: { trip: Trip; units: Units }) {
+export function TripBar({ trip, units, onContinue, dayTitle }: {
+  trip: Trip; units: Units; onContinue: () => void; dayTitle: string;
+}) {
+  const photo = PHOTOS.rainier;
   const r = rentals(trip);
-  const shortDays = trip.days.filter((d) => (d.meters ?? 0) > 0 && (d.meters ?? 0) < 200_000).length;
-  const rentalBlocks = [r.seattle, r.slc, r.sf].filter((block) => block.days > 0).length;
-  return (
-    <div className="tripbar">
-      <div className="wrap">
-        <div className="kicker">
-          {CAP_DAYS} days · {fmtShort(START)} – {fmtShort(DEPART)}, 2026 · home Oct 14 · two people · gluten-free and dairy-free
+  return <div className="tripbar">
+    <div className="wrap">
+      <div className="trip-hero">
+        <div className="hero-copy">
+          <div className="eyebrow">THE AMERICAN NORTHWEST · AUTUMN 2026</div>
+          <h1>A little further<br />out west.</h1>
+          <p className="hero-intro">Mountain mornings, wide-open roads.<br />Seattle to the Rockies, then the California coast.</p>
+          <div className="hero-dates">{fmtShort(START)} — {fmtShort(DEPART)} <span>/ {CAP_DAYS} days / two people</span></div>
+          <div className="hero-actions">
+            <button className="action primary" onClick={onContinue}>Open the daily plan <span aria-hidden="true">↗</span></button>
+            <a className="action" href="#map">Explore the map</a>
+          </div>
+          <span className="hero-resume">Ready to open: {dayTitle}</span>
         </div>
-        <h1>Yellowstone, the Tetons and Bonneville — a fly-drive route with focused rental blocks</h1>
-        <div className="routeline">
-          Seattle <b>→</b> Mount Rainier <b>→</b> Hood Canal <b>✈</b> Salt Lake City <b>→</b> Bonneville
-          Salt Flats <b>→</b> Bear Lake <b>→</b> Grand Teton <b>→</b> Yellowstone <b>→</b> Beartooth
-          Highway <b>→</b> Bozeman <b>→</b> Lava Hot Springs <b>✈</b> San Francisco <b>→</b> Point Reyes
-        </div>
-        <p>
-          <b>{distLabel(trip.meters, units)}</b> of driving over <b>{trip.driveDays} days</b> behind the
-          wheel, including <b>{shortDays} under 200 km</b> — because the 1,300 km run out to Yellowstone gets flown
-          rather than driven. {rentalBlocks} rental blocks ({r.seattle.days} days in Washington,{" "}
-          {r.slc.days} in the Rockies{r.sf.days > 0 ? ` and ${r.sf.days} around the Bay` : ""}), <b>{trip.carNights} nights sleeping in the car</b>, two oyster
-          stops worth building a day around, and one Supercharger problem in Gardiner that has to be
-          solved before you leave.
-        </p>
+        <figure className="hero-photo">
+          {photo && <img src={photo.url} alt={photo.alt} fetchPriority="high" />}
+          <div className="photo-stamp"><span>MOUNT RAINIER / WASHINGTON</span><b>Take the scenic way.</b></div>
+          {photo && <figcaption><a href={photo.page} target="_blank" rel="noreferrer">{photo.credit} · {photo.license}</a></figcaption>}
+        </figure>
+      </div>
+      <div className="trip-facts" aria-label="Trip at a glance">
+        <div><b>{distLabel(trip.meters, units)}</b><span>on the road</span></div>
+        <div><b>{r.seattle.days + r.slc.days + r.sf.days} rental days</b><span>across three car blocks</span></div>
+        <div><b>{trip.sfNights} Bay Area nights</b><span>home in Prague Oct 14</span></div>
+        <div><b>Made for two</b><span>gluten-free & dairy-free</span></div>
       </div>
     </div>
-  );
+  </div>;
 }
 
-/**
- * Where you are during the trip. Segments are proportional to each act's
- * length, so the bar is also a rough sense of pace.
- */
+const CHAPTERS = [
+  { id: "I", title: "Evergreens & oyster beds", place: "WASHINGTON", photo: "rainier", text: "Seattle, Mount Rainier & Hood Canal" },
+  { id: "II", title: "Salt flats to wild country", place: "THE ROCKIES", photo: "grandprismatic", text: "Bonneville, the Tetons & Yellowstone" },
+  { id: "V", title: "One last turn to the coast", place: "CALIFORNIA", photo: "goldengate", text: "San Francisco, Palo Alto & Point Reyes" }
+];
+
+export function Chapters({ trip, onPick }: { trip: Trip; onPick: (id: string) => void }) {
+  return <div className="chapters">
+    {CHAPTERS.map((chapter, i) => {
+      const days = trip.days.filter(d => chapter.id === "II" ? ["II", "III", "IV"].includes(d.act) : d.act === chapter.id);
+      const photo = PHOTOS[chapter.photo] ?? PHOTOS.seattle;
+      return <article className="chapter" key={chapter.id}>
+        <div className="chapter-image"><img src={photo.url} alt={photo.alt} loading="lazy" />
+          <a className="chapter-credit" href={photo.page} target="_blank" rel="noreferrer">{photo.credit} · {photo.license}</a>
+          <span className="chapter-index">0{i + 1}</span>
+        </div>
+        <div className="chapter-copy"><span className="eyebrow">{chapter.place} · {days.length ? `${fmtShort(days[0].date!)} – ${fmtShort(days.at(-1)!.date!)}` : "not in this plan"}</span>
+          <h3>{chapter.title}</h3><p>{chapter.text}</p>
+          <button className="text-action" disabled={!days.length} onClick={() => onPick(days[0].id)}>Open this chapter <span aria-hidden="true">↗</span></button>
+        </div>
+      </article>;
+    })}
+  </div>;
+}
+
 export function ActBar({ trip, selected, onPick }: {
   trip: Trip; selected: string | null; onPick: (dayId: string) => void;
 }) {
-  const groups = ACTS.map((act) => {
-    const days = trip.days.filter((d) => d.act === act.id);
-    const dates = days.length
-      ? `${fmtShort(days[0].date ?? 0)} – ${fmtShort(days[days.length - 1].date ?? 0)}`
-      : act.days;
-    return { act, days, dates, meters: days.reduce((s, d) => s + (d.meters ?? 0), 0) };
-  }).filter((g) => g.days.length > 0);
-
-  const cur = selected ? trip.days.find((d) => d.id === selected) : null;
-  const idx = cur ? (cur.num ?? 0) : -1;
-
-  return (
-    <div className="actbar" role="group" aria-label="Trip progress by act">
-      {groups.map(({ act, days, dates }) => {
-        const first = days[0].num ?? 0;
-        const last = days[days.length - 1].num ?? 0;
-        const active = idx >= first && idx <= last;
-        const done = idx > last;
-        const within = active ? ((idx - first + 1) / days.length) * 100 : done ? 100 : 0;
-        return (
-          <button
-            key={act.id}
-            className={`actseg${active ? " on" : ""}${done ? " done" : ""}`}
-            style={{ flexGrow: days.length }}
-            onClick={() => onPick(days[0].id)}
-            title={`${act.name} — ${days.length} days, ${dates}`}
-          >
-            <span className="fill" style={{ width: `${within}%` }} />
-            <span className="actlbl">
-              <b>Act {act.id}</b>
-              <span>{shorten(act.name)}</span>
-            </span>
-            <span className="actdays">{days.length}d</span>
-          </button>
-        );
-      })}
-      <span className="actwhere">
-        {cur ? `Day ${cur.num} · ${fmtShort(cur.date ?? 0)}` : `${trip.days.length} days total`}
-      </span>
-    </div>
-  );
+  return <div className="actbar" role="group" aria-label="Trip regions">
+    {ACTS.map(act => {
+      const days = trip.days.filter(d => d.act === act.id);
+      if (!days.length) return null;
+      const active = days.some(d => d.id === selected);
+      const titles: Record<string, string> = { I: "Seattle & Rainier", II: "Salt & Tetons", III: "Yellowstone", IV: "Back to Salt Lake", V: "Bay Area" };
+      return <button key={act.id} className={`actseg${active ? " on" : ""}`} onClick={() => onPick(days[0].id)} aria-pressed={active}>
+        <span className="actlbl"><b>{act.id}</b><span>{titles[act.id]}</span></span>
+        <span className="actdays">{fmtShort(days[0].date!)} – {fmtShort(days.at(-1)!.date!)}</span>
+      </button>;
+    })}
+  </div>;
 }
 
-const shorten = (name: string) =>
-  name.replace("Seattle, Rainier and oysters off the tideland", "Seattle & Rainier")
-      .replace("Salt, Bear Lake and the Tetons", "Salt & the Tetons")
-      .replace("Yellowstone and the Beartooth", "Yellowstone")
-      .replace("Dinosaurs, hot springs and back to the salt", "Dinosaurs & hot springs")
-      .replace("San Francisco and the Bay Area", "San Francisco & Bay Area");
-
-export type { Day };
+export function QuickLinks() {
+  return <div className="quick-links">
+    <button onClick={() => navigate("flights")}><span aria-hidden="true">✈</span><div><b>Flights & connections</b><small>All four journeys, in one place</small></div><span>↗</span></button>
+    <button onClick={() => navigate("guide", "checklist")}><span aria-hidden="true">✓</span><div><b>Before we go</b><small>Bookings, packing & the last few things</small></div><span>↗</span></button>
+    <button onClick={() => navigate("guide", "risks")}><span aria-hidden="true">⌁</span><div><b>On the road</b><small>Mountain roads & things to check</small></div><span>↗</span></button>
+  </div>;
+}

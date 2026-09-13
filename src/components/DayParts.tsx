@@ -16,8 +16,8 @@ export function PhotoStrip({ day, single }: { day: Day; single?: boolean }) {
   const shown = single ? pics.slice(0, 1) : pics;
   return (
     <div className={`photos${shown.length > 1 ? " two" : ""}`}>
-      {shown.map((p, i) => (
-        <figure className="photo" key={i} style={{ margin: 0 }}>
+      {shown.map(p => (
+        <figure className="photo" key={p.url} style={{ margin: 0 }}>
           <img src={p.url} alt={p.alt} loading="lazy" decoding="async" />
           <figcaption className="cr">
             <a href={p.page} target="_blank" rel="noreferrer noopener">{p.credit} · {p.license}</a>

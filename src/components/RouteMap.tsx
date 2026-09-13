@@ -75,7 +75,7 @@ function PopCard({ cat, title, sub, body, photoKey, onJump, jumpLabel }: {
         {sub && <div className="pm">{sub}</div>}
         {body && <div className="pop-why">{body}</div>}
         {onJump && (
-          <button className="pop-btn" onClick={onJump}>{jumpLabel ?? "Open this day below ↓"}</button>
+          <button className="pop-btn" onClick={onJump}>{jumpLabel ?? "Read this day ↗"}</button>
         )}
       </div>
     </div>
@@ -112,8 +112,8 @@ const BASEMAPS: Record<Basemap, { url: (dark: boolean) => string; attr: string; 
     max: 16
   },
   streets: {
-    url: (dark) => `https://{s}.basemaps.cartocdn.com/${dark ? "dark_all" : "light_all"}/{z}/{x}/{y}{r}.png`,
-    attr: '© <a href="https://openstreetmap.org">OSM</a> © <a href="https://carto.com/attributions">CARTO</a>',
+    url: () => "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    attr: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     max: 19
   },
   satellite: {
@@ -302,10 +302,10 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
   // The panel covers the right edge, so framing has to account for it.
   const panelPad = panel && wide ? panelWidth : 0;
 
-  /** Opens a day: in the panel if it is on, otherwise by scrolling to its card. */
+  /** Opens a day: in the panel if it is on, otherwise on its own page. */
   const openDay = (dayId: string) => {
     onSelect(dayId);
-    if (!panel) onScrollTo(dayId);
+    if (!panel || !wide) onScrollTo(dayId);
   };
   const dayLabel = (dayId: string) => {
     const d = trip.days.find((x) => x.id === dayId);
@@ -344,36 +344,6 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
     if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
     if (liveH != null) setMapHeight(liveH);
     setLiveH(null);
-  };
-
-  /**
-   * Phone sheet: three snap points, the Google/Apple Maps gesture. Dragging sets
-   * a live height; releasing snaps to the nearest of peek / half / full.
-   */
-  const SNAPS = [0.14, 0.52, 0.92];
-  const [snap, setSnap] = useState(1);
-  const [liveSnap, setLiveSnap] = useState<number | null>(null);
-  const sdrag = useRef<{ y: number; frac: number } | null>(null);
-  const sheetFrac = liveSnap ?? SNAPS[snap];
-  const startSheet = (e: React.PointerEvent<HTMLDivElement>) => {
-    sdrag.current = { y: e.clientY, frac: sheetFrac };
-    e.currentTarget.setPointerCapture(e.pointerId);
-  };
-  const onSheet = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!sdrag.current) return;
-    const h = wrapRef.current?.getBoundingClientRect().height ?? 500;
-    const next = sdrag.current.frac - (e.clientY - sdrag.current.y) / h;
-    setLiveSnap(Math.max(0.1, Math.min(0.95, next)));
-  };
-  const endSheet = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!sdrag.current) return;
-    sdrag.current = null;
-    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
-    const f = liveSnap ?? sheetFrac;
-    let best = 0;
-    SNAPS.forEach((v, i) => { if (Math.abs(v - f) < Math.abs(SNAPS[best] - f)) best = i; });
-    setSnap(best);
-    setLiveSnap(null);
   };
 
   // Panel width drag, committed to storage only on release.
@@ -472,7 +442,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                       body={d.why}
                       photoKey={d.photos?.[0]}
                       onJump={() => onScrollTo(d.id)}
-                      jumpLabel={`Open day ${d.num} below ↓`}
+                      jumpLabel={`Read day ${d.num} ↗`}
                     />
                   </Popup>
                 )}
@@ -523,14 +493,12 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
           ))}
         </MapContainer>
 
-        {panel && (cur
+        {panel && wide && (cur
           ? <DayPanel day={cur} units={units} count={trip.days.length} tab={tab} setTab={setTab}
-                      width={wide ? panelWidth : undefined as unknown as number}
-                      sheet={wide ? undefined : { frac: sheetFrac, onStart: startSheet, onMove: onSheet, onEnd: endSheet }}
+                      width={panelWidth}
                       onClose={onClear} onStep={onStep} onScrollTo={onScrollTo} />
           : <OverviewPanel trip={trip} units={units}
-                           width={wide ? panelWidth : undefined as unknown as number}
-                           sheet={wide ? undefined : { frac: sheetFrac, onStart: startSheet, onMove: onSheet, onEnd: endSheet }}
+                           width={panelWidth}
                            onStart={() => onSelect(trip.days[0].id)}
                            onClose={() => setPanel(false)} />)}
         {panel && wide && (
@@ -563,6 +531,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
         title="Drag to resize · double-click to reset"
       />
 
+      <details className="map-options"><summary>Map layers & tools <span>Places, charging, basemap & GPX</span></summary>
       <div className="mapbar">
         <button className="pill" onClick={() => onStep(-1)} title="Previous day (←)">←</button>
         <span className="stepnow">
@@ -600,9 +569,9 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
             </button>
           ))}
         </div>
-        <button className={`pill${panel ? " on" : ""}`} onClick={() => setPanel(!panel)}
+        <button className={`pill desktop-map-tool${panel ? " on" : ""}`} onClick={() => setPanel(!panel)}
                 aria-pressed={panel}
-                title="Show the selected day in a panel over the map instead of scrolling to it">
+                title="Show the selected day in a panel over the map alongside the route">
           ▤ Day panel
         </button>
         <button className={`pill${wheelZoom ? " on" : ""}`} onClick={() => setWheelZoom(!wheelZoom)}
@@ -618,6 +587,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
         </button>
         <button className="pill" onClick={dl} title="Download the whole route as GPX">↓ GPX</button>
       </div>
+      </details>
     </div>
   );
 }

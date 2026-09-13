@@ -56,9 +56,9 @@ const dropIcon = (cat: Cat, small = false, extra = "") =>
 /**
  * MapHub-style card: the photograph is the content, the words sit underneath.
  */
-function PopCard({ cat, title, sub, body, photoKey, onJump, jumpLabel }: {
+function PopCard({ cat, title, sub, body, photoKey, onJump, jumpLabel, directions, website }: {
   cat: Cat; title: string; sub?: string; body?: string;
-  photoKey?: string; onJump?: () => void; jumpLabel?: string;
+  photoKey?: string; onJump?: () => void; jumpLabel?: string; directions?: string; website?: string;
 }) {
   const ph = photoKey ? PHOTOS[photoKey] : undefined;
   return (
@@ -74,6 +74,8 @@ function PopCard({ cat, title, sub, body, photoKey, onJump, jumpLabel }: {
         <b style={{ display: "block", fontFamily: "var(--serif)", fontSize: "1rem" }}>{title}</b>
         {sub && <div className="pm">{sub}</div>}
         {body && <div className="pop-why">{body}</div>}
+        {directions && <a className="pop-btn pop-link" href={directions} target="_blank" rel="noreferrer noopener">Directions ↗</a>}
+        {website && <a className="pop-source" href={website} target="_blank" rel="noreferrer noopener">Restaurant website ↗</a>}
         {onJump && (
           <button className="pop-btn" onClick={onJump}>{jumpLabel ?? "Read this day ↗"}</button>
         )}
@@ -268,9 +270,11 @@ function PoiLayer({ layers, pois, onOpenDay, dayLabel }: {
               : <Tooltip direction="top" offset={[0, -24]} className="hovlbl">{p.name}</Tooltip>}
             <Popup maxWidth={280} minWidth={270}>
               <PopCard cat={cat} title={p.name}
-                       sub={`${p.city}${p.approx ? " · approximate" : ""}`}
+                       sub={`${p.address ? p.address + " · " : ""}${p.city}${p.approx ? " · approximate" : ""}`}
                        body={p.desc}
                        photoKey={p.photo}
+                       directions={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(p.address ? `${p.name}, ${p.address}, ${p.city}` : `${p.lat},${p.lon}`)}`}
+                       website={p.website}
                        onJump={() => onOpenDay(p.day)}
                        jumpLabel={`Open ${dayLabel(p.day)} →`} />
             </Popup>

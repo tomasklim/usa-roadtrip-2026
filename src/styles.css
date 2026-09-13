@@ -594,3 +594,6 @@ footer p{margin:0 0 6px}
   .grid2,.checks{grid-template-columns:minmax(0,1fr)}
 }
 @media print{header.top,.side,.mapcard,.dfoot{display:none}.planner{grid-template-columns:1fr}}
+
+.leaflet-popup-content a.pop-link{display:block;box-sizing:border-box;text-align:center;text-decoration:none;color:var(--brand)}
+.leaflet-popup-content a.pop-source{display:block;margin-top:8px;font-size:.75rem;color:var(--muted)}

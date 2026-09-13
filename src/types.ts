@@ -64,6 +64,9 @@ export interface Module {
 }
 
 export interface Poi {
+  address?: string;
+  website?: string;
+  verified?: string;
   id: string;
   name: string;
   kind: "food" | "sight";

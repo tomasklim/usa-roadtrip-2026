@@ -114,18 +114,19 @@
  },
  {
   "id": "in-n-out-burger-salt-lake-city-ut",
-  "name": "In-N-Out Burger",
+  "name": "In-N-Out · West Valley City",
   "kind": "food",
   "lat": 40.69142,
   "lon": -111.95764,
   "day": "s1",
   "tags": [
-   "ino",
-   "gf",
-   "df"
+   "ino"
   ],
-  "city": "Salt Lake City UT",
-  "desc": "Protein style, no cheese. The fries are safe — own fryer, potato and sunflower oil only"
+  "city": "West Valley City UT",
+  "desc": "Optional burger stop in the Salt Lake Valley. Check preparation and ingredients with staff when ordering.",
+  "address": "3715 Constitution Blvd.",
+  "website": "https://locations.in-n-out.com/245-West-Valley-City",
+  "verified": "2026-09-13"
  },
  {
   "id": "crown-burgers",
@@ -1489,5 +1490,237 @@
   "tags": [],
   "city": "Laurel MT",
   "desc": "8 Tesla Superchargers up to 250 kW, available 24/7 at Fairfield by Marriott, 301 S Washington Ave. No adapter needed for the US Tesla."
+ },
+ {
+  "id": "ino-south-salt-lake-ut",
+  "name": "In-N-Out · South Salt Lake",
+  "kind": "food",
+  "lat": 40.725165,
+  "lon": -111.8907188,
+  "day": "s1",
+  "tags": [
+   "ino"
+  ],
+  "city": "South Salt Lake UT",
+  "address": "28 E. 2100 S.",
+  "website": "https://locations.in-n-out.com/418",
+  "verified": "2026-09-13",
+  "desc": "Optional burger stop. Check preparation and ingredients with staff when ordering."
+ },
+ {
+  "id": "ino-midvale-ut",
+  "name": "In-N-Out · Midvale",
+  "kind": "food",
+  "lat": 40.6204176,
+  "lon": -111.8566257,
+  "day": "s1",
+  "tags": [
+   "ino"
+  ],
+  "city": "Midvale UT",
+  "address": "7206 S. Union Park Ave.",
+  "website": "https://locations.in-n-out.com/261-Midvale",
+  "verified": "2026-09-13",
+  "desc": "Optional burger stop. Check preparation and ingredients with staff when ordering."
+ },
+ {
+  "id": "ino-west-jordan-ut",
+  "name": "In-N-Out · West Jordan",
+  "kind": "food",
+  "lat": 40.609784,
+  "lon": -111.985882,
+  "day": "s1",
+  "tags": [
+   "ino"
+  ],
+  "city": "West Jordan UT",
+  "address": "7785 Jordan Landing Blvd.",
+  "website": "https://locations.in-n-out.com/237-West-Jordan",
+  "verified": "2026-09-13",
+  "desc": "Optional burger stop. Check preparation and ingredients with staff when ordering."
+ },
+ {
+  "id": "ino-draper-ut",
+  "name": "In-N-Out · Draper",
+  "kind": "food",
+  "lat": 40.5288417,
+  "lon": -111.8892301,
+  "day": "s1",
+  "tags": [
+   "ino"
+  ],
+  "city": "Draper UT",
+  "address": "12191 State St.",
+  "website": "https://locations.in-n-out.com/236-Draper",
+  "verified": "2026-09-13",
+  "desc": "Optional burger stop. Check preparation and ingredients with staff when ordering."
+ },
+ {
+  "id": "ino-centerville-ut",
+  "name": "In-N-Out · Centerville",
+  "kind": "food",
+  "lat": 40.9223279,
+  "lon": -111.8895234,
+  "day": "s10",
+  "tags": [
+   "ino"
+  ],
+  "city": "Centerville UT",
+  "address": "475 N. 700 W.",
+  "website": "https://locations.in-n-out.com/248",
+  "verified": "2026-09-13",
+  "desc": "Optional burger stop. Check preparation and ingredients with staff when ordering."
+ },
+ {
+  "id": "ino-layton-ut",
+  "name": "In-N-Out · Layton",
+  "kind": "food",
+  "lat": 41.0886785,
+  "lon": -111.9887951,
+  "day": "s10",
+  "tags": [
+   "ino"
+  ],
+  "city": "Layton UT",
+  "address": "1977 N. 1200 W.",
+  "website": "https://locations.in-n-out.com/406",
+  "verified": "2026-09-13",
+  "desc": "Optional burger stop. Check preparation and ingredients with staff when ordering."
+ },
+ {
+  "id": "ino-riverdale-ut",
+  "name": "In-N-Out · Riverdale",
+  "kind": "food",
+  "lat": 41.191176,
+  "lon": -111.9799825,
+  "day": "s10",
+  "tags": [
+   "ino"
+  ],
+  "city": "Riverdale UT",
+  "address": "4030 Riverdale Rd.",
+  "website": "https://locations.in-n-out.com/284",
+  "verified": "2026-09-13",
+  "desc": "Optional burger stop. Check preparation and ingredients with staff when ordering."
+ },
+ {
+  "id": "ino-logan-ut",
+  "name": "In-N-Out · Logan",
+  "kind": "food",
+  "lat": 41.7393246,
+  "lon": -111.8342788,
+  "day": "s2",
+  "tags": [
+   "ino"
+  ],
+  "city": "Logan UT",
+  "address": "404 N. Main St.",
+  "website": "https://locations.in-n-out.com/380",
+  "verified": "2026-09-13",
+  "desc": "Optional burger stop. Check preparation and ingredients with staff when ordering."
+ },
+ {
+  "id": "ino-riverton-ut",
+  "name": "In-N-Out · Riverton",
+  "kind": "food",
+  "lat": 40.5225573,
+  "lon": -111.9848062,
+  "day": "s1",
+  "tags": [
+   "ino"
+  ],
+  "city": "Riverton UT",
+  "address": "12569 S. Crossing Dr.",
+  "website": "https://www.in-n-out.com/locations/utah",
+  "verified": "2026-09-13",
+  "desc": "Optional burger stop. Check preparation and ingredients with staff when ordering."
+ },
+ {
+  "id": "ino-american-fork-ut",
+  "name": "In-N-Out · American Fork",
+  "kind": "food",
+  "lat": 40.3758951,
+  "lon": -111.8147053,
+  "day": "s1",
+  "tags": [
+   "ino"
+  ],
+  "city": "American Fork UT",
+  "address": "601 W. Main St.",
+  "website": "https://www.in-n-out.com/locations/utah",
+  "verified": "2026-09-13",
+  "desc": "South of the planned Salt Lake route; an optional detour if you are shopping nearby. Optional burger stop. Check preparation and ingredients with staff when ordering."
+ },
+ {
+  "id": "ino-orem-ut",
+  "name": "In-N-Out · Orem",
+  "kind": "food",
+  "lat": 40.2731419,
+  "lon": -111.6866139,
+  "day": "s1",
+  "tags": [
+   "ino"
+  ],
+  "city": "Orem UT",
+  "address": "350 E. University Pkwy.",
+  "website": "https://www.in-n-out.com/locations/utah",
+  "verified": "2026-09-13",
+  "desc": "South of the planned Salt Lake route; an optional detour if you are shopping nearby. Optional burger stop. Check preparation and ingredients with staff when ordering."
+ },
+ {
+  "id": "longhorn-midvale-ut",
+  "name": "LongHorn Steakhouse · Midvale",
+  "kind": "food",
+  "lat": 40.6229394,
+  "lon": -111.8641852,
+  "day": "s1",
+  "tags": [],
+  "city": "Midvale UT",
+  "address": "963 E. Fort Union Blvd.",
+  "website": "https://www.longhornsteakhouse.com/locations/ut/midvale/midvale/5469",
+  "verified": "2026-09-13",
+  "desc": "Optional sit-down steak dinner. Confirm gluten- and dairy-free preparation with staff, including seasoning, butter and sides."
+ },
+ {
+  "id": "longhorn-south-jordan-ut",
+  "name": "LongHorn Steakhouse · South Jordan",
+  "kind": "food",
+  "lat": 40.545382,
+  "lon": -111.982319,
+  "day": "s1",
+  "tags": [],
+  "city": "South Jordan UT",
+  "address": "11346 S. River Heights Dr.",
+  "website": "https://www.longhornsteakhouse.com/locations/ut/south-jordan/south-jordan-at-the-district/5466",
+  "verified": "2026-09-13",
+  "desc": "Optional sit-down steak dinner. Confirm gluten- and dairy-free preparation with staff, including seasoning, butter and sides."
+ },
+ {
+  "id": "longhorn-ogden-ut",
+  "name": "LongHorn Steakhouse · Ogden",
+  "kind": "food",
+  "lat": 41.1969318,
+  "lon": -111.9799836,
+  "day": "s10",
+  "tags": [],
+  "city": "Ogden UT",
+  "address": "3647 Wall Ave.",
+  "website": "https://www.longhornsteakhouse.com/locations/ut/ogden/ogden-newgate-mall/5468",
+  "verified": "2026-09-13",
+  "desc": "Optional sit-down steak dinner. Confirm gluten- and dairy-free preparation with staff, including seasoning, butter and sides."
+ },
+ {
+  "id": "longhorn-west-valley-city-ut",
+  "name": "LongHorn Steakhouse · West Valley City",
+  "kind": "food",
+  "lat": 40.7052393,
+  "lon": -112.0243804,
+  "day": "s1",
+  "tags": [],
+  "city": "West Valley City UT",
+  "address": "3019 S. 5600 W.",
+  "website": "https://www.longhornsteakhouse.com/locations",
+  "verified": "2026-09-13",
+  "desc": "Optional sit-down steak dinner. Confirm gluten- and dairy-free preparation with staff, including seasoning, butter and sides."
  }
 ]

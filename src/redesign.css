@@ -414,3 +414,6 @@ footer a{font-size:.76rem;margin-left:auto;text-decoration:none;white-space:nowr
 .seattle-sources { display: flex; flex-wrap: wrap; gap: 12px 20px; font-size: .75rem; }
 @media(max-width:900px) { .seattle-settings { grid-template-columns: minmax(0, 1fr); gap: 12px; } }
 @media print { .seattle-choices { display: none; } }
+
+.forecast-status{font-size:.75rem;line-height:1.5;color:var(--muted);margin:10px 0}
+.forecast-condition{font-size:.84rem;line-height:1.6;margin:12px 0 0}

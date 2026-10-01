@@ -2,7 +2,7 @@ import { validField } from '../../shared/trip-schema.mjs';
 import { BASE } from '../data/itinerary';
 import type { Day } from '../types';
 
-export interface JournalEntry { variant: string; title: string; note: string; status: 'done' | 'planned'; roadKm?: number | null; roadNote?: string }
+export interface JournalEntry { variant: string; title: string; note: string; status: 'done' | 'planned'; roadKm?: number | null; roadNote?: string; flight?: Day['flight'] }
 export type Journal = Record<string, JournalEntry>;
 export const normalizeJournal = (v: unknown): Journal => Object.fromEntries(Object.entries(v && typeof v === 'object' ? v : {}).filter(([date, entry]) => entry !== null && validField(`journal:${date}`, entry)));
 const base = (id: string) => BASE.find(d => d.id === id)!;
@@ -37,6 +37,7 @@ export function applyJournal(day: Day, entry: JournalEntry): Day {
   if (entry.title.trim()) result.title = entry.title.trim();
   if (entry.note.trim()) result.hi = entry.note.split('\n').filter(Boolean);
   if (result.completed) {
+    result.flight = entry.flight;
     result.leg = entry.note.split('\n')[0] || result.title;
     result.ideas = []; result.alert = undefined; result.charge = []; result.food = [];
     result.hours = 0; result.routeId = 'recorded';

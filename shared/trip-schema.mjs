@@ -1,11 +1,16 @@
 export function validField(key, value) {
   if (/^journal:2026-\d{2}-\d{2}$/.test(key)) return value === null || (value && typeof value === 'object' && !Array.isArray(value)
-    && Object.keys(value).every(k => ['variant', 'title', 'note', 'status', 'roadKm', 'roadNote'].includes(k))
+    && Object.keys(value).every(k => ['variant', 'title', 'note', 'status', 'roadKm', 'roadNote', 'flight'].includes(k))
     && typeof value.variant === 'string' && /^[a-zA-Z0-9-]{0,80}$/.test(value.variant)
     && typeof value.title === 'string' && value.title.length <= 200
     && typeof value.note === 'string' && value.note.length <= 4000
     && (value.roadKm == null || (typeof value.roadKm === 'number' && Number.isFinite(value.roadKm) && value.roadKm >= 0 && value.roadKm <= 5000))
     && (value.roadNote === undefined || (typeof value.roadNote === 'string' && value.roadNote.length <= 2000))
+    && (value.flight === undefined || (value.flight && typeof value.flight === 'object' && !Array.isArray(value.flight)
+      && Object.keys(value.flight).length === 4 && Object.keys(value.flight).every(k => ['from','to','dep','arr'].includes(k))
+      && value.flight.from === 'SEA' && value.flight.to === 'SLC'
+      && typeof value.flight.dep === 'string' && /^(?:[01]\d|2[0-3]):[0-5]\d$|^$/.test(value.flight.dep)
+      && typeof value.flight.arr === 'string' && /^(?:[01]\d|2[0-3]):[0-5]\d$|^$/.test(value.flight.arr)))
     && ['done', 'planned'].includes(value.status)
     && Number.isFinite(Date.parse(key.slice(8))) && new Date(key.slice(8)).toISOString().slice(0,10) === key.slice(8));
   if (/^stay:[a-zA-Z0-9-]{1,80}$/.test(key)) return value === null || (value && typeof value === 'object' && !Array.isArray(value)

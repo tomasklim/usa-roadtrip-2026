@@ -52,3 +52,17 @@ assert.equal(mapLines(mappedTrip.days[4]).length,2,'Separate roads either side o
 assert.ok(mapPin(mappedTrip.days[5])![1] < -113,'Day 6 belongs at Bonneville, not underneath the SLC pin');
 assert.deepEqual(mapLines(mappedTrip.days[7])[0],ROUTES.s3.line);
 console.log('✓ Recorded map routes, distinct Bonneville pin, separate flight-day segments and unchanged future routes');
+
+const { flightsForTrip } = await import('../src/lib/flights');
+const flightRecord = {...record,variant:'redmond',flight:{from:'SEA',to:'SLC',dep:'18:15',arr:'21:15'}};
+assert.equal(validField('journal:2026-09-28',flightRecord),true);
+for (const dep of ['24:00','18:60',19,null]) assert.equal(validField('journal:2026-09-28',{...flightRecord,flight:{...flightRecord.flight,dep}}),false);
+const flightTrip = buildTrip(new Set(),'motel',{},DEFAULT_SEATTLE,{},normalizeJournal({'2026-09-28':flightRecord}));
+const hop = flightsForTrip(flightTrip).find(f=>f.dir==='hop1')!;
+assert.equal(hop.dep,'18:15');
+assert.equal(hop.arr,'21:15');
+assert.equal(hop.dur,'2 h');
+assert.match(hop.date,/28 Sept 2026/);
+assert.equal(hop.booked,true);
+assert.ok(!hop.legs.flat().some(s=>s.includes('not recorded')));
+console.log('✓ Private flight times use the recorded date and account for the Seattle–SLC time difference');

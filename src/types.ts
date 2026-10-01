@@ -12,6 +12,7 @@ export interface FoodPick {
 
 export interface Day {
   completed?: boolean;
+  flight?: { from: 'SEA'; to: 'SLC'; dep: string; arr: string };
   roadEstimate?: { baseKm: number; note: string };
   /** Stable id. Doubles as the key into routes.json for driving days. */
   id: string;

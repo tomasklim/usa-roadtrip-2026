@@ -68,7 +68,7 @@ export function DayPanel({ day, units, count, width, tab, setTab, sheet, onClose
         <h3 className="dphead">{day.title}</h3>
         <div className="dpleg">{day.leg}</div>
         <div className="dmeta" style={{ marginTop: 8 }}>
-          {meters > 0 && <span className="chip mi">{distLabel(meters, units)}</span>}
+          {meters > 0 && <span className="chip mi">{day.roadEstimate ? '≈ ' : ''}{distLabel(meters, units)}{day.roadEstimate ? ' est.' : ''}</span>}
           {day.hours > 0 && <span className="chip">{day.hours} h</span>}
           {meters > 0 && <span className={`chip ${difficulty(meters)}`}>{difficulty(meters)}</span>}
           {day.isMod && <span className="chip" style={{ color: "var(--plum)" }}>module</span>}
@@ -114,7 +114,7 @@ export function DayPanel({ day, units, count, width, tab, setTab, sheet, onClose
   );
 }
 
-const ROUTE_HAS = (d: Day) => (d.meters ?? 0) > 0;
+const ROUTE_HAS = (d: Day) => !d.completed && (d.meters ?? 0) > 0;
 
 /**
  * What the panel shows before anything is selected: what this trip is, and how
@@ -125,7 +125,7 @@ export function OverviewPanel({ trip, units, width, sheet, onStart, onClose }: {
 }) {
   const r = rentals(trip);
   const stats: [string, string][] = [
-    [distLabel(trip.meters, units), "driving, measured on real roads"],
+    [distLabel(trip.meters, units), "planned roads + estimated past driving"],
     [`${trip.days.length} days`, "Sept 24 – Oct 13, 2026"],
     [`${trip.driveDays}`, "days behind the wheel"],
     [distLabel(trip.meters / Math.max(1, trip.driveDays), units), "per driving day"],

@@ -1,7 +1,7 @@
 import { WeatherCard } from "./WeatherCard";
 import type { ReactNode } from "react";
 import { AlertBox, ChargeRow, FoodRow, HiRow, IdeasRow, PhotoStrip, SleepRow, WhyRow } from "./DayParts";
-import { distLabel, downloadGpx, fmtDate, fmtShort, toGpx, type Trip } from "../lib/trip";
+import { distLabel, downloadGpx, fmtDate, fmtShort, toGpx, ROUTES, type Trip } from "../lib/trip";
 import type { Tab } from "./DayPanel";
 import type { Day, Poi, Units } from "../types";
 import { todayInTrip } from "../lib/navigation";
@@ -48,11 +48,15 @@ export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map, choice
         <PhotoStrip day={day} priority />
         <div className="daily-content">
           <div className="day-facts">
-            <div><span>ON THE ROAD</span><b>{day.completed ? 'Recorded day · distance not logged' : day.hours ? `${day.hours} h · ${distLabel(day.meters ?? 0, units)}` : "No driving today"}</b></div>
+            <div><span>ON THE ROAD</span><b>{day.roadEstimate ? `≈ ${distLabel(day.meters ?? 0, units)} · estimated` : day.completed ? 'Distance not estimated' : day.hours ? `${day.hours} h · ${distLabel(day.meters ?? 0, units)}` : "No driving today"}</b></div>
             <div><span>{day.completed ? 'OVERNIGHT' : 'TONIGHT'}</span><b>{day.sleep ? (day.sleep.t === "car" ? "A night in the car" : "A bed & a shower") : "Overnight flight"}</b></div>
           </div>
+          {day.roadEstimate && <details className="extra-ideas"><summary>Distance estimate · includes 15% extra</summary>
+            <p>{distLabel(day.roadEstimate.baseKm * 1000, units)} between stops × 1.15 ≈ {distLabel(day.meters ?? 0, units)}. Driving only; flights and walks are excluded.</p>
+            {day.roadEstimate.note && <p>{day.roadEstimate.note}</p>}
+          </details>}
           <div className="daily-actions">
-            {!!day.meters && <button className="action" onClick={() => downloadGpx(`day-${day.num}.gpx`, toGpx(day.title, [{id:day.id,routeId:day.routeId,title:day.title}]))}>↓ Day GPX</button>}
+            {(ROUTES[day.routeId ?? day.id]?.line?.length ?? 0) > 1 && <button className="action" onClick={() => downloadGpx(`day-${day.num}.gpx`, toGpx(day.title, [{id:day.id,routeId:day.routeId,title:day.title}]))}>↓ Day GPX</button>}
           </div>
           {day.alert && <AlertBox day={day} />}
           <div className="daily-tabs" role="group" aria-label="Day information">

@@ -48,7 +48,7 @@ export function DayCard({ day, units, selected, onSelect }: {
         <span className="dtitle">{day.title}<span className="dleg">{day.leg}</span></span>
         <span className="dmeta">
           {day.completed && <span className="chip">✓ Visited</span>}
-          {meters > 0 && <span className="chip mi">{distLabel(meters, units)}</span>}
+          {meters > 0 && <span className="chip mi">{day.roadEstimate ? '≈ ' : ''}{distLabel(meters, units)}{day.roadEstimate ? ' est.' : ''}</span>}
           {day.hours > 0 && <span className="chip">{day.hours} h</span>}
           {meters > 0 && <span className={`chip ${diff}`}>{diff}</span>}
           {day.isMod && <span className="chip" style={{ color: "var(--plum)" }}>module</span>}

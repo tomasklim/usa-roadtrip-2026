@@ -2,7 +2,7 @@ import { validField } from '../../shared/trip-schema.mjs';
 import { BASE } from '../data/itinerary';
 import type { Day } from '../types';
 
-export interface JournalEntry { variant: string; title: string; note: string; status: 'done' | 'planned' }
+export interface JournalEntry { variant: string; title: string; note: string; status: 'done' | 'planned'; roadKm?: number | null; roadNote?: string }
 export type Journal = Record<string, JournalEntry>;
 export const normalizeJournal = (v: unknown): Journal => Object.fromEntries(Object.entries(v && typeof v === 'object' ? v : {}).filter(([date, entry]) => entry !== null && validField(`journal:${date}`, entry)));
 const base = (id: string) => BASE.find(d => d.id === id)!;
@@ -40,9 +40,10 @@ export function applyJournal(day: Day, entry: JournalEntry): Day {
     result.leg = entry.note.split('\n')[0] || result.title;
     result.ideas = []; result.alert = undefined; result.charge = []; result.food = [];
     result.hours = 0; result.routeId = 'recorded';
+    result.roadEstimate = entry.roadKm != null ? {baseKm: entry.roadKm, note: entry.roadNote ?? ''} : undefined;
     result.poiDay = 'recorded';
     result.sleep = {t:'motel',where:'Overnight location not recorded'};
-    result.why = 'Recorded from your trip. Distances and exact driving tracks were not logged.';
+    result.why = result.roadEstimate ? 'Recorded from your trip. Driving distance is an estimate between stops plus a 15% allowance for local detours; it is not logged mileage.' : 'Recorded from your trip. Distances and exact driving tracks were not logged.';
   }
   return result;
 }

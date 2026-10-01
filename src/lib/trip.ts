@@ -145,7 +145,7 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
   days.forEach((d, i) => {
     d.num = i + 1;
     d.date = START + i * DAY_MS;
-    d.meters = metersOf(d.routeId ?? d.id);
+    d.meters = d.roadEstimate ? Math.round(d.roadEstimate.baseKm * 1150) : metersOf(d.routeId ?? d.id);
     if (d.routeId && ROUTES[d.routeId]) d.hours = Math.round(ROUTES[d.routeId].seconds / 360) / 10;
     // Sleeping style is applied here so every downstream count — the hero, the
     // budget's lodging line, the day cards — reads from one decision.

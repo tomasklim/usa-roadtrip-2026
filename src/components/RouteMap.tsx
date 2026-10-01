@@ -448,7 +448,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                       cat="day"
                       title={`Day ${d.num} — ${d.title}`}
                       sub={(d.meters ?? 0) > 0
-                        ? `${d.leg} · ${distLabel(d.meters ?? 0, units)} · ${d.hours} h · ${difficulty(d.meters ?? 0)}`
+                        ? `${d.leg} · ${d.roadEstimate ? '≈ ' : ''}${distLabel(d.meters ?? 0, units)}${d.roadEstimate ? ' estimated' : ` · ${d.hours} h`} · ${difficulty(d.meters ?? 0)}`
                         : d.leg}
                       body={d.why}
                       photoKey={d.photos?.[0]}

@@ -30,7 +30,7 @@ export function Glance({ trip, units, onSelect }: {
                     <td className="n">{d.num}</td>
                     <td className="n">{d.date ? fmtShort(d.date) : ""}</td>
                     <td>{d.title}{d.isMod && <span className="tag" style={{ background: "var(--plum-soft)", color: "var(--plum)" }}>module</span>}</td>
-                    <td className="n">{(d.meters ?? 0) > 0 ? distLabel(d.meters ?? 0, units) : "—"}</td>
+                    <td className="n">{(d.meters ?? 0) > 0 ? `${d.roadEstimate ? '≈ ' : ''}${distLabel(d.meters ?? 0, units)}${d.roadEstimate ? ' est.' : ''}` : '—'}</td>
                     <td className="n">{d.hours > 0 ? `${d.hours} h` : "—"}</td>
                     <td className="n">{(d.meters ?? 0) > 0 ? difficulty(d.meters ?? 0) : "—"}</td>
                     <td>{d.sleep ? (d.sleep.t === "car" ? "car" : "motel") : "—"}</td>

@@ -36,3 +36,19 @@ for (const roadKm of [-1,NaN,Infinity,5001,'200']) assert.equal(validField('jour
 assert.equal(validField('journal:2026-09-30',{...record,roadKm:null}),true);
 assert.equal(validField('journal:2026-09-30',{...record,roadNote:42}),false);
 console.log('✓ Private road estimates add 15% exactly once, flow into totals, and do not fabricate recorded tracks or driving time');
+
+const { mapLines, mapPin } = await import('../src/lib/mapRoutes');
+const variants = ['arrival','hood','rainier','seattle','redmond','salt','antelopeMontpelier'];
+const mapJournal = normalizeJournal(Object.fromEntries(variants.map((variant,i) => [`2026-09-${24+i}`,{...record,variant,roadKm:100}])));
+const mappedTrip = buildTrip(new Set(),'motel',{},DEFAULT_SEATTLE,{},mapJournal);
+for (const day of mappedTrip.days.slice(0,7)) {
+  assert.ok(mapLines(day).length > 0,`Missing map line for day ${day.num}`);
+  assert.equal(day.meters,115000,'Illustrative geometry must not replace the private distance estimate');
+  for (const line of mapLines(day)) for (let i=1;i<line.length;i++) {
+    assert.ok(Math.hypot(line[i][0]-line[i-1][0],line[i][1]-line[i-1][1]) < 5,'Do not connect a flight with a road segment');
+  }
+}
+assert.equal(mapLines(mappedTrip.days[4]).length,2,'Separate roads either side of the flight');
+assert.ok(mapPin(mappedTrip.days[5])![1] < -113,'Day 6 belongs at Bonneville, not underneath the SLC pin');
+assert.deepEqual(mapLines(mappedTrip.days[7])[0],ROUTES.s3.line);
+console.log('✓ Recorded map routes, distinct Bonneville pin, separate flight-day segments and unchanged future routes');

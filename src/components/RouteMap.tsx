@@ -6,6 +6,7 @@ import storesRaw from "../data/stores.json";
 import photosRaw from "../data/photos.json";
 import chargersRaw from "../data/chargers.json";
 import { ROUTES, distLabel, downloadGpx, toGpx, difficulty } from "../lib/trip";
+import { mapLines, mapPin } from "../lib/mapRoutes";
 import { MODULES } from "../data/itinerary";
 import type { Trip } from "../lib/trip";
 import type { Charger, Photo, Poi, Units } from "../types";
@@ -188,7 +189,7 @@ function Framer({ trip, selected, padRight }: {
   const allBounds = useMemo(() => {
     const pts: [number, number][] = [];
     trip.days.forEach((d) => {
-      ROUTES[d.routeId ?? d.id]?.line?.forEach((p) => pts.push(p));
+      mapLines(d).forEach(line => line.forEach(p => pts.push(p)));
       if (d.at) pts.push(d.at);
     });
     return pts.length ? L.latLngBounds(pts) : null;
@@ -201,7 +202,8 @@ function Framer({ trip, selected, padRight }: {
 
   useLayoutEffect(() => {
     if (!selected) return;
-    const line = ROUTES[trip.days.find(d => d.id === selected)?.routeId ?? selected]?.line;
+    const selectedDay = trip.days.find(d => d.id === selected);
+    const line = selectedDay ? mapLines(selectedDay).flat() : undefined;
     if (line && line.length > 1) {
       map.fitBounds(L.latLngBounds(line), {
         paddingTopLeft: [40, 40], paddingBottomRight: [padRight + 40, 40], animate: false
@@ -216,7 +218,7 @@ function Framer({ trip, selected, padRight }: {
       }
       const idx = trip.days.findIndex((d) => d.id === selected);
       for (let i = idx; i >= 0; i--) {
-        const prev = ROUTES[trip.days[i].routeId ?? trip.days[i].id]?.line;
+        const prev = mapLines(trip.days[i]).at(-1);
         if (prev?.length) { map.setView(prev[prev.length - 1], 9, { animate: false }); return; }
       }
     }
@@ -402,13 +404,11 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
           <Framer trip={trip} selected={selected} padRight={panelPad} />
           {!panel && !embedded && <PopupOpener selected={selected} refs={markerRefs} />}
 
-          {trip.days.map((d) => {
-            const line = ROUTES[d.routeId ?? d.id]?.line;
-            if (!line || line.length < 2) return null;
+          {trip.days.flatMap(d => mapLines(d).map((line, segment) => {
             const isSel = selected === d.id;
             return (
               <Polyline
-                key={d.id}
+                key={`${d.id}-${segment}`}
                 positions={line}
                 pathOptions={{
                   // Colour comes from CSS, not the stroke attribute: SVG
@@ -416,17 +416,15 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                   className: d.isMod ? "rt-mod" : "rt-base",
                   weight: isSel ? 6 : 3.2,
                   opacity: selected && !isSel ? 0.42 : 0.95,
-                  dashArray: d.isMod ? "9 5" : undefined
+                  dashArray: d.completed ? "7 4" : d.isMod ? "9 5" : undefined
                 }}
                 eventHandlers={{ click: () => onSelect(d.id) }}
               />
             );
-          })}
+          }))}
 
           {trip.days.map((d) => {
-            const line = ROUTES[d.routeId ?? d.id]?.line;
-            const at: [number, number] | undefined =
-              line?.length ? line[line.length - 1] : d.at;
+            const at = mapPin(d);
             if (!at) return null;
             return (
               <Marker

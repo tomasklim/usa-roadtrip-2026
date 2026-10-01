@@ -17,6 +17,8 @@ export interface Day {
   id: string;
   kind: DayKind;
   routeId?: string;
+  /** Illustrative road segments, separate from recorded mileage. */
+  mapRouteIds?: string[];
   poiDay?: string;
   weather?: { day: string; bed?: string; car?: string };
   rental?: string;

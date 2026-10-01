@@ -51,10 +51,6 @@ export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map, choice
             <div><span>ON THE ROAD</span><b>{day.roadEstimate ? `≈ ${distLabel(day.meters ?? 0, units)} · estimated` : day.completed ? 'Distance not estimated' : day.hours ? `${day.hours} h · ${distLabel(day.meters ?? 0, units)}` : "No driving today"}</b></div>
             <div><span>{day.completed ? 'OVERNIGHT' : 'TONIGHT'}</span><b>{day.sleep ? (day.sleep.t === "car" ? "A night in the car" : "A bed & a shower") : "Overnight flight"}</b></div>
           </div>
-          {day.roadEstimate && <details className="extra-ideas"><summary>Distance estimate · includes 15% extra</summary>
-            <p>{distLabel(day.roadEstimate.baseKm * 1000, units)} between stops × 1.15 ≈ {distLabel(day.meters ?? 0, units)}. Driving only; flights and walks are excluded.</p>
-            {day.roadEstimate.note && <p>{day.roadEstimate.note}</p>}
-          </details>}
           <div className="daily-actions">
             {(ROUTES[day.routeId ?? day.id]?.line?.length ?? 0) > 1 && <button className="action" onClick={() => downloadGpx(`day-${day.num}.gpx`, toGpx(day.title, [{id:day.id,routeId:day.routeId,title:day.title}]))}>↓ Day GPX</button>}
           </div>

@@ -32,7 +32,7 @@ export function FoodGuide({ trip }: { trip: Trip }) {
         <div className="shead"><span className="num">06</span><h2>Eating gluten-free and dairy-free</h2></div>
         <p className="sub">
           Food stops still ahead, plus saved alternatives for the remaining route. Gluten-free and dairy-free ordering ideas always need confirmation with the restaurant.
-          The remaining plan includes <b>{counts.oy ?? 0} oyster stops</b> and <b>{counts.ino ?? 0} In-N-Out options</b>.
+          The remaining plan includes <b>{counts.oy ?? 0} oyster stops</b> and <b>{counts.ino ?? 0} In-N-Out {(counts.ino ?? 0) === 1 ? "option" : "options"}</b>.
         </p>
         <FoodRules />
         {visited.length > 0 && <details className="card panel food-alternatives"><summary>Already visited · from your trip notes</summary>{visited.map(({day,notes}) => <div key={day.id}><h3><a href={`#itinerary/${day.id}`}>{fmtShort(day.date!)} · {day.title}</a></h3><ul>{notes.map((note,i)=><li key={i}>{note}</li>)}</ul></div>)}</details>}

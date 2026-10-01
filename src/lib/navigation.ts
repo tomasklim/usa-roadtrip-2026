@@ -4,7 +4,7 @@ import type { Trip } from "./trip";
 
 export type View = "overview" | "itinerary" | "plan" | "flights" | "guide" | "credits";
 export const TOPICS = [
-  ["checklist", "Before you go"], ["food", "Food"], ["sleep", "Sleep"],
+  ["checklist", "Checklist"], ["food", "Food"], ["sleep", "Sleep"],
   ["charging", "Charging"], ["risks", "Road conditions"], ["budget", "Budget"], ["options", "Route options"]
 ] as const;
 export type Topic = typeof TOPICS[number][0];

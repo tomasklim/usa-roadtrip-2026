@@ -56,7 +56,7 @@ export function Chapters({ trip, onPick }: { trip: Trip; onPick: (id: string) =>
           <span className="chapter-index">0{i + 1}</span>
         </div>
         <div className="chapter-copy"><span className="eyebrow">{chapter.place} · {days.length ? `${fmtShort(days[0].date!)} – ${fmtShort(days.at(-1)!.date!)}` : "not in this plan"}</span>
-          <h3>{chapter.title}</h3><p>{chapter.id === "I" ? `Seattle, Hood Canal${trip.seattle.portland ? ", Portland" : ""}${trip.seattle.weather === "good" ? " & Rainier" : ""}` : chapter.text}</p>
+          <h3>{chapter.title}</h3><p>{chapter.id === "I" ? (days.length > 0 && days.every(d => d.completed) ? "Seattle, Rainier & Redmond" : `Seattle, Hood Canal${trip.seattle.portland ? ", Portland" : ""}${trip.seattle.weather === "good" ? " & Rainier" : ""}`) : chapter.text}</p>
           <button className="text-action" disabled={!days.length} onClick={() => onPick(days[0].id)}>Open this chapter <span aria-hidden="true">↗</span></button>
         </div>
       </article>;

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import ts from 'typescript';
 import {pathToFileURL} from 'node:url';
-import { accessCode, validCode, validSession, sessionCookie } from '../shared/access.mjs';
+import { accessCode, validCode, validSession, sessionCookie, loginHtml, loginReturnTo } from '../shared/access.mjs';
 import {validField} from '../shared/trip-schema.mjs';
 import auth from '../api/auth.js';
 process.env.TRIP_SHARE_TOKEN='x'.repeat(43);
@@ -18,13 +18,38 @@ for(const path of ['/','/assets/index.js','/data/routes.json','/old/index.html']
 }
 for(const path of ['/api/auth','/robots.txt','/access.js'])assert.equal(gate(new Request('https://trip.test'+path)),undefined);
 let attempts=0;const original=globalThis.fetch;globalThis.fetch=async()=>({ok:true,json:async()=>[{result:++attempts},{result:1}]});
-async function call(method,body,headers={}){let status=200,result;const out={};await auth({method,body,headers:{host:'trip.test',origin:'https://trip.test','content-type':'application/json',...headers}},{setHeader(k,v){out[k]=v},status(s){status=s;return this},json(v){result=v},end(){}});return {status,result,headers:out}}
+async function call(method,body,headers={}){let status=200,result;const out={};await auth({method,body,headers:{host:'trip.test',origin:'https://trip.test','content-type':'application/json',...headers}},{setHeader(k,v){out[k]=v},status(s){status=s;return this},json(v){result=v},send(v){result=v},end(){}});return {status,result,headers:out}}
 assert.equal((await call('GET')).status,401);assert.equal((await call('GET',null,{cookie})).result.code,accessCode());
 assert.equal((await call('POST',{code:accessCode()},{origin:'https://evil.test'})).status,403);
 assert.equal((await call('POST',{code:'wrong'})).status,401);
 const signed=await call('POST',{code:accessCode()});assert.equal(signed.status,200);assert.match(signed.headers['Set-Cookie'],/HttpOnly; Secure; SameSite=Strict/);
 attempts=20;assert.equal((await call('POST',{code:accessCode()})).status,429);
 const out=await call('POST',{action:'logout'},{cookie});assert.match(out.headers['Set-Cookie'],/Max-Age=0/);
+attempts=0;
+const formHeaders={'content-type':'application/x-www-form-urlencoded'};
+const native = await call('POST',new URLSearchParams({code:accessCode(),username:'roadtrip',returnTo:'/#guide/checklist'}).toString(),formHeaders);
+assert.equal(native.status,303);
+assert.equal(native.headers.Location,'/#guide/checklist');
+assert.ok(validSession(native.headers['Set-Cookie']));
+const invalidNative=await call('POST','code=not-a-real-code&returnTo=%2F%23flights',formHeaders);
+assert.equal(invalidNative.status,401);
+assert.match(invalidNative.headers['Content-Type'],/text\/html/);
+assert.match(invalidNative.result,/That code does not match/);
+assert.ok(!invalidNative.result.includes('not-a-real-code'));
+assert.ok(!invalidNative.headers['Set-Cookie']);
+assert.match(invalidNative.result,/value="\/#flights"/);
+assert.equal((await call('POST',new URLSearchParams({code:accessCode(),returnTo:'https://evil.test'}).toString(),formHeaders)).headers.Location,'/');
+assert.equal((await call('POST',new URLSearchParams({code:accessCode()}).toString(),{...formHeaders,origin:'https://evil.test'})).status,403);
+for(const target of ['https://evil.test','//evil.test','/\\evil.test','/#join/secret','/api/auth']) assert.equal(loginReturnTo(target),'/');
+assert.equal(loginReturnTo('/#itinerary/s3'),'/#itinerary/s3');
+const login=loginHtml({error:'<script>alert(1)</script>',returnTo:'/#flights'});
+assert.match(login,/method="post" autocomplete="on"/);
+assert.match(login,/name="username"[^>]+autocomplete="username"/);
+assert.match(login,/id="password"[^>]+type="password"[^>]+autocomplete="current-password"/);
+assert.match(login,/type="submit"/);
+assert.ok(!login.includes('<script>alert(1)</script>'));
+assert.ok(!login.includes(accessCode()));
+console.log('✓ Native form login redirects safely, retains the destination, supports password-manager fields and handles errors without exposing codes');
 globalThis.fetch=original;
 assert.ok(validField('stay:sf3',{place:'Hotel',note:'My note',type:'bed'}));
 assert.ok(!validField('stay:sf3',{place:'Hotel',note:'x'.repeat(4001),type:'bed'}));

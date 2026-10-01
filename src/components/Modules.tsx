@@ -1,4 +1,6 @@
 import type { SeattleOptions } from "../data/seattle";
+import type { Journal } from '../lib/journal';
+import type { Stays } from '../lib/planning';
 import { useMemo } from "react";
 import { MODULES } from "../data/itinerary";
 import { buildTrip, distLabel, fmtShort, metersOf, type Trip } from "../lib/trip";
@@ -10,7 +12,8 @@ import type { SleepStyle, Units } from "../types";
  * it rewrites, and a hover that ghosts its route onto the map. The point is that
  * the trade is visible before you make it rather than explained afterwards.
  */
-export function Modules({ on, toggle, trip, units, sleepStyle, onSelect, onHover, seattle }: {
+export function Modules({ on, toggle, trip, units, sleepStyle, onSelect, onHover, seattle, journal, stays }: {
+  journal: Journal; stays: Stays;
   seattle: SeattleOptions;
   on: Set<string>; toggle: (id: string) => void; trip: Trip; units: Units;
   sleepStyle: SleepStyle;
@@ -28,7 +31,7 @@ export function Modules({ on, toggle, trip, units, sleepStyle, onSelect, onHover
           if (other.id !== m.id && conflicts(m.id, other.id)) next.delete(other.id);
         });
       }
-      const other = buildTrip(next, sleepStyle, {}, seattle);
+      const other = buildTrip(next, sleepStyle, {}, seattle, stays, journal);
       const sign = on.has(m.id) ? -1 : 1;
       out[m.id] = {
         days: (other.driveDays - trip.driveDays) * sign,
@@ -37,7 +40,7 @@ export function Modules({ on, toggle, trip, units, sleepStyle, onSelect, onHover
       };
     }
     return out;
-  }, [on, sleepStyle, trip, seattle]);
+  }, [on, sleepStyle, trip, seattle, stays, journal]);
 
   return (
     <div className="card panel">
@@ -48,12 +51,12 @@ export function Modules({ on, toggle, trip, units, sleepStyle, onSelect, onHover
       </p>
 
       <div className="modgrid">
-        {MODULES.map((m) => {
+        {MODULES.filter(m => !trip.days.find(d => d.id === (m.replaces?.[0] ?? m.after))?.completed).map((m) => {
           const active = on.has(m.id);
           const d = deltas[m.id] ?? { days: 0, meters: 0, sf: 0 };
           const photo = m.days.map((x) => x.photos?.[0]).find(Boolean);
           const ph = photo ? PHOTOS[photo] : undefined;
-          const baseline = m.replaces ? buildTrip(new Set([...on].filter(id => id !== m.id)), sleepStyle, {}, seattle).days : [];
+          const baseline = m.replaces ? buildTrip(new Set([...on].filter(id => id !== m.id)), sleepStyle, {}, seattle, stays, journal).days : [];
           const start = baseline.findIndex(x => x.id === m.replaces?.[0]);
           const end = baseline.findIndex(x => x.id === m.replaces?.[1]);
           const before = start >= 0 && end >= start ? baseline.slice(start, end + 1) : [];

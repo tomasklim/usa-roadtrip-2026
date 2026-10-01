@@ -210,7 +210,7 @@ export default function App() {
           {topic === "charging" && <Charging />}
           {topic === "risks" && <RiskSection trip={trip} />}
           {topic === "budget" && <Budget trip={trip} />}
-          {topic === "options" && <>{seattleChoices}{montanaChoices}<Modules seattle={seattle} on={on} toggle={toggle} trip={trip} units={units} sleepStyle={sleepStyle} onSelect={selectOnMap} onHover={setGhost} /></>}
+          {topic === "options" && <>{seattleChoices}{montanaChoices}<Modules seattle={seattle} journal={journal} stays={stays} on={on} toggle={toggle} trip={trip} units={units} sleepStyle={sleepStyle} onSelect={selectOnMap} onHover={setGhost} /></>}
         </div>}
         {view === "credits" && <PhotoCredits />}
       </main>

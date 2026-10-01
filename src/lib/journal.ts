@@ -40,6 +40,7 @@ export function applyJournal(day: Day, entry: JournalEntry): Day {
     result.leg = entry.note.split('\n')[0] || result.title;
     result.ideas = []; result.alert = undefined; result.charge = []; result.food = [];
     result.hours = 0; result.routeId = 'recorded';
+    result.poiDay = 'recorded';
     result.sleep = {t:'motel',where:'Overnight location not recorded'};
     result.why = 'Recorded from your trip. Distances and exact driving tracks were not logged.';
   }

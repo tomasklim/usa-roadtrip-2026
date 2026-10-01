@@ -430,7 +430,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
             if (!at) return null;
             return (
               <Marker
-                key={`pin-${d.id}`}
+                key={`pin-${d.id}-${d.title}`}
                 position={at}
                 icon={dayIcon(String(d.num), !!d.isMod, selected === d.id)}
                 title={`Day ${d.num}: ${d.title}`}

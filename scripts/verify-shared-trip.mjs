@@ -48,6 +48,7 @@ await handler({method:'GET',headers:{cookie}},response);
 assert.equal(cookieStatus,200);
 await handler({method:'PATCH',headers:{cookie,host:'trip.test',origin:'https://other.test','content-type':'application/json'},body:{'check:csrf':true}},response);
 assert.equal(cookieStatus,403);
+assert.equal((await call('PATCH', {'journal:2026-09-25':{variant:'seattle',title:'Recorded visit',note:'A private note',status:'done'}})).status,200);
 globalThis.fetch = originalFetch;
 
 // Separate browser-like runtimes and local storage, sharing only a fake remote API.
@@ -134,3 +135,12 @@ assert.equal(d.api.useSharedStored('stays',{},object)[0].sf3.note,'Late arrival'
 assert.equal(c.api.useSharedStored('expenses',{},object)[0].food.amount,50);
 assert.equal(d.api.useSharedStored('expenses',{},object)[0].hotels.amount,250);
 console.log('✓ Shared stays, independent budget categories, cookie authentication, CSRF and saved airfare');
+
+const entry = {variant:'seattle',title:'Recorded visit',note:'A private note',status:'done'};
+c.api.useSharedStored('journal',{},object)[1]({'2026-09-25':entry});
+d.api.useSharedStored('journal',{},object)[1]({'2026-09-26':{...entry,title:'Another day'}});
+await settle(); await c.api.sync(); await d.api.sync();
+assert.equal(c.api.useSharedStored('journal',{},object)[0]['2026-09-26'].title,'Another day');
+assert.equal(d.api.useSharedStored('journal',{},object)[0]['2026-09-25'].note,'A private note');
+assert.equal((await call('GET',null,'wrong')).status,401);
+console.log('✓ Private journal API and independent dated edits sync across devices');

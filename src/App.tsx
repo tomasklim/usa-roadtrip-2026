@@ -205,7 +205,7 @@ export default function App() {
           {topic === "checklist" && <Checklist trip={trip} />}
           {topic === "food" && <FoodGuide trip={trip} />}
           {topic === "sleep" && <SleepSection trip={trip} stays={stays} setStays={setStays} />}
-          {topic === "charging" && <Charging />}
+          {topic === "charging" && <Charging trip={trip} />}
           {topic === "risks" && <RiskSection trip={trip} />}
           {topic === "budget" && <Budget trip={trip} />}
           {topic === "options" && <>{seattleChoices}{montanaChoices}<Modules seattle={seattle} journal={journal} stays={stays} on={on} toggle={toggle} trip={trip} units={units} sleepStyle={sleepStyle} onSelect={selectOnMap} onHover={setGhost} /></>}

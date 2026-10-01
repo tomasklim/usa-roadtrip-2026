@@ -1,4 +1,4 @@
-import { CHARGE_ROWS, FOOD_RULES } from "../data/reference";
+import { FOOD_RULES } from "../data/reference";
 import { blockOf, difficulty, distLabel, fmtShort } from "../lib/trip";
 import type { Trip } from "../lib/trip";
 import type { Units } from "../types";
@@ -132,24 +132,27 @@ export function LoadChart({ trip, units, onSelect }: {
   );
 }
 
-export function Charging() {
+export function Charging({trip}: {trip: Trip}) {
+  const ahead = trip.days.filter(d => !d.completed && d.charge?.length);
+  const washingtonDone = trip.days.filter(d => d.act === "I").every(d => d.completed);
   return (
     <section id="charging">
       <div className="wrap narrow">
         <div className="shead"><span className="num">05</span><h2>Charging</h2></div>
         <p className="sub">
           Salt Lake City rental: <b>Tesla Model S, 2021</b>. Your reported range after degradation is <b>320 miles (about 515 km) at a full charge</b>.
-          Seattle and California cars are still undecided; their fuel or charging plans will depend on the cars you book.
+          {washingtonDone ? "The Seattle rental is finished. " : "Confirm the Seattle car’s charging or fuel needs. "}The California car is still to be confirmed.
         </p>
         <div className="card panel" style={{marginBottom:16}}><h3>Use the car’s arrival estimate</h3><p>320 miles is a reference, not a guaranteed mountain range. Driving from 90% down to a 20% reserve gives 224 rated miles before allowing for cold, climbs, wind or overnight heating. Enter the next confirmed charger in the Tesla navigation and watch the predicted arrival percentage.</p><p>For remote legs, aim to arrive with at least 20% as a planning buffer, and keep extra energy for the night. Navigate to Superchargers so the car can prepare the battery. Confirm charging billing and app access with the host.</p><a href="https://www.tesla.com/support/range" target="_blank" rel="noreferrer">Tesla range guidance ↗</a></div>
         <div className="card" style={{ padding: "2px 0" }}>
           <div className="tscroll">
             <table>
-              <thead><tr><th>Leg</th><th>Road</th><th>Chargers</th><th>Verdict</th></tr></thead>
+              <thead><tr><th>Day</th><th>Route</th><th>Charging plan</th></tr></thead>
               <tbody>
-                {CHARGE_ROWS.map(([leg, road, ch, verdict, cls]) => (
-                  <tr key={leg} className={cls}>
-                    <td><b>{leg}</b></td><td className="n">{road}</td><td>{ch}</td><td>{verdict}</td>
+                {ahead.map(day => (
+                  <tr key={day.id}>
+                    <td><a href={`#itinerary/${day.id}`}>Day {day.num} · {fmtShort(day.date!)}</a></td><td>{day.title}</td>
+                    <td><ul>{day.charge!.map((text,i)=><li key={i}>{text}</li>)}</ul></td>
                   </tr>
                 ))}
               </tbody>
@@ -165,8 +168,8 @@ export function Charging() {
           </p>
           <ul style={{ fontSize: ".89rem" }}>
             <li>Confirm a native <b>Tesla/NACS connector</b>, access and availability before relying on a Gardiner hotel charger.</li>
-            <li>Before Beartooth, plan all the way to <b>Laurel Supercharger</b>, about 71 km beyond Red Lodge, including overnight use. Red Lodge destination charging is an optional top-up.</li>
-            <li>Charge in Laurel for the onward Gardiner night and next day’s drive to Bozeman. The bad-weather plan skips Beartooth and adds a Bozeman day; the Lamar outing still needs enough reserve to reach Bozeman afterwards.</li>
+            {trip.days.some(d => d.id === "s6" && !d.completed) && <li>Before Beartooth, plan all the way to <b>Laurel Supercharger</b>, about 71 km beyond Red Lodge, including overnight use. Red Lodge destination charging is an optional top-up.</li>}
+            <li>{trip.days.some(d => d.id === "rainLamar") ? "The active plan skips Beartooth and adds a Bozeman day. Check energy for any Lamar outing and the onward drive to Bozeman." : "Charge in Laurel for the onward Gardiner night and next day’s drive to Bozeman. The bad-weather alternative skips Beartooth and adds a Bozeman day."}</li>
           </ul>
         </div>
       </div>
@@ -200,7 +203,7 @@ export function Cards({ id, num, title, sub, cards }: {
 export function FoodRules() {
   return (
     <div className="card rules">
-      <h3 style={{ fontSize: ".98rem" }}>Rules that always work</h3>
+      <h3 style={{ fontSize: ".98rem" }}>Ordering notes</h3>
       <ul>{FOOD_RULES.map((r, i) => <li key={i} dangerouslySetInnerHTML={{ __html: r }} />)}</ul>
     </div>
   );

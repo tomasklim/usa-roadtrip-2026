@@ -1,18 +1,19 @@
 import { blockOf, fmtShort, type Trip } from '../lib/trip';
 
 export const CHECK_CATEGORIES = [
-  { id: 'cars', title: 'Cars', description: 'Three separate rentals, with dates from your active itinerary.' },
-  { id: 'flights', title: 'Flights & documents', description: 'Get the essentials ready before departure.' },
+  { id: 'cars', title: 'Cars', description: 'Current and upcoming rentals, with dates from your itinerary.' },
+  { id: 'flights', title: 'Flights & documents', description: 'Upcoming flights and documents to keep with you.' },
   { id: 'stays', title: 'Places to sleep', description: 'Book the anchors; keep weather-dependent nights flexible.' },
   { id: 'experiences', title: 'Food & experiences', description: 'The stops worth reserving in advance.' },
   { id: 'road', title: 'Parks & charging', description: 'Access, weather alternatives and energy for the full route.' },
   { id: 'packing', title: 'Packing & offline', description: 'A small kit that works in the city and in the mountains.' }
 ] as const;
 export type CheckCategory = typeof CHECK_CATEGORIES[number]['id'];
-export interface CheckItem { id: string; category: CheckCategory; t: string; d: string; block?: boolean; url?: string; when?: string }
+export interface CheckItem { id: string; category: CheckCategory; t: string; d: string; block?: boolean; url?: string; when?: string; retired?: string }
 export const CHECKS: CheckItem[] = [
   { id: 'sea-car-20260924', category: 'cars', block: true, t: 'Book Turo · Seattle', d: 'Pickup after the 16:00 arrival on Sept 24, with time for immigration and bags. Match return to the selected SLC flight. Compare the all-in total, pickup location, mileage and cancellation terms.', url: 'https://turo.com/' },
   { id: 'dates-20260929', category: 'cars', block: true, t: 'Book / update Turo · Salt Lake City', d: 'Use the dates below, not the old quote. Check the full mileage allowance, extra-mile price, pickup and return times, tyres and Supercharging billing. Your chosen car is a 2021 Model S with a reported 320-mile range after degradation.', url: 'https://turo.com/' },
+  { id: 'slc-return-review', category: 'cars', block: true, t: 'Check the Tesla return and remaining mileage', d: 'Confirm the SLC return location, time, required charge and charging bill. Compare remaining route mileage with the rental allowance and leave time before the SFO flight.' },
   { id: 'california-car', category: 'cars', block: true, t: 'Book Turo · California', d: 'A separate Bay Area rental for Palo Alto and the selected coast route. Match the active driving dates below; compare returning after the last drive with keeping it until the SFO flight, including hotel parking and airport fees.', url: 'https://turo.com/' },
   { id: 'driver', category: 'cars', block: true, t: 'Approve both drivers on all three rentals', d: 'Each additional driver needs their own approved Turo account and approval for that booking before driving. Check Seattle, Salt Lake City and California separately.', url: 'https://help.turo.com/additional-drivers-on-a-trip-rJHorVxVq' },
   { id: 'airport', category: 'cars', t: 'Compare airport pickup with a city pickup', d: 'Include the transfer with luggage, parking, delivery fees and the time lost. Save the pickup instructions and host contact for each rental.' },
@@ -26,7 +27,7 @@ export const CHECKS: CheckItem[] = [
   { id: 'arrival-inn', category: 'stays', block: true, t: 'Book the first night · Olympia / Lacey', d: 'Choose a simple inn with parking and late check-in. Tell them arrival is after an international flight. Keep the first evening easy: food, groceries, bed.' },
   { id: 'oyster-bay-20260925', category: 'stays', t: 'Book Oyster Bay Inn or a Bremerton alternative', d: 'Preferred stop after Hama Hama. Compare final price, parking and cancellation deadline; keep confirmation and late-arrival instructions.' },
   { id: 'mountain-stays', category: 'stays', block: true, t: 'Reserve the Yellowstone & Teton bed nights', d: 'Use the Sleep section for the actual nights and locations. Compare refundable options in Jackson, West Yellowstone, Gardiner, Red Lodge and Bozeman as applicable. Check cancellation dates before switching the weather plan.' },
-  { id: 'sf-hotel', category: 'stays', t: 'Book the San Francisco hotel', d: 'Use the Bay Area dates in the itinerary. Include parking costs for the rental days, luggage storage and the journey to SFO.' },
+  { id: 'sf-hotel', category: 'stays', t: 'Book California overnight stays', d: 'Use Sleep for the active bases, including Monterey if the coast route is selected. Check parking, luggage storage and the final night near San Francisco before the SFO flight.' },
   { id: 'camp-stays', category: 'stays', t: 'Check each car night and the next bed', d: 'Use a permitted campsite with confirmed access. Aim for at most two consecutive car nights; use the price exception only deliberately. Save a nearby indoor fallback for cold or wet weather.' },
   { id: 'hama-20260925', category: 'experiences', t: 'Reserve Hama Hama · Friday Sept 25', d: 'Check the current reservation release and Oyster Saloon hours. Visit Olympia first and aim for lunch; save the booking and cancellation terms.', url: 'https://hamahamaoysters.com/pages/oyster-saloon' },
   { id: 'node-palo-alto', category: 'experiences', t: 'Check NODE’s programme in Palo Alto', d: 'A must-visit at 180 University Ave. Confirm the exhibition, opening hours and admission for the date shown in your active itinerary, including any closure between shows.', url: 'https://nodefoundation.com/' },
@@ -38,16 +39,16 @@ export const CHECKS: CheckItem[] = [
   { id: 'diet-card', category: 'experiences', t: 'Save a short dietary-requirements note', d: 'Write the exact gluten and dairy requirements for both of you, including whether cross-contact matters. Show it when ordering and confirm preparation with the restaurant.' },
   { id: 'gardiner-native-plug', category: 'road', block: true, t: 'Confirm Gardiner charging without an adapter', d: 'Ask for a native Tesla / NACS connector and confirm access, availability and power. “L2” alone is not enough. Check the whole route between confirmed chargers before committing to the stay.' },
   { id: 'laurel-return', category: 'road', t: 'Save Laurel Supercharger and the energy plan', d: 'Good weather: Gardiner → Beartooth → Red Lodge → Laurel, with enough reserve even if Red Lodge charging fails. Recharge for the onward Gardiner night and Bozeman. In bad weather, use the extra Bozeman day.', url: 'https://www.tesla.com/findus' },
-  { id: 'pass', category: 'road', t: 'Arrange the non-resident national parks pass', d: 'The 2026 non-resident annual pass is $250. Check the official coverage and purchase options; campsite fees and reservations are separate. Save a usable copy and carry the required ID.', url: 'https://www.nps.gov/planyourvisit/passes.htm' },
+  { id: 'pass', category: 'road', t: 'Check the parks pass for the remaining parks', d: 'Check whether your existing pass covers the remaining national parks before buying another one. Check current non-resident terms on the official site; campsite fees and reservations are separate. Keep the pass and required ID with you.', url: 'https://www.nps.gov/planyourvisit/passes.htm' },
   { id: 'sunrise', category: 'road', t: 'Check Rainier roads for the selected route', d: 'The current plan uses Nisqually / Paradise. Check access and webcams before departure; only add Sunrise if its road is open and there is time.', url: 'https://www.nps.gov/mora/planyourvisit/road-status.htm' },
   { id: 'mountain-roads', category: 'road', t: 'Save Yellowstone and Beartooth road status', d: 'Recheck the morning you drive and after a weather change. Use the Bozeman alternative if the pass closes or visibility is poor.', url: 'https://www.nps.gov/yell/planyourvisit/parkroads.htm' },
   { id: 'offline', category: 'packing', t: 'Download maps, GPX and the offline itinerary', d: 'Save the website’s offline copy plus Google Maps areas and walking maps. Open each with airplane mode on before leaving; the live website map still needs a connection.' },
   { id: 'phone-data', category: 'packing', t: 'Set up mobile data for both phones', d: 'Check device compatibility and activation timing for your roaming plan or eSIM. Save installation instructions offline and test hotspot sharing.' },
   { id: 'power', category: 'packing', t: 'Pack charging cables, US plugs and a power bank', d: 'Bring car charging cables for both phones. Check voltage support on your chargers and your airline’s current power-bank rules.' },
-  { id: 'mattress', category: 'packing', t: 'Confirm the mattress and sleeping setup', d: 'Check dimensions for the actual rental model before buying. Decide where to collect and leave bulky gear, and test the setup before the first planned car night.' },
+  { id: 'mattress', category: 'packing', t: 'Check the sleep setup for the next car night', d: 'Use the actual rental and forecast to decide whether the setup is warm and comfortable enough. Dry bedding, charge for overnight climate use and keep a nearby room as a fallback.' },
   { id: 'warm', category: 'packing', t: 'Pack for freezing mountain nights', d: 'Warm sleep gear, layers, waterproofs, hats, headlamps and a way to handle condensation. Recheck overnight forecasts and choose a bed when the setup is unsuitable.' },
   { id: 'bear', category: 'packing', t: 'Arrange bear spray locally before the Tetons', d: 'Buy or rent locally, learn how to use it and arrange its return or disposal before the SLC → SFO flight. Check the park’s current guidance.', url: 'https://www.nps.gov/grte/planyourvisit/bearsafety.htm' },
-  { id: 'supplies', category: 'packing', t: 'Make the first grocery list', d: 'Water, easy breakfasts, road snacks, a small cooler, rubbish bags and basic toiletries. Keep a separate Salt Lake list for the longer road segment.' }
+  { id: 'supplies', category: 'packing', t: 'Restock before remote park days', d: 'Water, easy breakfasts, packed lunches, road snacks and basic supplies. Plan groceries before the next stretch through Grand Teton and Yellowstone.' }
 ];
 
 export const VALID_CHECKS = new Set(CHECKS.map(c => c.id));
@@ -62,5 +63,34 @@ export function checksForTrip(trip: Trip): CheckItem[] {
   const dates: Record<string, string> = {
     'sea-car-20260924': dateRange('Seattle car'), 'dates-20260929': dateRange('Salt Lake car'), 'california-car': dateRange('San Francisco car')
   };
-  return CHECKS.map(c => ({ ...c, when: dates[c.id] }));
+  const finished = (id: string) => !!trip.days.find(d => d.id === id)?.completed;
+  const washingtonDone = trip.days.filter(d => d.act === 'I').every(d => d.completed);
+  const started = trip.days.some(d => d.completed);
+  const saltStarted = trip.days.some(d => blockOf(d) === 'Salt Lake car' && d.completed);
+  const upcoming = trip.days.filter(d => !d.completed);
+  const retired: Record<string,string | undefined> = {
+    'sea-car-20260924': washingtonDone ? 'Seattle rental completed.' : undefined,
+    'dates-20260929': saltStarted ? 'Salt Lake rental is already underway; use the return and mileage check.' : undefined,
+    'flight-sea-slc': saltStarted ? 'SEA → SLC completed. Actual details are in Flights.' : undefined,
+    'arrival-inn': finished('arrive') ? 'Arrival night is recorded in Sleep.' : undefined,
+    'oyster-bay-20260925': washingtonDone ? 'Washington nights are recorded in Sleep; this earlier suggestion is no longer needed.' : undefined,
+    'hama-20260925': washingtonDone ? 'Washington food stops have already been visited.' : undefined,
+    'sunrise': washingtonDone ? 'Mount Rainier visit completed.' : undefined,
+    'topaz-calendar': !upcoming.some(d => d.poiDay === 'waPortland') ? 'Portland is not in the remaining route.' : undefined,
+    'tomales-20260924': !upcoming.some(d => d.modId === 'oysters') ? 'Only needed when the Point Reyes oyster module is selected.' : undefined,
+    'pumpkin-weighoff': !upcoming.some(d => /pumpkin/i.test(d.title)) ? 'The pumpkin coast day is not in the remaining route.' : undefined,
+    'turo': finished('s1') ? 'Bonneville visit completed; rental restrictions still apply to future driving.' : undefined,
+    'esta': finished('arrive') ? 'US arrival completed. Keep passports and driving documents accessible.' : undefined,
+  };
+  return CHECKS.map(c => {
+    const item = { ...c, when: dates[c.id], retired: retired[c.id] };
+    if (started && c.id === 'airport') return {...item,t:'Confirm California pickup logistics',d:'Compare the transfer, parking and delivery fees for the remaining Bay Area rental. Save pickup instructions and the host contact.'};
+    if (started && c.id === 'driver') return {...item,t:'Check driver approval for current and upcoming rentals',d:'Confirm each person who will drive is approved for the Salt Lake and California bookings. Keep the original driving documents accessible.'};
+    if (started && c.id === 'phone-data') return {...item,t:'Check mobile data for the remaining trip',d:'Check remaining data, expiry and hotspot sharing. Download the next map areas before heading out of signal.'};
+    if (started && c.id === 'flight-copies') return {...item,t:'Save the remaining flights and baggage allowances',d:'Keep SLC → SFO and the Condor journey home in the airline apps and offline. Check baggage separately for the domestic flight.'};
+    if (started && c.id === 'power') return {...item,t:'Charge phones and the power bank before park days'};
+    if (started && c.id === 'warm') return {...item,t:'Check warm layers and mountain-night gear'};
+    if (washingtonDone && c.id === 'red-butte') return {...item,d:'Keep time for Red Butte Garden on the final Salt Lake day. Use the active itinerary date, check current opening hours and admission, and fit the garden around the Tesla return.'};
+    return item;
+  });
 }

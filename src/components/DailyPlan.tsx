@@ -1,3 +1,4 @@
+import { recordedFood } from "../lib/tripKit";
 import { WeatherCard } from "./WeatherCard";
 import type { ReactNode } from "react";
 import { AlertBox, ChargeRow, FoodRow, HiRow, IdeasRow, PhotoStrip, SleepRow, WhyRow } from "./DayParts";
@@ -63,7 +64,7 @@ export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map, choice
             {tab === "plan" && <><HiRow day={day} /><WhyRow day={day} />
               {!!day.ideas?.length && <details className="extra-ideas"><summary>More ideas if there is time <span>{day.ideas.length}</span></summary><IdeasRow day={day} /></details>}
             </>}
-            {tab === "food" && (day.food?.length ? <FoodRow day={day} /> : <p>No food stops planned for this travel day.</p>)}
+            {tab === "food" && (day.food?.length ? <FoodRow day={day} /> : <>{recordedFood(day).length ? <ul>{recordedFood(day).map((note,i)=><li key={i}>{note}</li>)}</ul> : <p>{day.completed ? "No food stops recorded for this day." : "No food stops planned for this travel day."}</p>}</>)}
             {tab === "sleep" && (day.sleep ? <SleepRow day={day} /> : <p>The flight home is tonight. Arrive in Prague on October 14.</p>)}
             {tab === "charge" && (day.charge?.length ? <ChargeRow day={day} /> : <p>No charging stop planned for this day.</p>)}
           </div>

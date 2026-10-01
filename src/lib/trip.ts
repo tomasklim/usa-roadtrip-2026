@@ -1,4 +1,5 @@
 import type { Stays } from "./planning";
+import { applyJournal, type Journal } from './journal';
 import { BASE, CAR_NIGHTS, MODULES, VALLEY_LOOP } from "../data/itinerary";
 import { DEFAULT_SEATTLE, normalizeSeattle, seattleDays, type SeattleOptions } from "../data/seattle";
 import routesRaw from "../data/routes.json";
@@ -76,7 +77,15 @@ export interface Trip {
   spare: number;
 }
 
-export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", overrides: SleepOverrides = {}, seattle: SeattleOptions = DEFAULT_SEATTLE, stays: Stays = {}): Trip {
+export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", overrides: SleepOverrides = {}, seattle: SeattleOptions = DEFAULT_SEATTLE, stays: Stays = {}, journal: Journal = {}): Trip {
+  const completedThrough = Math.max(-1, ...Object.entries(journal).filter(([,e]) => e.status === 'done').map(([date]) => Math.round((Date.parse(date) - START) / DAY_MS)));
+  if (completedThrough >= 4) seattle = {weather:'good',portland:false,rainier:'sat',flight:'tue-am'};
+  // Past optional detours cannot insert days into recorded calendar slots.
+  on = new Set([...on].filter(id => {
+    const mod = MODULES.find(m => m.id === id);
+    const anchor = BASE.findIndex(d => d.id === (mod?.replaces?.[0] ?? mod?.after));
+    return anchor < 0 || anchor > completedThrough;
+  }));
   const options = normalizeSeattle(on.has("olympic") ? { ...seattle, weather: "good", rainier: "sun", flight: "tue-am" } : seattle);
   let days: Day[] = [...seattleDays(BASE, options), ...BASE.slice(5).map(d => ({ ...d }))];
   const bonneville = days.find(d => d.id === "s1")!;
@@ -111,6 +120,11 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
       days.splice(at, 0, ...m.days.map((d) => ({ ...d, isMod: true, modId: m.id })));
     });
 
+  days = days.map((d, i) => {
+    const entry = journal[new Date(START + i * DAY_MS).toISOString().slice(0,10)];
+    return entry ? applyJournal(d, entry) : d;
+  });
+
   // The flight home does not move, so extra days come out of San Francisco.
   let droppedSf = 0;
   while (days.length > CAP_DAYS) {
@@ -135,7 +149,7 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
     if (d.routeId && ROUTES[d.routeId]) d.hours = Math.round(ROUTES[d.routeId].seconds / 360) / 10;
     // Sleeping style is applied here so every downstream count — the hero, the
     // budget's lodging line, the day cards — reads from one decision.
-    const car = d.carEligible === false ? undefined : CAR_NIGHTS[d.id];
+    const car = d.completed || d.carEligible === false ? undefined : CAR_NIGHTS[d.id];
     if (d.sleep) d.sleep = { ...d.sleep };
     const choice = overrides[d.id];
     const priceException = !!car && choice === "price";

@@ -23,9 +23,11 @@ const allWaypoints = JSON.parse(readFileSync(wpPath, "utf8"));
  * not shipped to the browser — it was ~40% of the bundle.
  */
 const itinerary = readFileSync(resolve(here, "../src/data/itinerary.ts"), "utf8");
+const journalVariants = readFileSync(resolve(here, "../src/lib/journal.ts"), "utf8");
 const live = new Set([...itinerary.matchAll(/id: "([a-zA-Z0-9]+)", kind:/g)].map((m) => m[1]));
 [...itinerary.matchAll(/routeId: "([a-zA-Z0-9]+)"/g)].forEach(m => live.add(m[1]));
 Object.keys(allWaypoints).filter(id => id.startsWith("wa")).forEach(id => live.add(id));
+[...journalVariants.matchAll(/routeId: '([a-zA-Z0-9]+)'/g)].forEach(m => live.add(m[1]));
 const requested = new Set(process.argv.slice(2));
 const waypoints = Object.fromEntries(Object.entries(allWaypoints).filter(([id]) => live.has(id) && (!requested.size || requested.has(id))));
 const skipped = Object.keys(allWaypoints).filter((id) => !live.has(id));

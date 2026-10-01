@@ -26,6 +26,8 @@ import type { Tab } from "./components/DayPanel";
 import { SleepSection } from "./components/SleepPlanner";
 import { RiskSection } from "./components/RoadConditions";
 import { normalizeStays, type Stays } from "./lib/planning";
+import { normalizeJournal, type Journal } from './lib/journal';
+import { TripJournal } from './components/TripJournal';
 
 const RouteMap = lazy(() => import("./components/RouteMap").then(module => ({ default: module.RouteMap })));
 
@@ -40,6 +42,7 @@ export default function App() {
   const [layers, setLayers] = useStored<Layers>("layers2", DEFAULT_LAYERS, normalizeLayers);
   const [wheelZoom, setWheelZoom] = useStored<boolean>("wheelZoom", false, NORMALIZE_FALSE);
   const [stays, setStays] = useSharedStored<Stays>("stays", {}, normalizeStays);
+  const [journal, setJournal] = useSharedStored<Journal>('journal', {}, normalizeJournal);
   const sleepStyle = "motel";
   const [sleepOverrides] = useSharedStored<SleepOverrides>("sleepOverrides", {}, normalizeSleepOverrides);
   const [selected, setSelected] = useStored<string | null>("selectedDay", null, normalizeDay);
@@ -48,9 +51,10 @@ export default function App() {
   const [ghost, setGhost] = useState<string | null>(null);
 
   const on = useMemo(() => new Set(Array.isArray(mods) ? mods : []), [mods]);
-  const trip = useMemo(() => buildTrip(on, sleepStyle, sleepOverrides, seattle, stays), [on, sleepStyle, sleepOverrides, seattle, stays]);
+  const trip = useMemo(() => buildTrip(on, sleepStyle, sleepOverrides, seattle, stays, journal), [on, sleepStyle, sleepOverrides, seattle, stays, journal]);
   const routeDay = trip.days.find(d => d.id === route.day);
-  const day = routeDay ?? trip.days.find(d => d.id === selected) ?? todayInTrip(trip) ?? trip.days[0];
+  const day = routeDay ?? todayInTrip(trip) ?? trip.days.find(d => d.id === selected) ?? trip.days[0];
+  const latest = trip.days.filter(d => d.completed).at(-1);
 
   const [bringDayIntoView, setBringDayIntoView] = useState(false);
   useLayoutEffect(() => {
@@ -130,7 +134,7 @@ export default function App() {
       onStep={step} onScrollTo={selectOnMap} />
   </Suspense>;
 
-  const seattleChoices = <SeattleChoices trip={trip} onChange={setSeattle} extended={on.has("olympic")} />;
+  const seattleChoices = trip.days.slice(0,5).some(d => d.completed) ? null : <SeattleChoices trip={trip} onChange={setSeattle} extended={on.has("olympic")} />;
   const changeMontana = (rainy: boolean) => {
     if (rainy === on.has("montanaRain")) return;
     toggle("montanaRain");
@@ -145,6 +149,7 @@ export default function App() {
       <Header units={units} setUnits={setUnits} theme={theme} setTheme={setTheme} view={view} />
       <main id="main" tabIndex={-1}>
         {shared.connected && <div className="wrap shared-indicator"><a href="#guide/checklist">Shared trip · {shared.pending ? `${shared.pending} changes waiting to sync` : shared.status}</a></div>}
+        {latest && <div className="wrap"><div className="card panel journey-position"><b>Last recorded stop · {new Date(latest.date!).toISOString().slice(0,10)}</b><p>{latest.sleep?.where || latest.title}</p><a href={`#itinerary/${latest.id}`}>Our latest day ↗</a>{trip.days[(latest.num ?? 1)] && <> · <a href={`#itinerary/${trip.days[latest.num!].id}`}>Next day ↗</a></>}</div></div>}
         {view === "overview" && <>
           <TripBar trip={trip} units={units} onContinue={() => openDaily(day.id)} dayTitle={`Day ${day.num} · ${day.title}`} />
           <div className="wrap overview-body">
@@ -176,6 +181,7 @@ export default function App() {
               {["s6", "s7", "s8", "rainLamar", "rainTransfer", "rainRest"].includes(day.id) && montanaChoices}
             </>}
             map={renderMap(day.id)} />
+          <TripJournal key={`${day.date}-${JSON.stringify(journal[new Date(day.date!).toISOString().slice(0,10)])}`} day={day} journal={journal} setJournal={setJournal} />
         </div>}
 
         {view === "plan" && <div className="wrap view-content trip-plan-view">

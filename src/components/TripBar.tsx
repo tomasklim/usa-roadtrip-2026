@@ -30,7 +30,7 @@ export function TripBar({ trip, units, onContinue, dayTitle }: {
         </figure>
       </div>
       <div className="trip-facts" aria-label="Trip at a glance">
-        <div><b>{distLabel(trip.meters, units)}</b><span>on the road</span></div>
+        <div><b>{distLabel(trip.meters, units)}</b><span>{trip.days.some(d => d.completed) ? 'mapped plan · past mileage not recorded' : 'on the road'}</span></div>
         <div><b>{r.seattle.days + r.slc.days + r.sf.days} rental days</b><span>across three car blocks</span></div>
         <div><b>{trip.sfNights} Bay Area nights</b><span>home in Prague Oct 14</span></div>
         <div><b>Made for two</b><span>gluten-free & dairy-free</span></div>

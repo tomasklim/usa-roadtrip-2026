@@ -4,6 +4,7 @@ const dateFor = (t: number) => new Intl.DateTimeFormat('en-GB', { weekday: 'shor
 export function flightsForTrip(trip: Trip) {
   return FLIGHTS.map(f => {
     if (f.dir === 'hop1') {
+      if (trip.days.find(d => d.id === 's1')?.completed) return {...f, booked:true, date:'Completed · Seattle → Salt Lake City',dep:'Completed',arr:'Completed',legs:[['Flight details','Exact flight date and times were not recorded in the trip log.']],note:'This journey is already behind you; no booking action is needed.'};
       const early = trip.seattle.flight !== 'tue-am';
       const day = trip.days.find(d => d.id === (early ? 'seaReturn' : 's1'));
       if (!day?.date) return f;

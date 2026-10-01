@@ -7,12 +7,13 @@ type Pending = Record<string, { value: unknown; revision: number }>;
 const cleanFields = (value: unknown): Fields => Object.fromEntries(Object.entries(value && typeof value === 'object' && !Array.isArray(value) ? value : {}).filter(([k,v]) => validField(k,v)));
 const cleanPending = (value: unknown): Pending => Object.fromEntries(Object.entries(value && typeof value === 'object' && !Array.isArray(value) ? value : {}).filter(([k,v]) => v && typeof v === 'object' && Number.isSafeInteger(v.revision) && v.revision >= 0 && validField(k,v.value)));
 
-const defaults: Record<string, unknown> = { checks: [], mods: [], seattlePlan: DEFAULT_SEATTLE, sleepStyle: 'balanced', sleepOverrides: {}, stays: {}, expenses: {} };
+const defaults: Record<string, unknown> = { checks: [], mods: [], seattlePlan: DEFAULT_SEATTLE, sleepStyle: 'balanced', sleepOverrides: {}, stays: {}, expenses: {}, journal: {} };
 const read = (key: string): unknown => { try { return JSON.parse(localStorage.getItem(key) ?? 'null'); } catch { return null; } };
 let storageOK = true;
 const save = (key: string, value: unknown) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch { storageOK = false; } };
 const validToken = (v: unknown): v is string => typeof v === 'string' && /^[A-Za-z0-9_-]{43}$/.test(v);
 export function fieldsFor(key: string, value: unknown): Fields {
+  if (key === 'journal') return Object.fromEntries(Object.entries(value && typeof value === 'object' ? value : {}).map(([id, v]) => [`journal:${id}`, v]));
   if (key === 'stays' || key === 'expenses') return Object.fromEntries(Object.entries(value && typeof value === 'object' ? value : {}).map(([id, v]) => [`${key === 'stays' ? 'stay' : 'expense'}:${id}`, v]));
   if (key === 'checks') return Object.fromEntries((Array.isArray(value) ? value : []).filter(v => typeof v === 'string').map(id => [`check:${id}`, true]));
   if (key === 'sleepOverrides') return Object.fromEntries(Object.entries(value && typeof value === 'object' ? value : {}).map(([id, v]) => [`sleep:${id}`, v]));
@@ -41,6 +42,7 @@ const emit = (status = state.status, lastSync = state.lastSync) => {
 };
 const persist = () => { if (token && connected) save(cacheKey(token), {fields, pending}); };
 function valueFor(key: string, source: Fields): unknown {
+  if (key === 'journal') return Object.fromEntries(Object.entries(source).filter(([k,v]) => k.startsWith('journal:') && v !== null).map(([k,v]) => [k.slice(8), v]));
   if (key === 'stays' || key === 'expenses') {
     const prefix = key === 'stays' ? 'stay:' : 'expense:';
     return Object.fromEntries(Object.entries(source).filter(([k,v]) => k.startsWith(prefix) && v !== null).map(([k,v]) => [k.slice(prefix.length), v]));

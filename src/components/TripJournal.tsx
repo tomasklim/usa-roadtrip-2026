@@ -17,8 +17,8 @@ export function TripJournal({ day, journal, setJournal }: { day: Day; journal: J
       <label>Day title<input aria-label="Journal title" value={draft.title} maxLength={200} onChange={e=>setDraft({...draft,title:e.target.value})}/></label>
       <label>What we did / updated plan<textarea aria-label="Journal notes" rows={5} maxLength={4000} value={draft.note} onChange={e=>setDraft({...draft,note:e.target.value})}/></label>
       {(draft.variant === 'redmond' || draft.flight) && <>
-        <label>SEA → SLC departure (Seattle local time)<input aria-label="Flight departure local time" type="time" value={draft.flight?.dep ?? ''} onChange={e=>setDraft({...draft,flight:{from:'SEA',to:'SLC',arr:draft.flight?.arr ?? '',dep:e.target.value}})}/></label>
-        <label>SEA → SLC arrival (Salt Lake City local time)<input aria-label="Flight arrival local time" type="time" value={draft.flight?.arr ?? ''} onChange={e=>setDraft({...draft,flight:{from:'SEA',to:'SLC',dep:draft.flight?.dep ?? '',arr:e.target.value}})}/></label>
+        <label>SEA → SLC departure (Seattle local time)<input aria-label="Flight departure local time" type="text" placeholder="HH:MM" maxLength={5} value={draft.flight?.dep ?? ''} onChange={e=>setDraft({...draft,flight:{from:'SEA',to:'SLC',arr:draft.flight?.arr ?? '',dep:e.target.value}})}/></label>
+        <label>SEA → SLC arrival (Salt Lake City local time)<input aria-label="Flight arrival local time" type="text" placeholder="HH:MM" maxLength={5} value={draft.flight?.arr ?? ''} onChange={e=>setDraft({...draft,flight:{from:'SEA',to:'SLC',dep:draft.flight?.dep ?? '',arr:e.target.value}})}/></label>
       </>}
       <label>Road distance before the 15% allowance (km)<input aria-label="Journal road distance km" type="number" min="0" max="5000" step="0.1" value={draft.roadKm ?? ''} onChange={e=>setDraft({...draft,roadKm:e.target.value === '' ? null : Number(e.target.value)})}/></label>
       <label>Distance assumptions<textarea aria-label="Journal distance assumptions" rows={3} maxLength={2000} value={draft.roadNote ?? ''} onChange={e=>setDraft({...draft,roadNote:e.target.value})}/></label>

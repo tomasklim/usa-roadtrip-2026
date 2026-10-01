@@ -11,7 +11,7 @@ export function flightsForTrip(trip: Trip) {
         // SLC is one hour ahead of Seattle throughout this autumn trip.
         const elapsed = (minutes(arr) - minutes(dep) - 60 + 1440) % 1440;
         const dur = `${Math.floor(elapsed / 60)} h${elapsed % 60 ? ` ${elapsed % 60} m` : ''}`;
-        return {...f, booked:true, date:dateFor(recorded.date), dep, arr, dur,
+        return {...f, booked:true, date:dateFor(recorded.date), dep, arr, dur, co2:'',
           legs:[['SEA → SLC','Completed', `Seattle ${dep} → Salt Lake City ${arr} · local times`]],
           note:'Completed. Salt Lake City is one hour ahead of Seattle. Times recorded from your trip.'};
       }

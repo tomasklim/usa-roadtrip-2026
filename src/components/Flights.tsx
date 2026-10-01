@@ -46,7 +46,7 @@ export function Flights({ trip }: { trip: Trip }) {
                 ))}
               </div>
               {f.note && <div className="fco2">{f.note}</div>}
-              <div className="fco2">{f.co2}</div>
+              {f.co2 && <div className="fco2">{f.co2}</div>}
             </div>
           ))}
         </div>

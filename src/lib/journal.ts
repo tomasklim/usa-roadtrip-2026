@@ -8,7 +8,7 @@ export const normalizeJournal = (v: unknown): Journal => Object.fromEntries(Obje
 const base = (id: string) => BASE.find(d => d.id === id)!;
 export const JOURNEY_VARIANTS: Record<string, Partial<Day> & { title: string }> = {
   arrival: { ...base('arrive'), photos: ['model3','wholefoods','tacoma'], weather: {day:'seatac'}, routeId: 'recorded', poiDay: 'recorded', at: [47.2529,-122.4443] },
-  hood: { ...base('seaB'), title: 'Hama Hama & State Capitol', photos: ['oysters','olympiacapitol'], routeId: 'recorded', poiDay: 'seaB', at: [47.539,-123.038], weather: {day:'hood'} },
+  hood: { ...base('seaB'), title: 'Hama Hama & State Capitol', photos: ['oysters','olympiacapitol','rhododendrons'], routeId: 'recorded', poiDay: 'seaB', at: [47.539,-123.038], weather: {day:'hood'} },
   rainier: { ...base('seaA'), routeId: 'recorded', poiDay: 'waRainier', at: [46.786,-121.735], weather: {day:'rainier'} },
   seattle: { ...base('sea1'), photos: ['pikeplace','kerrypark','shakeshack'], routeId: 'recorded', poiDay: 'sea1', at: [47.6097,-122.3422], weather: {day:'seattle'} },
   redmond: { title: 'Redmond · tech companies', leg: 'Redmond, Washington', routeId: 'recorded', poiDay: 'recorded', at: [47.674,-122.1215], photos: ['microsoftRedmond','nintendoRedmond','targetSign'], weather: {day:'seattle'} },

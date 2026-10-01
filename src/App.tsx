@@ -54,7 +54,6 @@ export default function App() {
   const trip = useMemo(() => buildTrip(on, sleepStyle, sleepOverrides, seattle, stays, journal), [on, sleepStyle, sleepOverrides, seattle, stays, journal]);
   const routeDay = trip.days.find(d => d.id === route.day);
   const day = routeDay ?? todayInTrip(trip) ?? trip.days.find(d => d.id === selected) ?? trip.days[0];
-  const latest = trip.days.filter(d => d.completed).at(-1);
 
   const [bringDayIntoView, setBringDayIntoView] = useState(false);
   useLayoutEffect(() => {
@@ -149,7 +148,6 @@ export default function App() {
       <Header units={units} setUnits={setUnits} theme={theme} setTheme={setTheme} view={view} />
       <main id="main" tabIndex={-1}>
         {shared.connected && <div className="wrap shared-indicator"><a href="#guide/checklist">Shared trip · {shared.pending ? `${shared.pending} changes waiting to sync` : shared.status}</a></div>}
-        {latest && <div className="wrap"><div className="card panel journey-position"><b>Last recorded stop · {new Date(latest.date!).toISOString().slice(0,10)}</b><p>{latest.sleep?.where || latest.title}</p><a href={`#itinerary/${latest.id}`}>Our latest day ↗</a>{trip.days[(latest.num ?? 1)] && <> · <a href={`#itinerary/${trip.days[latest.num!].id}`}>Next day ↗</a></>}</div></div>}
         {view === "overview" && <>
           <TripBar trip={trip} units={units} onContinue={() => openDaily(day.id)} dayTitle={`Day ${day.num} · ${day.title}`} />
           <div className="wrap overview-body">

@@ -467,5 +467,3 @@ footer a{font-size:.76rem;margin-left:auto;text-decoration:none;white-space:nowr
 .trip-journal fieldset { display: grid; gap: 1rem; margin-top: 1rem; min-width: 0; }
 .trip-journal label { display: grid; gap: .4rem; }
 .trip-journal input, .trip-journal textarea, .trip-journal select { width: 100%; min-width: 0; box-sizing: border-box; padding: .7rem; font: inherit; color: inherit; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
-.journey-position { margin-top: 1rem; }
-.journey-position p { margin: .35rem 0; }

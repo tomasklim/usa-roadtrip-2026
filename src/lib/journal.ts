@@ -7,13 +7,13 @@ export type Journal = Record<string, JournalEntry>;
 export const normalizeJournal = (v: unknown): Journal => Object.fromEntries(Object.entries(v && typeof v === 'object' ? v : {}).filter(([date, entry]) => entry !== null && validField(`journal:${date}`, entry)));
 const base = (id: string) => BASE.find(d => d.id === id)!;
 export const JOURNEY_VARIANTS: Record<string, Partial<Day> & { title: string }> = {
-  arrival: { ...base('arrive'), routeId: 'recorded', poiDay: 'recorded', at: [47.45,-122.31] },
-  hood: { ...base('seaB'), routeId: 'recorded', poiDay: 'seaB', at: [47.539,-123.038], weather: {day:'hood'} },
+  arrival: { ...base('arrive'), photos: ['model3','wholefoods','tacoma'], weather: {day:'seatac'}, routeId: 'recorded', poiDay: 'recorded', at: [47.2529,-122.4443] },
+  hood: { ...base('seaB'), title: 'Hama Hama & State Capitol', photos: ['oysters','olympiacapitol'], routeId: 'recorded', poiDay: 'seaB', at: [47.539,-123.038], weather: {day:'hood'} },
   rainier: { ...base('seaA'), routeId: 'recorded', poiDay: 'waRainier', at: [46.786,-121.735], weather: {day:'rainier'} },
-  seattle: { ...base('sea1'), routeId: 'recorded', poiDay: 'sea1', at: [47.6097,-122.3422], weather: {day:'seattle'} },
-  redmond: { title: 'Redmond · tech companies', leg: 'Redmond, Washington', routeId: 'recorded', poiDay: 'recorded', at: [47.674,-122.1215], photos: [], weather: {day:'seattle'} },
-  salt: { ...base('s1'), routeId: 'recorded', poiDay: 's1', at: [40.76,-111.89], weather: {day:'bonneville'} },
-  antelopeMontpelier: { title: 'Antelope Island, Logan Canyon & Bear Lake', leg: 'Antelope Island → Logan Canyon → Bear Lake → Montpelier', routeId: 'recorded', poiDay: 'recorded', at: [42.322,-111.298], photos: ['bearlake','logancanyon'], weather: {day:'bearlake'} },
+  seattle: { ...base('sea1'), photos: ['pikeplace','kerrypark','shakeshack'], routeId: 'recorded', poiDay: 'sea1', at: [47.6097,-122.3422], weather: {day:'seattle'} },
+  redmond: { title: 'Redmond · tech companies', leg: 'Redmond, Washington', routeId: 'recorded', poiDay: 'recorded', at: [47.674,-122.1215], photos: ['microsoftRedmond','nintendoRedmond','targetSign'], weather: {day:'seattle'} },
+  salt: { ...base('s1'), photos: ['bonneville','innoutburger','nevadaBorder'], routeId: 'recorded', poiDay: 's1', at: [40.76,-111.89], weather: {day:'bonneville'} },
+  antelopeMontpelier: { title: 'Antelope Island, Logan Canyon & Bear Lake', leg: 'Antelope Island → Logan Canyon → Bear Lake → Montpelier', routeId: 'recorded', poiDay: 'recorded', at: [42.322,-111.298], photos: ['antelopeSunset','bearlake','logancanyon'], weather: {day:'bearlake'} },
   montpelierTetons: {
     title: 'Montpelier to Jackson & the Tetons', leg: 'Montpelier → Afton → Alpine → Jackson → Mormon Row → Schwabacher Landing → Jenny Lake → Jackson',
     routeId: 'montpelierTetons', poiDay: 's3', hours: 4.5, at: [43.48,-110.76], photos: ['schwabacher','mormonrow','jennylake'], weather: {day:'teton',bed:'jackson',car:'jackson'},

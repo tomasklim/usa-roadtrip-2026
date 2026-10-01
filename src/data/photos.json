@@ -706,5 +706,61 @@
     "license": "CC0",
     "alt": "Historic Main Street in Half Moon Bay, California",
     "label": "Half Moon Bay · Main Street"
+  },
+  "nevadaBorder": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/2012.10.02.175455_Border_Wendover_Boulevard_West_Wendover_Nevada.jpg/960px-2012.10.02.175455_Border_Wendover_Boulevard_West_Wendover_Nevada.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:2012.10.02.175455_Border_Wendover_Boulevard_West_Wendover_Nevada.jpg",
+    "credit": "Hermann Luyken",
+    "license": "CC0",
+    "alt": "The Utah–Nevada state line on Wendover Boulevard; reference photo of the border area",
+    "label": "Utah–Nevada border"
+  },
+  "tacoma": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Downtown_Tacoma_skyline_from_Pacific_Avenue_%26_32nd_Street_%282024%29.jpg/960px-Downtown_Tacoma_skyline_from_Pacific_Avenue_%26_32nd_Street_%282024%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Downtown_Tacoma_skyline_from_Pacific_Avenue_%26_32nd_Street_(2024).jpg",
+    "credit": "SounderBruce",
+    "license": "CC BY-SA 4.0",
+    "alt": "Downtown Tacoma skyline seen from Pacific Avenue",
+    "label": "Tacoma"
+  },
+  "microsoftRedmond": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Microsoft_sign_closeup.jpg/960px-Microsoft_sign_closeup.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Microsoft_sign_closeup.jpg",
+    "credit": "Derrick Coetzee; levels adjusted by Zarex",
+    "license": "Public domain",
+    "alt": "Microsoft campus entrance sign in Redmond",
+    "label": "Microsoft · Redmond"
+  },
+  "nintendoRedmond": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/NintendoofAmericaHQSign.jpg/960px-NintendoofAmericaHQSign.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:NintendoofAmericaHQSign.jpg",
+    "credit": "bcchardware",
+    "license": "CC BY-SA 2.0",
+    "alt": "Nintendo of America headquarters sign in Redmond",
+    "label": "Nintendo · Redmond"
+  },
+  "model3": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Tesla_model_3_white_%282%29.jpg/960px-Tesla_model_3_white_%282%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Tesla_model_3_white_(2).jpg",
+    "credit": "Damian B Oh",
+    "license": "CC BY-SA 4.0",
+    "alt": "A white Tesla Model 3; reference photo, not the actual rental car",
+    "label": "Tesla Model 3"
+  },
+  "wholefoods": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Sign_for_Whole_Foods_Market.jpg/960px-Sign_for_Whole_Foods_Market.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Sign_for_Whole_Foods_Market.jpg",
+    "credit": "Rick Obst",
+    "license": "CC BY 2.0",
+    "alt": "Whole Foods Market sign in Eugene, Oregon; illustrative brand photo",
+    "label": "Whole Foods · illustration"
+  },
+  "targetSign": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Target_Store_-_Red_LED_Target_Logo_Sign_%2842566404900%29.jpg/960px-Target_Store_-_Red_LED_Target_Logo_Sign_%2842566404900%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Target_Store_-_Red_LED_Target_Logo_Sign_(42566404900).jpg",
+    "credit": "Tony Webster from Minneapolis, Minnesota, United States",
+    "license": "CC BY-SA 2.0",
+    "alt": "Illuminated Target sign in West St. Paul, Minnesota; illustrative brand photo",
+    "label": "Target · illustration"
   }
 }

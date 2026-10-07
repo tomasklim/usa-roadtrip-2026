@@ -50,7 +50,7 @@ export function applyJournal(day: Day, entry: JournalEntry): Day {
     result.roadEstimate = entry.roadKm != null ? {baseKm: entry.roadKm, note: entry.roadNote ?? ''} : undefined;
     result.poiDay = 'recorded';
     result.sleep = {t:'motel',where:'Overnight location not recorded'};
-    result.why = result.roadEstimate ? 'Recorded from your trip. Driving distance is an estimate between stops plus a 15% allowance for local detours; it is not logged mileage.' : 'Recorded from your trip. Distances and exact driving tracks were not logged.';
+    result.why = 'Recorded from your trip.';
   }
   return result;
 }

@@ -802,5 +802,13 @@
     "license": "CC BY-SA 4.0",
     "alt": "Colorado River bends below Dead Horse Point",
     "label": "Dead Horse Point"
+  },
+  "bozemanhotsprings": {
+    "url": "https://bozemanhotsprings.co/wp-content/uploads/2025/11/Slide-1-1024x682.jpg",
+    "page": "https://bozemanhotsprings.co/pools/",
+    "credit": "Bozeman Hot Springs",
+    "license": "© Bozeman Hot Springs · official website",
+    "alt": "Outdoor soaking pools at Bozeman Hot Springs",
+    "label": "Bozeman Hot Springs"
   }
 }

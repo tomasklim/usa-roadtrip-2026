@@ -257,6 +257,12 @@
       "latitude": 38.46,
       "longitude": -109.82,
       "timezone": "America/Denver"
+    },
+    "flatrock": {
+      "name": "Flat Rock / Island Park",
+      "latitude": 44.5005,
+      "longitude": -111.3363,
+      "timezone": "America/Denver"
     }
   },
   "days": {

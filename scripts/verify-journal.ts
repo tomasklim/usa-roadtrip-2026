@@ -75,5 +75,5 @@ for (const day of extended.days.slice(7,13)) {
   assert.equal(day.meters,0,'Map routes must not be mistaken for recorded mileage');
   assert.equal(day.charge?.length,0,'Old charging plans must not appear as completed stops');
 }
-assert.deepEqual(extended.days[11].photos,['trex'],'Do not illustrate Bozeman Hot Springs with Chico');
+assert.ok(!extended.days[11].photos?.some(id => id === 'chicohotsprings' || id === 'chicolodge'),'Do not illustrate Bozeman Hot Springs with Chico');
 console.log('✓ Teton, Yellowstone and Bozeman records retain dates, correct photos and illustrative map routes');

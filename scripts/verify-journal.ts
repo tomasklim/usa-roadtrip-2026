@@ -66,3 +66,14 @@ assert.match(hop.date,/28 Sept 2026/);
 assert.equal(hop.booked,true);
 assert.ok(!hop.legs.flat().some(s=>s.includes('not recorded')));
 console.log('✓ Private flight times use the recorded date and account for the Seattle–SLC time difference');
+
+const newVariants = ['jennyJackson','tetonWest','geyserLoop','yellowstoneBozeman','bozemanLocal','beartoothLoop'];
+const extended = buildTrip(new Set(), 'motel', {}, DEFAULT_SEATTLE, {}, normalizeJournal(Object.fromEntries(newVariants.map((variant,i)=>[`2026-10-0${i+1}`,{...record,variant}]))));
+for (const day of extended.days.slice(7,13)) {
+  assert.equal(day.completed,true);
+  assert.ok(mapLines(day).length, `Missing recorded route: ${day.title}`);
+  assert.equal(day.meters,0,'Map routes must not be mistaken for recorded mileage');
+  assert.equal(day.charge?.length,0,'Old charging plans must not appear as completed stops');
+}
+assert.deepEqual(extended.days[11].photos,['trex'],'Do not illustrate Bozeman Hot Springs with Chico');
+console.log('✓ Teton, Yellowstone and Bozeman records retain dates, correct photos and illustrative map routes');

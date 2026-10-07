@@ -1978,5 +1978,31 @@
   "website": "https://tjmaxx.tjx.com/store/stores/Bozeman-MT-59718/1318/aboutstore",
   "approx": true,
   "desc": "Allow 45–60 minutes after downtown and lunch. Daily 09:30–21:30. Aim to leave Bozeman by 14:00–14:30. Pin is approximate; navigate to the street address."
+ },
+ {
+  "id": "ut-clean",
+  "name": "Museum of Clean",
+  "kind": "sight",
+  "lat": 42.85938,
+  "lon": -112.44185,
+  "day": "utMoab",
+  "tags": [],
+  "city": "Pocatello ID",
+  "address": "711 S 2nd Avenue",
+  "website": "https://museumofclean.com/visit/",
+  "verified": "2026-10-07",
+  "desc": "October 8 after Blackfoot: allow 60–90 minutes for historic vacuums, washing machines and quirky cleaning inventions. Tuesday–Saturday 10:00–17:00; adults $10."
+ },
+ {
+  "id": "ut-hill-rain",
+  "name": "Hill Aerospace Museum · rain alternative",
+  "kind": "sight",
+  "lat": 41.16222,
+  "lon": -112.0176,
+  "day": "utCanyon",
+  "tags": [],
+  "city": "Ogden UT",
+  "website": "https://www.aerospaceutah.org/",
+  "desc": "Optional October 10 INSTEAD of Canyonlands, only if returning north early. Allow 4½–5 hours driving from Moab plus charging. Free, Tue–Sat 09:00–16:00. CLOSED October 11–12. Sleep around Ogden / Salt Lake and start the Vernal transfer there the next day."
  }
 ]

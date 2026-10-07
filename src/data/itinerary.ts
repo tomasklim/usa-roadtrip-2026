@@ -1,3 +1,4 @@
+import { UTAH_FINALE } from "./utah";
 import type { Day, Module } from "../types";
 
 export const ACTS = [
@@ -5,7 +6,8 @@ export const ACTS = [
   { id: "II",  name: "Salt, Bear Lake and the Tetons",                days: "Sept 29 – Oct 1" },
   { id: "III", name: "Yellowstone and the Beartooth",                 days: "Oct 2 – 6" },
   { id: "IV",  name: "Dinosaurs, hot springs and back to the salt",   days: "Oct 7 – 9" },
-  { id: "V",   name: "San Francisco and the Bay Area",                days: "Oct 10 – 13" }
+  { id: "V",   name: "San Francisco and the Bay Area",                days: "Oct 10 – 13" },
+{ id: "U", name: "Utah · dinosaurs, arches and canyon country", days: "Oct 7 – 13" }
 ];
 
 /** Two booked transatlantic legs plus the two domestic hops that make the route work. */
@@ -425,6 +427,7 @@ export const BASE: Day[] = [
  * swaps a base day for an alternative branch, so the mileage stays honest.
  */
 export const MODULES: Module[] = [
+UTAH_FINALE,
 { id: "oysters", replaces: ["sf3", "sf2"], risk: "lo", name: "Point Reyes & oysters instead of the pumpkin coast trip", cost: "same dates",
   desc: "Keep the Silicon Valley day with a return to SF, then visit Hog Island and Point Reyes. Replaces Santa Cruz, Monterey and the October 12 pumpkin weigh-off; no extra day and no south-coast overnight.", days: [VALLEY_LOOP, OYSTER_DAY] },
 { id: "wolves", after: "s5", risk: "lo", name: "A dedicated Lamar wolf-watching day", cost: "+1 day", conflicts: ["montanaRain"],

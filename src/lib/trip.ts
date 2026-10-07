@@ -2,14 +2,15 @@ import type { Stays } from "./planning";
 import { applyJournal, type Journal } from './journal';
 import { BASE, CAR_NIGHTS, MODULES, VALLEY_LOOP } from "../data/itinerary";
 import { DEFAULT_SEATTLE, normalizeSeattle, seattleDays, type SeattleOptions } from "../data/seattle";
+import journeyRoutes from "../data/journey-routes.json";
 import routesRaw from "../data/routes.json";
 import type { Day, Leg, SleepOverrides, SleepStyle, Units } from "../types";
 
-export const ROUTES = routesRaw as unknown as Record<string, Leg>;
+export const ROUTES = { ...routesRaw, ...journeyRoutes } as unknown as Record<string, Leg>;
 
 export const DAY_MS = 864e5;
 export const START = Date.UTC(2026, 8, 24);   // Sept 24, landing in Seattle
-export const DEPART = Date.UTC(2026, 9, 13);  // Oct 13, SFO 16:30 to Prague
+export const DEPART = Date.UTC(2026, 9, 13);  // Oct 13, return journey starts
 /** The booked window is fixed, so the itinerary has a hard length. */
 export const CAP_DAYS = Math.round((DEPART - START) / DAY_MS) + 1;
 
@@ -50,8 +51,8 @@ const SLC_CAR = ["s1", "antelope", "s2", "dinoA", "dinoB", "s3", "s4", "s4b", "s
                  "s5b", "s6", "s7", "rainLamar", "rainTransfer", "rainRest", "s8", "s9", "craters2", "s10"];
 const SF_CAR = ["sf2", "sf3", "sf4"];
 
-function blockDays(t: Trip, ids: string[]) {
-  const idx = t.days.map((d, i) => (ids.includes(d.id) && d.rental !== "No car" ? i : -1)).filter((i) => i >= 0);
+function blockDays(t: Trip, block: string) {
+  const idx = t.days.map((d, i) => (blockOf(d) === block ? i : -1)).filter((i) => i >= 0);
   if (!idx.length) return { days: 0, meters: 0 };
   const first = Math.min(...idx), last = Math.max(...idx);
   return {
@@ -62,6 +63,7 @@ function blockDays(t: Trip, ids: string[]) {
 
 /* ---------- assembly ---------- */
 export interface Trip {
+  utahFinale: boolean;
   days: Day[];
   seattle: SeattleOptions;
   meters: number;
@@ -82,6 +84,8 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
   if (completedThrough >= 4) seattle = {weather:'good',portland:false,rainier:'sat',flight:'tue-am'};
   // Past optional detours cannot insert days into recorded calendar slots.
   on = new Set([...on].filter(id => {
+    if (id === "utahFinale") return true;
+    if (on.has("utahFinale") && ["oysters","craters","montanaRain"].includes(id)) return false;
     const mod = MODULES.find(m => m.id === id);
     const anchor = BASE.findIndex(d => d.id === (mod?.replaces?.[0] ?? mod?.after));
     return anchor < 0 || anchor > completedThrough;
@@ -146,7 +150,7 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
     d.num = i + 1;
     d.date = START + i * DAY_MS;
     d.meters = d.roadEstimate ? Math.round(d.roadEstimate.baseKm * 1150) : metersOf(d.routeId ?? d.id);
-    if (d.routeId && ROUTES[d.routeId]) d.hours = Math.round(ROUTES[d.routeId].seconds / 360) / 10;
+    if (d.routeId && ROUTES[d.routeId] && d.modId !== "utahFinale") d.hours = Math.round(ROUTES[d.routeId].seconds / 360) / 10;
     // Sleeping style is applied here so every downstream count — the hero, the
     // budget's lodging line, the day cards — reads from one decision.
     const car = d.completed || d.carEligible === false ? undefined : CAR_NIGHTS[d.id];
@@ -186,10 +190,11 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
   const carNights = days.filter((d) => d.sleep?.t === "car").length;
   const sfNights = days.filter((d) => d.kind === "sf").length;
   // The car goes back on the last day of the Salt Lake rental block.
-  const lastCarDay = [...days].reverse().find((d) => SLC_CAR.includes(d.id));
+  const lastCarDay = [...days].reverse().find((d) => blockOf(d) === "Salt Lake car");
   const firstSf = days.find((d) => d.kind === "sf");
 
   return {
+    utahFinale: days.some(d => d.modId === "utahFinale"),
     days, seattle: options, meters, driveDays, carNights, droppedSf, overrun, sfNights,
     carReturn: lastCarDay?.date ?? START,
     flyDate: firstSf?.date ?? START,
@@ -212,9 +217,9 @@ export function blockOf(value: string | Day): string {
 }
 
 export const rentals = (t: Trip) => ({
-  seattle: blockDays(t, SEATTLE_CAR),
-  slc: blockDays(t, SLC_CAR),
-  sf: blockDays(t, SF_CAR)
+  seattle: blockDays(t, "Seattle car"),
+  slc: blockDays(t, "Salt Lake car"),
+  sf: blockDays(t, "San Francisco car")
 });
 
 /** The Salt Lake rental is the long one, so it carries the mileage-cap risk. */

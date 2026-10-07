@@ -23,7 +23,8 @@ export function Budget({ trip }: { trip: Trip }) {
     <p className="hint" role="status">{shared.status}{shared.pending ? ` · ${shared.pending} changes waiting to sync` : ''}</p>
     <div className="budget-totals">{totals.filter(t => t.paid || t.estimate).map(t => <div className="card panel" key={t.currency}><b>{money(t.paid, t.currency)} paid</b><p>{money(t.estimate, t.currency)} estimated</p></div>)}</div>
     <p className="hint">Currencies stay separate; no hidden exchange-rate conversion. Totals include only the amounts entered below.</p>
-    <fieldset className="planning-fields expense-list" disabled={!shared.connected && !import.meta.env.DEV}>{CATEGORIES.map(([id, label]) => {
+    <fieldset className="planning-fields expense-list" disabled={!shared.connected && !import.meta.env.DEV}>{CATEGORIES.map(([id, originalLabel]) => {
+      const label = trip.utahFinale && id === 'domestic' ? 'US flights · check what is included in the return ticket' : trip.utahFinale && id === 'california-car' ? 'California car · previous plan / refunds' : originalLabel;
       const entry = entries[id] ?? EMPTY_EXPENSE;
       const update = (patch: Partial<typeof entry>) => setSaved(previous => ({...previous, [id]: {...(previous[id] ?? EMPTY_EXPENSE), ...patch}}));
       return <div className="card panel expense-card" key={id}><h3>{label}</h3><div className="expense-fields">

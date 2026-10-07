@@ -46,12 +46,11 @@ export function Modules({ on, toggle, trip, units, sleepStyle, onSelect, onHover
     <div className="card panel">
       <h3>Modules — the decisions still open</h3>
       <p className="hint">
-        The flight home is fixed, so anything you add comes out of San Francisco. Hover a card to see
-        its route on the map before you commit.
+        The return date stays fixed. Route changes are shared with the trip; review the new driving days and overnight bases before choosing.
       </p>
 
       <div className="modgrid">
-        {MODULES.filter(m => !trip.days.find(d => d.id === (m.replaces?.[0] ?? m.after))?.completed).map((m) => {
+        {MODULES.filter(m => (!trip.utahFinale || m.id === "utahFinale") && !trip.days.find(d => d.id === (m.replaces?.[0] ?? m.after))?.completed).map((m) => {
           const active = on.has(m.id);
           const d = deltas[m.id] ?? { days: 0, meters: 0, sf: 0 };
           const photo = m.days.map((x) => x.photos?.[0]).find(Boolean);
@@ -154,6 +153,7 @@ const conflicts = (a: string, b: string) => {
 };
 
 function Verdict({ trip }: { trip: Trip }) {
+  if (trip.utahFinale) return <div className="warn ok">Utah finale · Quarry Exhibit Hall, Arches and Canyonlands. Final night in Salt Lake City; return the Tesla before the October 13 flight at 15:02.</div>;
   if (trip.overrun > 0) {
     return (
       <div className="warn">

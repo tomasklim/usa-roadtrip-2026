@@ -15,7 +15,7 @@ export function TripBar({ trip, units, onContinue, dayTitle }: {
         <div className="hero-copy">
           <div className="eyebrow">THE AMERICAN NORTHWEST · AUTUMN 2026</div>
           <h1>A little further<br />out west.</h1>
-          <p className="hero-intro">Mountain mornings, wide-open roads.<br />Seattle to the Rockies, then the California coast.</p>
+          <p className="hero-intro">Mountain mornings, wide-open roads.<br />{trip.utahFinale ? "Seattle to the Rockies, then Utah’s canyon country." : "Seattle to the Rockies, then the California coast."}</p>
           <div className="hero-dates">{fmtShort(START)} — {fmtShort(DEPART)} <span>/ {CAP_DAYS} days / two people</span></div>
           <div className="hero-actions">
             <button className="action primary" onClick={onContinue}>Open the daily plan <span aria-hidden="true">↗</span></button>
@@ -31,8 +31,8 @@ export function TripBar({ trip, units, onContinue, dayTitle }: {
       </div>
       <div className="trip-facts" aria-label="Trip at a glance">
         <div><b>{distLabel(trip.meters, units)}</b><span>{trip.days.some(d => d.completed) ? 'planned roads + estimated past driving' : 'on the road'}</span></div>
-        <div><b>{r.seattle.days + r.slc.days + r.sf.days} rental days</b><span>across three car blocks</span></div>
-        <div><b>{trip.sfNights} Bay Area nights</b><span>home in Prague Oct 14</span></div>
+        <div><b>{r.seattle.days + r.slc.days + r.sf.days} rental days</b><span>across {trip.utahFinale ? "two" : "three"} car blocks</span></div>
+        <div><b>{trip.utahFinale ? "Utah finale" : `${trip.sfNights} Bay Area nights`}</b><span>home in Prague Oct 14</span></div>
         <div><b>Made for two</b><span>gluten-free & dairy-free</span></div>
       </div>
     </div>
@@ -47,7 +47,8 @@ const CHAPTERS = [
 
 export function Chapters({ trip, onPick }: { trip: Trip; onPick: (id: string) => void }) {
   return <div className="chapters">
-    {CHAPTERS.map((chapter, i) => {
+    {CHAPTERS.map((original, i) => {
+      const chapter = trip.utahFinale && original.id === "V" ? {id:"U",title:"Bones, arches & canyon country",place:"UTAH",photo:"arches",text:"Quarry Exhibit Hall, Arches & Canyonlands"} : original;
       const days = trip.days.filter(d => chapter.id === "II" ? ["II", "III", "IV"].includes(d.act) : d.act === chapter.id);
       const photo = PHOTOS[chapter.photo] ?? PHOTOS.seattle;
       return <article className="chapter" key={chapter.id}>
@@ -72,7 +73,7 @@ export function ActBar({ trip, selected, onPick }: {
       const days = trip.days.filter(d => d.act === act.id);
       if (!days.length) return null;
       const active = days.some(d => d.id === selected);
-      const titles: Record<string, string> = { I: "Seattle & Rainier", II: "Salt & Tetons", III: "Yellowstone", IV: "Back to Salt Lake", V: "Bay Area" };
+      const titles: Record<string, string> = { I: "Seattle & Rainier", II: "Salt & Tetons", III: "Yellowstone", IV: "Back to Salt Lake", V: "Bay Area", U: "Utah parks" };
       return <button key={act.id} className={`actseg${active ? " on" : ""}`} onClick={() => onPick(days[0].id)} aria-pressed={active}>
         <span className="actlbl"><b>{act.id}</b><span>{titles[act.id]}</span></span>
         <span className="actdays">{fmtShort(days[0].date!)} – {fmtShort(days.at(-1)!.date!)}</span>
@@ -83,7 +84,7 @@ export function ActBar({ trip, selected, onPick }: {
 
 export function QuickLinks() {
   return <div className="quick-links">
-    <button onClick={() => navigate("flights")}><span aria-hidden="true">✈</span><div><b>Flights & connections</b><small>All four journeys, in one place</small></div><span>↗</span></button>
+    <button onClick={() => navigate("flights")}><span aria-hidden="true">✈</span><div><b>Flights & connections</b><small>Flight times and connections</small></div><span>↗</span></button>
     <button onClick={() => navigate("guide", "checklist")}><span aria-hidden="true">✓</span><div><b>Before we go</b><small>Bookings, packing & the last few things</small></div><span>↗</span></button>
     <button onClick={() => navigate("guide", "risks")}><span aria-hidden="true">⌁</span><div><b>On the road</b><small>Mountain roads & things to check</small></div><span>↗</span></button>
   </div>;

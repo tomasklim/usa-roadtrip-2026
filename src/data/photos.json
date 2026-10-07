@@ -770,5 +770,37 @@
     "license": "CC BY-SA 2.0",
     "alt": "Illuminated Target sign in West St. Paul, Minnesota; illustrative brand photo",
     "label": "Target · illustration"
+  },
+  "arches": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Delicatearch.jpg/960px-Delicatearch.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Delicatearch.jpg",
+    "credit": "National Park Service Photo",
+    "license": "Public domain",
+    "alt": "Delicate Arch in Arches National Park",
+    "label": "Delicate Arch"
+  },
+  "windows": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Double_Arch.jpg/960px-Double_Arch.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Double_Arch.jpg",
+    "credit": "Ymaup",
+    "license": "CC BY-SA 3.0",
+    "alt": "Double Arch in Arches National Park",
+    "label": "Double Arch"
+  },
+  "canyonlands": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Canyonlands_03.jpg/960px-Canyonlands_03.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Canyonlands_03.jpg",
+    "credit": "AndrewKPepper",
+    "license": "CC BY-SA 4.0",
+    "alt": "Canyon landscape in Canyonlands National Park",
+    "label": "Canyonlands"
+  },
+  "deadhorse": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Overlook_at_Dead_Horse_Point%2C_Utah%2C_1991.jpg/960px-Overlook_at_Dead_Horse_Point%2C_Utah%2C_1991.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Overlook_at_Dead_Horse_Point,_Utah,_1991.jpg",
+    "credit": "Lankyrider",
+    "license": "CC BY-SA 4.0",
+    "alt": "Colorado River bends below Dead Horse Point",
+    "label": "Dead Horse Point"
   }
 }

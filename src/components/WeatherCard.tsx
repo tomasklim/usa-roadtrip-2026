@@ -6,7 +6,19 @@ import { weatherForDay, degrees, weatherSummary } from "../lib/weather";
 export function WeatherCard({ day }: { day: Day }) {
   const forecast = useForecast(day);
   const weather = weatherForDay(day);
-  if (!weather) return null;
+  if (!weather) {
+    const live = forecast.daytime?.data;
+    if (!forecast.targets.daytime) return null;
+    return <aside className="weather-card" aria-label="Weather forecast">
+      <div className="weather-heading"><b>Forecast for your visit</b><span>{forecast.targets.daytime.date} · Open-Meteo</span></div>
+      {live ? <><p>{weatherCondition(live.code)} · {live.rain ?? '—'} mm precipitation</p><div className="weather-values">
+        <div><span>DAYTIME HIGH</span><strong>{degrees(live.high)}</strong><small>{forecast.targets.daytime.name}</small></div>
+        {forecast.night?.data && <div><span>OVERNIGHT LOW</span><strong>{degrees(forecast.night.data.low)}</strong><small>{forecast.targets.night?.name}</small></div>}
+        <div><span>PRECIPITATION CHANCE</span><strong>{live.wet == null ? '—' : `${Math.round(live.wet)}%`}</strong></div>
+      </div><p className="hint">{forecast.daytime?.stale ? 'Saved forecast; refresh unavailable. ' : ''}Checked {new Date(forecast.daytime!.fetchedAt!).toLocaleString('en-GB')}. Updates hourly while you use the site.</p></> : <p role="status">{forecast.loading ? 'Checking the forecast…' : forecast.daytime?.state === 'past' ? 'This date has passed; observed weather is not recorded here.' : 'Forecast unavailable for this date. Recheck before travelling.'}</p>}
+      <details><summary>Weather sources</summary><p><a href="https://open-meteo.com/en/docs" target="_blank" rel="noreferrer">Open-Meteo Forecast API</a> · CC BY 4.0. Local calendar dates. Overnight low is the following morning at the sleeping area. No historical climate estimate is available here yet.</p></details>
+    </aside>;
+  }
   const { daytime, night } = weather;
   const live = forecast.daytime?.data;
   const nightForecast = forecast.night?.data;

@@ -141,7 +141,7 @@ export function Charging({trip}: {trip: Trip}) {
         <div className="shead"><span className="num">05</span><h2>Charging</h2></div>
         <p className="sub">
           Salt Lake City rental: <b>Tesla Model S, 2021</b>. Your reported range after degradation is <b>320 miles (about 515 km) at a full charge</b>.{" "}
-          {washingtonDone ? "The Seattle rental is finished. " : "Confirm the Seattle car’s charging or fuel needs. "}The California car is still to be confirmed.
+          {washingtonDone ? "The Seattle rental is finished. " : "Confirm the Seattle car’s charging or fuel needs. "}{trip.utahFinale ? "The same Tesla continues through Utah; confirm the extension through October 13." : "The California car is still to be confirmed."}
         </p>
         <div className="card panel" style={{marginBottom:16}}><h3>Use the car’s arrival estimate</h3><p>320 miles is a reference, not a guaranteed mountain range. Driving from 90% down to a 20% reserve gives 224 rated miles before allowing for cold, climbs, wind or overnight heating. Enter the next confirmed charger in the Tesla navigation and watch the predicted arrival percentage.</p><p>For remote legs, aim to arrive with at least 20% as a planning buffer, and keep extra energy for the night. Navigate to Superchargers so the car can prepare the battery. Confirm charging billing and app access with the host.</p><a href="https://www.tesla.com/support/range" target="_blank" rel="noreferrer">Tesla range guidance ↗</a></div>
         <div className="card" style={{ padding: "2px 0" }}>
@@ -159,7 +159,7 @@ export function Charging({trip}: {trip: Trip}) {
             </table>
           </div>
         </div>
-        <div className="card rules" style={{ marginTop: 14, borderLeftColor: "var(--rust)" }}>
+        {!trip.utahFinale && <div className="card rules" style={{ marginTop: 14, borderLeftColor: "var(--rust)" }}>
           <h3 style={{ fontSize: ".98rem" }}>Northern Yellowstone · plan through to the next reliable charger</h3>
           <p style={{ margin: "6px 0 0", fontSize: ".89rem", color: "var(--muted)" }}>
             The US Tesla connects directly at Laurel and Bozeman Superchargers. No charging adapter is
@@ -171,7 +171,7 @@ export function Charging({trip}: {trip: Trip}) {
             {trip.days.some(d => d.id === "s6" && !d.completed) && <li>Before Beartooth, plan all the way to <b>Laurel Supercharger</b>, about 71 km beyond Red Lodge, including overnight use. Red Lodge destination charging is an optional top-up.</li>}
             <li>{trip.days.some(d => d.id === "rainLamar") ? "The active plan skips Beartooth and adds a Bozeman day. Check energy for any Lamar outing and the onward drive to Bozeman." : "Charge in Laurel for the onward Gardiner night and next day’s drive to Bozeman. The bad-weather alternative skips Beartooth and adds a Bozeman day."}</li>
           </ul>
-        </div>
+        </div>}
       </div>
     </section>
   );

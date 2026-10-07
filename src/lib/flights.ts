@@ -2,7 +2,10 @@ import { FLIGHTS } from '../data/itinerary';
 import type { Trip } from './trip';
 const dateFor = (t: number) => new Intl.DateTimeFormat('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(t).replace(',', '');
 export function flightsForTrip(trip: Trip) {
-  return FLIGHTS.map(f => {
+  return FLIGHTS.filter(f => !trip.utahFinale || f.dir !== 'hop2').map(f => {
+    if (trip.utahFinale && f.dir === 'back') return {...f, from:'Salt Lake City', dep:'15:02',arr:'16:00 +1',dur:'16 h 58 m',stops:'Seattle · 1 h 48 m / Frankfurt · 1 h 50 m',booked:true,co2:'',
+      legs:[['Alaska AS734','Economy','Salt Lake City 15:02 → Seattle 16:17 · Oct 13'],['Condor DE2033','Economy','Seattle 18:05 → Frankfurt 13:10 · Oct 14'],['Condor DE4407','Economy','Frankfurt 15:00 → Prague 16:00 · Oct 14']],
+      note:'All times local. Arrive in Prague October 14. Itinerary lists 1 checked bag per person; confirm through-checking at SLC. Seats and meals not selected.'};
     if (f.dir === 'hop1') {
       const recorded = trip.days.find(d => d.completed && d.flight?.from === 'SEA' && d.flight.to === 'SLC' && d.flight.dep && d.flight.arr);
       if (recorded?.flight && recorded.date) {

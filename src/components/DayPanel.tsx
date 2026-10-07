@@ -130,7 +130,7 @@ export function OverviewPanel({ trip, units, width, sheet, onStart, onClose }: {
     [`${trip.driveDays}`, "days behind the wheel"],
     [distLabel(trip.meters / Math.max(1, trip.driveDays), units), "per driving day"],
     [`${trip.carNights}`, "nights in the car"],
-    [`${trip.sfNights}`, "nights in San Francisco"]
+    [trip.utahFinale ? "Utah" : `${trip.sfNights}`, trip.utahFinale ? "final chapter" : "nights in San Francisco"]
   ];
   return (
     <aside className="detail" style={sheet ? { height: `${sheet.frac * 100}%` } : { width }}
@@ -145,8 +145,7 @@ export function OverviewPanel({ trip, units, width, sheet, onStart, onClose }: {
       <div className="detail-body ov">
         <h3>Three regions, one route.</h3>
         <p>
-          Select a numbered day to see its plan alongside the map. Fly between Seattle,
-          Salt Lake City and San Francisco, with a separate rental car in each region.
+          Select a numbered day to see its plan alongside the map. {trip.utahFinale ? "Seattle and the Rockies, followed by a Utah road trip and a return from Salt Lake City." : "Fly between Seattle, Salt Lake City and San Francisco, with a separate rental car in each region."}
         </p>
         <div className="ovstats">
           {stats.map(([big, small], i) => (
@@ -160,11 +159,11 @@ export function OverviewPanel({ trip, units, width, sheet, onStart, onClose }: {
           <li><b>Fly to Salt Lake City</b> — follow the selected flight date, then collect the Tesla on the Bonneville day.</li>
           <li><b>North through the parks</b> — Bear Lake, Grand Teton, Yellowstone, the Beartooth
             Highway and Bozeman's dinosaurs: {r.slc.days} days, {distLabel(r.slc.meters, units)}.</li>
-          <li><b>Back to Salt Lake</b> via Idaho Falls and Lava Hot Springs, car back {fmtShort(trip.carReturn)}.</li>
+          {trip.utahFinale ? <><li><b>Utah finale</b> — Quarry Exhibit Hall, Arches and Canyonlands, with weather flexibility.</li><li><b>Salt Lake City</b> — final night October 12; fly home October 13 at 15:02 via Seattle and Frankfurt.</li></> : <><li><b>Back to Salt Lake</b> via Idaho Falls and Lava Hot Springs, car back {fmtShort(trip.carReturn)}.</li>
           <li><b>Fly to San Francisco</b> — {trip.sfNights} night{trip.sfNights === 1 ? "" : "s"}
             {r.sf.days > 0
               ? `, then a ${r.sf.days}-day Bay Area car for the selected Bay Area outings`
-              : "; the active modules leave no Bay Area driving days"}. Fly home Oct 13; Prague Oct 14.</li>
+              : "; the active modules leave no Bay Area driving days"}. Fly home Oct 13; Prague Oct 14.</li></>}
         </ol>
         <details className="extra-ideas"><summary>Using the map</summary>
         <ul className="ovhelp">

@@ -1853,5 +1853,102 @@
   "website": "https://hmbweighoff.com/quick-facts.html",
   "verified": "2026-09-13",
   "desc": "Fixed date: Monday October 12, 2026. Weighing roughly 07:00–11:00; awards afterwards. Spectators welcome. Aim to arrive by 08:30–09:00; allow parking time. The later Pumpkin Festival is Oct 17–18."
+ },
+ {
+  "id": "ut-quarry",
+  "name": "Quarry Exhibit Hall",
+  "lat": 40.4406,
+  "lon": -109.3012,
+  "day": "utQuarry",
+  "city": "Jensen / Dinosaur National Monument",
+  "kind": "sight",
+  "tags": [],
+  "photo": "dinosaurquarry",
+  "website": "https://www.nps.gov/dino/planyourvisit/basicinfo.htm"
+ },
+ {
+  "id": "ut-windows",
+  "name": "The Windows & Double Arch",
+  "lat": 38.688,
+  "lon": -109.537,
+  "day": "utMoab",
+  "city": "Arches National Park",
+  "kind": "sight",
+  "tags": [],
+  "photo": "windows",
+  "website": "https://www.nps.gov/arch/planyourvisit/index.htm"
+ },
+ {
+  "id": "ut-delicate",
+  "name": "Delicate Arch trailhead",
+  "lat": 38.7436,
+  "lon": -109.4993,
+  "day": "utArches",
+  "city": "Arches National Park",
+  "kind": "sight",
+  "tags": [],
+  "photo": "arches",
+  "website": "https://www.nps.gov/arch/planyourvisit/delicate-arch.htm"
+ },
+ {
+  "id": "ut-mesa",
+  "name": "Mesa Arch trailhead",
+  "lat": 38.388,
+  "lon": -109.868,
+  "day": "utCanyon",
+  "city": "Canyonlands",
+  "kind": "sight",
+  "tags": [],
+  "photo": "canyonlands",
+  "website": "https://www.nps.gov/cany/planyourvisit/islandinthesky.htm"
+ },
+ {
+  "id": "ut-grand",
+  "name": "Grand View Point",
+  "lat": 38.31,
+  "lon": -109.86,
+  "day": "utCanyon",
+  "city": "Canyonlands",
+  "kind": "sight",
+  "tags": [],
+  "photo": "canyonlands",
+  "website": "https://www.nps.gov/cany/planyourvisit/islandinthesky.htm"
+ },
+ {
+  "id": "ut-deadhorse",
+  "name": "Dead Horse Point",
+  "lat": 38.47,
+  "lon": -109.731,
+  "day": "utCanyon",
+  "city": "Utah",
+  "kind": "sight",
+  "tags": [],
+  "photo": "deadhorse",
+  "website": "https://stateparks.utah.gov/parks/dead-horse/"
+ },
+ {
+  "id": "ut-potato",
+  "name": "Idaho Potato Museum",
+  "kind": "sight",
+  "lat": 43.18955,
+  "lon": -112.34366,
+  "day": "utSouth",
+  "tags": [],
+  "city": "Blackfoot ID",
+  "desc": "A 1913 railroad depot with potato history, the largest potato crisp and a free tater for out-of-state visitors. Open Mon–Sat 10–4 from October through April."
+ },
+ {
+  "id": "ut-redbutte",
+  "name": "Red Butte Garden",
+  "kind": "sight",
+  "lat": 40.76511,
+  "lon": -111.82444,
+  "day": "utReturn",
+  "tags": [],
+  "city": "Salt Lake City UT",
+  "address": "300 Wakara Way",
+  "website": "https://redbuttegarden.org/plan-your-garden-visit/general-info/",
+  "verified": "2026-09-13",
+  "desc": "Allow 1½–2 hours. October 09:00–17:00; September until 19:30, with 17:00 closure on concert dates. Visit once: on the early SLC arrival alternative or before the final car return."
  }
 ]

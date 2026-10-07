@@ -8,9 +8,7 @@ export function Flights({ trip }: { trip: Trip }) {
       <div className="wrap narrow">
         <div className="shead"><span className="num">01</span><h2>Flights & connections</h2></div>
         <p className="sub">
-          Condor via Frankfurt both ways, and the return out of San Francisco rather than Seattle —
-          which is what makes the whole loop work. Landing at 16:00 on September 24 means day one is a hotel,
-          rental pickup, dinner and the drive south to an inn. All times are local; the return lands in Prague on October 14.
+          {trip.utahFinale ? 'Return from Salt Lake City on October 13 via Seattle and Frankfurt. Allow time for the Tesla return before reaching SLC airport around noon. All times are local; arrival in Prague is October 14 at 16:00.' : 'Condor via Frankfurt, with US flights between the rental regions. All times are local; arrival in Prague is October 14.'}
         </p>
         <div className="flights">
           {flights.map((f) => (

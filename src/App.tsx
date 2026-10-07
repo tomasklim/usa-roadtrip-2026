@@ -212,7 +212,7 @@ export default function App() {
         </div>}
         {view === "credits" && <PhotoCredits />}
       </main>
-      <footer><div className="wrap"><span className="footer-brand">NW / 2026</span><p>Seattle → the Rockies → San Francisco<br /><span>Road distances from OSRM · Check current road conditions before driving</span></p><nav className="footer-links" aria-label="Site information"><a href="#credits">Photo credits</a><a href="#guide/risks">Check road conditions ↗</a></nav></div></footer>
+      <footer><div className="wrap"><span className="footer-brand">NW / 2026</span><p>{trip.utahFinale ? "Seattle → the Rockies → Utah" : "Seattle → the Rockies → San Francisco"}<br /><span>Road distances from OSRM · Check current road conditions before driving</span></p><nav className="footer-links" aria-label="Site information"><a href="#credits">Photo credits</a><a href="#guide/risks">Check road conditions ↗</a></nav></div></footer>
     </>
   );
 }

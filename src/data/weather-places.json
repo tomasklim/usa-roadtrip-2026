@@ -7,7 +7,7 @@
       "timezone": "America/Los_Angeles"
     },
     "rainier": {
-      "name": "Mount Rainier · Paradise",
+      "name": "Mount Rainier \u00b7 Paradise",
       "latitude": 46.786,
       "longitude": -121.736,
       "timezone": "America/Los_Angeles"
@@ -61,7 +61,7 @@
       "timezone": "America/Denver"
     },
     "geysers": {
-      "name": "Yellowstone · Old Faithful",
+      "name": "Yellowstone \u00b7 Old Faithful",
       "latitude": 44.46,
       "longitude": -110.83,
       "timezone": "America/Denver"
@@ -245,6 +245,18 @@
       "latitude": 37.4602,
       "longitude": -122.4292,
       "timezone": "America/Los_Angeles"
+    },
+    "moab": {
+      "name": "Moab / Arches",
+      "latitude": 38.57,
+      "longitude": -109.55,
+      "timezone": "America/Denver"
+    },
+    "canyonlands": {
+      "name": "Canyonlands \u00b7 Island in the Sky",
+      "latitude": 38.46,
+      "longitude": -109.82,
+      "timezone": "America/Denver"
     }
   },
   "days": {

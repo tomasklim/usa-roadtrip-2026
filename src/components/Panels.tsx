@@ -11,7 +11,7 @@ export function Glance({ trip, units, onSelect }: {
       <div className="wrap narrow">
         <div className="shead"><span className="num">03</span><h2>At a glance</h2></div>
         <p className="sub">
-          Every day, its distance measured on real road geometry, and how hard it actually is.
+          Every day, its driving distance and the shape of the journey. Recorded days use your estimates; future routes use road geometry.
           Click a row to pull it up on the map.
         </p>
         <div className="card" style={{ padding: "2px 0" }}>
@@ -77,8 +77,7 @@ export function LoadChart({ trip, units, onSelect }: {
         <div className="shead"><span className="num">04</span><h2>Where it hurts</h2></div>
         <p className="sub">
           Distance per driving day, split by which car you are in. Under {easyLimit} {units} is an easy day,
-          over {transferLimit} {units} is a transfer. Click a bar to jump to that day. Bay Area day trips are
-          included and grouped under their own rental block.
+          over {transferLimit} {units} is a transfer. Click a bar to jump to that day. Distances are grouped by rental.
         </p>
         <div className="card chart">
           <svg className="bars" viewBox={`0 0 ${w} ${h}`} role="img" aria-label={`Distance per day in ${units}`}>
@@ -141,7 +140,7 @@ export function Charging({trip}: {trip: Trip}) {
         <div className="shead"><span className="num">05</span><h2>Charging</h2></div>
         <p className="sub">
           Salt Lake City rental: <b>Tesla Model S, 2021</b>. Your reported range after degradation is <b>320 miles (about 515 km) at a full charge</b>.{" "}
-          {washingtonDone ? "The Seattle rental is finished. " : "Confirm the Seattle car’s charging or fuel needs. "}{trip.utahFinale ? "The same Tesla continues through Utah; confirm the extension through October 13." : "The California car is still to be confirmed."}
+          {washingtonDone ? "The Seattle rental is finished. " : "Confirm the Seattle car’s charging or fuel needs. "}{trip.utahFinale ? "The same Tesla continues through Utah to the October 13 return. Rental details are saved in your budget notes." : "The California car is still to be confirmed."}
         </p>
         <div className="card panel" style={{marginBottom:16}}><h3>Use the car’s arrival estimate</h3><p>320 miles is a reference, not a guaranteed mountain range. Driving from 90% down to a 20% reserve gives 224 rated miles before allowing for cold, climbs, wind or overnight heating. Enter the next confirmed charger in the Tesla navigation and watch the predicted arrival percentage.</p><p>For remote legs, aim to arrive with at least 20% as a planning buffer, and keep extra energy for the night. Navigate to Superchargers so the car can prepare the battery. Confirm charging billing and app access with the host.</p><a href="https://www.tesla.com/support/range" target="_blank" rel="noreferrer">Tesla range guidance ↗</a></div>
         <div className="card" style={{ padding: "2px 0" }}>

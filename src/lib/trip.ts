@@ -211,7 +211,7 @@ export function blockOf(value: string | Day): string {
   if (typeof value !== "string" && value.rental) return value.rental;
   const id = typeof value === "string" ? value : value.id;
   if (SEATTLE_CAR.includes(id)) return "Seattle car";
-  if (SLC_CAR.includes(id)) return "Salt Lake car";
+  if (SLC_CAR.includes(id) || ["utSouth", "utMoab", "utArches", "utCanyon", "utQuarry", "utReturn", "utFly"].includes(id)) return "Salt Lake car";
   if (SF_CAR.includes(id)) return "San Francisco car";
   return "No car";
 }

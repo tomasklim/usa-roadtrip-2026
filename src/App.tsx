@@ -154,11 +154,11 @@ export default function App() {
             <QuickLinks />
             {seattleChoices}{montanaChoices}
             <section id="trip-map" className="overview-map" aria-label="Whole trip map">
-              <div className="section-heading"><div><span className="eyebrow">SEATTLE → THE ROCKIES → SAN FRANCISCO</span><h2>The whole trip.</h2></div><a className="text-action" href="#plan">Itinerary & distances ↗</a></div>
+              <div className="section-heading"><div><span className="eyebrow">{trip.utahFinale ? "SEATTLE → THE ROCKIES → UTAH" : "SEATTLE → THE ROCKIES → SAN FRANCISCO"}</span><h2>The whole trip.</h2></div><a className="text-action" href="#plan">Itinerary & distances ↗</a></div>
               {renderMap(null)}
               <p className="hint map-reading-hint">Tap a numbered pin to open that day’s plan.</p>
             </section>
-            <div className="section-heading"><div><span className="eyebrow">THREE CHAPTERS, ONE GOOD TRIP</span><h2>From the mountains to the Pacific.</h2></div><a className="text-action" href="#plan">All {trip.days.length} days ↗</a></div>
+            <div className="section-heading"><div><span className="eyebrow">THREE CHAPTERS, ONE GOOD TRIP</span><h2>{trip.utahFinale ? "From evergreens to red rock." : "From the mountains to the Pacific."}</h2></div><a className="text-action" href="#plan">All {trip.days.length} days ↗</a></div>
             <Chapters trip={trip} onPick={openDaily} />
             <div className="travel-note">
               <div><span className="eyebrow">KEEP IT WITH YOU</span><h2>A plan for the road.</h2>

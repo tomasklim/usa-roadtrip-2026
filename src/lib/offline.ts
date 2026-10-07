@@ -1,6 +1,7 @@
+import { roadLabel } from "./roadLabel";
 import { weatherSummary } from "./weather";
 import { flightsForTrip } from "./flights";
-import { fmtDate, distLabel, type Trip } from "./trip";
+import { fmtDate, type Trip } from "./trip";
 import type { Units } from "../types";
 const esc = (value: string) => value.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]!));
 const list = (items?: string[]) => items?.length ? `<ul>${items.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : "";
@@ -8,7 +9,7 @@ const list = (items?: string[]) => items?.length ? `<ul>${items.map(x => `<li>${
 /** A self-contained file: the daily text remains readable without a connection. */
 export function offlinePlanHtml(trip: Trip, units: Units, savedAt = new Date()) {
   const days = trip.days.map(d => `<article id="${esc(d.id)}"><small>DAY ${d.num} · ${esc(fmtDate(d.date!))}</small><h2>${esc(d.title)}</h2>
-    <p>${esc(d.leg)}</p><p>${d.hours ? `${d.hours} h driving · ${distLabel(d.meters ?? 0, units)}` : "No driving"}</p>
+    <p>${esc(d.leg)}</p><p>${esc(roadLabel(d, units))}</p>
     ${d.alert ? `<p class="alert">${esc(d.alert)}</p>` : ""}<h3>Historical weather</h3><p>${esc(weatherSummary(d))}</p><h3>The plan</h3>${list(d.hi)}
     ${d.sleep ? `<h3>Tonight</h3><p>${d.sleep.t === "car" ? "In the car" : "A bed"} — ${esc(d.sleep.where)}${d.sleep.decision ? ` — ${esc(d.sleep.decision)}` : ""}${d.sleep.note ? ` — ${esc(d.sleep.note)}` : ""}</p>` : ""}
     ${d.food?.length ? `<h3>Food</h3>${list(d.food.map(f => `${f.nm}: ${f.note}`))}` : ""}

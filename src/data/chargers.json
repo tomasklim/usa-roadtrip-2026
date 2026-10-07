@@ -24,7 +24,9 @@
   "lon": -109.56527,
   "city": "Vernal",
   "fast": true,
-  "stalls": 8
+  "stalls": 8,
+  "day": "utQuarry",
+  "website": "https://www.tesla.com/findus/location/supercharger/27542"
  },
  {
   "id": "osm-6789405704",
@@ -297,5 +299,38 @@
   "stalls": 8,
   "day": "s7",
   "poiId": "laurel-charge-break"
+ },
+ {
+  "id": "tesla-moab-north",
+  "name": "Moab Supercharger · North Main Street",
+  "lat": 38.5871081,
+  "lon": -109.5579479,
+  "city": "Moab",
+  "stalls": 8,
+  "day": "utArches",
+  "fast": true,
+  "website": "https://www.tesla.com/findus/location/supercharger/MoabUTQ322"
+ },
+ {
+  "id": "tesla-greenriver-main",
+  "name": "Green River Supercharger · Main Street",
+  "lat": 38.9947886,
+  "lon": -110.1483023,
+  "city": "Green River",
+  "stalls": 16,
+  "day": "utMoab",
+  "fast": true,
+  "website": "https://www.tesla.com/findus/location/supercharger/19075"
+ },
+ {
+  "id": "tesla-wellington",
+  "name": "Wellington Supercharger · near Price",
+  "lat": 39.5432417,
+  "lon": -110.6890711,
+  "city": "Wellington",
+  "stalls": 8,
+  "day": "utMoab",
+  "fast": true,
+  "website": "https://www.tesla.com/findus/location/supercharger/19160"
  }
 ]

@@ -11,8 +11,12 @@ export function useForecast(day: Day) {
     let active = true;
     let loading = false;
     const current: ReturnType<typeof forecastTargets> = JSON.parse(key);
-    const refresh = async () => {
-      if (loading || document.visibilityState === 'hidden') return;
+    const refresh = async (initial = false) => {
+      if (day.completed) {
+        if (active) setState({key, daytime: {state:'past'}, night: {state:'past'}, loading:false});
+        return;
+      }
+      if (loading || (!initial && document.visibilityState === 'hidden')) return;
       loading = true;
       const [daytime, night] = await Promise.all([
         current.daytime ? loadForecast(current.daytime) : null,
@@ -21,7 +25,7 @@ export function useForecast(day: Day) {
       if (active) setState({ key, daytime, night, loading: false });
       loading = false;
     };
-    void refresh();
+    void refresh(true);
     const wake = () => { void refresh(); };
     const timer = setInterval(wake, 10 * 60e3);
     window.addEventListener('online', wake);
@@ -32,7 +36,7 @@ export function useForecast(day: Day) {
       window.removeEventListener('online', wake);
       document.removeEventListener('visibilitychange', wake);
     };
-  }, [key]);
+  }, [key, day.completed]);
   // A response for the previous place must never flash under the newly selected day.
-  return { ...(state.key === key ? state : { key, daytime: null, night: null, loading: true }), targets };
+  return { ...(day.completed ? { key, daytime: {state: 'past' as const}, night: {state: 'past' as const}, loading: false } : state.key === key ? state : { key, daytime: null, night: null, loading: true }), targets };
 }

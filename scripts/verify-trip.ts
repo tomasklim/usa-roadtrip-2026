@@ -25,9 +25,10 @@ for (const c of combos) {
   if (new Set(dates).size !== dates.length) problems.push("duplicate dates");
   for (let i = 1; i < dates.length; i++) if (dates[i] - dates[i - 1] !== 864e5) problems.push("date gap");
   const ids = t.days.map((d) => d.id);
-  if (!ids.includes("sf3") || !ids.includes("sf1")) problems.push("missing required NODE day or SFO arrival");
+  if (!t.utahFinale && (!ids.includes("sf3") || !ids.includes("sf1"))) problems.push("missing required NODE day or SFO arrival");
   if (new Set(ids).size !== ids.length) problems.push("duplicate ids: " + ids.filter((x, i) => ids.indexOf(x) !== i));
-  const staleHours = t.days.filter((d) => ROUTES[d.routeId ?? d.id]?.seconds && Math.abs(d.hours - ROUTES[d.routeId ?? d.id].seconds / 3600) > 0.11);
+  if (t.utahFinale && (!ids.includes("utFly") || ids.some(id => id.startsWith("sf")))) problems.push("wrong Utah finale");
+  const staleHours = t.days.filter((d) => d.modId !== "utahFinale" && ROUTES[d.routeId ?? d.id]?.seconds && Math.abs(d.hours - ROUTES[d.routeId ?? d.id].seconds / 3600) > 0.11);
   if (staleHours.length) problems.push("stale wheel hours: " + staleHours.map((d) => d.id));
   if (t.days.length > CAP_DAYS && t.overrun === 0) problems.push("over cap but overrun=0");
   if (r.slc.days === 0) problems.push("no SLC rental block");

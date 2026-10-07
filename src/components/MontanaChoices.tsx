@@ -2,6 +2,7 @@ import type { Trip } from '../lib/trip';
 
 export function MontanaChoices({ trip, rainy, onChange }: { trip: Trip; rainy: boolean; onChange: (rainy: boolean) => void }) {
   const days = trip.days.filter(d => ['s6', 's7', 's8', 'rainLamar', 'rainTransfer', 'rainRest'].includes(d.id));
+  if (trip.utahFinale || !days.some(d => !d.completed)) return null;
   return <details className="seattle-choices">
     <summary><span><b>Beartooth & Bozeman</b><small>{rainy ? 'Bad weather · two nights in Bozeman' : 'Over Beartooth · back via Laurel Supercharger'}</small></span></summary>
     <div className="seattle-choice-body">

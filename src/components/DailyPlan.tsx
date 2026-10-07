@@ -1,14 +1,12 @@
-import { recordedFood } from "../lib/tripKit";
+import { roadLabel } from "../lib/roadLabel";
+import { recordedFood, poisForDay } from "../lib/tripKit";
 import { WeatherCard } from "./WeatherCard";
 import type { ReactNode } from "react";
 import { AlertBox, ChargeRow, FoodRow, HiRow, IdeasRow, PhotoStrip, SleepRow, WhyRow } from "./DayParts";
-import { distLabel, downloadGpx, fmtDate, fmtShort, toGpx, ROUTES, type Trip } from "../lib/trip";
+import { downloadGpx, fmtDate, fmtShort, toGpx, ROUTES, type Trip } from "../lib/trip";
 import type { Tab } from "./DayPanel";
-import type { Day, Poi, Units } from "../types";
+import type { Day, Units } from "../types";
 import { todayInTrip } from "../lib/navigation";
-import poisRaw from "../data/pois.json";
-
-const POIS = poisRaw as Poi[];
 
 export function DayPicker({ trip, day, onSelect }: { trip: Trip; day: Day; onSelect: (id: string) => void }) {
   const index = trip.days.findIndex(d => d.id === day.id);
@@ -30,7 +28,7 @@ export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map, choice
   map: ReactNode;
   choices: ReactNode;
 }) {
-  const stops = POIS.filter(p => p.day === (day.poiDay ?? day.id)).sort((a, b) => Number(b.id.startsWith("node-palo-alto")) - Number(a.id.startsWith("node-palo-alto")));
+  const stops = poisForDay(day).sort((a, b) => Number(b.id.startsWith("node-palo-alto")) - Number(a.id.startsWith("node-palo-alto")));
   return <>
     <DayPicker trip={trip} day={day} onSelect={onSelect} />
     {choices}
@@ -49,7 +47,7 @@ export function DailyPlan({ trip, day, units, tab, setTab, onSelect, map, choice
         <PhotoStrip day={day} priority />
         <div className="daily-content">
           <div className="day-facts">
-            <div><span>ON THE ROAD</span><b>{day.roadEstimate ? `≈ ${distLabel(day.meters ?? 0, units)} · estimated` : day.completed ? 'Distance not estimated' : day.hours ? `${day.hours} h · ${distLabel(day.meters ?? 0, units)}` : "No driving today"}</b></div>
+            <div><span>ON THE ROAD</span><b>{roadLabel(day, units)}</b></div>
             <div><span>{day.completed ? 'OVERNIGHT' : 'TONIGHT'}</span><b>{day.sleep ? (day.sleep.t === "car" ? "A night in the car" : "A bed & a shower") : "Overnight flight"}</b></div>
           </div>
           <div className="daily-actions">

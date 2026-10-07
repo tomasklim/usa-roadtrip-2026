@@ -1,7 +1,5 @@
-import { remainingDays, recordedFood } from '../lib/tripKit';
+import { remainingDays, recordedFood, poisForDay } from '../lib/tripKit';
 import { fmtShort } from '../lib/trip';
-import poisRaw from "../data/pois.json";
-import type { Poi } from "../types";
 import { ACTS } from "../data/itinerary";
 import type { Trip } from "../lib/trip";
 import { FoodRules } from "./Panels";
@@ -39,8 +37,7 @@ export function FoodGuide({ trip }: { trip: Trip }) {
         <details className="card panel food-alternatives"><summary>More saved restaurants & grocery stops</summary>
           <p className="hint">Alternatives, not extra meals to fit into the day. Choose the branch closest to where you actually are.</p>
           {ACTS.map(act => {
-            const dayIds = new Set(upcoming.filter(d => d.act === act.id).map(d => d.poiDay ?? d.id));
-            const picks = (poisRaw as Poi[]).filter(p => p.kind === 'food' && dayIds.has(p.day));
+            const picks = [...new Map(upcoming.filter(d => d.act === act.id).flatMap(poisForDay).filter(p => p.kind === 'food').map(p => [p.id, p])).values()];
             if (!picks.length) return null;
             return <div key={act.id}><h3>{act.name}</h3>{picks.map(p => <a className="place-link" key={p.id} href={`https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lon}`} target="_blank" rel="noreferrer"><span><b>{p.name}</b><small>{p.city}{p.address ? ` · ${p.address}` : ''}</small></span><span>↗</span></a>)}</div>;
           })}

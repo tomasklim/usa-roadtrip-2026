@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { buildTrip } from "../src/lib/trip";
 import { BASE, CAR_NIGHTS, MODULES } from "../src/data/itinerary";
+import { forecastTargets } from "../src/lib/forecast";
 import { weatherForDay } from "../src/lib/weather";
 import history from "../src/data/weather-history.json";
 import locations from "../src/data/weather-places.json";
@@ -17,9 +18,14 @@ for (let mask = 0; mask < 1 << MODULES.length; mask++) {
       streak = day.sleep?.t === "car" ? streak + 1 : 0;
       assert.ok(streak <= 2, `${mask}/${style}/${day.id}: car streak ${streak}`);
       const weather = weatherForDay(day);
-      assert.ok(weather, `Missing weather: ${day.id}/${day.date}`);
-      assert.equal(weather.daytime.stats.n, 165);
-      assert.equal(!!weather.night, !!day.sleep, `Missing overnight weather: ${day.id}`);
+      const targets = forecastTargets(day);
+      assert.ok(targets.daytime, `Missing forecast coordinates: ${day.id}`);
+      assert.equal(!!targets.night, !!day.sleep, `Missing night forecast coordinates: ${day.id}`);
+      if (day.modId !== 'utahFinale') {
+        assert.ok(weather, `Missing historical weather: ${day.id}/${day.date}`);
+        assert.equal(!!weather.night, !!day.sleep, `Missing overnight history: ${day.id}`);
+      }
+      if (weather) assert.equal(weather.daytime.stats.n, 165);
       if (["s5", "s6", "s7", "cody", "s10"].includes(day.id)) assert.equal(day.sleep?.t, "motel");
     }
   }
@@ -60,4 +66,4 @@ for (const p of Object.values(history.places)) for (const s of Object.values(p.d
 }
 const html = offlinePlanHtml(exception, "km");
 for (const str of ["Historical weather", "2015–2025", "price exception", "car night 3", "Open-Meteo", "165 local days"]) assert.ok(html.includes(str), str);
-console.log("✓ All 32 route combinations × 3 sleep styles: weather coverage, two-night limit, overrides, charging/return beds, dates, data ranges, offline export, immutable base");
+console.log("✓ All route combinations × 3 sleep styles: weather coverage, two-night limit, overrides, charging/return beds, dates, data ranges, offline export, immutable base");

@@ -1,3 +1,4 @@
+import { poisForDay } from '../lib/tripKit';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, TileLayer, Polyline, Marker, Popup, Tooltip, useMap, useMapEvent } from "react-leaflet";
 import L from "leaflet";
@@ -327,7 +328,8 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
   };
   const idx = selected ? trip.days.findIndex((d) => d.id === selected) : -1;
   const cur = idx >= 0 ? trip.days[idx] : null;
-  const visiblePois = trip.days.flatMap(d => POIS.filter(p => p.day === (d.poiDay ?? d.id) && !CHARGERS.some(c => c.poiId === p.id)).map(p => ({ ...p, day: d.id })));
+  const poiDays = cur ? [cur, ...trip.days.filter(d => d.id !== cur.id)] : trip.days;
+  const visiblePois = [...new Map(poiDays.flatMap(d => poisForDay(d).filter(p => !CHARGERS.some(c => c.poiId === p.id)).map(p => ({ ...p, day: d.id }))).reverse().map(p => [p.id, p])).values()];
   const bm = BASEMAPS[basemap];
 
   // Height is dragged locally and only committed to storage on release, so a
@@ -484,7 +486,7 @@ export function RouteMap({ trip, units, selected, onSelect, layers, setLayers, b
                          body={place?.desc ?? (c.fast ? "Tesla Supercharger — check live availability and the recommended charging time in the car."
                                       : "Destination or slow charger. Useful overnight, not for a top-up on the move.")}
                          directions={`https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lon}`}
-                         website={place?.website} />
+                         website={place?.website ?? c.website} />
               </Popup>
             </Marker>
           ); })}

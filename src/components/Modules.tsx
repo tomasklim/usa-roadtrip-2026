@@ -153,16 +153,16 @@ const conflicts = (a: string, b: string) => {
 };
 
 function Verdict({ trip }: { trip: Trip }) {
-  if (trip.utahFinale) return <div className="warn ok">Utah finale · Quarry Exhibit Hall, Arches and Canyonlands. Final night in Salt Lake City; return the Tesla before the October 13 flight at 15:02.</div>;
   if (trip.overrun > 0) {
     return (
       <div className="warn">
-        This is <b>{trip.overrun} day{trip.overrun === 1 ? "" : "s"} too long</b> for the booked window
-        after removing optional San Francisco days. The flight to SFO and the NODE visit stay in the plan.
+        This is <b>{trip.overrun} day{trip.overrun === 1 ? "" : "s"} too long</b> for the booked window. {" "}
+        {trip.utahFinale ? "The Utah finish still has to end on October 13." : "After removing optional San Francisco days, the flight to SFO and the NODE visit stay in the plan."}
         Remove a module to fit the booked flight home.
       </div>
     );
   }
+  if (trip.utahFinale) return <div className="warn ok">Utah finale · Quarry Exhibit Hall, Arches and Canyonlands. Final night in Salt Lake City; return the Tesla before the October 13 flight at 15:02.</div>;
   if (trip.droppedSf > 0) {
     return (
       <div className="warn">

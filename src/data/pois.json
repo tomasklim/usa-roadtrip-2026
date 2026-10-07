@@ -1880,15 +1880,16 @@
  },
  {
   "id": "ut-delicate",
-  "name": "Delicate Arch trailhead",
-  "lat": 38.7436,
-  "lon": -109.4993,
+  "name": "Delicate Arch trailhead · Wolfe Ranch",
+  "lat": 38.73568,
+  "lon": -109.52026,
   "day": "utArches",
   "city": "Arches National Park",
   "kind": "sight",
   "tags": [],
   "photo": "arches",
-  "website": "https://www.nps.gov/arch/planyourvisit/delicate-arch.htm"
+  "website": "https://www.nps.gov/arch/planyourvisit/delicate-arch.htm",
+  "desc": "Start the 4.8 km return hike here, at Wolfe Ranch. The separate Delicate Arch Viewpoint is not the main trailhead."
  },
  {
   "id": "ut-mesa",
@@ -2088,5 +2089,19 @@
   "website": "https://atthegateway.com/calendars/giant-pumpkinpalooza-26/",
   "verified": "2026-10-07",
   "desc": "Low-priority option, likely missed: Saturday October 10, 12:00–18:00 for the whole festival; separate walk time not published here. Only if returning north early due to rain; conflicts with the Moab park day."
+ },
+ {
+  "id": "ut-nhmu",
+  "name": "Natural History Museum of Utah · rain alternative",
+  "kind": "sight",
+  "lat": 40.7641,
+  "lon": -111.8227,
+  "day": "utReturn",
+  "tags": [],
+  "city": "Salt Lake City UT",
+  "address": "301 Wakara Way",
+  "website": "https://nhmu.utah.edu/visit/welcome",
+  "verified": "2026-10-07",
+  "desc": "October 12 afternoon instead of Red Butte in rain. Daily 10:00–17:00; aim to arrive by 14:00–15:00. Skip if Quarry moves to this morning."
  }
 ]

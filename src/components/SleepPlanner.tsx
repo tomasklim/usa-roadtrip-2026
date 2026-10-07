@@ -21,7 +21,7 @@ export function SleepSection({trip, stays, setStays}: {trip: Trip; stays: Stays;
       const stay = stays[d.id] ?? EMPTY_STAY;
       const update = (patch: Partial<Stay>) => setStays(previous => ({...previous, [d.id]: {...(previous[d.id] ?? EMPTY_STAY), ...patch}}));
       const weather = weatherForDay(d)?.night;
-      const suggestion = d.sleep!.suggestedWhere ?? d.sleep!.where;
+      const suggestion = d.completed ? d.sleep!.where : d.sleep!.suggestedWhere ?? d.sleep!.where;
       const camp = !d.completed && d.carEligible !== false ? CAR_NIGHTS[d.id] : undefined;
       return <article className="card panel stay-card" key={d.id}>
         <div className="stay-heading"><a href={`#itinerary/${d.id}`}>Day {d.num} · {fmtShort(d.date!)}</a><span>{d.title}</span></div>
@@ -31,7 +31,7 @@ export function SleepSection({trip, stays, setStays}: {trip: Trip; stays: Stays;
         <div className="stay-fields"><label>Your accommodation<input aria-label={`Accommodation for ${d.id}`} maxLength={300} value={stay.place} placeholder="Hotel, inn or campsite you choose" onChange={e => update({place:e.target.value})} /></label>
         <label>Sleep choice<select aria-label={`Sleep choice for ${d.id}`} value={stay.type} onChange={e => update({type:e.target.value as Stay['type']})}><option value="undecided">Not decided yet</option><option value="bed">Bed / room</option><option value="car">In the car</option></select></label></div>
         <label className="planning-note">Your notes<textarea aria-label={`Sleep notes for ${d.id}`} value={stay.note} maxLength={4000} rows={3} placeholder="Booking link, price, check-in, cancellation, charging…" onChange={e => update({note:e.target.value})} /></label>
-        {d.sleep?.streak && d.sleep.streak > 2 ? <p className="warn">This is car night {d.sleep.streak} in a row. Your choice is kept; consider a bed unless the price makes it worthwhile.</p> : null}
+        {!d.completed && d.sleep?.streak && d.sleep.streak > 2 ? <p className="warn">This is car night {d.sleep.streak} in a row. Your choice is kept; consider a bed unless the price makes it worthwhile.</p> : null}
       </article>;
     })}</fieldset>
     <p className="hint">Suggestions are areas to compare, not reservations or checked room prices. For the 2021 Model S, ask the host about the actual sleeping space and overnight climate use before choosing a mattress.</p>

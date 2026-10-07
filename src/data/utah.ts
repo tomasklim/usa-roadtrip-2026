@@ -12,16 +12,19 @@ export const UTAH_FINALE: Module = {
   conflicts:['oysters','craters','montanaRain'], cost:'same return date', risk:'lo',
   desc:'Replace the California finish with Dinosaur National Monument and Moab. Return to Salt Lake City the day before flying home via Seattle and Frankfurt.',
   days:[
-    day('utSouth','South to Salt Lake · potatoes on the way','Bozeman → West Yellowstone → Idaho Falls → Blackfoot → Salt Lake City',7,[40.76,-111.89],['idahofalls','gallatincanyon'],'idahofalls','saltlake',[
-      'Leave Bozeman in the morning. This is a full transfer day: allow roughly 7 hours at the wheel, plus charging, food and the museum.',
-      'Idaho Potato Museum in Blackfoot: October hours Monday–Saturday 10:00–16:00. Aim for 13:00–14:00 and allow 45–60 minutes.',
-      'Continue to Salt Lake City for the night. If leaving late or tired, stop around Idaho Falls and shorten the following day rather than driving exhausted.'
-    ],{charge:['Use Tesla navigation for West Yellowstone, Idaho Falls and I-15 charging stops; check live availability and the predicted arrival reserve.'],alert:'Confirm the Tesla rental extension through October 13, including mileage allowance. Check US-191, US-20 and I-15 before departure.'}),
-    day('utMoab','Red Butte Garden, then south to Moab','Salt Lake City → Red Butte Garden → Price → Green River → Moab',4.5,[38.573,-109.55],['saltlakecity','arches'],'saltlake','moab',[
-      'Red Butte Garden at 09:00, with roughly 1½–2 hours for the gardens before leaving Salt Lake City. October opening is 09:00–17:00.',
-      'Drive to Moab via US-6, Price, Green River and US-191. Allow 4–4½ hours driving plus charging and food. Keep the evening relaxed.',
-      'Tomorrow is the full Arches day, using the better weather window. A short evening stop is optional only if there is plenty of daylight and energy.'
-    ],{charge:['Navigate between confirmed Tesla Superchargers in Salt Lake, Price / Green River and Moab. Top up before the park; do not count on charging inside Arches.'],alert:'Check US-6 over Soldier Summit before the transfer. Keep time for charging and daylight; a park visit is not required this evening.'}),
+    day('utSouth','Bozeman western shopping → Idaho Falls','Downtown Bozeman → TJ Maxx → West Yellowstone → Idaho Falls',4,[43.49,-112.03],['gallatincanyon','idahofalls'],'bozeman','idahofalls',[
+      'Check out at 11:00. Walk Main Street and browse western shops until roughly 12:30: Head West at 24 W Main Street has cowboy hats, boots and vintage western wear downstairs. Wednesday hours are 10:00–18:00.',
+      'Have lunch, then allow around 45–60 minutes at TJ Maxx, 1540 N 19th Avenue (09:30–21:30). Aim to leave Bozeman around 14:00–14:30.',
+      'Drive south through Gallatin Canyon and West Yellowstone to Idaho Falls. Allow roughly 4 hours driving including local errands, plus charging and breaks; an arrival around 18:30–19:30 is a planning estimate.',
+      'Sleep in Idaho Falls. If there is daylight and energy, take a short walk by the river and falls. The Potato Museum waits until tomorrow morning; do not rush to its 16:00 closing.',
+      'Today advances the southbound transfer. No repeat Museum of the Rockies visit or Chico stop is planned.'
+    ],{sleep:{t:'motel',where:'Idaho Falls · hotel with parking or a confirmed permitted overnight spot'},food:[{nm:'Lunch in downtown Bozeman',note:'Eat before leaving town; keep dinner simple in Idaho Falls.',tags:[]}],charge:['Check the battery before shopping. Use Tesla navigation for charging in Bozeman, West Yellowstone and Idaho Falls as needed; check live availability and the predicted arrival reserve.'],alert:'Confirm the Tesla rental extension through October 13, including mileage allowance. Check US-191 and US-20 before departure. Keep the overnight in Idaho Falls rather than adding a late drive to Salt Lake City.'}),
+    day('utMoab','Potato Museum, then south to Moab','Idaho Falls → Blackfoot → Salt Lake City → Price → Green River → Moab',7.5,[38.573,-109.55],['idahofalls','arches'],'idahofalls','moab',[
+      'Leave Idaho Falls around 09:15 for Blackfoot. Visit the Idaho Potato Museum when it opens at 10:00; allow 45–60 minutes. October hours are Monday–Saturday 10:00–16:00.',
+      'Continue via I-15, Salt Lake City, US-6, Price and Green River to Moab. This is a long transfer: roughly 7–7½ hours driving across the whole day, plus the museum, food and charging. Expect an evening arrival around 20:00–21:00, depending on stops.',
+      'Keep Salt Lake City to a meal or charging break. Red Butte Garden is now an optional October 12 stop, not another visit to fit into this transfer.',
+      'If the museum is less important than a shorter day, leave Idaho Falls earlier and drive straight south. If tired or delayed, stop in Price or Green River and accept a later start in Arches tomorrow. No park sightseeing is planned tonight.'
+    ],{food:[{nm:'Road lunch and an easy Moab dinner',note:'Use a charging break for food and carry snacks; avoid adding a restaurant detour to the long transfer.',tags:[]}],charge:['Use native Tesla Superchargers along I-15, then Price / Green River and Moab as directed by the car. Allow charging time in addition to the driving estimate; arrive ready for tomorrow’s park loop.'],alert:'Check I-15 and US-6 over Soldier Summit. The museum is optional if it makes the transfer too late. Keep the evening free and shorten the drive if tired.'}),
     day('utArches','Arches · sandstone windows and Delicate Arch','Moab → Arches National Park → Moab',2,[38.7436,-109.4993],['arches','windows'],'moab','moab',[
       'Use the driest part of the day for Delicate Arch: about 4.8 km return and 146 m ascent. Take water and allow 2–3 hours.',
       'Add The Windows and Double Arch; Landscape Arch is another option if time, weather and energy allow.',
@@ -42,7 +45,7 @@ export const UTAH_FINALE: Module = {
     day('utReturn','Back to Salt Lake · Quarry backup morning','Vernal → Duchesne → Heber City → Salt Lake City',3.5,[40.76,-111.89],['saltlakecity','greatsaltlake'],'saltlake','saltlake',[
       'If Quarry was delayed yesterday, visit at 09:00 today, allow 1½–2 hours and leave toward Salt Lake by 11:00–11:30. Otherwise enjoy an easy morning in Vernal.',
       'Take US-40 via Duchesne and Heber City back to Salt Lake City. Allow roughly 3½ hours driving plus charging and food; aim to arrive during the afternoon.',
-      'If Quarry was done yesterday and you arrive early, Natural History Museum of Utah is an optional indoor stop. Red Butte Garden is a backup only if skipped on October 8 and the weather improves.',
+      'If Quarry was done yesterday and you arrive early, Natural History Museum of Utah is an optional indoor stop. Red Butte Garden is an alternative if the weather improves and you can arrive by about 15:00 (October hours 09:00–17:00). Choose one; if Quarry is still needed this morning, skip the extra Salt Lake attraction rather than rushing.',
       'Sleep in Salt Lake City. Pack, confirm tomorrow’s handover and charge requirement, and keep the evening easy.'
     ],{charge:['Charge en route as directed by the car. Arrange the final charging stop around the host’s required return level, leaving time for the airport transfer.']}),
     day('utFly','Fly home from Salt Lake City','SLC 15:02 → Seattle 16:17 / 18:05 → Frankfurt 13:10 (+1) / 15:00 → Prague 16:00 (+1)',0,[40.7899,-111.9791],['saltlakecity'],'saltlake','saltlake',[

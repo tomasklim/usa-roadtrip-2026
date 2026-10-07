@@ -90,7 +90,7 @@ export function checksForTrip(trip: Trip): CheckItem[] {
       if (c.id === 'slc-return-review') return {...item,t:'Extend the Tesla through October 13',d:'Confirm the extension, extra mileage allowance and return location with the host. Return before the 15:02 flight; aim to reach the SLC terminal around noon after the handover and transfer.',when:'Oct 13 · before the flight'};
       if (c.id === 'driver') return {...item,t:'Check driver approval for the extended Tesla rental',d:'Confirm both drivers remain approved for the extension. Keep driving documents accessible.'};
       if (c.id === 'flight-copies') return {...item,d:'Save AS734 SLC–SEA, DE2033 SEA–FRA and DE4407 FRA–PRG. Departure October 13 at 15:02; Prague arrival October 14 at 16:00. Confirm checked bags are tagged through at SLC.'};
-      if (c.id === 'red-butte') return {...item,d:'October 8 at 09:00 before driving to Moab. Garden hours 09:00–17:00. Keep October 12 as a fallback only if the weather and Quarry visit allow.'};
+      if (c.id === 'red-butte') return {...item,d:'Optional October 12 after returning from Vernal, only if weather and the Quarry visit allow. Aim to arrive by 15:00; garden hours 09:00–17:00. Do not add it to the long October 8 transfer.'};
       if (c.id === 'bear') return {...item,t:'Return or dispose of bear spray before flying',d:'Arrange a safe local return or disposal before October 13. Do not pack bear spray for the flight.'};
       if (c.id === 'supplies') return {...item,d:'Restock in Vernal or Moab before the park days: water, packed lunches and road snacks.'};
     }

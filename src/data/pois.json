@@ -1932,7 +1932,7 @@
   "kind": "sight",
   "lat": 43.18955,
   "lon": -112.34366,
-  "day": "utSouth",
+  "day": "utMoab",
   "tags": [],
   "city": "Blackfoot ID",
   "desc": "A 1913 railroad depot with potato history, the largest potato crisp and a free tater for out-of-state visitors. Open Mon–Sat 10–4 from October through April."
@@ -1943,12 +1943,40 @@
   "kind": "sight",
   "lat": 40.76511,
   "lon": -111.82444,
-  "day": "utMoab",
+  "day": "utReturn",
   "tags": [],
   "city": "Salt Lake City UT",
   "address": "300 Wakara Way",
   "website": "https://redbuttegarden.org/plan-your-garden-visit/general-info/",
   "verified": "2026-09-13",
-  "desc": "Allow 1½–2 hours. October 09:00–17:00; September until 19:30, with 17:00 closure on concert dates. Visit once: on the early SLC arrival alternative or before the final car return."
+  "desc": "Optional October 12 after the Vernal transfer, if weather and Quarry timing allow. Arrive by about 15:00 for 1½–2 hours; October hours 09:00–17:00."
+ },
+ {
+  "id": "ut-headwest",
+  "name": "Head West · western & vintage",
+  "kind": "sight",
+  "lat": 45.6795,
+  "lon": -111.0375,
+  "day": "utSouth",
+  "tags": [],
+  "city": "Bozeman MT",
+  "address": "24 W Main Street",
+  "website": "https://headwestbozeman.com/",
+  "approx": true,
+  "desc": "After 11:00 checkout: cowboy hats, boots and vintage western wear downstairs. Monday–Saturday 10:00–18:00. Pin is approximate; use the street address."
+ },
+ {
+  "id": "ut-tjmaxx",
+  "name": "TJ Maxx · Bozeman",
+  "kind": "sight",
+  "lat": 45.6956,
+  "lon": -111.0636,
+  "day": "utSouth",
+  "tags": [],
+  "city": "Bozeman MT",
+  "address": "1540 N 19th Avenue",
+  "website": "https://tjmaxx.tjx.com/store/stores/Bozeman-MT-59718/1318/aboutstore",
+  "approx": true,
+  "desc": "Allow 45–60 minutes after downtown and lunch. Daily 09:30–21:30. Aim to leave Bozeman by 14:00–14:30. Pin is approximate; navigate to the street address."
  }
 ]

@@ -129,6 +129,26 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
     return entry ? applyJournal(d, entry) : d;
   });
 
+  // An early recorded Quarry visit frees its planned day without inventing
+  // another overnight base or overwriting a separately saved onward plan.
+  const quarryRecorded = days.findIndex((d, i) => d.completed &&
+    journal[new Date(START + i * DAY_MS).toISOString().slice(0,10)]?.variant === 'grandJunctionQuarry');
+  if (quarryRecorded >= 0) days = days.map((d, i) => {
+    if (i <= quarryRecorded || journal[new Date(START + i * DAY_MS).toISOString().slice(0,10)]) return d;
+    if (d.id === 'utQuarry') return { ...d, title: 'Vernal · day to plan',
+      leg: 'Vernal · onward plan to be decided', routeId: 'recorded', mapRouteIds: [],
+      poiDay: 'recorded', hours: 0, at: [40.455, -109.53], photos: ['vernal'],
+      hi: ['Quarry Exhibit Hall is already recorded. Choose the next stops and overnight base before setting off.'],
+      ideas: [], food: [], charge: [], alert: undefined, why: 'A free day after visiting Quarry earlier.',
+      sleep: { t: 'motel', where: 'Overnight base to be decided' } };
+    if (d.id === 'utReturn') return { ...d, title: 'Back to Salt Lake · garden or museum',
+      hi: ['Return to Salt Lake City today. The displayed route assumes a Vernal departure; adjust it once the previous day is decided.',
+        d.hi[1],
+        'Make Red Butte Garden the afternoon priority in dry weather (October hours 09:00–17:00), or Natural History Museum of Utah in rain (10:00–17:00). Aim to arrive by about 14:00–15:00 and choose one.',
+        ...d.hi.slice(3)] };
+    return d;
+  });
+
   // The flight home does not move, so extra days come out of San Francisco.
   let droppedSf = 0;
   while (days.length > CAP_DAYS) {

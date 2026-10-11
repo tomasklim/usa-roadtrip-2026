@@ -20,6 +20,9 @@ export const JOURNEY_VARIANTS: Record<string, Partial<Day> & { title: string }> 
   yellowstoneBozeman: { title: 'Artist Point, Yellowstone Lake & Big Sky', mapRouteIds: ['yellowstoneBozeman'], routeId: 'recorded', at: [44.721,-110.487], photos: ['artistpoint','westthumb','gallatincanyon'], weather: {day:'canyon',bed:'bozeman'} },
   bozemanLocal: { title: 'Museum of the Rockies & Bozeman Hot Springs', mapRouteIds: ['bozemanLocal'], routeId: 'recorded', at: [45.659,-111.045], photos: ['trex','bozemanhotsprings'], weather: {day:'bozeman',car:'bozeman'} },
   beartoothLoop: { title: 'Lamar Valley, Beartooth Highway & Livingston', mapRouteIds: ['beartoothLoop'], routeId: 'recorded', at: [44.97,-109.47], photos: ['lamarvalley','beartooth','beartooth2'], weather: {day:'beartooth',bed:'bozeman'} },
+  idahoMuseumsSaltLake: { title: 'Idaho Falls, Potato Museum & Museum of Clean → Salt Lake', routeId: 'recorded', mapRouteIds: ['idahoMuseumsSaltLake'], at: [42.85938,-112.44185], photos: ['idahofalls','saltlakecity'], weather: {day:'idahofalls',bed:'saltlake',car:'saltlake'} },
+  archesGrandJunction: { title: 'Arches → Grand Junction', routeId: 'recorded', mapRouteIds: ['slcArchesGrandJunction'], at: [38.733,-109.592], photos: ['arches','windows'], weather: {day:'moab',bed:'grandjunction',car:'grandjunction'} },
+  grandJunctionQuarry: { title: 'Quarry Exhibit Hall → Vernal', routeId: 'recorded', mapRouteIds: ['grandJunctionQuarry'], at: [40.4406,-109.3012], photos: ['dinosaurquarry'], weather: {day:'vernal',bed:'vernal',car:'vernal'} },
   montpelierTetons: {
     title: 'Montpelier to Jackson & the Tetons', leg: 'Montpelier → Afton → Alpine → Jackson → Mormon Row → Schwabacher Landing → Jenny Lake → Jackson',
     routeId: 'montpelierTetons', poiDay: 's3', hours: 4.5, at: [43.48,-110.76], photos: ['schwabacher','mormonrow','jennylake'], weather: {day:'teton',bed:'jackson',car:'jackson'},

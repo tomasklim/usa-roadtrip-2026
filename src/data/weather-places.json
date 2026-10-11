@@ -269,6 +269,12 @@
       "latitude": 38.995,
       "longitude": -110.163,
       "timezone": "America/Denver"
+    },
+    "grandjunction": {
+      "name": "Grand Junction, Colorado",
+      "latitude": 39.0639,
+      "longitude": -108.5506,
+      "timezone": "America/Denver"
     }
   },
   "days": {

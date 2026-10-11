@@ -77,3 +77,27 @@ for (const day of extended.days.slice(7,13)) {
 }
 assert.ok(!extended.days[11].photos?.some(id => id === 'chicohotsprings' || id === 'chicolodge'),'Do not illustrate Bozeman Hot Springs with Chico');
 console.log('✓ Teton, Yellowstone and Bozeman records retain dates, correct photos and illustrative map routes');
+
+const finaleJournal = normalizeJournal({
+  '2026-10-08': {...record,variant:'idahoMuseumsSaltLake'},
+  '2026-10-09': {...record,variant:'archesGrandJunction'},
+  '2026-10-10': {...record,variant:'grandJunctionQuarry'},
+});
+const finale = buildTrip(new Set(['utahFinale']),'motel',{},DEFAULT_SEATTLE,{},finaleJournal);
+for (const d of finale.days.slice(14,17)) {
+  assert.equal(d.completed,true);
+  assert.ok(mapLines(d).length);
+  assert.equal(d.meters,0,'Route geometry is not recorded mileage');
+}
+assert.equal(finale.days[15].weather?.bed,'grandjunction');
+assert.equal(finale.days[16].weather?.bed,'vernal');
+assert.equal(finale.days[17].title,'Vernal · day to plan');
+assert.equal(mapLines(finale.days[17]).length,0,'Do not send travellers back from Moab after recording Vernal');
+assert.ok(!finale.days[18].hi.join(' ').includes('If Quarry'));
+assert.equal(finale.days.length,20);
+assert.equal(finale.days.at(-1)?.id,'utFly');
+const explicitPlan = buildTrip(new Set(['utahFinale']),'motel',{},DEFAULT_SEATTLE,{},normalizeJournal({...finaleJournal,
+  '2026-10-11': {...record,status:'planned',title:'My own onward plan',variant:''}
+}));
+assert.equal(explicitPlan.days[17].title,'My own onward plan');
+console.log('✓ Recorded Utah route variants, an open onward day, preserved manual plans and no duplicate Quarry visit');

@@ -84,6 +84,11 @@ const finaleJournal = normalizeJournal({
   '2026-10-10': {...record,variant:'grandJunctionQuarry'},
 });
 const finale = buildTrip(new Set(['utahFinale']),'motel',{},DEFAULT_SEATTLE,{},finaleJournal);
+const museumsRoute = mapLines(finale.days[14])[0];
+const previousEnd = mapLines(finale.days[13]).at(-1)!.at(-1)!;
+assert.ok(Math.hypot(museumsRoute[0][0]-previousEnd[0],museumsRoute[0][1]-previousEnd[1]) < 0.001,
+  'The museum day must start at Flat Rock where the previous route ends, not at Idaho Falls');
+assert.ok(museumsRoute.some(p=>Math.hypot(p[0]-43.492,p[1]+112.041)<0.01),'Keep the Idaho Falls stop');
 for (const d of finale.days.slice(14,17)) {
   assert.equal(d.completed,true);
   assert.ok(mapLines(d).length);

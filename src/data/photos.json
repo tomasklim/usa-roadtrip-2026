@@ -810,5 +810,38 @@
     "license": "© Bozeman Hot Springs · official website",
     "alt": "Outdoor soaking pools at Bozeman Hot Springs",
     "label": "Bozeman Hot Springs"
+  },
+  "potatomuseum": {
+    "url": "/images/potato-museum.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:IdahoPotatoMuseumPotato.jpg",
+    "credit": "KRRK",
+    "license": "CC0",
+    "alt": "The giant baked potato and Idaho Potato Museum sign in Blackfoot",
+    "label": "Idaho Potato Museum",
+    "position": "50% 60%"
+  },
+  "museumofclean": {
+    "url": "/images/museum-of-clean.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Museum_of_Clean,_(2021-08-14),_exhibits,_15.jpg",
+    "credit": "Steven Pavlov",
+    "license": "CC BY-SA 4.0",
+    "alt": "Vintage vacuums and unusual cleaning tools on display inside Museum of Clean in Pocatello",
+    "label": "Museum of Clean"
+  },
+  "bozemanmain": {
+    "url": "/images/bozeman-main-street.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Main_St,_Bozeman,_Montana_(3).JPG",
+    "credit": "Chris06",
+    "license": "CC BY-SA 3.0",
+    "alt": "Brick shopfronts on Main Street in downtown Bozeman",
+    "label": "Bozeman · Main Street"
+  },
+  "farmpumpkins": {
+    "url": "/images/pumpkins.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Pumpkin_farm_(Unsplash).jpg",
+    "credit": "Lesly B. Juarez",
+    "license": "CC0",
+    "alt": "A wagon filled with pumpkins at a farm in Buffalo, New York; an illustration of an autumn farm stop, not Rocky Creek Farm",
+    "label": "Pumpkin season · illustration"
   }
 }

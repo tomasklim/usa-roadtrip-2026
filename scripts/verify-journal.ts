@@ -92,6 +92,7 @@ for (const d of finale.days.slice(14,17)) {
 assert.equal(finale.days[15].weather?.bed,'grandjunction');
 assert.equal(finale.days[16].weather?.bed,'vernal');
 assert.equal(finale.days[17].title,'Vernal · day to plan');
+assert.equal((await import('../src/lib/roadLabel')).roadLabel(finale.days[17],'mi'),'Route to be decided');
 assert.equal(mapLines(finale.days[17]).length,0,'Do not send travellers back from Moab after recording Vernal');
 assert.ok(!finale.days[18].hi.join(' ').includes('If Quarry'));
 assert.equal(finale.days.length,20);

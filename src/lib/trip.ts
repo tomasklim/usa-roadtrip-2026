@@ -136,7 +136,7 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
   if (quarryRecorded >= 0) days = days.map((d, i) => {
     if (i <= quarryRecorded || journal[new Date(START + i * DAY_MS).toISOString().slice(0,10)]) return d;
     if (d.id === 'utQuarry') return { ...d, title: 'Vernal · day to plan',
-      leg: 'Vernal · onward plan to be decided', routeId: 'recorded', mapRouteIds: [],
+      leg: 'Vernal · onward plan to be decided', routeId: 'undecided', mapRouteIds: [],
       poiDay: 'recorded', hours: 0, at: [40.455, -109.53], photos: ['vernal'],
       hi: ['Quarry Exhibit Hall is already recorded. Choose the next stops and overnight base before setting off.'],
       ideas: [], food: [], charge: [], alert: undefined, why: 'A free day after visiting Quarry earlier.',

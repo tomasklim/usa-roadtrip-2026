@@ -46,7 +46,9 @@ export function applyJournal(day: Day, entry: JournalEntry): Day {
   const variant = JOURNEY_VARIANTS[entry.variant];
   const result = { ...day, ...variant, id: day.id, act: day.act, completed: entry.status === 'done' };
   if (entry.title.trim()) result.title = entry.title.trim();
-  if (entry.note.trim()) result.hi = entry.note.split('\n').filter(Boolean);
+  const notes = entry.note.split('\n').filter(Boolean);
+  result.observedWeather = notes.find(line => /^Weather:\s*/i.test(line))?.replace(/^Weather:\s*/i, '').trim() || undefined;
+  if (entry.note.trim()) result.hi = notes.filter(line => !/^Weather:\s*/i.test(line));
   if (result.completed) {
     result.flight = entry.flight;
     result.leg = entry.note.split('\n')[0] || result.title;

@@ -4,6 +4,14 @@ import type { Day } from "../types";
 import { weatherForDay, degrees, weatherSummary } from "../lib/weather";
 
 export function WeatherCard({ day }: { day: Day }) {
+  if (day.observedWeather) return <aside className="weather-card" aria-label="Recorded weather">
+    <div className="weather-heading"><b>Weather we had</b><span>From our trip notes</span></div>
+    <p className="forecast-condition">{day.observedWeather}</p>
+  </aside>;
+  return <ForecastWeatherCard day={day} />;
+}
+
+function ForecastWeatherCard({ day }: { day: Day }) {
   const forecast = useForecast(day);
   const history = weatherForDay(day);
   const live = forecast.daytime?.data;

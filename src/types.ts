@@ -12,6 +12,8 @@ export interface FoodPick {
 
 export interface Day {
   completed?: boolean;
+  /** Traveller-reported conditions, without inferred temperatures. */
+  observedWeather?: string;
   flight?: { from: 'SEA'; to: 'SLC'; dep: string; arr: string };
   roadEstimate?: { baseKm: number; note: string };
   /** Stable id. Doubles as the key into routes.json for driving days. */

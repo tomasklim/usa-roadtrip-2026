@@ -26,6 +26,7 @@ export function weatherForDay(day: Day) {
 }
 export const degrees = (value: number) => `${Math.round(value)}°C`;
 export function weatherSummary(day: Day): string {
+  if (day.observedWeather) return `Weather we had: ${day.observedWeather}`;
   const w = weatherForDay(day);
   if (!w) return "Historical weather unavailable for this date.";
   const s = w.daytime.stats;

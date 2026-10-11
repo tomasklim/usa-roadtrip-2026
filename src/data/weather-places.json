@@ -275,6 +275,18 @@
       "latitude": 39.0639,
       "longitude": -108.5506,
       "timezone": "America/Denver"
+    },
+    "heber": {
+      "name": "Heber / Midway",
+      "latitude": 40.507,
+      "longitude": -111.412,
+      "timezone": "America/Denver"
+    },
+    "harperscorner": {
+      "name": "Harpers Corner",
+      "latitude": 40.52417,
+      "longitude": -109.02058,
+      "timezone": "America/Denver"
     }
   },
   "days": {

@@ -96,9 +96,9 @@ for (const d of finale.days.slice(14,17)) {
 }
 assert.equal(finale.days[15].weather?.bed,'grandjunction');
 assert.equal(finale.days[16].weather?.bed,'vernal');
-assert.equal(finale.days[17].title,'Vernal · day to plan');
-assert.equal((await import('../src/lib/roadLabel')).roadLabel(finale.days[17],'mi'),'Route to be decided');
-assert.equal(mapLines(finale.days[17]).length,0,'Do not send travellers back from Moab after recording Vernal');
+assert.equal(finale.days[17].routeId,'dinoDry');
+assert.ok(mapLines(finale.days[17]).length > 0);
+assert.equal(finale.days[18].routeId,'slcLocalFinale');
 assert.ok(!finale.days[18].hi.join(' ').includes('If Quarry'));
 assert.equal(finale.days.length,20);
 assert.equal(finale.days.at(-1)?.id,'utFly');
@@ -106,4 +106,19 @@ const explicitPlan = buildTrip(new Set(['utahFinale']),'motel',{},DEFAULT_SEATTL
   '2026-10-11': {...record,status:'planned',title:'My own onward plan',variant:''}
 }));
 assert.equal(explicitPlan.days[17].title,'My own onward plan');
-console.log('✓ Recorded Utah route variants, an open onward day, preserved manual plans and no duplicate Quarry visit');
+console.log('✓ Recorded Utah route variants, a Salt Lake onward day, preserved manual plans and no duplicate Quarry visit');
+
+for (const variant of ['dinoDry','dinoHarpers','dinoRain']) {
+  const revised=buildTrip(new Set(['utahFinale']),'motel',{},DEFAULT_SEATTLE,{},normalizeJournal({...finaleJournal,
+    '2026-10-11':{variant,status:'planned',title:'',note:''}
+  }));
+  const next=revised.days[17],local=revised.days[18];
+  assert.equal(next.routeId,variant);
+  assert.equal(next.weather?.bed,'saltlake');
+  assert.match(next.sleep!.where,/Salt Lake/);
+  const end=mapLines(next)[0].at(-1)!, start=mapLines(local)[0][0];
+  assert.ok(Math.hypot(end[0]-start[0],end[1]-start[1])<0.001,'All variants connect to the local SLC day');
+  assert.ok(next.meters! > 250000 && next.meters! < 550000);
+  assert.equal(revised.days.at(-1)?.date,Date.UTC(2026,9,13));
+}
+console.log('✓ Three weather choices end in Salt Lake, connect to October 12 and preserve the return flight');

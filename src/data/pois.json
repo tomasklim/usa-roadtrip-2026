@@ -2103,5 +2103,57 @@
   "website": "https://nhmu.utah.edu/visit/welcome",
   "verified": "2026-10-07",
   "desc": "October 12 afternoon instead of Red Butte in rain. Daily 10:00–17:00; aim to arrive by 14:00–15:00. Skip if Quarry moves to this morning."
+ },
+ {
+  "id": "swelter-shelter",
+  "name": "Swelter Shelter · Fremont rock art",
+  "lat": 40.436702,
+  "lon": -109.291933,
+  "day": "dinoDry",
+  "city": "Dinosaur National Monument",
+  "website": "https://www.nps.gov/places/sweltershelterpetroglyphs.htm",
+  "desc": "A short walk from the parking area; do not touch the rock art.",
+  "kind": "sight",
+  "tags": [],
+  "verified": "2026-10-10"
+ },
+ {
+  "id": "split-mountain-day-use",
+  "name": "Split Mountain · Green River",
+  "lat": 40.438961,
+  "lon": -109.252451,
+  "day": "dinoDry",
+  "city": "Dinosaur National Monument",
+  "website": "https://www.nps.gov/dino/planyourvisit/cubcreek.htm",
+  "desc": "Paved access to riverside canyon views. Check current conditions after rain.",
+  "kind": "sight",
+  "tags": [],
+  "verified": "2026-10-10"
+ },
+ {
+  "id": "harpers-corner",
+  "name": "Harpers Corner · trailhead",
+  "lat": 40.52417,
+  "lon": -109.02058,
+  "day": "dinoHarpers",
+  "city": "Dinosaur National Monument",
+  "website": "https://www.nps.gov/dino/planyourvisit/harperscorner.htm",
+  "desc": "Longer clear-weather alternative. Return by the paved road; no Echo Park descent.",
+  "kind": "sight",
+  "tags": [],
+  "verified": "2026-10-10"
+ },
+ {
+  "id": "homestead-crater",
+  "name": "Homestead Crater · warm-water soak",
+  "lat": 40.52385,
+  "lon": -111.48497,
+  "day": "dinoRain",
+  "city": "Midway UT",
+  "website": "https://homesteadmidwayutah.com/adventures/crater/",
+  "desc": "Reserve ahead. Weekend 09:30–21:30; $30 for a one-hour slot, about 40 minutes in the water.",
+  "kind": "sight",
+  "tags": [],
+  "verified": "2026-10-10"
  }
 ]

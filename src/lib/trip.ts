@@ -1,3 +1,4 @@
+import { DINOSAUR_PLANS, SALT_LAKE_LOCAL } from '../data/dinosaur';
 import type { Stays } from "./planning";
 import { applyJournal, type Journal } from './journal';
 import { BASE, CAR_NIGHTS, MODULES, VALLEY_LOOP } from "../data/itinerary";
@@ -129,23 +130,15 @@ export function buildTrip(on: Set<string>, sleepStyle: SleepStyle = "balanced", 
     return entry ? applyJournal(d, entry) : d;
   });
 
-  // An early recorded Quarry visit frees its planned day without inventing
-  // another overnight base or overwriting a separately saved onward plan.
-  const quarryRecorded = days.findIndex((d, i) => d.completed &&
+  // Once Quarry is recorded, each onward weather choice ends in Salt Lake.
+  const quarryRecorded = days.some((d, i) => d.completed &&
     journal[new Date(START + i * DAY_MS).toISOString().slice(0,10)]?.variant === 'grandJunctionQuarry');
-  if (quarryRecorded >= 0) days = days.map((d, i) => {
-    if (i <= quarryRecorded || journal[new Date(START + i * DAY_MS).toISOString().slice(0,10)]) return d;
-    if (d.id === 'utQuarry') return { ...d, title: 'Vernal · day to plan',
-      leg: 'Vernal · onward plan to be decided', routeId: 'undecided', mapRouteIds: [],
-      poiDay: 'recorded', hours: 0, at: [40.455, -109.53], photos: ['vernal'],
-      hi: ['Quarry Exhibit Hall is already recorded. Choose the next stops and overnight base before setting off.'],
-      ideas: [], food: [], charge: [], alert: undefined, why: 'A free day after visiting Quarry earlier.',
-      sleep: { t: 'motel', where: 'Overnight base to be decided' } };
-    if (d.id === 'utReturn') return { ...d, title: 'Back to Salt Lake · garden or museum',
-      hi: ['Return to Salt Lake City today. The displayed route assumes a Vernal departure; adjust it once the previous day is decided.',
-        d.hi[1],
-        'Make Red Butte Garden the afternoon priority in dry weather (October hours 09:00–17:00), or Natural History Museum of Utah in rain (10:00–17:00). Aim to arrive by about 14:00–15:00 and choose one.',
-        ...d.hi.slice(3)] };
+  const onwardEntry = journal['2026-10-11'];
+  const onwardToSaltLake = !onwardEntry || !!DINOSAUR_PLANS[onwardEntry.variant];
+  if (quarryRecorded) days = days.map((d, i) => {
+    if (journal[new Date(START + i * DAY_MS).toISOString().slice(0,10)]) return d;
+    if (d.id === 'utQuarry') return {...d, ...DINOSAUR_PLANS.dinoDry};
+    if (d.id === 'utReturn' && onwardToSaltLake) return {...d, ...SALT_LAKE_LOCAL};
     return d;
   });
 

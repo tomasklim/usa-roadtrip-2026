@@ -1,4 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { DinosaurChoices } from "./components/DinosaurChoices";
 import { MontanaChoices } from "./components/MontanaChoices";
 import { SeattleChoices } from "./components/SeattleChoices";
 import { DEFAULT_SEATTLE, normalizeSeattle, type SeattleOptions } from "./data/seattle";
@@ -175,6 +176,7 @@ export default function App() {
           {trip.overrun > 0 && <p className="warn" role="alert">The selected route is {trip.overrun} days too long for the booked flights. <a href="#guide/options">Adjust route options</a>.</p>}
           <DailyPlan trip={trip} day={day} units={units} tab={tab} setTab={setTab} onSelect={openDaily}
             choices={<>
+              <DinosaurChoices day={day} setJournal={setJournal} />
               {(day.act === "I" || day.id === "seaReturn") && seattleChoices}
               {["s6", "s7", "s8", "rainLamar", "rainTransfer", "rainRest"].includes(day.id) && montanaChoices}
             </>}

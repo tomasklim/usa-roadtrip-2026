@@ -843,5 +843,21 @@
     "license": "CC0",
     "alt": "A wagon filled with pumpkins at a farm in Buffalo, New York; an illustration of an autumn farm stop, not Rocky Creek Farm",
     "label": "Pumpkin season · illustration"
+  },
+  "sweltershelter": {
+    "url": "/images/swelter-shelter.jpg",
+    "page": "https://www.nps.gov/places/sweltershelterpetroglyphs.htm",
+    "credit": "NPS",
+    "license": "Public domain",
+    "alt": "Fremont petroglyphs and pictographs on the rock face at Swelter Shelter",
+    "label": "Swelter Shelter · rock art"
+  },
+  "harperscorner": {
+    "url": "/images/harpers-corner.webp",
+    "page": "https://www.nps.gov/dino/planyourvisit/harperscorner.htm",
+    "credit": "NPS",
+    "license": "Public domain",
+    "alt": "The folded rocks of Mitten Park Fault and canyon scenery from Harpers Corner",
+    "label": "Harpers Corner · canyon country"
   }
 }

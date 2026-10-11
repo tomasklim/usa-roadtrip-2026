@@ -1,4 +1,5 @@
 import { validField } from '../../shared/trip-schema.mjs';
+import { DINOSAUR_PLANS } from '../data/dinosaur';
 import { BASE } from '../data/itinerary';
 import type { Day } from '../types';
 
@@ -7,6 +8,7 @@ export type Journal = Record<string, JournalEntry>;
 export const normalizeJournal = (v: unknown): Journal => Object.fromEntries(Object.entries(v && typeof v === 'object' ? v : {}).filter(([date, entry]) => entry !== null && validField(`journal:${date}`, entry)));
 const base = (id: string) => BASE.find(d => d.id === id)!;
 export const JOURNEY_VARIANTS: Record<string, Partial<Day> & { title: string }> = {
+  ...DINOSAUR_PLANS,
   arrival: { mapRouteIds: ['airportTacoma'], ...base('arrive'), photos: ['model3','wholefoods','tacoma'], weather: {day:'seatac'}, routeId: 'recorded', poiDay: 'recorded', at: [47.2529,-122.4443] },
   hood: { mapRouteIds: ['tacomaHoodOlympia'], ...base('seaB'), title: 'Hama Hama & State Capitol', photos: ['oysters','olympiacapitol','rhododendrons'], routeId: 'recorded', poiDay: 'seaB', at: [47.539,-123.038], weather: {day:'hood'} },
   rainier: { mapRouteIds: ['olympiaRainierFederalWay'], ...base('seaA'), routeId: 'recorded', poiDay: 'waRainier', at: [46.786,-121.735], weather: {day:'rainier'} },

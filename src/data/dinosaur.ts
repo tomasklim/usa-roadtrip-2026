@@ -1,0 +1,52 @@
+import type { Day } from '../types';
+
+const common: Partial<Day> = {
+  sleep: {t:'motel',where:'Salt Lake City · choose a hotel with parking'}, carEligible:false,
+  weather:{day:'vernal',bed:'saltlake',car:'saltlake'},
+  food:[{nm:'Packed lunch; dinner in Salt Lake',note:'Carry lunch for the park. Eat during the westbound transfer or after arriving in Salt Lake.',tags:[]}],
+  charge:['Start with enough charge for the chosen park loop and return to Vernal. Before heading west, use Tesla navigation for native Superchargers along US-40 and an arrival reserve; no park or hotel charging is assumed.'],
+  why:'Explore outdoors if conditions allow, but finish in Salt Lake City in every weather plan.',
+};
+export const DINOSAUR_PLANS: Record<string, Partial<Day> & {title:string}> = {
+  dinoDry: {...common, title:'Dinosaur outdoors → Salt Lake',
+    leg:'Vernal → Swelter Shelter → Split Mountain → Vernal → US-40 → Salt Lake City',
+    routeId:'dinoDry',mapRouteIds:['dinoDry'],poiDay:'dinoDry',hours:4.5,at:[40.439,-109.252],photos:['sweltershelter','saltlakecity'],
+    hi:['Leave Vernal around 08:30. Spend roughly 2–3 hours outside near the Utah entrance; Quarry Exhibit Hall has already been visited.',
+      'Swelter Shelter: a very short walk to Fremont petroglyphs and pictographs. Continue to Split Mountain for the Green River and canyon views. The mapped loop covers these two stops.',
+      'If conditions and time allow, add roadside views along the paved part of Cub Creek Road. Turn back before the unpaved final section toward Josie Morris Cabin; leave the park around 11:30–12:00.',
+      'Return via Vernal and US-40 through Duchesne and Heber. Allow about 3½–4 hours from Vernal plus food and charging. Aim for Salt Lake around 17:00–18:00, with flexibility for delays.',
+      'Sleep in Salt Lake City tonight. Tomorrow is a local garden or museum day, with no return drive from Vernal.'],
+    ideas:['For the Colorado side beyond Dinosaur town, choose the separate Harpers Corner option above instead of adding it to this morning.'],
+    alert:'Check NPS conditions before leaving. After the October storms, Sound of Silence and Desert Voices have significant washouts; keep to roadside stops and short safe walks. Avoid gravel roads and flooded washes.'},
+  dinoHarpers: {...common,title:'Harpers Corner → Salt Lake',
+    leg:'Vernal → Dinosaur → Harpers Corner → Dinosaur → Vernal → US-40 → Salt Lake City',
+    routeId:'dinoHarpers',mapRouteIds:['dinoHarpers'],poiDay:'dinoHarpers',hours:7,weather:{day:'harperscorner',bed:'saltlake',car:'saltlake'},at:[40.52417,-109.02058],photos:['harperscorner','saltlakecity'],
+    hi:['Choose this longer alternative only with clear views and suitable road conditions. Leave Vernal around 07:30–08:00; skip the Utah-side Cub Creek loop today.',
+      'Drive through Dinosaur town to the Colorado entrance, then follow paved Harpers Corner Drive. It is about 32 miles each way, with canyon overlooks and a short paved walk at Plug Hat Butte.',
+      'Allow around 3 hours for the scenic drive, a few overlooks and a short walk. A longer Harpers Corner hike uses the time buffer; turn south by about 12:00–12:30.',
+      'Return the same paved way via Dinosaur and Vernal, then US-40 to Salt Lake. Budget roughly 7 hours total driving plus visits, charging and food: this is a full day, with an evening arrival.',
+      'Sleep in Salt Lake City. Carry lunch and water; there are no services along Harpers Corner Drive.'],
+    ideas:[],alert:'Check NPS road status and visibility first. Do not descend Echo Park Road: its final five miles are closed, and the remaining dirt roads require high-clearance 4WD. Stay on the paved scenic drive; skip it in poor visibility or storms.'},
+  dinoRain: {...common,title:'Rainy-day route · Midway → Salt Lake',
+    leg:'Vernal → Duchesne → Heber → Midway → Salt Lake City',
+    routeId:'dinoRain',mapRouteIds:['dinoRain'],poiDay:'dinoRain',hours:4,at:[40.52385,-111.48497],photos:['saltlakecity'],
+    weather:{day:'heber',bed:'saltlake',car:'saltlake'},
+    hi:['Leave Vernal after breakfast and follow US-40 through Duchesne and Heber. Allow around 4 hours driving via Midway, plus charging, food and the chosen visit.',
+      'Homestead Crater in Midway: swim or soak in warm geothermal water inside a limestone dome. Reserve a slot before taking the detour; weekend hours are 09:30–21:30, $30 for a one-hour slot with about 40 minutes in the water. Availability is not guaranteed.',
+      'Bring swimwear and a towel. A provided life jacket is required. After the soak, continue to Salt Lake for dinner and the night.',
+      'If the Crater is full, use Park City Museum as the indoor alternative: mining history and the old jail, Sunday 10:00–17:00, adult $15. Allow about an hour and a short Main Street walk if the rain eases. The default map goes via the Crater, not the optional museum.',
+      'Keep Natural History Museum of Utah for tomorrow. Utah Field House in Vernal and Heber Valley Artisan Cheese are closed on Sunday.'],
+    ideas:['Utah Olympic Park has two free indoor museums: another alternative if you prefer Olympic and ski history. The October 10–11 scenic chairlift rides are cancelled for weather.'],
+    alert:'Check Utah 511 for US-40 and the final mountain approach. Heavy rain can slow this transfer. Skip outdoor detours and do not drive through standing water.'},
+};
+
+export const SALT_LAKE_LOCAL: Partial<Day> = {
+  title:'Salt Lake · garden or museum',leg:'Salt Lake City → Red Butte Garden / Natural History Museum → Salt Lake City',
+  routeId:'slcLocalFinale',mapRouteIds:['slcLocalFinale'],poiDay:'utReturn',hours:1,at:[40.76,-111.89],
+  weather:{day:'saltlake',bed:'saltlake',car:'saltlake'},
+  hi:['Wake up in Salt Lake City after yesterday’s return. There is no long transfer today.',
+    'In dry weather, prioritise Red Butte Garden (October hours 09:00–17:00). In rain, choose the adjacent Natural History Museum of Utah (10:00–17:00). Allow 2–3 hours for your choice.',
+    'Optional later: Pumpkin Days at Wheeler Historic Farm, if weather and energy allow. On Monday the Maze & Playland runs 16:00–20:00, $12 including a wagon or cow-train ride; the pumpkin patch is free to enter, pumpkins extra. This optional detour is not included in the garden/museum map loop.',
+    'Keep time for packing, dinner and charging to the rental host’s return requirement. Sleep in Salt Lake again before the October 13 flight.'],
+  charge:['Use a nearby native Tesla Supercharger as needed. Confirm the host’s return charge and handover details today.'],
+};

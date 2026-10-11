@@ -71,7 +71,6 @@ export function DayPanel({ day, units, count, width, tab, setTab, sheet, onClose
           {meters > 0 && <span className="chip mi">{day.roadEstimate ? '≈ ' : ''}{distLabel(meters, units)}{day.roadEstimate ? ' est.' : ''}</span>}
           {day.hours > 0 && <span className="chip">{day.hours} h</span>}
           {meters > 0 && <span className={`chip ${difficulty(meters)}`}>{difficulty(meters)}</span>}
-          {day.isMod && <span className="chip" style={{ color: "var(--plum)" }}>module</span>}
         </div>
         <div className="dptabs" role="tablist">
           {TABS.map((t) => (

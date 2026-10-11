@@ -29,7 +29,7 @@ export function Glance({ trip, units, onSelect }: {
                       }}>
                     <td className="n">{d.num}</td>
                     <td className="n">{d.date ? fmtShort(d.date) : ""}</td>
-                    <td>{d.title}{d.isMod && <span className="tag" style={{ background: "var(--plum-soft)", color: "var(--plum)" }}>module</span>}</td>
+                    <td>{d.title}</td>
                     <td className="n">{(d.meters ?? 0) > 0 ? `${d.roadEstimate ? '≈ ' : ''}${distLabel(d.meters ?? 0, units)}${d.roadEstimate ? ' est.' : ''}` : '—'}</td>
                     <td className="n">{d.hours > 0 ? `${d.hours} h` : "—"}</td>
                     <td className="n">{(d.meters ?? 0) > 0 ? difficulty(d.meters ?? 0) : "—"}</td>
@@ -101,7 +101,7 @@ export function LoadChart({ trip, units, onSelect }: {
             ))}
             {data.map((d, i) => {
               const v = vals[i], x = pad.l + i * bw, bwid = Math.max(5, bw - 5);
-              const cls = d.isMod ? "modbar" : difficulty(d.meters ?? 0);
+              const cls = difficulty(d.meters ?? 0);
               return (
                 <g key={d.id}>
                   <rect className={`bar ${cls}`} x={x + 2.5} y={y(v)} width={bwid}
@@ -123,7 +123,6 @@ export function LoadChart({ trip, units, onSelect }: {
             <span><i style={{ background: "var(--pine)" }} />easy</span>
             <span><i style={{ background: "var(--sky)" }} />moderate</span>
             <span><i style={{ background: "var(--gold)" }} />long / crux</span>
-            <span><i style={{ background: "var(--plum)" }} />module day</span>
           </div>
         </div>
       </div>

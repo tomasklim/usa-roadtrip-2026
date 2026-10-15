@@ -1,4 +1,5 @@
 export function validField(key, value) {
+  if (/^mileage:(seattle|slc|sf)$/.test(key)) return value === null || (typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 100000);
   if (/^journal:2026-\d{2}-\d{2}$/.test(key)) return value === null || (value && typeof value === 'object' && !Array.isArray(value)
     && Object.keys(value).every(k => ['variant', 'title', 'note', 'status', 'roadKm', 'roadNote', 'flight'].includes(k))
     && typeof value.variant === 'string' && /^[a-zA-Z0-9-]{0,80}$/.test(value.variant)

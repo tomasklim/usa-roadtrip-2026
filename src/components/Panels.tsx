@@ -76,8 +76,8 @@ export function LoadChart({ trip, units, onSelect }: {
       <div className="wrap narrow">
         <div className="shead"><span className="num">04</span><h2>Where it hurts</h2></div>
         <p className="sub">
-          Distance per driving day, split by which car you are in. Under {easyLimit} {units} is an easy day,
-          over {transferLimit} {units} is a transfer. Click a bar to jump to that day. Distances are grouped by rental.
+          Estimated distance per driving day, split by which car you are in. Under {easyLimit} {units} is an easy day,
+          over {transferLimit} {units} is a transfer. Click a bar to jump to that day. The chart adds up daily estimates, not recorded rental totals.
         </p>
         <div className="card chart">
           <svg className="bars" viewBox={`0 0 ${w} ${h}`} role="img" aria-label={`Distance per day in ${units}`}>

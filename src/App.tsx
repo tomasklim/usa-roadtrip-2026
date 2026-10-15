@@ -11,6 +11,8 @@ import type { Basemap, Layers } from "./components/RouteMap";
 import { DayList } from "./components/DayList";
 import { Charging, Glance, LoadChart } from "./components/Panels";
 import { FoodGuide } from "./components/FoodGuide";
+import { RentalMileage } from "./components/RentalMileage";
+import { normalizeMileage, type RentalMileage as Mileage } from "./lib/mileage";
 import { Budget } from "./components/Budget";
 import { Checklist } from "./components/Checklist";
 import { CAR_NIGHTS, MODULES } from "./data/itinerary";
@@ -44,6 +46,7 @@ export default function App() {
   const [wheelZoom, setWheelZoom] = useStored<boolean>("wheelZoom", false, NORMALIZE_FALSE);
   const [stays, setStays] = useSharedStored<Stays>("stays", {}, normalizeStays);
   const [journal, setJournal] = useSharedStored<Journal>('journal', {}, normalizeJournal);
+  const [mileage, setMileage] = useSharedStored<Mileage>("rentalMileage", {}, normalizeMileage);
   const sleepStyle = "motel";
   const [sleepOverrides] = useSharedStored<SleepOverrides>("sleepOverrides", {}, normalizeSleepOverrides);
   const [selected, setSelected] = useStored<string | null>("selectedDay", null, normalizeDay);
@@ -150,7 +153,7 @@ export default function App() {
       <main id="main" tabIndex={-1}>
         {shared.connected && <div className="wrap shared-indicator"><a href="#guide/checklist">Shared trip · {shared.pending ? `${shared.pending} changes waiting to sync` : shared.status}</a></div>}
         {view === "overview" && <>
-          <TripBar trip={trip} units={units} onContinue={() => openDaily(day.id)} dayTitle={`Day ${day.num} · ${day.title}`} />
+          <TripBar trip={trip} mileage={mileage} units={units} onContinue={() => openDaily(day.id)} dayTitle={`Day ${day.num} · ${day.title}`} />
           <div className="wrap overview-body">
             <QuickLinks />
             {seattleChoices}{montanaChoices}
@@ -195,7 +198,7 @@ export default function App() {
           {trip.overrun > 0 && <p className="warn" role="alert">The selected route is {trip.overrun} days too long for the booked flights. <a href="#guide/options">Adjust route options</a>.</p>}
           {route.planSection === "itinerary"
             ? <DayList trip={trip} units={units} selected={day.id} onSelect={selectOnMap} />
-            : <><Glance trip={trip} units={units} onSelect={selectOnMap} /><LoadChart trip={trip} units={units} onSelect={selectOnMap} /></>}
+            : <><RentalMileage trip={trip} mileage={mileage} onChange={setMileage} /><Glance trip={trip} units={units} onSelect={selectOnMap} /><LoadChart trip={trip} units={units} onSelect={selectOnMap} /></>}
         </div>}
 
         {view === "flights" && <div className="view-content flights-view"><Flights trip={trip} /></div>}

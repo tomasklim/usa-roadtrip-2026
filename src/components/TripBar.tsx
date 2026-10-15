@@ -1,14 +1,16 @@
+import { mileageSummary, type RentalMileage } from "../lib/mileage";
 import { ACTS } from "../data/itinerary";
 import { CAP_DAYS, DEPART, START, distLabel, fmtShort, rentals, type Trip } from "../lib/trip";
 import { navigate } from "../lib/navigation";
 import { PHOTOS } from "./DayParts";
 import type { Units } from "../types";
 
-export function TripBar({ trip, units, onContinue, dayTitle }: {
-  trip: Trip; units: Units; onContinue: () => void; dayTitle: string;
+export function TripBar({ trip, mileage, units, onContinue, dayTitle }: {
+  trip: Trip; mileage: RentalMileage; units: Units; onContinue: () => void; dayTitle: string;
 }) {
   const photo = trip.seattle.weather === "rain" ? (trip.seattle.portland ? PHOTOS.portlandriver : PHOTOS.seattle) : PHOTOS.rainier;
   const r = rentals(trip);
+  const actual = mileageSummary(trip, mileage);
   return <div className="tripbar">
     <div className="wrap">
       <div className="trip-hero">
@@ -30,7 +32,7 @@ export function TripBar({ trip, units, onContinue, dayTitle }: {
         </figure>
       </div>
       <div className="trip-facts" aria-label="Trip at a glance">
-        <div><b>{distLabel(trip.meters, units)}</b><span>{trip.days.some(d => d.completed) ? 'planned roads + estimated past driving' : 'on the road'}</span></div>
+        <div><b>{distLabel(actual.complete ? actual.recordedKm * 1000 : trip.meters, units)}</b><span>{actual.complete ? 'actually driven · rental totals' : trip.days.some(d => d.completed) ? 'planned roads + estimated past driving' : 'on the road'}</span></div>
         <div><b>{r.seattle.days + r.slc.days + r.sf.days} rental days</b><span>across {trip.utahFinale ? "two" : "three"} car blocks</span></div>
         <div><b>{trip.utahFinale ? "Utah finale" : `${trip.sfNights} Bay Area nights`}</b><span>home in Prague Oct 14</span></div>
         <div><b>Made for two</b><span>gluten-free & dairy-free</span></div>

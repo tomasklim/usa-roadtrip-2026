@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import { validField } from '../shared/trip-schema.mjs';
+import { buildTrip } from '../src/lib/trip';
+import { mileageSummary, normalizeMileage } from '../src/lib/mileage';
+const trip = buildTrip(new Set(['utahFinale']));
+const before = trip.days.map(d => d.meters);
+assert.equal(mileageSummary(trip, {}).complete, false);
+assert.equal(mileageSummary(trip, {slc: 3000}).complete, false);
+assert.deepEqual(mileageSummary(trip, {slc: 3000, seattle: 600, sf: 100}), {active: ['seattle', 'slc'], complete: true, recordedKm: 3600});
+assert.equal(mileageSummary(trip, {slc: 0, seattle: 0}).complete, true);
+assert.deepEqual(trip.days.map(d => d.meters), before);
+for (const value of [-1, Infinity, NaN, '3000', 100001, {}]) assert.equal(validField('mileage:slc', value), false);
+assert.equal(validField('mileage:slc', null), true);
+assert.equal(validField('mileage:slc', 1234.5), true);
+assert.equal(validField('mileage:unknown', 100), false);
+assert.deepEqual(normalizeMileage({slc: 3000, seattle: null, sf: -1, other: 12}), {slc: 3000});
+console.log('Rental mileage: validation, complete/partial totals, zero, inactive rentals and unchanged daily estimates passed.');

@@ -724,20 +724,20 @@
     "label": "Tacoma"
   },
   "microsoftRedmond": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Microsoft_sign_closeup.jpg/960px-Microsoft_sign_closeup.jpg",
-    "page": "https://commons.wikimedia.org/wiki/File:Microsoft_sign_closeup.jpg",
-    "credit": "Derrick Coetzee; levels adjusted by Zarex",
-    "license": "Public domain",
-    "alt": "Microsoft campus entrance sign in Redmond",
-    "label": "Microsoft · Redmond"
+    "url": "/images/microsoft-campus.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Building92microsoft.jpg",
+    "credit": "Coolcaesar",
+    "license": "CC BY-SA 4.0",
+    "alt": "Building 92 at the Microsoft campus in Redmond, photographed in 2016",
+    "label": "Microsoft campus · Building 92"
   },
   "nintendoRedmond": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/NintendoofAmericaHQSign.jpg/960px-NintendoofAmericaHQSign.jpg",
-    "page": "https://commons.wikimedia.org/wiki/File:NintendoofAmericaHQSign.jpg",
-    "credit": "bcchardware",
-    "license": "CC BY-SA 2.0",
-    "alt": "Nintendo of America headquarters sign in Redmond",
-    "label": "Nintendo · Redmond"
+    "url": "/images/nintendo-headquarters.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Nintendo_of_America_Headquarters.jpg",
+    "credit": "Pyrenil",
+    "license": "CC BY-SA 3.0",
+    "alt": "Nintendo of America headquarters building in Redmond, photographed in 2011",
+    "label": "Nintendo · Redmond headquarters"
   },
   "model3": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Tesla_model_3_white_%282%29.jpg/960px-Tesla_model_3_white_%282%29.jpg",
@@ -859,5 +859,21 @@
     "license": "Public domain",
     "alt": "The folded rocks of Mitten Park Fault and canyon scenery from Harpers Corner",
     "label": "Harpers Corner · canyon country"
+  },
+  "spacexRedmond": {
+    "url": "/images/spacex-redmond.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:SpaceXSatelliteDevelopment%26ManufacturingBuilding%4022908NeAlderCrestDrive%2CRedmond-20181022_074809.jpg",
+    "credit": "N2e",
+    "license": "CC BY-SA 4.0",
+    "alt": "SpaceX satellite development facility on NE Alder Crest Drive in Redmond, photographed in 2018",
+    "label": "SpaceX · Redmond facility"
+  },
+  "strawmaze": {
+    "url": "/images/straw-bale-maze.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Bales_of_hay_make_up_a_maze_-_geograph.org.uk_-_1043007.jpg",
+    "credit": "Sebastian Ballard",
+    "license": "CC BY-SA 2.0",
+    "alt": "Paths through a straw-bale maze at Home Farm in England; illustrative photograph, not the maze visited in Bozeman",
+    "label": "Straw-bale maze · illustration"
   }
 }

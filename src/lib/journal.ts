@@ -9,11 +9,14 @@ export const normalizeJournal = (v: unknown): Journal => Object.fromEntries(Obje
 const base = (id: string) => BASE.find(d => d.id === id)!;
 export const JOURNEY_VARIANTS: Record<string, Partial<Day> & { title: string }> = {
   ...DINOSAUR_PLANS,
+  bozemanFlatRock: {title:'Bozeman → Flat Rock',mapRouteIds:['bozemanFarmFlatRock'],at:[44.5005,-111.3363],photos:['strawmaze'],weather:{day:'bozeman',car:'flatrock'}},
+  slcShopping: {title:'Salt Lake Capitol & shopping',mapRouteIds:['slcCapitolShopping'],at:[40.7774,-111.8882],photos:['saltlakecity'],weather:{day:'saltlake',bed:'saltlake',car:'saltlake'}},
+  slcDeparture: {title:'In-N-Out & the journey home',mapRouteIds:['utAirport'],at:[40.7899,-111.9791],photos:['innoutburger','saltlakecity'],weather:{day:'saltlake'}},
   arrival: { mapRouteIds: ['airportTacoma'], ...base('arrive'), photos: ['model3','wholefoods','tacoma'], weather: {day:'seatac'}, routeId: 'recorded', poiDay: 'recorded', at: [47.2529,-122.4443] },
   hood: { mapRouteIds: ['tacomaHoodOlympia'], ...base('seaB'), title: 'Hama Hama & State Capitol', photos: ['oysters','olympiacapitol','rhododendrons'], routeId: 'recorded', poiDay: 'seaB', at: [47.539,-123.038], weather: {day:'hood'} },
   rainier: { mapRouteIds: ['olympiaRainierFederalWay'], ...base('seaA'), routeId: 'recorded', poiDay: 'waRainier', at: [46.786,-121.735], weather: {day:'rainier'} },
   seattle: { mapRouteIds: ['federalWaySeattleRedmond'], ...base('sea1'), photos: ['pikeplace','kerrypark','shakeshack'], routeId: 'recorded', poiDay: 'sea1', at: [47.6097,-122.3422], weather: {day:'seattle'} },
-  redmond: { mapRouteIds: ['redmondAirport', 'slcAirportCity'], title: 'Redmond · tech companies', leg: 'Redmond, Washington', routeId: 'recorded', poiDay: 'recorded', at: [47.674,-122.1215], photos: ['microsoftRedmond','nintendoRedmond','targetSign'], weather: {day:'seattle'} },
+  redmond: { mapRouteIds: ['redmondAirport', 'slcAirportCity'], title: 'Redmond · tech companies', leg: 'Redmond, Washington', routeId: 'recorded', poiDay: 'recorded', at: [47.674,-122.1215], photos: ['microsoftRedmond','nintendoRedmond','spacexRedmond'], weather: {day:'seattle'} },
   salt: { mapRouteIds: ['saltFlatsBorderLoop'], ...base('s1'), photos: ['bonneville','innoutburger','nevadaBorder'], routeId: 'recorded', poiDay: 's1', at: [40.75,-113.85], weather: {day:'bonneville'} },
   antelopeMontpelier: { mapRouteIds: ['antelopeLoganMontpelier'], title: 'Antelope Island, Logan Canyon & Bear Lake', leg: 'Antelope Island → Logan Canyon → Bear Lake → Montpelier', routeId: 'recorded', poiDay: 'recorded', at: [42.322,-111.298], photos: ['antelopeSunset','bearlake','logancanyon'], weather: {day:'bearlake'} },
   jennyJackson: { title: 'Jenny Lake & Jackson', mapRouteIds: ['jennyJackson'], routeId: 'recorded', at: [43.751,-110.727], photos: ['jennylake'], weather: {day:'teton',car:'jackson'} },
@@ -56,7 +59,7 @@ export function applyJournal(day: Day, entry: JournalEntry): Day {
     result.hours = 0; result.routeId = 'recorded';
     result.roadEstimate = entry.roadKm != null ? {baseKm: entry.roadKm, note: entry.roadNote ?? ''} : undefined;
     result.poiDay = 'recorded';
-    result.sleep = {t:'motel',where:'Overnight location not recorded'};
+    result.sleep = result.kind === 'depart' ? undefined : {t:'motel',where:'Overnight location not recorded'};
     result.why = 'Recorded from your trip.';
   }
   return result;

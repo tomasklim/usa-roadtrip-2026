@@ -39,3 +39,18 @@ const afterToday=buildTrip(new Set(['utahFinale']),'motel',{},undefined,{}, {...
 assert.equal(afterToday.utahFinale,true,'Do not remove the finale as its first day becomes history');
 assert.equal(afterToday.days[17].id,'utQuarry');
 console.log('✓ Utah dates, preserved history, route geometry, weather, photos, rental extension, flights and checklist');
+const finished = buildTrip(new Set(['utahFinale']), 'motel', {}, undefined, {}, {
+  ...history,
+  '2026-10-07': {variant:'bozemanFlatRock',title:'Farm day',note:'Visited the farm.',status:'done',roadKm:195.4},
+  '2026-10-10': {variant:'grandJunctionQuarry',title:'Quarry',note:'Visited Quarry.',status:'done'},
+  '2026-10-11': {variant:'dinoDry',title:'Dinosaur',note:'Visited the park.',status:'done',roadKm:352.8},
+  '2026-10-12': {variant:'slcShopping',title:'Shopping',note:'Visited the Capitol.',status:'done',roadKm:40},
+  '2026-10-13': {variant:'slcDeparture',title:'Fly home',note:'Returned the car.',status:'done',roadKm:25},
+});
+assert.ok([13,17,18,19].every(i=>finished.days[i].completed));
+assert.equal(finished.days[19].sleep,undefined,'A completed departure must not create a fictitious hotel night');
+assert.equal(finished.days[19].date,Date.UTC(2026,9,13));
+assert.ok([13,17,18,19].every(i=>mapLines(finished.days[i]).length>0));
+assert.ok(!finished.days[13].photos?.includes('gallatincanyon'));
+assert.ok(!finished.days[18].hi.some(s=>/Garden|Museum/.test(s)));
+console.log('✓ Completed finale retains map lines and flight date without inventing an extra hotel night');

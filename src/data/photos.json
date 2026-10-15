@@ -875,5 +875,23 @@
     "license": "CC BY-SA 2.0",
     "alt": "Paths through a straw-bale maze at Home Farm in England; illustrative photograph, not the maze visited in Bozeman",
     "label": "Straw-bale maze · illustration"
+  },
+  "utahcapitol": {
+    "url": "/images/utah-state-capitol.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:2010_Utah_State_Capitol_Salt_Lake_City.jpg",
+    "credit": "Pocksuppet1999",
+    "license": "CC BY-SA 3.0",
+    "alt": "The dome and columned facade of the Utah State Capitol in Salt Lake City",
+    "label": "Utah State Capitol",
+    "position": "50% 50%"
+  },
+  "citycreek": {
+    "url": "/images/city-creek-center.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:City_Creek_Center,_west_block_walkway_-_Salt_Lake_City_-_29_August_2026.jpg",
+    "credit": "Beneathtimp",
+    "license": "CC0",
+    "alt": "The stream and tree-lined walkway beneath the glass roof at City Creek Center in Salt Lake City",
+    "label": "City Creek Center",
+    "position": "50% 65%"
   }
 }

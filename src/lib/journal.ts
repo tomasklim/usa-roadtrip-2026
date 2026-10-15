@@ -10,7 +10,7 @@ const base = (id: string) => BASE.find(d => d.id === id)!;
 export const JOURNEY_VARIANTS: Record<string, Partial<Day> & { title: string }> = {
   ...DINOSAUR_PLANS,
   bozemanFlatRock: {title:'Bozeman → Flat Rock',mapRouteIds:['bozemanFarmFlatRock'],at:[44.5005,-111.3363],photos:['strawmaze'],weather:{day:'bozeman',car:'flatrock'}},
-  slcShopping: {title:'Salt Lake Capitol & shopping',mapRouteIds:['slcCapitolShopping'],at:[40.7774,-111.8882],photos:['saltlakecity'],weather:{day:'saltlake',bed:'saltlake',car:'saltlake'}},
+  slcShopping: {title:'Salt Lake Capitol & shopping',mapRouteIds:['slcCapitolShopping'],at:[40.7774,-111.8882],photos:['utahcapitol','citycreek'],weather:{day:'saltlake',bed:'saltlake',car:'saltlake'}},
   slcDeparture: {title:'In-N-Out & the journey home',mapRouteIds:['utAirport'],at:[40.7899,-111.9791],photos:['innoutburger','saltlakecity'],weather:{day:'saltlake'}},
   arrival: { mapRouteIds: ['airportTacoma'], ...base('arrive'), photos: ['model3','wholefoods','tacoma'], weather: {day:'seatac'}, routeId: 'recorded', poiDay: 'recorded', at: [47.2529,-122.4443] },
   hood: { mapRouteIds: ['tacomaHoodOlympia'], ...base('seaB'), title: 'Hama Hama & State Capitol', photos: ['oysters','olympiacapitol','rhododendrons'], routeId: 'recorded', poiDay: 'seaB', at: [47.539,-123.038], weather: {day:'hood'} },
